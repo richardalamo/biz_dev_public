@@ -29,3 +29,7 @@ Right now the structure is as follows:
 # Scrape new logic
 
 The logic for scraping only newly found jobs is not perfect but I think it's the best balance. It will re-scrape jobs that were found in the past, are still on the board, but don't pass the cleaning phase of processing (step 3 above in the flow). While that will result in some extra scraping, it is better, in my opinion, than building and maintaining a separate record of accessed urls. 
+
+# Small Selenium Driver change
+
+For whatever reason selenium/chromedriver/etc. wasn't happy with the webdriver set up as is. I installed chromedriver in the virtual environment and just am running it that way. I've saved the original code that utilized webdriver-manager in comments above the versions I was using.
