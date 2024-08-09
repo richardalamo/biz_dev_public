@@ -1,0 +1,569 @@
+Company ID,Company Name,Name from URL,People Name,Linkedin Profile,Job Title,Job Category,Departments
+43675e18-a9c9-4156-acbc-065b36676d90,Sweater,sweater,Chad Lewkowski,https://www.linkedin.com/in/chad-lewkowski-720b789,Business Management,"['l_100_individual', 'l_500_exec']",['management']
+43675e18-a9c9-4156-acbc-065b36676d90,Sweater,sweater,Emma Clark,https://www.linkedin.com/in/emmadonaho,Chief Operating Officer,"['l_100_individual', 'l_500_exec']",['operations']
+43675e18-a9c9-4156-acbc-065b36676d90,Sweater,sweater,Jaron Jones,https://www.linkedin.com/in/jaronjones,Information Technology,"['l_100_individual', 'l_500_exec']","['finance', 'information_technology']"
+43675e18-a9c9-4156-acbc-065b36676d90,Sweater,sweater,Jesse Randall,https://www.linkedin.com/in/sweaterceo,Founder & CEO,['l_500_exec'],['management']
+43675e18-a9c9-4156-acbc-065b36676d90,Sweater,sweater,Jesse Randall,https://www.linkedin.com/in/deviantstrat,Business Management,"['l_100_individual', 'l_500_exec']",['management']
+43675e18-a9c9-4156-acbc-065b36676d90,Sweater,sweater,Matthew Klein,https://www.linkedin.com/in/matthew-klein-22216558,Co-Founder,['l_500_exec'],['management']
+43675e18-a9c9-4156-acbc-065b36676d90,Sweater,sweater,Jeffrey Risenmay,https://www.linkedin.com/in/jeffrisenmay,Head of Finance,['l_400_vp'],['finance']
+43675e18-a9c9-4156-acbc-065b36676d90,Sweater,sweater,Cash Allred,https://www.linkedin.com/in/cash-allred,Principal,['l_300_director'],['management']
+43675e18-a9c9-4156-acbc-065b36676d90,Sweater,sweater,Michael Russ,https://www.linkedin.com/in/michael-russ-4061a998,Marketing and Product,['l_300_director'],
+43675e18-a9c9-4156-acbc-065b36676d90,Sweater,sweater,Vanessa Berrios Klimkowski,https://www.linkedin.com/in/vanessa-berrios-klimkowski-6229636,Marketing and Product,['l_300_director'],
+dc7b62e8-d060-7f7b-8c76-48e300a22476,Itineris,itineris,John Beddingfield,https://www.linkedin.com/in/john-beddingfield-6480b64,President - North America,['l_500_exec'],['management']
+dc7b62e8-d060-7f7b-8c76-48e300a22476,Itineris,itineris,Maarten Joye,https://www.linkedin.com/in/maartenjoye,Chief People Officer,['l_500_exec'],['management']
+dc7b62e8-d060-7f7b-8c76-48e300a22476,Itineris,itineris,Steven Daem,https://www.linkedin.com/in/steven-daem-612798a7,Chief Financial Officer,"['l_100_individual', 'l_500_exec']","['finance', 'operations']"
+dc7b62e8-d060-7f7b-8c76-48e300a22476,Itineris,itineris,Christoph Vancompernolle,https://www.linkedin.com/in/christophvancompernolle,Marketing and Product,"['l_100_individual', 'l_400_vp']",['operations']
+dc7b62e8-d060-7f7b-8c76-48e300a22476,Itineris,itineris,Fabienne Vanquickelberghe,https://www.linkedin.com/in/fabienne-vanquickelberghe-a0ba201,VP Operations Market Regulated Europe,['l_400_vp'],['management']
+dc7b62e8-d060-7f7b-8c76-48e300a22476,Itineris,itineris,Jon Jaffin,https://www.linkedin.com/in/jon-jaffin-4845a64,Vice President,['l_400_vp'],['management']
+dc7b62e8-d060-7f7b-8c76-48e300a22476,Itineris,itineris,Kimberly Williams,https://www.linkedin.com/in/kimberly-williams-50b80b25,"SVP, Business Strategy","['l_100_individual', 'l_400_vp']","['management', 'operations']"
+dc7b62e8-d060-7f7b-8c76-48e300a22476,Itineris,itineris,Koen Schampaert,https://www.linkedin.com/in/schampaertkoen,VP Operations & Professional Services,['l_400_vp'],['management']
+dc7b62e8-d060-7f7b-8c76-48e300a22476,Itineris,itineris,Kris Marlein,https://www.linkedin.com/in/krismarlein,Marketing and Product,"['l_100_individual', 'l_400_vp']","['management', 'operations']"
+dc7b62e8-d060-7f7b-8c76-48e300a22476,Itineris,itineris,Bart Debels,https://www.linkedin.com/in/bart-debels-123a65,Corporate PMO Director,['l_300_director'],['management']
+7c0ccf2a-788f-43a3-9e57-8af6f88a278b,Allianz Partners,allianz-partners,Jeff Wright,https://www.linkedin.com/in/jeffwrightconnect,Chief Executive Officer - US,"['l_100_individual', 'l_500_exec']",['management']
+7c0ccf2a-788f-43a3-9e57-8af6f88a278b,Allianz Partners,allianz-partners,Daniel Roth,https://www.linkedin.com/in/danielrothinsuranceexec,Business Management,"['l_100_individual', 'l_400_vp']",['management']
+7c0ccf2a-788f-43a3-9e57-8af6f88a278b,Allianz Partners,allianz-partners,Linda Ogilvie,https://www.linkedin.com/in/linda-ogilvie-11288611,"Vice President, Financial Markets, Client Services","['l_100_individual', 'l_400_vp']",['management']
+7c0ccf2a-788f-43a3-9e57-8af6f88a278b,Allianz Partners,allianz-partners,Michael Cleary,https://www.linkedin.com/in/mcleary,"VP, Head of Data & Digital Platforms","['l_100_individual', 'l_400_vp']","['information_technology', 'management']"
+7c0ccf2a-788f-43a3-9e57-8af6f88a278b,Allianz Partners,allianz-partners,Pam Dufour,https://www.linkedin.com/in/pam-dufour-54b6895,"SVP, Chief Services Officer, Mondial Assistance US",['l_400_vp'],['sales']
+7c0ccf2a-788f-43a3-9e57-8af6f88a278b,Allianz Partners,allianz-partners,Pascal Dermesropian,https://www.linkedin.com/in/pascaldermesropian,Marketing and Product,"['l_100_individual', 'l_400_vp']",['marketing']
+7c0ccf2a-788f-43a3-9e57-8af6f88a278b,Allianz Partners,allianz-partners,Patrick Giustino,https://www.linkedin.com/in/patrick-giustino-27416713,"VP and Audit Regional Head, Americas","['l_100_individual', 'l_400_vp']",['management']
+7c0ccf2a-788f-43a3-9e57-8af6f88a278b,Allianz Partners,allianz-partners,Robert Salmons,https://www.linkedin.com/in/robert-salmons-csm-he-him-his-33305b8,"VP, US Product Delivery","['l_100_individual', 'l_400_vp']","['management', 'operations']"
+7c0ccf2a-788f-43a3-9e57-8af6f88a278b,Allianz Partners,allianz-partners,Tamara Wagner,https://www.linkedin.com/in/tamara-wagner-bair-pmp-6a77b44,Operations,"['l_100_individual', 'l_400_vp']","['management', 'operations']"
+7c0ccf2a-788f-43a3-9e57-8af6f88a278b,Allianz Partners,allianz-partners,Tom Trotta,https://www.linkedin.com/in/tomtrotta,Sales and Support,"['l_100_individual', 'l_400_vp']",['sales']
+aa563215-3b80-a140-7726-fe2859803a16,Unifonic,unifonic,Deepak Katiyar,https://www.linkedin.com/in/deepak-katiyar-68135a41,Sales and Support,['l_300_director'],
+aa563215-3b80-a140-7726-fe2859803a16,Unifonic,unifonic,Karim Mohamed,https://www.linkedin.com/in/karimmohamedali,Marketing and Product,['l_300_director'],
+aa563215-3b80-a140-7726-fe2859803a16,Unifonic,unifonic,Karim Sharawi,https://www.linkedin.com/in/karimsharawi,Marketing and Product,['l_300_director'],['marketing']
+aa563215-3b80-a140-7726-fe2859803a16,Unifonic,unifonic,Khalid Break,https://www.linkedin.com/in/khalid-break-88432a37,Finance and Administration,['l_300_director'],['finance']
+aa563215-3b80-a140-7726-fe2859803a16,Unifonic,unifonic,Khuram Rahat,https://www.linkedin.com/in/khuram-rahat-a006376,Sales and Support,['l_300_director'],
+aa563215-3b80-a140-7726-fe2859803a16,Unifonic,unifonic,Michael Falorni,https://www.linkedin.com/in/michaël-falorni-566031b,Sales and Support,['l_300_director'],
+aa563215-3b80-a140-7726-fe2859803a16,Unifonic,unifonic,Mohamed Mamdouh,https://www.linkedin.com/in/mohamed-mamdouh-650b8b20,Sales and Support,['l_300_director'],['sales']
+aa563215-3b80-a140-7726-fe2859803a16,Unifonic,unifonic,Mohammad Obeid,https://www.linkedin.com/in/mohammadobeid,Finance and Administration,['l_300_director'],['finance']
+aa563215-3b80-a140-7726-fe2859803a16,Unifonic,unifonic,Mohammed Barashid,https://www.linkedin.com/in/barashid,Sales and Support,['l_300_director'],
+aa563215-3b80-a140-7726-fe2859803a16,Unifonic,unifonic,Mohammed Nassar,https://www.linkedin.com/in/mohamedsayednassar,Marketing and Product,['l_300_director'],['operations']
+c9310fd0-d888-4e14-b774-2201e96afc1f,Bupa Arabia,bupa-arabia,Abraham Sunny,https://www.linkedin.com/in/abraham-sunny-455a9a10,Engineering,['l_300_director'],['engineering']
+c9310fd0-d888-4e14-b774-2201e96afc1f,Bupa Arabia,bupa-arabia,Ahmad Yahya,https://www.linkedin.com/in/ahmadhyahya,Finance and Administration,['l_300_director'],
+c9310fd0-d888-4e14-b774-2201e96afc1f,Bupa Arabia,bupa-arabia,Ahmed Abdulraouf,https://www.linkedin.com/in/ahmed-abdulraouf-b6777062,Human Resources,['l_300_director'],['human_resources']
+c9310fd0-d888-4e14-b774-2201e96afc1f,Bupa Arabia,bupa-arabia,Ahmed Bajunaid,https://www.linkedin.com/in/ahmed-bajunaid-168b3619,Finance and Administration,['l_300_director'],['operations']
+c9310fd0-d888-4e14-b774-2201e96afc1f,Bupa Arabia,bupa-arabia,Ahmed Taher,https://www.linkedin.com/in/ahmed-taher-a8775858,Business Management,['l_300_director'],['operations']
+c9310fd0-d888-4e14-b774-2201e96afc1f,Bupa Arabia,bupa-arabia,Alaa Jeroudi,https://www.linkedin.com/in/alaa-jeroudi-70ab7a3a,Sales and Support,['l_300_director'],['product']
+c9310fd0-d888-4e14-b774-2201e96afc1f,Bupa Arabia,bupa-arabia,Alfaisal Babaeer,https://www.linkedin.com/in/alfaisal-babaeer-80105215,Information Technology,['l_300_director'],['information_technology']
+c9310fd0-d888-4e14-b774-2201e96afc1f,Bupa Arabia,bupa-arabia,Amin Shaibi,https://www.linkedin.com/in/amin-shaibi-55714bb,Marketing and Product,['l_300_director'],
+c9310fd0-d888-4e14-b774-2201e96afc1f,Bupa Arabia,bupa-arabia,Bassel Gazzaz,https://www.linkedin.com/in/bassel-gazzaz-8265b336,Sales and Support,['l_300_director'],['sales']
+c9310fd0-d888-4e14-b774-2201e96afc1f,Bupa Arabia,bupa-arabia,Chadi Saba,https://www.linkedin.com/in/chadi-saba-a1479a76,Finance and Administration,['l_300_director'],['operations']
+fc5fbe7a-562d-d577-b05e-46797caa134c,IBM,ibm,Abhinav Aggarwal,https://www.linkedin.com/in/aaggarwal2,IBM Distinguished Engineer / CTO,['l_500_exec'],['engineering']
+fc5fbe7a-562d-d577-b05e-46797caa134c,IBM,ibm,Ajay Sampat,https://www.linkedin.com/in/ajay-sampat-09846841,Senior Security Product Portfolio Owner - Systems,['l_500_exec'],['product']
+fc5fbe7a-562d-d577-b05e-46797caa134c,IBM,ibm,Al Hamid,https://www.linkedin.com/in/al-hamid,"Global Chief Technology Officer (CTO), Industry Platforms",['l_500_exec'],['management']
+fc5fbe7a-562d-d577-b05e-46797caa134c,IBM,ibm,Al Willis,https://www.linkedin.com/in/al-willis-0bb2947,"Sr Manager, Leader - CIO Hybrid Cloud",['l_500_exec'],['information_technology']
+fc5fbe7a-562d-d577-b05e-46797caa134c,IBM,ibm,Albert Calloway,https://www.linkedin.com/in/albert-calloway-4177944,Owner,['l_500_exec'],['management']
+fc5fbe7a-562d-d577-b05e-46797caa134c,IBM,ibm,Andrew Bernoth,https://www.linkedin.com/in/andrewbernoth,Chief Architect,['l_500_exec'],['engineering']
+fc5fbe7a-562d-d577-b05e-46797caa134c,IBM,ibm,Andrew Vasaturo,https://www.linkedin.com/in/andrewvasaturo,"DevOps Manager, Automation & Tools, CIO Network Engineering",['l_500_exec'],['engineering']
+fc5fbe7a-562d-d577-b05e-46797caa134c,IBM,ibm,Andrew Walls,https://www.linkedin.com/in/wallsandrew,"IBM Fellow, CTO and Chief Architect IBM Flash Systems",['l_500_exec'],['management']
+fc5fbe7a-562d-d577-b05e-46797caa134c,IBM,ibm,Angela Jarrar,https://www.linkedin.com/in/angela-jarrar-7612941,"Vice President, Chief Information Security Officer (CISO) Cloud and Cognitive Software",['l_500_exec'],['management']
+fc5fbe7a-562d-d577-b05e-46797caa134c,IBM,ibm,Animesh Singh,https://www.linkedin.com/in/animeshsingh1,IBM Distinguished Engineer and CTO - Watson Data and AI OSS Platform,['l_500_exec'],['engineering']
+568b48b2-3f1e-4bd9-6921-b6d2e712fd20,McKinsey & Company,mckinsey-company,Joe Verdon,https://www.linkedin.com/in/joe-verdon-0651b98,"Associate General Counsel and Lead Client Service Risk Advisor, Americas",['l_500_exec'],['management']
+568b48b2-3f1e-4bd9-6921-b6d2e712fd20,McKinsey & Company,mckinsey-company,Michelle Atwood,https://www.linkedin.com/in/michelle-atwood-95b9154,"Chief Operating Officer, Director of New Capabilities, Risk Dynamics and Risk Analytics",['l_500_exec'],['finance']
+568b48b2-3f1e-4bd9-6921-b6d2e712fd20,McKinsey & Company,mckinsey-company,Dan Appell,https://www.linkedin.com/in/dan-appell,Vice President (Engagement Manager),['l_400_vp'],['management']
+568b48b2-3f1e-4bd9-6921-b6d2e712fd20,McKinsey & Company,mckinsey-company,Abdul Mannan,https://www.linkedin.com/in/mannan5,"Risk, Safety, Compliance",['l_300_director'],
+568b48b2-3f1e-4bd9-6921-b6d2e712fd20,McKinsey & Company,mckinsey-company,Abhishek Jain,https://www.linkedin.com/in/abhishek-jain-65b4a42,Finance and Administration,['l_300_director'],
+568b48b2-3f1e-4bd9-6921-b6d2e712fd20,McKinsey & Company,mckinsey-company,Adam Hannath,https://www.linkedin.com/in/adam-hannath-52769221,Business Management,['l_300_director'],
+568b48b2-3f1e-4bd9-6921-b6d2e712fd20,McKinsey & Company,mckinsey-company,Adam W. Braveman,https://www.linkedin.com/in/adam-w-braveman-a61a6b24,Sales and Support,['l_300_director'],['operations']
+568b48b2-3f1e-4bd9-6921-b6d2e712fd20,McKinsey & Company,mckinsey-company,Adele Hu,https://www.linkedin.com/in/adele-hu-b80b631a,Marketing and Product,['l_300_director'],['operations']
+568b48b2-3f1e-4bd9-6921-b6d2e712fd20,McKinsey & Company,mckinsey-company,Adil Zainulbhai,https://www.linkedin.com/in/adil-zainulbhai-0791637,Business Management,['l_300_director'],['operations']
+568b48b2-3f1e-4bd9-6921-b6d2e712fd20,McKinsey & Company,mckinsey-company,Aditya Shankar,https://www.linkedin.com/in/aditya-shankar-1024b112a,Engineering,['l_300_director'],['engineering']
+873fb633-b62d-4106-8304-5a42e68a5524,ITT,itt,Alex Waredale,https://www.linkedin.com/in/alex-waredale-4521065,CTO,['l_500_exec'],['engineering']
+873fb633-b62d-4106-8304-5a42e68a5524,ITT,itt,Bill Lavalette,https://www.linkedin.com/in/blavalet,Chief Information Security Officer,['l_500_exec'],['information_technology']
+873fb633-b62d-4106-8304-5a42e68a5524,ITT,itt,Bubba Mcgraw,https://www.linkedin.com/in/bubba-mcgraw-6617579,CFO,['l_500_exec'],['finance']
+873fb633-b62d-4106-8304-5a42e68a5524,ITT,itt,Carleen Salvage,https://www.linkedin.com/in/carleen-salvage-838b8467,Vice President and Value Center CFO; Industrial Process,['l_500_exec'],['management']
+873fb633-b62d-4106-8304-5a42e68a5524,ITT,itt,Charles Blackney,https://www.linkedin.com/in/charles-blackney-24b05926,President,['l_500_exec'],['management']
+873fb633-b62d-4106-8304-5a42e68a5524,ITT,itt,Chris Humphrey,https://www.linkedin.com/in/chris-humphrey-65506b7,Chair,['l_500_exec'],['management']
+873fb633-b62d-4106-8304-5a42e68a5524,ITT,itt,Daniel Caprioni,https://www.linkedin.com/in/daniel-caprioni-9a60852b,Chief Engineer,['l_500_exec'],['engineering']
+873fb633-b62d-4106-8304-5a42e68a5524,ITT,itt,David Skinner,https://www.linkedin.com/in/david-skinner-4587b2143,Chief Engineer,['l_500_exec'],['engineering']
+873fb633-b62d-4106-8304-5a42e68a5524,ITT,itt,David Steblein,https://www.linkedin.com/in/david-steblein-04461913,President - ITT Industrial Process,['l_500_exec'],['management']
+873fb633-b62d-4106-8304-5a42e68a5524,ITT,itt,Douglas Bingler,https://www.linkedin.com/in/douglas-bingler-5097886,"Director of Technology,President ITT Water Technologies,President Goulds Pumps Water Technologies",['l_500_exec'],['information_technology']
+3af3f638-2a80-e072-add0-8396e130d842,Beyond Limits,beyond-limits,AJ Abdallat,https://www.linkedin.com/in/aj-abdallat-b421bb25,CEO and Founder,['l_500_exec'],['management']
+3af3f638-2a80-e072-add0-8396e130d842,Beyond Limits,beyond-limits,"Frank J. Sansone, CPA",https://www.linkedin.com/in/frank-j-sansone-cpa-1860388,Chief Financial Officer,"['l_100_individual', 'l_500_exec']",['finance']
+3af3f638-2a80-e072-add0-8396e130d842,Beyond Limits,beyond-limits,Leonard Lee,https://www.linkedin.com/in/leonard-lee-9646473,"President, Asia Pacific","['l_100_individual', 'l_500_exec']",['management']
+3af3f638-2a80-e072-add0-8396e130d842,Beyond Limits,beyond-limits,"Mario Portugal, PHR, SHRM-CP",https://www.linkedin.com/in/mportugal,Human Resources,"['l_100_individual', 'l_500_exec']","['human_resources', 'management']"
+3af3f638-2a80-e072-add0-8396e130d842,Beyond Limits,beyond-limits,Mark James,https://www.linkedin.com/in/mark-james-a8b32b9a,CTO,"['l_100_individual', 'l_500_exec']",['engineering']
+3af3f638-2a80-e072-add0-8396e130d842,Beyond Limits,beyond-limits,David Gilmour,https://www.linkedin.com/in/david-gilmour-47a3b1143,"Vice President, Business Development, Group Technology",['l_400_vp'],
+3af3f638-2a80-e072-add0-8396e130d842,Beyond Limits,beyond-limits,David Liu,https://www.linkedin.com/in/david-liu-9a508a58,"Executive Vice President, Global Partnership and Channels","['l_100_individual', 'l_400_vp']",['management']
+3af3f638-2a80-e072-add0-8396e130d842,Beyond Limits,beyond-limits,George Paloulian,https://www.linkedin.com/in/paloulian,"VP, Technology Development","['l_100_individual', 'l_400_vp']","['engineering', 'finance']"
+3af3f638-2a80-e072-add0-8396e130d842,Beyond Limits,beyond-limits,Gregory Fortner,https://www.linkedin.com/in/fortnergregory,Vice President Business Operations and Chief of Staff,['l_400_vp'],['management']
+3af3f638-2a80-e072-add0-8396e130d842,Beyond Limits,beyond-limits,Kimberly Gilbert,https://www.linkedin.com/in/kimberly-gilbert-phd,Vice President of Global Technical Sales Engineering,['l_400_vp'],['management']
+b6a09bde-184a-a6ed-7d3d-150d5ad95d2f,AECOM,aecom,Allison Roberts Hall,https://www.linkedin.com/in/allison-roberts-hall-8950b35a,"Business Line CFO, Vice President","['l_100_individual', 'l_500_exec']","['management', 'operations']"
+b6a09bde-184a-a6ed-7d3d-150d5ad95d2f,AECOM,aecom,Barbara Zimmermann,https://www.linkedin.com/in/barbara-zimmermann-84a79162,Vice President- Assistant General Counsel - Environment,['l_500_exec'],['management']
+b6a09bde-184a-a6ed-7d3d-150d5ad95d2f,AECOM,aecom,Bill Quarterman,https://www.linkedin.com/in/bill-quarterman-52309646,Chief Operating Officer,['l_500_exec'],['management']
+b6a09bde-184a-a6ed-7d3d-150d5ad95d2f,AECOM,aecom,Brian Harrington,https://www.linkedin.com/in/brian-harrington-4113b657,Vice President - Chief Engineer AECOM Water Design-Build,['l_500_exec'],['management']
+b6a09bde-184a-a6ed-7d3d-150d5ad95d2f,AECOM,aecom,Bryan Rash,https://www.linkedin.com/in/bryan-rash-b70b184,"Vice President, Region Chief Counsel","['l_100_individual', 'l_500_exec']","['legal', 'management']"
+b6a09bde-184a-a6ed-7d3d-150d5ad95d2f,AECOM,aecom,Carter Fox,https://www.linkedin.com/in/carter-fox-7aa6a383,Construction Engineer 3/ Owners Representative,['l_500_exec'],
+b6a09bde-184a-a6ed-7d3d-150d5ad95d2f,AECOM,aecom,Charles Pedri,https://www.linkedin.com/in/charles-pedri-2b3807125,Engineering,"['l_100_individual', 'l_500_exec']","['engineering', 'management']"
+b6a09bde-184a-a6ed-7d3d-150d5ad95d2f,AECOM,aecom,Chris Bennett,https://www.linkedin.com/in/chris-bennett-56786434,Vice President and Chief Engineer Transit Rail,['l_500_exec'],['management']
+b6a09bde-184a-a6ed-7d3d-150d5ad95d2f,AECOM,aecom,Chris Redmond,https://www.linkedin.com/in/chris-redmond-53307854,Senior Vice President and Chief Operating Officer,['l_500_exec'],['management']
+b6a09bde-184a-a6ed-7d3d-150d5ad95d2f,AECOM,aecom,Chuck Wolf,https://www.linkedin.com/in/chuck-wolf-9aa3b68,Sr. Director & Global Process Owner - Order-to-Cash,['l_500_exec'],['management']
+21125c53-39ee-e735-27a2-a87c25435013,Dexcom,dexcom,Jake Leach,https://www.linkedin.com/in/jake-leach-433bba7,Business Management,"['l_100_individual', 'l_500_exec']","['finance', 'operations']"
+21125c53-39ee-e735-27a2-a87c25435013,Dexcom,dexcom,Jereme Sylvain,https://www.linkedin.com/in/jereme-sylvain-6924a38,"EVP, Chief Financial Officer","['l_100_individual', 'l_500_exec']",['finance']
+21125c53-39ee-e735-27a2-a87c25435013,Dexcom,dexcom,Michael Brown,https://www.linkedin.com/in/mikebrowndla,Business Management,"['l_100_individual', 'l_500_exec']",['management']
+21125c53-39ee-e735-27a2-a87c25435013,Dexcom,dexcom,Nicole Greene,https://www.linkedin.com/in/nicole-greene-8a147319,"Senior Director, Assistant General Counsel - North America",['l_500_exec'],['management']
+21125c53-39ee-e735-27a2-a87c25435013,Dexcom,dexcom,Quentin Blackford,https://www.linkedin.com/in/quentin-blackford-22362a4,EVP / Chief Operating Officer / Chief Financial Officer,['l_500_exec'],['management']
+21125c53-39ee-e735-27a2-a87c25435013,Dexcom,dexcom,Rick Doubleday,https://www.linkedin.com/in/rick-doubleday-0276438,"EVP, Chief Commercial Officer",['l_500_exec'],['management']
+21125c53-39ee-e735-27a2-a87c25435013,Dexcom,dexcom,Ryan Macpherson,https://www.linkedin.com/in/ryan-macpherson-8003414,"Senior Director, Chief Compliance Officer","['l_100_individual', 'l_500_exec']",['operations']
+21125c53-39ee-e735-27a2-a87c25435013,Dexcom,dexcom,"Sumi Shrishrimal, CPA",https://www.linkedin.com/in/sumi-shrishrimal-cpa,"Senior Vice President and Chief Risk Officer, Dexcom",['l_500_exec'],
+21125c53-39ee-e735-27a2-a87c25435013,Dexcom,dexcom,Anita Rees,https://www.linkedin.com/in/anita-rees-45325a18,Vice President Quality Compliance,"['l_100_individual', 'l_400_vp']","['management', 'operations']"
+21125c53-39ee-e735-27a2-a87c25435013,Dexcom,dexcom,Ann Carter,https://www.linkedin.com/in/anncarter,Operations,"['l_100_individual', 'l_400_vp']",['operations']
+e59b7579-6549-6c4d-87ce-2499c8f6bc62,Infosysta,infosysta,Nourhan Gamal,https://www.linkedin.com/in/nourhan-gamal-80a08557,Marketing and Product,['l_200_manager'],['operations']
+e59b7579-6549-6c4d-87ce-2499c8f6bc62,Infosysta,infosysta,Edmond Tehini,https://www.linkedin.com/in/edmond-tehini,Business Management,['l_100_individual'],
+e59b7579-6549-6c4d-87ce-2499c8f6bc62,Infosysta,infosysta,Shahebaaz Shaikh,https://www.linkedin.com/in/shahebaaz-shaikh,Engineering,['l_100_individual'],['engineering']
+8ed6e29f-4f16-41cf-a939-0af0690de094,Master Works,master-works,"Adel Dameri, PMP",https://www.linkedin.com/in/adel-dameri-pmp-67826a13,Digitization Director,['l_300_director'],
+8ed6e29f-4f16-41cf-a939-0af0690de094,Master Works,master-works,Adolfo Letona,https://www.linkedin.com/in/adolfo-letona-197a7430,Business Management,['l_100_individual'],
+8ed6e29f-4f16-41cf-a939-0af0690de094,Master Works,master-works,Ayah Arfali,https://www.linkedin.com/in/ayaharfali,Engineering,['l_100_individual'],['engineering']
+8ed6e29f-4f16-41cf-a939-0af0690de094,Master Works,master-works,Barry Corliss,https://www.linkedin.com/in/barry-corliss-b6568736,Business Management,['l_100_individual'],
+8ed6e29f-4f16-41cf-a939-0af0690de094,Master Works,master-works,Frank Dafner,https://www.linkedin.com/in/frank-dafner-573615b6,Engineering,['l_100_individual'],['engineering']
+8ed6e29f-4f16-41cf-a939-0af0690de094,Master Works,master-works,Fred Sheridan,https://www.linkedin.com/in/fred-sheridan-68155130,Business Management,['l_100_individual'],
+8ed6e29f-4f16-41cf-a939-0af0690de094,Master Works,master-works,Javier silva,https://www.linkedin.com/in/javier-silva-bb15579b,Sales and Support,['l_100_individual'],
+8ed6e29f-4f16-41cf-a939-0af0690de094,Master Works,master-works,Tim Reader,https://www.linkedin.com/in/tim-reader-20894312,Business Management,['l_100_individual'],
+f9ee796b-6458-2647-847d-f8f92fb86647,Lucidya,lucidya,Goni Mohammed,https://www.linkedin.com/in/goni-mohammed-147252132,Marketing and Product,['l_300_director'],
+f9ee796b-6458-2647-847d-f8f92fb86647,Lucidya,lucidya,Hasan Alhendi,https://www.linkedin.com/in/hahendi,Marketing and Product,['l_200_manager'],
+f9ee796b-6458-2647-847d-f8f92fb86647,Lucidya,lucidya,Ameera Milibari,https://www.linkedin.com/in/ameera-milibari-008462138,Engineering,['l_100_individual'],['engineering']
+f9ee796b-6458-2647-847d-f8f92fb86647,Lucidya,lucidya,Gandhi Hatouka,https://www.linkedin.com/in/gandhi-hatouka-1b925145,Sales and Support,['l_100_individual'],
+f9ee796b-6458-2647-847d-f8f92fb86647,Lucidya,lucidya,Mohamed ameen,https://www.linkedin.com/in/mohamed-ameen-16908a133,Engineering,['l_100_individual'],['engineering']
+545431fb-8c10-7fdd-e6be-2efd4048c558,Rackspace,rackspace,D Scott Sanders,https://www.linkedin.com/in/scottsanders1,Chief Information Officer,['l_500_exec'],['engineering']
+545431fb-8c10-7fdd-e6be-2efd4048c558,Rackspace,rackspace,Elizabeth Parnell,https://www.linkedin.com/in/elizabeth-parnell-6145689,"Chief Operating Officer, EMEA",['l_500_exec'],['finance']
+545431fb-8c10-7fdd-e6be-2efd4048c558,Rackspace,rackspace,Greg Hrncir,https://www.linkedin.com/in/greghrncir,Sales and Support,"['l_100_individual', 'l_500_exec']","['finance', 'operations']"
+545431fb-8c10-7fdd-e6be-2efd4048c558,Rackspace,rackspace,Jeff DeVerter,https://www.linkedin.com/in/jdeverter,"Chief Technology Officer, Product & Services","['l_100_individual', 'l_500_exec']",['information_technology']
+545431fb-8c10-7fdd-e6be-2efd4048c558,Rackspace,rackspace,Joanne Flack,https://www.linkedin.com/in/joanneflack,Legal,"['l_100_individual', 'l_500_exec']","['legal', 'management']"
+545431fb-8c10-7fdd-e6be-2efd4048c558,Rackspace,rackspace,Karen O'Reilly-Smith,https://www.linkedin.com/in/karen-o-reilly-smith-7a252815a,Chief Security Officer,"['l_100_individual', 'l_500_exec']","['management', 'operations']"
+545431fb-8c10-7fdd-e6be-2efd4048c558,Rackspace,rackspace,Michael Bross,https://www.linkedin.com/in/michaelbross,VP and Deputy General Counsel,"['l_100_individual', 'l_500_exec']","['legal', 'management']"
+545431fb-8c10-7fdd-e6be-2efd4048c558,Rackspace,rackspace,Michelle Peterson,https://www.linkedin.com/in/michelle-peterson-9356b25,"VP, Chief of Staff - CEO","['l_100_individual', 'l_500_exec']","['management', 'operations']"
+545431fb-8c10-7fdd-e6be-2efd4048c558,Rackspace,rackspace,Raj Iyer,https://www.linkedin.com/in/raj-iyer-aa77024,CTO and Senior Director - Professional Services EMEA,['l_500_exec'],['management']
+545431fb-8c10-7fdd-e6be-2efd4048c558,Rackspace,rackspace,Travis Runty,https://www.linkedin.com/in/trunty,"CTO, Public Cloud","['l_100_individual', 'l_500_exec']","['engineering', 'management']"
+6ccf1289-7f33-496b-bc5d-3e875bcc125e,Johns Hopkins Aramco Healthcare,johns-hopkins-aramco-healthcare,Amanda Neikam,https://www.linkedin.com/in/amandaneikam,Operations,['l_300_director'],['operations']
+6ccf1289-7f33-496b-bc5d-3e875bcc125e,Johns Hopkins Aramco Healthcare,johns-hopkins-aramco-healthcare,Anita Desimone-Veach,https://www.linkedin.com/in/anita-desimone-veach-ab893340,Sales and Support,['l_300_director'],
+6ccf1289-7f33-496b-bc5d-3e875bcc125e,Johns Hopkins Aramco Healthcare,johns-hopkins-aramco-healthcare,Bryan Rogers,https://www.linkedin.com/in/bryan-rogers-68680916,Human Resources,['l_300_director'],['human_resources']
+6ccf1289-7f33-496b-bc5d-3e875bcc125e,Johns Hopkins Aramco Healthcare,johns-hopkins-aramco-healthcare,Ed Kumian,https://www.linkedin.com/in/ed-kumian-90aa15a,Finance and Administration,['l_300_director'],
+6ccf1289-7f33-496b-bc5d-3e875bcc125e,Johns Hopkins Aramco Healthcare,johns-hopkins-aramco-healthcare,Erin Burnside,https://www.linkedin.com/in/erin-burnside-3581b96,Engineering,['l_300_director'],['engineering']
+6ccf1289-7f33-496b-bc5d-3e875bcc125e,Johns Hopkins Aramco Healthcare,johns-hopkins-aramco-healthcare,Hadi Taleb,https://www.linkedin.com/in/hadi-taleb-59632996,Education,['l_300_director'],
+6ccf1289-7f33-496b-bc5d-3e875bcc125e,Johns Hopkins Aramco Healthcare,johns-hopkins-aramco-healthcare,"Janelle Ranck , LMSW, CHC",https://www.linkedin.com/in/janelleranck,Legal,['l_300_director'],['legal']
+6ccf1289-7f33-496b-bc5d-3e875bcc125e,Johns Hopkins Aramco Healthcare,johns-hopkins-aramco-healthcare,Jeremy Carter,https://www.linkedin.com/in/jeremypbaer,Operations,['l_300_director'],['operations']
+6ccf1289-7f33-496b-bc5d-3e875bcc125e,Johns Hopkins Aramco Healthcare,johns-hopkins-aramco-healthcare,Kristine Walhof,https://www.linkedin.com/in/kristine-baumgart-walhof-6b692715,Marketing and Product,['l_300_director'],
+6ccf1289-7f33-496b-bc5d-3e875bcc125e,Johns Hopkins Aramco Healthcare,johns-hopkins-aramco-healthcare,Mazen Qasim,https://www.linkedin.com/in/mazen-qasim-3283191a2,Operations,['l_300_director'],['operations']
+71213bcb-9569-a838-3d0b-e99ba6afe9cb,Johnson & Johnson,johnson-johnson,Aida Navarro,https://www.linkedin.com/in/aida-navarro-7793206,"Sr IT Manager, Product Line Owner DnA",['l_500_exec'],['engineering']
+71213bcb-9569-a838-3d0b-e99ba6afe9cb,Johnson & Johnson,johnson-johnson,Alex Gorsky,https://www.linkedin.com/in/alex-gorsky,"Former Chairman and CEO, Johnson & Johnson",['l_500_exec'],['management']
+71213bcb-9569-a838-3d0b-e99ba6afe9cb,Johnson & Johnson,johnson-johnson,Alex Petrunyak,https://www.linkedin.com/in/alex-petrunyak,"Sr. Manager, Global Business Process Owner - Consumer Health",['l_500_exec'],['management']
+71213bcb-9569-a838-3d0b-e99ba6afe9cb,Johnson & Johnson,johnson-johnson,Alexander Soetens,https://www.linkedin.com/in/alexander-soetens-0744ba5,Chairman of the Dutch J&J Medical Works Council,['l_500_exec'],
+71213bcb-9569-a838-3d0b-e99ba6afe9cb,Johnson & Johnson,johnson-johnson,Andrew White,https://www.linkedin.com/in/andrew-white-1188aa3,Assistant General Counsel,['l_500_exec'],['management']
+71213bcb-9569-a838-3d0b-e99ba6afe9cb,Johnson & Johnson,johnson-johnson,Anne Martinson,https://www.linkedin.com/in/anne-martinson-46717931,Assistant General Counsel,['l_500_exec'],['management']
+71213bcb-9569-a838-3d0b-e99ba6afe9cb,Johnson & Johnson,johnson-johnson,Ashley McEvoy,https://www.linkedin.com/in/ashley-mcevoy-88631627,"Executive Vice President, Worldwide Chairman, Medical Devices",['l_500_exec'],['management']
+71213bcb-9569-a838-3d0b-e99ba6afe9cb,Johnson & Johnson,johnson-johnson,Ashley Watson,https://www.linkedin.com/in/ashley-watson-5968b25,General Counsel Medical Devices at Johnson & Johnson,['l_500_exec'],['management']
+71213bcb-9569-a838-3d0b-e99ba6afe9cb,Johnson & Johnson,johnson-johnson,Aviva Wein,https://www.linkedin.com/in/aviva-wein-271aa232,"Assistant General Counsel, Products Liability","['l_300_director', 'l_500_exec']","['legal', 'management']"
+71213bcb-9569-a838-3d0b-e99ba6afe9cb,Johnson & Johnson,johnson-johnson,Bill Rowlett,https://www.linkedin.com/in/bill-rowlett-4b77567,Engineering,"['l_200_manager', 'l_500_exec']",['engineering']
+b7dfc476-1ab9-e897-13f1-8a3781057ad1,Masterworks,masterworks,Mike Offenburger,https://www.linkedin.com/in/mike-offenburger-71a16523,Business Management,['l_100_individual'],
+f809fcb0-52f8-5590-2e02-59251ca3a8d4,OTIS,otis,Abbe Luersman,https://www.linkedin.com/in/abbe-luersman-696a405,"Executive Vice President and Chief People Officer, Otis Worldwide Corporation","['l_100_individual', 'l_500_exec']",['management']
+f809fcb0-52f8-5590-2e02-59251ca3a8d4,OTIS,otis,Alex Bestman,https://www.linkedin.com/in/alex-bestman-0872b282,CEO,['l_500_exec'],['management']
+f809fcb0-52f8-5590-2e02-59251ca3a8d4,OTIS,otis,Alex Reznik,https://www.linkedin.com/in/alex-reznik-8875067,"Vice President Finance and CFO, North and South America",['l_500_exec'],
+f809fcb0-52f8-5590-2e02-59251ca3a8d4,OTIS,otis,Anca Barbat,https://www.linkedin.com/in/anca-barbat-843766212,"Senior Director, Chief Financial Officer - Global Digital Technology",['l_500_exec'],['management']
+f809fcb0-52f8-5590-2e02-59251ca3a8d4,OTIS,otis,Anna Provencher,https://www.linkedin.com/in/anna-provencher-1742489,Finance and Administration,"['l_100_individual', 'l_500_exec']",['finance']
+f809fcb0-52f8-5590-2e02-59251ca3a8d4,OTIS,otis,Billy Matthews,https://www.linkedin.com/in/billymatthews,Business Management,"['l_100_individual', 'l_500_exec']","['management', 'operations']"
+f809fcb0-52f8-5590-2e02-59251ca3a8d4,OTIS,otis,Elise Konover,https://www.linkedin.com/in/elise-konover-b5a68b43,Associate General Counsel,"['l_100_individual', 'l_500_exec']","['legal', 'management']"
+f809fcb0-52f8-5590-2e02-59251ca3a8d4,OTIS,otis,Erzsebet Dudas,https://www.linkedin.com/in/erzsebet-dudas-77b647199,Chief Financial Officer,"['l_100_individual', 'l_500_exec']","['management', 'operations']"
+f809fcb0-52f8-5590-2e02-59251ca3a8d4,OTIS,otis,Ezhil Nanjappan,https://www.linkedin.com/in/ezhil-nanjappan-a218208,Chief Technology Officer,"['l_100_individual', 'l_500_exec']","['information_technology', 'management']"
+f809fcb0-52f8-5590-2e02-59251ca3a8d4,OTIS,otis,Federico Garcia Parra,https://www.linkedin.com/in/federico-garcia-parra-21264225,Chairman of the Customer Advisory Board,['l_500_exec'],['management']
+e83b8f68-8bc9-6b56-220c-0ffbd470b931,Dell,dell,Adam Robyak,https://www.linkedin.com/in/adamrobyak,Field CTO & Principal Engineer,['l_500_exec'],['engineering']
+e83b8f68-8bc9-6b56-220c-0ffbd470b931,Dell,dell,Adel Hanna,https://www.linkedin.com/in/adelhanna,Chief Architect,['l_500_exec'],['operations']
+e83b8f68-8bc9-6b56-220c-0ffbd470b931,Dell,dell,Aimee Gosch,https://www.linkedin.com/in/aimee-gosch-1468b187,Senior Budget Manager - Vendor Management Office,['l_500_exec'],
+e83b8f68-8bc9-6b56-220c-0ffbd470b931,Dell,dell,Allison Dew,https://www.linkedin.com/in/allison-dew-45875035,Chief Marketing Officer,['l_500_exec'],['marketing']
+e83b8f68-8bc9-6b56-220c-0ffbd470b931,Dell,dell,Alva B Eaton,https://www.linkedin.com/in/alvaeaton,"Chief Architect, Data Center Architecture [Hybrid]",['l_500_exec'],['operations']
+e83b8f68-8bc9-6b56-220c-0ffbd470b931,Dell,dell,Andrew Murrey,https://www.linkedin.com/in/andrew-murrey-18a9193,Field CTO - SPS NA,['l_500_exec'],['engineering']
+e83b8f68-8bc9-6b56-220c-0ffbd470b931,Dell,dell,Andrew Underwood,https://www.linkedin.com/in/andrewjamesunderwood,APJ Chief Technology Officer,['l_500_exec'],['management']
+e83b8f68-8bc9-6b56-220c-0ffbd470b931,Dell,dell,Anit Lohtia,https://www.linkedin.com/in/anit-lohtia-756ab14,"CTO, 5G Strategy Lead",['l_500_exec'],['engineering']
+e83b8f68-8bc9-6b56-220c-0ffbd470b931,Dell,dell,Arron Patterson,https://www.linkedin.com/in/arronpatterson,Principal Engineer & Field Chief Technology Officer Lead - Asia Pacific & Japan,['l_500_exec'],['management']
+e83b8f68-8bc9-6b56-220c-0ffbd470b931,Dell,dell,Arthur Lewis,https://www.linkedin.com/in/arthur-lewis-0ab165a,"President & Chief Operating Officer, Infrastructure Solutions Group",['l_500_exec'],['management']
+a6f8e0d8-9f8e-1ee9-5dce-b312304782e2,Cartier,cartier,Andra Mielnicki,https://www.linkedin.com/in/andramielnicki,Marketing and Product,"['l_100_individual', 'l_400_vp', 'l_500_exec']",['marketing']
+a6f8e0d8-9f8e-1ee9-5dce-b312304782e2,Cartier,cartier,Bruno Carraz,https://www.linkedin.com/in/bruno-carraz,President Latin America & Caribbean,"['l_100_individual', 'l_500_exec']","['management', 'operations']"
+a6f8e0d8-9f8e-1ee9-5dce-b312304782e2,Cartier,cartier,Emily L.,https://www.linkedin.com/in/emily-l-989058196,Marketing Executive,['l_500_exec'],['marketing']
+a6f8e0d8-9f8e-1ee9-5dce-b312304782e2,Cartier,cartier,Fatima Aziz,https://www.linkedin.com/in/fatima-aziz-a3715625,"Chief Human Resources Officer, North America","['l_100_individual', 'l_500_exec']","['finance', 'human_resources']"
+a6f8e0d8-9f8e-1ee9-5dce-b312304782e2,Cartier,cartier,Mercedes Abramo,https://www.linkedin.com/in/mercedes-abramo-5013984,CEO North America,"['l_100_individual', 'l_500_exec']","['management', 'operations']"
+a6f8e0d8-9f8e-1ee9-5dce-b312304782e2,Cartier,cartier,Thierry Savouyaud,https://www.linkedin.com/in/tsavouyaud,Senior VP - Chief Operating Officer - Cartier North America,['l_500_exec'],
+a6f8e0d8-9f8e-1ee9-5dce-b312304782e2,Cartier,cartier,Alexandra Miller,https://www.linkedin.com/in/alexandra-miller-05290b42,"AVP, Client Experience",['l_400_vp'],['marketing']
+a6f8e0d8-9f8e-1ee9-5dce-b312304782e2,Cartier,cartier,Alexandre Delamort,https://www.linkedin.com/in/alexandredelamort,Business Management,"['l_100_individual', 'l_400_vp']","['management', 'operations']"
+a6f8e0d8-9f8e-1ee9-5dce-b312304782e2,Cartier,cartier,Alicia Alonso,https://www.linkedin.com/in/alicia-alonso-98b6aaa,"Assistant Vice President, Client Centricity and Client Relations Center","['l_100_individual', 'l_400_vp']","['medical_science', 'operations']"
+a6f8e0d8-9f8e-1ee9-5dce-b312304782e2,Cartier,cartier,Alison Cohen,https://www.linkedin.com/in/alison-cohen-0726475,"AVP, Supply Chain & Merchandisin","['l_100_individual', 'l_400_vp']",['operations']
+7287b03f-94ca-4482-83b4-80791f4f72b6,Mozn,mozn,Abdallah Dakroub,https://www.linkedin.com/in/adakroub,Sales and Support,['l_300_director'],
+7287b03f-94ca-4482-83b4-80791f4f72b6,Mozn,mozn,Faisal Alhussain,https://www.linkedin.com/in/alhussainfaisal,Finance and Administration,['l_300_director'],
+7287b03f-94ca-4482-83b4-80791f4f72b6,Mozn,mozn,Ghada Alshemaimry,https://www.linkedin.com/in/alshemaimry,Marketing and Product,['l_300_director'],
+7287b03f-94ca-4482-83b4-80791f4f72b6,Mozn,mozn,Abdullah Alshathri,https://www.linkedin.com/in/abdullahalshathri,Marketing and Product,['l_200_manager'],
+7287b03f-94ca-4482-83b4-80791f4f72b6,Mozn,mozn,Amir Hussain,https://www.linkedin.com/in/tehsini,Sales and Support,['l_100_individual'],
+7287b03f-94ca-4482-83b4-80791f4f72b6,Mozn,mozn,Bodor Alsabti,https://www.linkedin.com/in/bodor-alsabti,Information Technology,['l_100_individual'],['information_technology']
+7287b03f-94ca-4482-83b4-80791f4f72b6,Mozn,mozn,Hassan Alsawadi,https://www.linkedin.com/in/hassan-alsawadi,Information Technology,['l_100_individual'],['information_technology']
+7287b03f-94ca-4482-83b4-80791f4f72b6,Mozn,mozn,MaTe TimaR,https://www.linkedin.com/in/timarmate,Information Technology,['l_100_individual'],['information_technology']
+7287b03f-94ca-4482-83b4-80791f4f72b6,Mozn,mozn,Mohamad Mdallal,https://www.linkedin.com/in/mohamad-mdallal-681a68108,Sales and Support,['l_100_individual'],
+7287b03f-94ca-4482-83b4-80791f4f72b6,Mozn,mozn,Mohammed Alhussein,https://www.linkedin.com/in/mohammed-alhussein-44106a6,Business Management,['l_100_individual'],
+751b93d5-5643-307d-16ea-ceabd936ecfb,DHL,dhl,Alan Kramer,https://www.linkedin.com/in/alantkramer,Legal,"['l_100_individual', 'l_500_exec']","['legal', 'management']"
+751b93d5-5643-307d-16ea-ceabd936ecfb,DHL,dhl,Alana John,https://www.linkedin.com/in/alana-john-b248a817a,Marketing and Product,"['l_100_individual', 'l_500_exec']",
+751b93d5-5643-307d-16ea-ceabd936ecfb,DHL,dhl,Alberto Oltra,https://www.linkedin.com/in/alberto-oltra-99540225,CEO Spanish-Speaking Countries,['l_500_exec'],['management']
+751b93d5-5643-307d-16ea-ceabd936ecfb,DHL,dhl,Allison Haedt,https://www.linkedin.com/in/allison-haedt-99590756,Associate General Counsel (Commercial),['l_500_exec'],['management']
+751b93d5-5643-307d-16ea-ceabd936ecfb,DHL,dhl,Andrew Macdonald,https://www.linkedin.com/in/andrewmacdonald-b1ab1a11,CFO,['l_500_exec'],['finance']
+751b93d5-5643-307d-16ea-ceabd936ecfb,DHL,dhl,Andrew Williams,https://www.linkedin.com/in/andrewowenwilliams,Business Management,"['l_100_individual', 'l_500_exec']",['management']
+751b93d5-5643-307d-16ea-ceabd936ecfb,DHL,dhl,Bart Van,https://www.linkedin.com/in/bart-van-de-walle-b19a5b,CIO Belux,['l_500_exec'],
+751b93d5-5643-307d-16ea-ceabd936ecfb,DHL,dhl,Charlie Reed,https://www.linkedin.com/in/chazreed,"Principle Hosting Service Owner (DGF, EXP, GBS)","['l_100_individual', 'l_500_exec']",['operations']
+751b93d5-5643-307d-16ea-ceabd936ecfb,DHL,dhl,Chris Coats,https://www.linkedin.com/in/chris-coats-9aa02810,Business Management,"['l_100_individual', 'l_500_exec']",['management']
+751b93d5-5643-307d-16ea-ceabd936ecfb,DHL,dhl,Claudia Roa,https://www.linkedin.com/in/claudia-roa,"President, Life Sciences & Healthcare Sector","['l_100_individual', 'l_500_exec']",['operations']
+b38e97ed-8fdf-414b-b882-4ad2ef79e44c,Nahdi,nahdi,Aiman Ali Alsaggaf,https://www.linkedin.com/in/aiman-ali-alsaggaf-00036618,Information Technology,['l_300_director'],['information_technology']
+b38e97ed-8fdf-414b-b882-4ad2ef79e44c,Nahdi,nahdi,Alice ناظر,https://www.linkedin.com/in/alice-nazer-اليس-ناظر-4b34359,Human Resources,['l_300_director'],['human_resources']
+b38e97ed-8fdf-414b-b882-4ad2ef79e44c,Nahdi,nahdi,Domingos Mendes,https://www.linkedin.com/in/domingosmanuelmendes,Engineering,['l_300_director'],['engineering']
+b38e97ed-8fdf-414b-b882-4ad2ef79e44c,Nahdi,nahdi,Hassan Bakessou,https://www.linkedin.com/in/hassan-bakessou-077b2111,Finance and Administration,['l_300_director'],['finance']
+b38e97ed-8fdf-414b-b882-4ad2ef79e44c,Nahdi,nahdi,Mahmoud Ibrahim │Samurai Warrior,https://www.linkedin.com/in/mahmoud-ibrahim-│samurai-warrior-b6565049,Sales and Support,['l_300_director'],
+b38e97ed-8fdf-414b-b882-4ad2ef79e44c,Nahdi,nahdi,Abd Gaber,https://www.linkedin.com/in/abd-elmonem-gaber-bb9b6799,Sales and Support,['l_200_manager'],
+b38e97ed-8fdf-414b-b882-4ad2ef79e44c,Nahdi,nahdi,Abdallah Nasr,https://www.linkedin.com/in/abdallah-nasr-595325a5,Business Management,['l_200_manager'],['operations']
+b38e97ed-8fdf-414b-b882-4ad2ef79e44c,Nahdi,nahdi,Abdelaziz Goda,https://www.linkedin.com/in/abdelaziz-goda-a1a81817b,Business Management,['l_200_manager'],['operations']
+b38e97ed-8fdf-414b-b882-4ad2ef79e44c,Nahdi,nahdi,Abdelwahid Ahmed,https://www.linkedin.com/in/abdelwahidahmed,Operations,['l_200_manager'],['operations']
+b38e97ed-8fdf-414b-b882-4ad2ef79e44c,Nahdi,nahdi,Abdul Mansoor,https://www.linkedin.com/in/abdul-mansoor-99704113,Operations,['l_200_manager'],['operations']
+d53020f6-8a56-9b9a-764d-bf209256b5b3,BAE Systems,bae-systems,Andrew Wilcock,https://www.linkedin.com/in/andrew-wilcock-9b216b64,Deputy Chief Engineer Submarine Support,"['l_100_individual', 'l_500_exec']","['engineering', 'management']"
+d53020f6-8a56-9b9a-764d-bf209256b5b3,BAE Systems,bae-systems,Brian Rieman,https://www.linkedin.com/in/brian-rieman-b67ba4195,Chief Engineer,['l_500_exec'],['engineering']
+d53020f6-8a56-9b9a-764d-bf209256b5b3,BAE Systems,bae-systems,Bruce Hartmann,https://www.linkedin.com/in/bruce-hartmann-097b5a8,Engineering,"['l_100_individual', 'l_500_exec']",['engineering']
+d53020f6-8a56-9b9a-764d-bf209256b5b3,BAE Systems,bae-systems,Christopher Bodenham,https://www.linkedin.com/in/christopher-bodenham-38aa55a6,Senior Engineering Integrator - Chief Engineers Office,['l_500_exec'],
+d53020f6-8a56-9b9a-764d-bf209256b5b3,BAE Systems,bae-systems,Clyde Grimm,https://www.linkedin.com/in/clyde-grimm-58b3554,Chief Engineer,['l_500_exec'],['engineering']
+d53020f6-8a56-9b9a-764d-bf209256b5b3,BAE Systems,bae-systems,Craig Young IEng MIMechE,https://www.linkedin.com/in/craig-young-ieng-mimeche-210b8027,Chief Engineer,['l_500_exec'],['engineering']
+d53020f6-8a56-9b9a-764d-bf209256b5b3,BAE Systems,bae-systems,Curt Parsons,https://www.linkedin.com/in/curt-parsons-49994b106,Chief Engineer,"['l_100_individual', 'l_500_exec']",['engineering']
+d53020f6-8a56-9b9a-764d-bf209256b5b3,BAE Systems,bae-systems,Dan Engheben,https://www.linkedin.com/in/dengheben,Chief Engineer,['l_500_exec'],['engineering']
+d53020f6-8a56-9b9a-764d-bf209256b5b3,BAE Systems,bae-systems,Daniel D'Amore,https://www.linkedin.com/in/daniel-d-amore-38421421,Chief Engineer,['l_500_exec'],['engineering']
+d53020f6-8a56-9b9a-764d-bf209256b5b3,BAE Systems,bae-systems,Dave Jenman,https://www.linkedin.com/in/dave-jenman-535b1443,Chief Engineer Hardware Design,['l_500_exec'],['management']
+e38c6574-437f-aa32-d7d7-5d0558ecb0ea,Islamic Development Bank,islamic-development-bank,Anasse Aissami,https://www.linkedin.com/in/anasse-aissami-36170b9,Director General Country Programs,['l_300_director'],['management']
+e38c6574-437f-aa32-d7d7-5d0558ecb0ea,Islamic Development Bank,islamic-development-bank,Farhan Rashid,https://www.linkedin.com/in/farhan-rashid-215b96,Finance and Administration,['l_300_director'],['operations']
+e38c6574-437f-aa32-d7d7-5d0558ecb0ea,Islamic Development Bank,islamic-development-bank,Tarek Elabbady,https://www.linkedin.com/in/tarek-z-elabbady,Operations,['l_300_director'],['operations']
+e38c6574-437f-aa32-d7d7-5d0558ecb0ea,Islamic Development Bank,islamic-development-bank,Walid Abdelwahab,https://www.linkedin.com/in/dr-walid-abdelwahab-p-eng,Business Management,['l_300_director'],
+e38c6574-437f-aa32-d7d7-5d0558ecb0ea,Islamic Development Bank,islamic-development-bank,Abd Yunos,https://www.linkedin.com/in/abd-talib-mohamed-yunos-68b2bb6,Finance and Administration,['l_200_manager'],['operations']
+e38c6574-437f-aa32-d7d7-5d0558ecb0ea,Islamic Development Bank,islamic-development-bank,Abdirashid Warsame,https://www.linkedin.com/in/abdirashid-b-warsame-74186735,Sales and Support,['l_200_manager'],['operations']
+e38c6574-437f-aa32-d7d7-5d0558ecb0ea,Islamic Development Bank,islamic-development-bank,Abdullah Algarni,https://www.linkedin.com/in/abdullah-algarni-4749995a,Finance and Administration,['l_200_manager'],
+e38c6574-437f-aa32-d7d7-5d0558ecb0ea,Islamic Development Bank,islamic-development-bank,Abdullahi Hussein,https://www.linkedin.com/in/abdullahi-hussein-363641b7,Finance and Administration,['l_200_manager'],['finance']
+e38c6574-437f-aa32-d7d7-5d0558ecb0ea,Islamic Development Bank,islamic-development-bank,Abo Ali,https://www.linkedin.com/in/abo-ali-abi-ali-a51b7a93,Business Management,['l_200_manager'],['operations']
+e38c6574-437f-aa32-d7d7-5d0558ecb0ea,Islamic Development Bank,islamic-development-bank,Ahmad Odeh,https://www.linkedin.com/in/ahmad-odeh-47b207159,Information Technology,['l_200_manager'],['information_technology']
+3032b0a8-410a-5c0f-2475-bae838223279,Gateway,gateway,Brent Heath,https://www.linkedin.com/in/brent-heath-9273a03a,Chairman of the Board of Directors,['l_500_exec'],['management']
+3032b0a8-410a-5c0f-2475-bae838223279,Gateway,gateway,James B. Jim Brewer,https://www.linkedin.com/in/james-b-jim-brewer-86a5a47,Owner,"['l_100_individual', 'l_500_exec']",['management']
+3032b0a8-410a-5c0f-2475-bae838223279,Gateway,gateway,Nick Benavides,https://www.linkedin.com/in/nick-benavides-424b925,Broker/Owner,['l_500_exec'],['management']
+3032b0a8-410a-5c0f-2475-bae838223279,Gateway,gateway,Adriana DiGioia,https://www.linkedin.com/in/adrianadigioia,Director of Quality Management,['l_300_director'],['medical_science']
+3032b0a8-410a-5c0f-2475-bae838223279,Gateway,gateway,Barb Vice,https://www.linkedin.com/in/barb-vice-47209858,Business Management,['l_300_director'],
+3032b0a8-410a-5c0f-2475-bae838223279,Gateway,gateway,Cherie Brinkerhoff,https://www.linkedin.com/in/cherie-brinkerhoff-4199233,Sales and Support,['l_300_director'],
+3032b0a8-410a-5c0f-2475-bae838223279,Gateway,gateway,Christine Cattell,https://www.linkedin.com/in/christine-cattell-3476a698,Business Management,['l_300_director'],
+3032b0a8-410a-5c0f-2475-bae838223279,Gateway,gateway,Danny Campos,https://www.linkedin.com/in/danny-campos-06a832128,Engineering,['l_300_director'],['engineering']
+3032b0a8-410a-5c0f-2475-bae838223279,Gateway,gateway,David Morton,https://www.linkedin.com/in/david-morton-23ba5810,Business Management,['l_300_director'],
+3032b0a8-410a-5c0f-2475-bae838223279,Gateway,gateway,Delesa Dillard,https://www.linkedin.com/in/delesa-dillard-792a3921,Finance and Administration,['l_300_director'],
+5ef322bb-ce87-ee93-8487-d676db42a11b,Devoteam,devoteam,Andy Montgomery,https://www.linkedin.com/in/andy-montgomery-a6aa9613,AWS Cloud UK CTO,['l_500_exec'],['pro_services']
+5ef322bb-ce87-ee93-8487-d676db42a11b,Devoteam,devoteam,Henrik Madsen,https://www.linkedin.com/in/henrik-madsen-10791a,CEO,['l_500_exec'],['management']
+5ef322bb-ce87-ee93-8487-d676db42a11b,Devoteam,devoteam,Johan Verheyen,https://www.linkedin.com/in/johan-verheyen-912349,COO,['l_500_exec'],['operations']
+5ef322bb-ce87-ee93-8487-d676db42a11b,Devoteam,devoteam,Michaël ROLLAND,https://www.linkedin.com/in/rolmik,Group Chief Marketing Officer,['l_500_exec'],['marketing']
+5ef322bb-ce87-ee93-8487-d676db42a11b,Devoteam,devoteam,Olivier Potmans,https://www.linkedin.com/in/olivier-potmans-54a1631,CTO,['l_500_exec'],['management']
+5ef322bb-ce87-ee93-8487-d676db42a11b,Devoteam,devoteam,Bert Schaap,https://www.linkedin.com/in/beschaap,Group Senior Vice President,['l_400_vp'],['management']
+5ef322bb-ce87-ee93-8487-d676db42a11b,Devoteam,devoteam,Andy Crawford,https://www.linkedin.com/in/andy-crawford-65295111,Client Director,['l_300_director'],['management']
+5ef322bb-ce87-ee93-8487-d676db42a11b,Devoteam,devoteam,Anoldo Spinola,https://www.linkedin.com/in/anoldospinola,Account Director Liberty Global,['l_300_director'],['finance']
+5ef322bb-ce87-ee93-8487-d676db42a11b,Devoteam,devoteam,Asger Olesen,https://www.linkedin.com/in/asger-s%C3%B8nderg%C3%A5rd-olesen-27532714,Business Director,['l_300_director'],['sales']
+5ef322bb-ce87-ee93-8487-d676db42a11b,Devoteam,devoteam,Benny Moonen,https://www.linkedin.com/in/benny-moonen-8b94941,General Manager,['l_300_director'],['management']
+41e3f7b9-4dc1-4818-8fd9-29895402b9d1,Arabic Computer Systems,arabic-computer-systems,Shaharyar Khalid,https://www.linkedin.com/in/shaharyarkhalid,Marketing and Product,['l_300_director'],['operations']
+d0957bd0-1ec3-4f84-9c04-d96e5d073081,Codification,codification,James Parratt,https://www.linkedin.com/in/jamesparratt,Chief Operations Officer,['l_500_exec'],['pro_services']
+d0957bd0-1ec3-4f84-9c04-d96e5d073081,Codification,codification,Richard Smith,https://www.linkedin.com/in/richwsmith,Chief Executive Officer,['l_500_exec'],
+d0957bd0-1ec3-4f84-9c04-d96e5d073081,Codification,codification,Susan Robson,https://www.linkedin.com/in/susanannrobson,Chief People Officer,['l_500_exec'],['sales']
+d0957bd0-1ec3-4f84-9c04-d96e5d073081,Codification,codification,Ani Bazikyan,https://www.linkedin.com/in/ani-bazikyan-6180a825,Finance and Administration,['l_100_individual'],
+d0957bd0-1ec3-4f84-9c04-d96e5d073081,Codification,codification,Ashok Kumar,https://www.linkedin.com/in/ashok-kumar-stephen,Senior Platform Engineer,['l_100_individual'],['engineering']
+d0957bd0-1ec3-4f84-9c04-d96e5d073081,Codification,codification,Ashok Kumar,https://www.linkedin.com/in/ashok-kumar-a34698a2,Platform Engineer,['l_100_individual'],['engineering']
+d0957bd0-1ec3-4f84-9c04-d96e5d073081,Codification,codification,Divyalakshmi Nambirajan,https://www.linkedin.com/in/divyalakshmi-nambirajan,Associate Talent Partner,['l_100_individual'],['management']
+d0957bd0-1ec3-4f84-9c04-d96e5d073081,Codification,codification,Kashif Imran,https://www.linkedin.com/in/kashif-imran-92b06729,Engineering,['l_100_individual'],['engineering']
+d0957bd0-1ec3-4f84-9c04-d96e5d073081,Codification,codification,Napoleon Benavides,https://www.linkedin.com/in/napoleon-benavides-a299697a,Business Management,['l_100_individual'],
+d0957bd0-1ec3-4f84-9c04-d96e5d073081,Codification,codification,Rich Crouthamel,https://www.linkedin.com/in/rich-crouthamel-921aa18,Business Management,['l_100_individual'],
+8992137d-aabc-45b2-b941-fd130a1691b4,Hill International,hill-international,Buchanan Keith,https://www.linkedin.com/in/buchanan-keith-6534a636,Chief Estimator,['l_500_exec'],['management']
+8992137d-aabc-45b2-b941-fd130a1691b4,Hill International,hill-international,Dick Sargon,https://www.linkedin.com/in/dick-sargon-02a9a725,PRESIDENT.HILL International Devel;opment LTD,['l_500_exec'],['management']
+8992137d-aabc-45b2-b941-fd130a1691b4,Hill International,hill-international,Duncan Hey,https://www.linkedin.com/in/duncan-hey-1b3152116,President,['l_500_exec'],['management']
+8992137d-aabc-45b2-b941-fd130a1691b4,Hill International,hill-international,James Devol,https://www.linkedin.com/in/james-devol-4521b897,Owner's Project Manager,"['l_200_manager', 'l_500_exec']","['management', 'operations']"
+8992137d-aabc-45b2-b941-fd130a1691b4,Hill International,hill-international,James Lawson,https://www.linkedin.com/in/james-lawson-arch,Sr. Project Manager / Owners Rep,['l_500_exec'],"['management', 'product']"
+8992137d-aabc-45b2-b941-fd130a1691b4,Hill International,hill-international,John Fanelli,https://www.linkedin.com/in/john-fanelli-iii-544a0813,SVP and CFO,['l_500_exec'],['finance']
+8992137d-aabc-45b2-b941-fd130a1691b4,Hill International,hill-international,Johnny Boyd,https://www.linkedin.com/in/johnny-boyd-25000b2a,Owner's Construction Representative,['l_500_exec'],['management']
+8992137d-aabc-45b2-b941-fd130a1691b4,Hill International,hill-international,Johnny Depp,https://www.linkedin.com/in/johnny-depp-85372a1bb,Chief Executive Officer,['l_500_exec'],['management']
+8992137d-aabc-45b2-b941-fd130a1691b4,Hill International,hill-international,Mike Smith,https://www.linkedin.com/in/mike-smith-5b8222a,Business Management,"['l_100_individual', 'l_500_exec']",['management']
+8992137d-aabc-45b2-b941-fd130a1691b4,Hill International,hill-international,Roderick Joe,https://www.linkedin.com/in/roderick-j-joe-bab3465b,President,['l_500_exec'],['management']
+76f88257-18f8-d913-5e1b-0664ee7ba940,EPAM Systems,epam-systems,Alexander Kogan,https://www.linkedin.com/in/alexanderkogan,Engineering,"['l_100_individual', 'l_300_director', 'l_500_exec']","['engineering', 'operations']"
+76f88257-18f8-d913-5e1b-0664ee7ba940,EPAM Systems,epam-systems,Arkadiy Dobkin,https://www.linkedin.com/in/arkadiy-dobkin-14301015,CEO and President,['l_500_exec'],['management']
+76f88257-18f8-d913-5e1b-0664ee7ba940,EPAM Systems,epam-systems,Devesh Ginodia,https://www.linkedin.com/in/deveshginodia,"CIO Advisory, Enterprise Data Strategy & Governance","['l_100_individual', 'l_500_exec']","['engineering', 'information_technology']"
+76f88257-18f8-d913-5e1b-0664ee7ba940,EPAM Systems,epam-systems,Edward Hussey,https://www.linkedin.com/in/edward-hussey-85a2078,"Senior Director, Regional General Counsel","['l_300_director', 'l_500_exec']","['legal', 'management']"
+76f88257-18f8-d913-5e1b-0664ee7ba940,EPAM Systems,epam-systems,Igor Temelkovski,https://www.linkedin.com/in/igortemelkovski,"VP, CIO Advisory and Technology Consulting","['l_100_individual', 'l_500_exec']",['engineering']
+76f88257-18f8-d913-5e1b-0664ee7ba940,EPAM Systems,epam-systems,Jason Peterson,https://www.linkedin.com/in/jason-peterson-090267104,Chief Financial Officer,"['l_100_individual', 'l_500_exec']","['finance', 'management']"
+76f88257-18f8-d913-5e1b-0664ee7ba940,EPAM Systems,epam-systems,Jennifer Benito,https://www.linkedin.com/in/jenniferjbenito,"Principal, CIO Advisory & Technology Consulting",['l_500_exec'],['pro_services']
+76f88257-18f8-d913-5e1b-0664ee7ba940,EPAM Systems,epam-systems,Justin Brennan,https://www.linkedin.com/in/justin-brennan-9a756512,Legal,"['l_100_individual', 'l_500_exec']","['legal', 'management']"
+76f88257-18f8-d913-5e1b-0664ee7ba940,EPAM Systems,epam-systems,Kate Pytlewski,https://www.linkedin.com/in/kate-pytlewski-b9812214,Legal,"['l_100_individual', 'l_500_exec']","['legal', 'management']"
+76f88257-18f8-d913-5e1b-0664ee7ba940,EPAM Systems,epam-systems,Lawrence F. Solomon,https://www.linkedin.com/in/larry-solomon-56a89a6b,"SVP, Chief People Officer","['l_100_individual', 'l_500_exec']","['human_resources', 'management']"
+e920e6a9-4797-4a81-a98c-14a0de2d2ced,Qureos,qureos,Mehrad Yaghmai,https://www.linkedin.com/in/mehrady,Co-Founder,['l_500_exec'],['pro_services']
+e71b21b3-1816-4474-9f21-e990933f8be9,Tahaluf,tahaluf,Evelyn Cardozo,https://www.linkedin.com/in/evelyn-cardozo-857a2591,Sales and Support,['l_200_manager'],
+e71b21b3-1816-4474-9f21-e990933f8be9,Tahaluf,tahaluf,Abdulaziz Alghurayr,https://www.linkedin.com/in/abdulazizalghurayr-1686338a,Business Management,['l_100_individual'],
+e71b21b3-1816-4474-9f21-e990933f8be9,Tahaluf,tahaluf,Annabelle Mander,https://www.linkedin.com/in/annabelle-mander-13485172,Business Management,['l_100_individual'],
+f5ce4c1f-b3d0-34a3-4fc8-16fea936b513,Creative Chaos North America LLC,creative-chaos,Will Robinson,https://www.linkedin.com/in/willr,Founder,['l_500_exec'],['management']
+f5ce4c1f-b3d0-34a3-4fc8-16fea936b513,Creative Chaos North America LLC,creative-chaos,Betty Burch,https://www.linkedin.com/in/betty-burch-43339328,Operations,['l_100_individual'],['operations']
+f5ce4c1f-b3d0-34a3-4fc8-16fea936b513,Creative Chaos North America LLC,creative-chaos,Cathy Smith,https://www.linkedin.com/in/cathy-smith-86b24b33,Operations,['l_100_individual'],['operations']
+f5ce4c1f-b3d0-34a3-4fc8-16fea936b513,Creative Chaos North America LLC,creative-chaos,Danial Razzaq,https://www.linkedin.com/in/danial-razzaq,Talent Acquisition Specialist,['l_100_individual'],
+f5ce4c1f-b3d0-34a3-4fc8-16fea936b513,Creative Chaos North America LLC,creative-chaos,Jenny Friedberg,https://www.linkedin.com/in/jennyfriedberg,Business Management,['l_100_individual'],
+f5ce4c1f-b3d0-34a3-4fc8-16fea936b513,Creative Chaos North America LLC,creative-chaos,Shaun Greene,https://www.linkedin.com/in/shaungreene,Project Manager,['l_100_individual'],['product']
+47a3b0f6-f36d-efc2-e70a-f412f2a774a1,Foodics,foodics,Dema Elayyan,https://www.linkedin.com/in/dema-elayyan-86a34113a,Sales and Support,['l_300_director'],['operations']
+47a3b0f6-f36d-efc2-e70a-f412f2a774a1,Foodics,foodics,Abdullah Alsaqqa,https://www.linkedin.com/in/abdullah-alsaqqa-287022167,Finance and Administration,['l_200_manager'],['operations']
+47a3b0f6-f36d-efc2-e70a-f412f2a774a1,Foodics,foodics,Ahmed Masoud,https://www.linkedin.com/in/ahmed-masoud88,Quality,['l_200_manager'],['operations']
+47a3b0f6-f36d-efc2-e70a-f412f2a774a1,Foodics,foodics,Ailamae Rose Quimsing,https://www.linkedin.com/in/ailamae-rose-quimsing-4136a797,Human Resources,['l_200_manager'],['human_resources']
+47a3b0f6-f36d-efc2-e70a-f412f2a774a1,Foodics,foodics,Alawi Alawami,https://www.linkedin.com/in/alawi-alawami-215165aa,Sales and Support,['l_200_manager'],['operations']
+47a3b0f6-f36d-efc2-e70a-f412f2a774a1,Foodics,foodics,Bassam Rashaideh,https://www.linkedin.com/in/bassam-rashaideh-05791315,Engineering,['l_200_manager'],['engineering']
+47a3b0f6-f36d-efc2-e70a-f412f2a774a1,Foodics,foodics,Belal Zahran,https://www.linkedin.com/in/belal-zahran-46408957,Sales and Support,['l_200_manager'],
+47a3b0f6-f36d-efc2-e70a-f412f2a774a1,Foodics,foodics,Hassan Sukairi,https://www.linkedin.com/in/hassansukairi,Engineering,['l_200_manager'],['engineering']
+47a3b0f6-f36d-efc2-e70a-f412f2a774a1,Foodics,foodics,Hatem Ashour,https://www.linkedin.com/in/hatemashour,Business Management,['l_200_manager'],
+47a3b0f6-f36d-efc2-e70a-f412f2a774a1,Foodics,foodics,Luqman Sohail,https://www.linkedin.com/in/luqman-sohail27,Business Management,['l_200_manager'],
+cb96e835-d324-d68a-759a-61fed8b632b3,Schneider Electric,schneider-electric,Aamir Paul,https://www.linkedin.com/in/aamirpaul,Executive Vice-President North America Operations,"['l_100_individual', 'l_500_exec']",['management']
+cb96e835-d324-d68a-759a-61fed8b632b3,Schneider Electric,schneider-electric,Abby Gabriel,https://www.linkedin.com/in/abby-gabriel,"Chief Marketing Officer, North America","['l_100_individual', 'l_500_exec']",
+cb96e835-d324-d68a-759a-61fed8b632b3,Schneider Electric,schneider-electric,Aidan Gibbs,https://www.linkedin.com/in/aidan-gibbs,Marketing Executive,['l_500_exec'],['marketing']
+cb96e835-d324-d68a-759a-61fed8b632b3,Schneider Electric,schneider-electric,Bill Brown,https://www.linkedin.com/in/bill-brown-568b2788,"Chief Technology Officer, Consulting Services",['l_500_exec'],['engineering']
+cb96e835-d324-d68a-759a-61fed8b632b3,Schneider Electric,schneider-electric,Bobby Cain,https://www.linkedin.com/in/bobby-cain-0b57845,Engineering,"['l_100_individual', 'l_500_exec']","['engineering', 'management']"
+cb96e835-d324-d68a-759a-61fed8b632b3,Schneider Electric,schneider-electric,"Caitlin Chester, CSCP",https://www.linkedin.com/in/caitlin-chester-cscp-61677173,Procurement Global Transformation Leader-Nam Focus,"['l_200_manager', 'l_500_exec']","['management', 'operations']"
+cb96e835-d324-d68a-759a-61fed8b632b3,Schneider Electric,schneider-electric,Danny Orrock,https://www.linkedin.com/in/danny-orrock-38282167,Assistant General Counsel,['l_500_exec'],['management']
+cb96e835-d324-d68a-759a-61fed8b632b3,Schneider Electric,schneider-electric,Debby Slofstra,https://www.linkedin.com/in/debby-slofstra-6471b3a0,Country President Netherlands,['l_500_exec'],
+cb96e835-d324-d68a-759a-61fed8b632b3,Schneider Electric,schneider-electric,Estelle Monod,https://www.linkedin.com/in/estelle-monod-49b7991,"Senior Vice President, Building Segments President",['l_500_exec'],
+cb96e835-d324-d68a-759a-61fed8b632b3,Schneider Electric,schneider-electric,Fei Tong,https://www.linkedin.com/in/fei-tong-24601a45,"Senior Vice President, CFO, North America Operations",['l_500_exec'],['finance']
+8adadbfb-be63-6602-8ca0-b037397a7038,HP,hewlett-packard,Adam Greyson,https://www.linkedin.com/in/agreyson,"Intellectual Property Strategist, CTO Office","['l_100_individual', 'l_500_exec']",['legal']
+8adadbfb-be63-6602-8ca0-b037397a7038,HP,hewlett-packard,Alex Cho,https://www.linkedin.com/in/alex-cho-52324513,"President, Personal Systems",['l_500_exec'],
+8adadbfb-be63-6602-8ca0-b037397a7038,HP,hewlett-packard,Bradley Lew,https://www.linkedin.com/in/bradley-lew-29313512,Engineering,"['l_200_manager', 'l_500_exec']",['engineering']
+8adadbfb-be63-6602-8ca0-b037397a7038,HP,hewlett-packard,Bradley Wittke,https://www.linkedin.com/in/bradleywittke,Procurement Operations - CTO / HP Labs,['l_500_exec'],['engineering']
+8adadbfb-be63-6602-8ca0-b037397a7038,HP,hewlett-packard,CeeAnn Callahan,https://www.linkedin.com/in/ceeann-callahan-0903a777,Associate General Counsel,['l_500_exec'],['management']
+8adadbfb-be63-6602-8ca0-b037397a7038,HP,hewlett-packard,Cherie Chau,https://www.linkedin.com/in/cherie-chau-4287b9151,Retail Marketing Executive,['l_500_exec'],
+8adadbfb-be63-6602-8ca0-b037397a7038,HP,hewlett-packard,Cheryl Mohr,https://www.linkedin.com/in/cheryl-a-mohr-3968b85,Acting Chief Human Resources Officer,['l_500_exec'],
+8adadbfb-be63-6602-8ca0-b037397a7038,HP,hewlett-packard,Danielle Clark,https://www.linkedin.com/in/danielle-clark-83a34435,Global Antitrust Counsel and Associate General Counsel,['l_500_exec'],['management']
+8adadbfb-be63-6602-8ca0-b037397a7038,HP,hewlett-packard,David McQuarrie,https://www.linkedin.com/in/david-mcquarrie-3121238,Chief Commercial Officer,['l_500_exec'],
+8adadbfb-be63-6602-8ca0-b037397a7038,HP,hewlett-packard,David Staas,https://www.linkedin.com/in/davidstaas,Engineering,"['l_100_individual', 'l_500_exec']","['engineering', 'operations']"
+e2844309-35ae-f1ed-9ce8-90d172527c7e,ME DIGITAL GROUP,me-digital-group,Abu Sule,https://www.linkedin.com/in/abu-sule-91b237120,Engineering,['l_100_individual'],['engineering']
+e2844309-35ae-f1ed-9ce8-90d172527c7e,ME DIGITAL GROUP,me-digital-group,Renee Brakebill,https://www.linkedin.com/in/renee-brakebill-102aa1117,Business Management,['l_100_individual'],
+e2844309-35ae-f1ed-9ce8-90d172527c7e,ME DIGITAL GROUP,me-digital-group,Samantha Vester,https://www.linkedin.com/in/samantha-vester-1439a9117,Business Management,['l_100_individual'],
+98375072-616e-24a5-745b-d615ce71d1a6,Fortanix,fortanix,Ambuj Kumar,https://www.linkedin.com/in/ambujkumar,Co-Founder,['l_500_exec'],['management']
+98375072-616e-24a5-745b-d615ce71d1a6,Fortanix,fortanix,Anand Balasubrahmanyan,https://www.linkedin.com/in/anandbalasub,Chief Financial Officer,['l_500_exec'],
+98375072-616e-24a5-745b-d615ce71d1a6,Fortanix,fortanix,Andy Leiserson,https://www.linkedin.com/in/andyleiserson,Chief Architect,['l_500_exec'],['engineering']
+98375072-616e-24a5-745b-d615ce71d1a6,Fortanix,fortanix,Shashi Kiran,https://www.linkedin.com/in/skiran,Chief Marketing Officer,['l_500_exec'],['marketing']
+98375072-616e-24a5-745b-d615ce71d1a6,Fortanix,fortanix,Eduard Meelhuysen,https://www.linkedin.com/in/eduardmeelhuysen,Vice President of Sales EMEA,['l_400_vp'],['management']
+98375072-616e-24a5-745b-d615ce71d1a6,Fortanix,fortanix,Jethro Beekman,https://www.linkedin.com/in/jethrobeekman,Information Technology,"['l_100_individual', 'l_400_vp']","['information_technology', 'management']"
+98375072-616e-24a5-745b-d615ce71d1a6,Fortanix,fortanix,John Wyss,https://www.linkedin.com/in/johnwyss,Vice President of Products,['l_400_vp'],['management']
+98375072-616e-24a5-745b-d615ce71d1a6,Fortanix,fortanix,Patrick Conte,https://www.linkedin.com/in/patrick-conte-02435b4,Finance and Administration,"['l_100_individual', 'l_400_vp']",['management']
+98375072-616e-24a5-745b-d615ce71d1a6,Fortanix,fortanix,Vinay Iyengar,https://www.linkedin.com/in/vinayiyengar,Vice President,['l_400_vp'],
+98375072-616e-24a5-745b-d615ce71d1a6,Fortanix,fortanix,Vishal Saxena,https://www.linkedin.com/in/visaxena,Engineering,"['l_100_individual', 'l_400_vp']","['engineering', 'management']"
+e4f6f1b4-c191-8bc2-5585-7781907b73fc,Teradata,teradata,Allison Ross,https://www.linkedin.com/in/allison-ross-4b803331,Americas CFO,"['l_100_individual', 'l_500_exec']",['finance']
+e4f6f1b4-c191-8bc2-5585-7781907b73fc,Teradata,teradata,Billy Spears,https://www.linkedin.com/in/billyjspears,Information Technology,"['l_100_individual', 'l_500_exec']","['information_technology', 'management']"
+e4f6f1b4-c191-8bc2-5585-7781907b73fc,Teradata,teradata,"Charles Smotherman , CPA",https://www.linkedin.com/in/charles-smotherman-cpa-8819a86,Finance and Administration,"['l_100_individual', 'l_500_exec']",['finance']
+e4f6f1b4-c191-8bc2-5585-7781907b73fc,Teradata,teradata,Claire Bramley,https://www.linkedin.com/in/claire-bramley-fullard-133b7174,Finance and Administration,"['l_100_individual', 'l_500_exec']",['finance']
+e4f6f1b4-c191-8bc2-5585-7781907b73fc,Teradata,teradata,David Rosal,https://www.linkedin.com/in/davidjrosal,Senior Industry Consultant - CFO Analytics,['l_500_exec'],['pro_services']
+e4f6f1b4-c191-8bc2-5585-7781907b73fc,Teradata,teradata,Elliott Ulmer,https://www.linkedin.com/in/gelliottulmer,Sales and Support,"['l_100_individual', 'l_500_exec']","['finance', 'management']"
+e4f6f1b4-c191-8bc2-5585-7781907b73fc,Teradata,teradata,Erica Hausheer,https://www.linkedin.com/in/erica-hausheer-a6469b8,Engineering,"['l_100_individual', 'l_500_exec']",['engineering']
+e4f6f1b4-c191-8bc2-5585-7781907b73fc,Teradata,teradata,Kathy Cullen-Cote,https://www.linkedin.com/in/kathy-cullen,Human Resources,"['l_100_individual', 'l_500_exec']","['human_resources', 'management']"
+e4f6f1b4-c191-8bc2-5585-7781907b73fc,Teradata,teradata,Margaret (Molly) Treese,https://www.linkedin.com/in/margaret-molly-treese-54798b10,Legal,"['l_100_individual', 'l_500_exec']","['finance', 'legal']"
+e4f6f1b4-c191-8bc2-5585-7781907b73fc,Teradata,teradata,Melanie Bagwell,https://www.linkedin.com/in/melanie-bagwell-55819012,Marketing and Product,"['l_100_individual', 'l_500_exec']",['operations']
+a1711932-191f-41f8-a5eb-0a0888f06c39,PASQAL,pasqal,Amy Golem,https://www.linkedin.com/in/amy-golem,Sales and Support,['l_200_manager'],
+a1711932-191f-41f8-a5eb-0a0888f06c39,PASQAL,pasqal,Anne-Claire Le Hénaff,https://www.linkedin.com/in/aclehenaff,Engineering,['l_200_manager'],['engineering']
+a1711932-191f-41f8-a5eb-0a0888f06c39,PASQAL,pasqal,Bruno Ximenez,https://www.linkedin.com/in/bruno-ximenez,Engineering,['l_200_manager'],['engineering']
+a1711932-191f-41f8-a5eb-0a0888f06c39,PASQAL,pasqal,Isabelle Muller-Laridan,https://www.linkedin.com/in/isabelle-muller-laridan-b853b1a8,Finance and Administration,['l_200_manager'],
+a1711932-191f-41f8-a5eb-0a0888f06c39,PASQAL,pasqal,Kelly Piriou,https://www.linkedin.com/in/kelly-piriou-lacascade,Finance and Administration,['l_200_manager'],['operations']
+a1711932-191f-41f8-a5eb-0a0888f06c39,PASQAL,pasqal,Stephen G. Pasini,https://www.linkedin.com/in/stephen-g-pasini,Finance and Administration,['l_200_manager'],
+a1711932-191f-41f8-a5eb-0a0888f06c39,PASQAL,pasqal,Sylvain DUTARTRE,https://www.linkedin.com/in/sylvain-dutartre-263886185,Engineering,['l_200_manager'],['engineering']
+a1711932-191f-41f8-a5eb-0a0888f06c39,PASQAL,pasqal,Adrien Signoles,https://www.linkedin.com/in/adrien-signoles-888b38192,Engineering,['l_100_individual'],['engineering']
+a1711932-191f-41f8-a5eb-0a0888f06c39,PASQAL,pasqal,Christi Amend,https://www.linkedin.com/in/christiamend,Human Resources,['l_100_individual'],['human_resources']
+a1711932-191f-41f8-a5eb-0a0888f06c39,PASQAL,pasqal,Christophe Legrand,https://www.linkedin.com/in/christophe-legrand-0a68951,Sales and Support,['l_100_individual'],
+63e4b920-78c1-ead7-56c5-dd39e54bd11f,Aspen Technology,aspen-technology,Brad Miller,https://www.linkedin.com/in/brad-miller-244b273,Finance and Administration,"['l_100_individual', 'l_500_exec']",['finance']
+63e4b920-78c1-ead7-56c5-dd39e54bd11f,Aspen Technology,aspen-technology,Chantelle Breithaupt,https://www.linkedin.com/in/chantelle-breithaupt-95722366,Chief Financial Officer,['l_500_exec'],['finance']
+63e4b920-78c1-ead7-56c5-dd39e54bd11f,Aspen Technology,aspen-technology,Christopher Austin Williams,https://www.linkedin.com/in/christopher-austin-williams-3a8ab370,"Global Director, Customer Success & Co-Chairman of DE&I",['l_500_exec'],
+63e4b920-78c1-ead7-56c5-dd39e54bd11f,Aspen Technology,aspen-technology,Christopher Cooper,https://www.linkedin.com/in/christopher-cooper-4629315b,"Vice President, Associate General Counsel","['l_100_individual', 'l_500_exec']","['legal', 'management']"
+63e4b920-78c1-ead7-56c5-dd39e54bd11f,Aspen Technology,aspen-technology,"Christopher Stagno, CPA",https://www.linkedin.com/in/christopher-stagno-cpa-34394b139,"SVP, Chief Accounting Officer","['l_100_individual', 'l_500_exec']",['finance']
+63e4b920-78c1-ead7-56c5-dd39e54bd11f,Aspen Technology,aspen-technology,Elinor Oren,https://www.linkedin.com/in/elinor-oren-25a713a9,"Principal Paralegal at Aspen Technology, Inc.",['l_500_exec'],['management']
+63e4b920-78c1-ead7-56c5-dd39e54bd11f,Aspen Technology,aspen-technology,Frederic Hammond,https://www.linkedin.com/in/frederic-g-fritz-hammond-1b152,SVP & General Counsel,['l_500_exec'],['management']
+63e4b920-78c1-ead7-56c5-dd39e54bd11f,Aspen Technology,aspen-technology,Lawrence Scwartz,https://www.linkedin.com/in/schwartzlawrence,"Chief Marketing Officer,",['l_500_exec'],"['management', 'marketing']"
+63e4b920-78c1-ead7-56c5-dd39e54bd11f,Aspen Technology,aspen-technology,Manish Chawla,https://www.linkedin.com/in/manishchawla1,Sales and Support,"['l_100_individual', 'l_500_exec']",['finance']
+63e4b920-78c1-ead7-56c5-dd39e54bd11f,Aspen Technology,aspen-technology,Mr. Antonio Pietri,https://www.linkedin.com/in/antonio-pietri-5a8a164,Business Management,"['l_100_individual', 'l_500_exec']",['management']
+fd80725f-53fc-7009-9878-aeecf1e9ffbb,Microsoft,microsoft,Abel Wang,https://www.linkedin.com/in/abeljxwang,Chief Architect,['l_500_exec'],['engineering']
+fd80725f-53fc-7009-9878-aeecf1e9ffbb,Microsoft,microsoft,Adam Ruderman,https://www.linkedin.com/in/arudeone,"Chief Architect, Customer Success",['l_500_exec'],['operations']
+fd80725f-53fc-7009-9878-aeecf1e9ffbb,Microsoft,microsoft,Aja West,https://www.linkedin.com/in/mackrosoft,CEO,['l_500_exec'],['management']
+fd80725f-53fc-7009-9878-aeecf1e9ffbb,Microsoft,microsoft,Alberto Boczar,https://www.linkedin.com/in/alberto-boczar-5b61a34,Engineering,"['l_300_director', 'l_500_exec']","['engineering', 'operations']"
+fd80725f-53fc-7009-9878-aeecf1e9ffbb,Microsoft,microsoft,Alex Franklin,https://www.linkedin.com/in/alex-franklin-cpa-cfa-13505844,"CFO, Global Internet Holdings",['l_500_exec'],['finance']
+fd80725f-53fc-7009-9878-aeecf1e9ffbb,Microsoft,microsoft,Alison Howard,https://www.linkedin.com/in/alison-howard-2817a85,Assistant General Counsel,['l_500_exec'],['management']
+fd80725f-53fc-7009-9878-aeecf1e9ffbb,Microsoft,microsoft,Amir Jafri,https://www.linkedin.com/in/amiralijafri,Worldwide Sales CTO | Cross Solutions Customer Innovation,['l_500_exec'],['management']
+fd80725f-53fc-7009-9878-aeecf1e9ffbb,Microsoft,microsoft,Amit Shrestha,https://www.linkedin.com/in/amit-shrestha-b625981a,CFO - Mexico,['l_500_exec'],['finance']
+fd80725f-53fc-7009-9878-aeecf1e9ffbb,Microsoft,microsoft,Amy Hood,https://www.linkedin.com/in/amyhood1,Executive VP & Chief Financial Officer,['l_500_exec'],['management']
+fd80725f-53fc-7009-9878-aeecf1e9ffbb,Microsoft,microsoft,Betty Rhiger,https://www.linkedin.com/in/bettyrhiger,Chief Technology Officer,['l_500_exec'],['management']
+1a818fd7-3a14-4141-b0e5-dcd36d175f49,Nucleus Health,nucleus-health,Claude Hooton,https://www.linkedin.com/in/claude-hooton-89b57,President & Chief Executive Officer,['l_500_exec'],['management']
+1a818fd7-3a14-4141-b0e5-dcd36d175f49,Nucleus Health,nucleus-health,Vincent J. Roth,https://www.linkedin.com/in/vincentjroth,General Counsel and Corporate Secretary,['l_500_exec'],['management']
+1a818fd7-3a14-4141-b0e5-dcd36d175f49,Nucleus Health,nucleus-health,Vishal Verma,https://www.linkedin.com/in/vvrays,Executive Chairman,['l_500_exec'],['management']
+1a818fd7-3a14-4141-b0e5-dcd36d175f49,Nucleus Health,nucleus-health,Heather Novello,https://www.linkedin.com/in/heather-novello-2657b552,"Vice President, Client Operations",['l_400_vp'],['management']
+1a818fd7-3a14-4141-b0e5-dcd36d175f49,Nucleus Health,nucleus-health,Michael Blaha,https://www.linkedin.com/in/michael-blaha-097971b6,Sr Director of Cloud Operations and CISO,['l_300_director'],['management']
+1a818fd7-3a14-4141-b0e5-dcd36d175f49,Nucleus Health,nucleus-health,Wayne Bartlett,https://www.linkedin.com/in/wayne-bartlett-2304675,Director of IT and Technical Support,['l_300_director'],"['engineering', 'information_technology']"
+1a818fd7-3a14-4141-b0e5-dcd36d175f49,Nucleus Health,nucleus-health,Derrick Johnson,https://www.linkedin.com/in/derrick-johnson-941388ba,Accounting Manager,['l_200_manager'],['finance']
+1a818fd7-3a14-4141-b0e5-dcd36d175f49,Nucleus Health,nucleus-health,Kiana Graham,https://www.linkedin.com/in/kiana-graham,Office Assistant,"['l_100_individual', 'l_200_manager']",['management']
+1a818fd7-3a14-4141-b0e5-dcd36d175f49,Nucleus Health,nucleus-health,Michael Gainor,https://www.linkedin.com/in/michaelgainor,IT Engineer and Night Supervisor,"['l_100_individual', 'l_200_manager']","['engineering', 'information_technology']"
+1a818fd7-3a14-4141-b0e5-dcd36d175f49,Nucleus Health,nucleus-health,Patricia Denapoli,https://www.linkedin.com/in/patricia-denapoli-3a61264,Engineering,['l_200_manager'],['engineering']
+45f6f697-2c20-d7e8-9025-b92e34dbefc0,Kantar,kantar,Doreen Wang,https://www.linkedin.com/in/millwardbrown,"CEO, Insights Division, Greater China","['l_100_individual', 'l_500_exec']",
+45f6f697-2c20-d7e8-9025-b92e34dbefc0,Kantar,kantar,Ishbel Morrison,https://www.linkedin.com/in/ishbelmorrison,"Chief Human Resources Officer, Insights EMEA",['l_500_exec'],['management']
+45f6f697-2c20-d7e8-9025-b92e34dbefc0,Kantar,kantar,James Brooks,https://www.linkedin.com/in/james-brooks-5bb4129,Chief Operations Officer,['l_500_exec'],['management']
+45f6f697-2c20-d7e8-9025-b92e34dbefc0,Kantar,kantar,Jari Koister,https://www.linkedin.com/in/jarikoister,Engineering,"['l_100_individual', 'l_500_exec']",['engineering']
+45f6f697-2c20-d7e8-9025-b92e34dbefc0,Kantar,kantar,John Barry,https://www.linkedin.com/in/john-barry-9b51685,CEO Kantar Consulting Americas at Kantar,['l_500_exec'],
+45f6f697-2c20-d7e8-9025-b92e34dbefc0,Kantar,kantar,John McHarry,https://www.linkedin.com/in/johnmcharry,Kantar CIO,['l_500_exec'],['engineering']
+45f6f697-2c20-d7e8-9025-b92e34dbefc0,Kantar,kantar,Kelly Smith,https://www.linkedin.com/in/kellyrsmith0,CFO Kantar Insights UK & Ireland,['l_500_exec'],
+45f6f697-2c20-d7e8-9025-b92e34dbefc0,Kantar,kantar,Maggie Taylor,https://www.linkedin.com/in/maggie-taylor-0a97086,"CEO, Kantar Insights Los Angeles",['l_500_exec'],
+45f6f697-2c20-d7e8-9025-b92e34dbefc0,Kantar,kantar,Marc Ryan,https://www.linkedin.com/in/marcryan,Chief Data Officer,['l_500_exec'],['sales']
+45f6f697-2c20-d7e8-9025-b92e34dbefc0,Kantar,kantar,Scott Megginson,https://www.linkedin.com/in/scottmegginson,President Kantar Canada & Acting Managing Director Central US - Insights Division,"['l_100_individual', 'l_500_exec']",['operations']
+4a26abeb-0d81-7beb-addd-c28ac14dfc9d,DSV - Global Transport and Logistics,dsv,Barry Rothman,https://www.linkedin.com/in/barry-rothman-b1766a41,Business Management,"['l_100_individual', 'l_500_exec']","['management', 'operations']"
+4a26abeb-0d81-7beb-addd-c28ac14dfc9d,DSV - Global Transport and Logistics,dsv,Brett Olgin,https://www.linkedin.com/in/brett-olgin-531a2053,Branch Owner/ Agent,['l_500_exec'],['management']
+4a26abeb-0d81-7beb-addd-c28ac14dfc9d,DSV - Global Transport and Logistics,dsv,Brian Heady,https://www.linkedin.com/in/brianheady,Founder & CEO,['l_500_exec'],['management']
+4a26abeb-0d81-7beb-addd-c28ac14dfc9d,DSV - Global Transport and Logistics,dsv,Brian Nahan,https://www.linkedin.com/in/brian-nahan-a5b67624,Business Management,"['l_100_individual', 'l_500_exec']","['management', 'operations']"
+4a26abeb-0d81-7beb-addd-c28ac14dfc9d,DSV - Global Transport and Logistics,dsv,Brian Smith,https://www.linkedin.com/in/brian-smith-dsv,Agent / Branch Owner,['l_500_exec'],['management']
+4a26abeb-0d81-7beb-addd-c28ac14dfc9d,DSV - Global Transport and Logistics,dsv,Carol Wetzel,https://www.linkedin.com/in/carol-wetzel-84246939,Affiliate Owner,['l_500_exec'],['management']
+4a26abeb-0d81-7beb-addd-c28ac14dfc9d,DSV - Global Transport and Logistics,dsv,Connie Giampiccolo,https://www.linkedin.com/in/connie-dsv-giampiccolo-a7aaa120,Cafe' Owner,"['l_100_individual', 'l_500_exec']","['management', 'operations']"
+4a26abeb-0d81-7beb-addd-c28ac14dfc9d,DSV - Global Transport and Logistics,dsv,Debbie Croson,https://www.linkedin.com/in/debbie-croson-52b26089,Affiliate Office :BROKER / OWNER,"['l_100_individual', 'l_500_exec']","['management', 'operations']"
+4a26abeb-0d81-7beb-addd-c28ac14dfc9d,DSV - Global Transport and Logistics,dsv,Denise Looney,https://www.linkedin.com/in/denise-looney-21a8a385,"Branch Owner, Sales-Dispatch","['l_100_individual', 'l_500_exec']",['sales']
+4a26abeb-0d81-7beb-addd-c28ac14dfc9d,DSV - Global Transport and Logistics,dsv,Ed Ed,https://www.linkedin.com/in/ed-ed-804a10171,Owner Operator,['l_500_exec'],['management']
+0bb6a6fd-a64a-4f79-9b93-438ba645ed56,Cognizant,cognizant,"Alisha Moquin, Ms, Msw, Lcsw",https://www.linkedin.com/in/alishamoquin,Business Management,['l_100_individual'],
+af962b32-01bd-8a04-43a5-96540d6de150,MRSOOL,mrsool,Mohammed Ali,https://www.linkedin.com/in/mohammed-ali-5308a438,Sales and Support,['l_200_manager'],['operations']
+af962b32-01bd-8a04-43a5-96540d6de150,MRSOOL,mrsool,Aser Hobani,https://www.linkedin.com/in/aser-hobani-81b05b67,Business Management,['l_100_individual'],['product']
+af962b32-01bd-8a04-43a5-96540d6de150,MRSOOL,mrsool,Ayman Alsanad,https://www.linkedin.com/in/ayman-alsanad-3817274,Business Management,['l_100_individual'],['operations']
+af962b32-01bd-8a04-43a5-96540d6de150,MRSOOL,mrsool,Norah Alsubaie,https://www.linkedin.com/in/norah-alsubaie-89499a13b,Engineering,['l_100_individual'],['engineering']
+af962b32-01bd-8a04-43a5-96540d6de150,MRSOOL,mrsool,Waleed Alsaeed,https://www.linkedin.com/in/waleed-alsaeed-212473116,Head of Suppliers,,
+067d6503-de8c-4a75-55f1-85f47eb4e028,Air Products and Chemicals,air-products,Alex Vital,https://www.linkedin.com/in/stealthranger72,Sr. Talent Acquisitions Partner - All Verticals,['l_500_exec'],['human_resources']
+067d6503-de8c-4a75-55f1-85f47eb4e028,Air Products and Chemicals,air-products,Claus Herrmann,https://www.linkedin.com/in/claus-herrmann-0957aa3b,Senior Principal Research Technician,['l_500_exec'],['management']
+067d6503-de8c-4a75-55f1-85f47eb4e028,Air Products and Chemicals,air-products,Debra Hunsicker,https://www.linkedin.com/in/debra-hunsicker-75915610,Accounting Analyst and Team Lead,"['l_100_individual', 'l_500_exec']",['finance']
+067d6503-de8c-4a75-55f1-85f47eb4e028,Air Products and Chemicals,air-products,Dr. Samir J. Serhan,https://www.linkedin.com/in/dr-samir-j-serhan-488301a2,Chief Operating Officer,"['l_100_individual', 'l_500_exec']","['management', 'operations']"
+067d6503-de8c-4a75-55f1-85f47eb4e028,Air Products and Chemicals,air-products,Francesco Maione,https://www.linkedin.com/in/francesco-maione-695a907,President Americas,"['l_100_individual', 'l_500_exec']","['management', 'operations']"
+067d6503-de8c-4a75-55f1-85f47eb4e028,Air Products and Chemicals,air-products,Frank Maison,https://www.linkedin.com/in/frank-maison-99534735,CEO,['l_500_exec'],['management']
+067d6503-de8c-4a75-55f1-85f47eb4e028,Air Products and Chemicals,air-products,Gina Fili,https://www.linkedin.com/in/gina-fili-41424473,Credit Union President & Chief Executive Officer,"['l_100_individual', 'l_500_exec']",['management']
+067d6503-de8c-4a75-55f1-85f47eb4e028,Air Products and Chemicals,air-products,Ivo Bols,https://www.linkedin.com/in/ivo-bols-3bb3364,President EMEA Region,"['l_100_individual', 'l_500_exec']","['management', 'operations']"
+067d6503-de8c-4a75-55f1-85f47eb4e028,Air Products and Chemicals,air-products,Jeff Crane,https://www.linkedin.com/in/jeff-crane-6a733310,President,"['l_100_individual', 'l_500_exec']",['management']
+067d6503-de8c-4a75-55f1-85f47eb4e028,Air Products and Chemicals,air-products,Jeffrey Kutz,https://www.linkedin.com/in/jeffrey-kutz-b594155,"Vice President, Corporate Controller & Principal Accounting Officer",['l_500_exec'],['finance']
+ff399382-f34c-4ab8-b25b-bb3bd6184f1a,Enstoa,enstoa,Arnaud Giret,https://www.linkedin.com/in/arnaud-giret-43313a,Chief Financial Officer,['l_500_exec'],['finance']
+ff399382-f34c-4ab8-b25b-bb3bd6184f1a,Enstoa,enstoa,Jordan Cram,https://www.linkedin.com/in/jordancram,Business Management,"['l_100_individual', 'l_500_exec']",['management']
+ff399382-f34c-4ab8-b25b-bb3bd6184f1a,Enstoa,enstoa,Steven Hayhurst,https://www.linkedin.com/in/stevenmattsonhayhurst,Senior Vice President,"['l_100_individual', 'l_400_vp']","['management', 'operations']"
+ff399382-f34c-4ab8-b25b-bb3bd6184f1a,Enstoa,enstoa,Darrell Dumas,https://www.linkedin.com/in/darrell-dumas-07159625,Marketing and Product,"['l_100_individual', 'l_300_director']","['operations', 'product']"
+ff399382-f34c-4ab8-b25b-bb3bd6184f1a,Enstoa,enstoa,Ian Thornton,https://www.linkedin.com/in/ithornton,"Director, Digital Solutions",['l_300_director'],['management']
+ff399382-f34c-4ab8-b25b-bb3bd6184f1a,Enstoa,enstoa,Joe Schriever,https://www.linkedin.com/in/joeschriever,Information Technology,['l_300_director'],['information_technology']
+ff399382-f34c-4ab8-b25b-bb3bd6184f1a,Enstoa,enstoa,John Jobst,https://www.linkedin.com/in/john-w-jobst-14bb101,"Senior Director, Strategy & Consulting (Digital Transformation)",['l_300_director'],
+ff399382-f34c-4ab8-b25b-bb3bd6184f1a,Enstoa,enstoa,Johnathon O'Neill,https://www.linkedin.com/in/johnathononeill,Program and Project Management,['l_300_director'],['operations']
+ff399382-f34c-4ab8-b25b-bb3bd6184f1a,Enstoa,enstoa,Karla Watts,https://www.linkedin.com/in/karlamains,Human Resources,['l_300_director'],['human_resources']
+ff399382-f34c-4ab8-b25b-bb3bd6184f1a,Enstoa,enstoa,Lennart Andersson,https://www.linkedin.com/in/lennartsandersson,Business Management,['l_300_director'],['medical_science']
+70184a18-ff40-b05b-2f28-e111e68dde79,WTW,wtw,Alexis Faber,https://www.linkedin.com/in/alexis-faber-68112469,Chief Operating Officer,['l_500_exec'],['operations']
+70184a18-ff40-b05b-2f28-e111e68dde79,WTW,wtw,Alvaro Martinez,https://www.linkedin.com/in/alvaro-martinez-b4706128,Vice Presidente Regional Cali Col,['l_500_exec'],['management']
+70184a18-ff40-b05b-2f28-e111e68dde79,WTW,wtw,Andrew Krasner,https://www.linkedin.com/in/andrew-j-krasner,Chief Financial Officer,['l_500_exec'],['finance']
+70184a18-ff40-b05b-2f28-e111e68dde79,WTW,wtw,Anthony Chickery,https://www.linkedin.com/in/achickery,Divisional CFO - Exchange Solutions,['l_500_exec'],['finance']
+70184a18-ff40-b05b-2f28-e111e68dde79,WTW,wtw,Arthur Lehmann,https://www.linkedin.com/in/arthur-lehmann-3b876135,COO,['l_500_exec'],['operations']
+70184a18-ff40-b05b-2f28-e111e68dde79,WTW,wtw,Bob Becker,https://www.linkedin.com/in/bob-becker-00a6b010,Principal/Partner,['l_500_exec'],['management']
+70184a18-ff40-b05b-2f28-e111e68dde79,WTW,wtw,Bob carolgees,https://www.linkedin.com/in/bob-carolgees-23808010,CEO,['l_500_exec'],['management']
+70184a18-ff40-b05b-2f28-e111e68dde79,WTW,wtw,Brian Fuller,https://www.linkedin.com/in/brian-fuller-50a72043,"CEO Marine, North America",['l_500_exec'],['management']
+70184a18-ff40-b05b-2f28-e111e68dde79,WTW,wtw,Carl Timpanaro,https://www.linkedin.com/in/carl-timpanaro-76a3b411,Managing Partner,['l_500_exec'],['management']
+70184a18-ff40-b05b-2f28-e111e68dde79,WTW,wtw,Cedric Willis,https://www.linkedin.com/in/cedric-willis-9258674,Owner,['l_500_exec'],['management']
+7dc799b8-9a4f-95da-37e9-5bbeff65a8ea,Globant,globant,Alastair Murray,https://www.linkedin.com/in/alastairmurray1970,"CEO, Globant Salesforce Studio EMEA",['l_500_exec'],['management']
+7dc799b8-9a4f-95da-37e9-5bbeff65a8ea,Globant,globant,Cameron McGeekie,https://www.linkedin.com/in/cameronmcgeekie,Senior Regional Marketing Executive,['l_500_exec'],
+7dc799b8-9a4f-95da-37e9-5bbeff65a8ea,Globant,globant,Fernando Matzkin,https://www.linkedin.com/in/fernandomatzkin,Chief Business Officer Europe,['l_500_exec'],
+7dc799b8-9a4f-95da-37e9-5bbeff65a8ea,Globant,globant,Guibert Englebienne,https://www.linkedin.com/in/guibert,"Co-Founder, President Globant X, President Globant Latam",['l_500_exec'],
+7dc799b8-9a4f-95da-37e9-5bbeff65a8ea,Globant,globant,Ivan Almeida,https://www.linkedin.com/in/ivan-almeida-2804,"CTO, EMEA - Salesforce Studio",['l_500_exec'],
+7dc799b8-9a4f-95da-37e9-5bbeff65a8ea,Globant,globant,Juan Urthiague,https://www.linkedin.com/in/juan-urthiague-011b066,CFO,['l_500_exec'],['management']
+7dc799b8-9a4f-95da-37e9-5bbeff65a8ea,Globant,globant,Mercedes Macpherson,https://www.linkedin.com/in/mermacpherson,Chief People Officer EMEA,['l_500_exec'],['management']
+7dc799b8-9a4f-95da-37e9-5bbeff65a8ea,Globant,globant,Nicolas Avila,https://www.linkedin.com/in/nicolasavila,Chief Technology Officer for North America,['l_500_exec'],['finance']
+7dc799b8-9a4f-95da-37e9-5bbeff65a8ea,Globant,globant,Patricia Pomies,https://www.linkedin.com/in/patricia-pomies-8a99a44,Chief Operating Officer,['l_500_exec'],['management']
+7dc799b8-9a4f-95da-37e9-5bbeff65a8ea,Globant,globant,Todd Krugman,https://www.linkedin.com/in/toddkrugman,Chief Marketing Officer North America,['l_500_exec'],['marketing']
+31fc3998-a1f1-2e5b-6358-f8d068fa9f71,Delivery Hero,delivery-hero,Christian Hardenberg,https://www.linkedin.com/in/christianhardenberg,Chief Technology Officer,['l_500_exec'],['management']
+31fc3998-a1f1-2e5b-6358-f8d068fa9f71,Delivery Hero,delivery-hero,Johannes Bruder,https://www.linkedin.com/in/johannesbruder,Marketing and Product,"['l_100_individual', 'l_500_exec']","['management', 'operations']"
+31fc3998-a1f1-2e5b-6358-f8d068fa9f71,Delivery Hero,delivery-hero,Anne Dufermont,https://www.linkedin.com/in/anne-dufermont-673155a6,VP Public Policy & Government Affairs,['l_400_vp'],['management']
+31fc3998-a1f1-2e5b-6358-f8d068fa9f71,Delivery Hero,delivery-hero,Haytham Musa,https://www.linkedin.com/in/haytham-musa-4670509,VP,['l_400_vp'],
+31fc3998-a1f1-2e5b-6358-f8d068fa9f71,Delivery Hero,delivery-hero,Scott Hillyer,https://www.linkedin.com/in/hillyerscott,Global VP - Dmarts,['l_400_vp'],['management']
+31fc3998-a1f1-2e5b-6358-f8d068fa9f71,Delivery Hero,delivery-hero,Tareq Barto,https://www.linkedin.com/in/tareq-barto-35277241,"Vice President, International Markets - MENA",['l_400_vp'],
+31fc3998-a1f1-2e5b-6358-f8d068fa9f71,Delivery Hero,delivery-hero,Admir Bajramovic,https://www.linkedin.com/in/admir-bajramovic-a3400854,Product Operations Director - Logistics,['l_300_director'],['management']
+31fc3998-a1f1-2e5b-6358-f8d068fa9f71,Delivery Hero,delivery-hero,Alexander Kagoshima,https://www.linkedin.com/in/alexander-kagoshima-942a5264,Sales and Support,['l_300_director'],
+31fc3998-a1f1-2e5b-6358-f8d068fa9f71,Delivery Hero,delivery-hero,Alexander Sirzisko,https://www.linkedin.com/in/alexander-sirzisko-96909456,Finance and Administration,['l_300_director'],
+31fc3998-a1f1-2e5b-6358-f8d068fa9f71,Delivery Hero,delivery-hero,Ali Sahin,https://www.linkedin.com/in/ali-sahin-707b653a,"Director, Software Engineering at Delivery Hero",['l_300_director'],['medical_science']
+2c23e7ad-4441-5320-fdf9-5aa7007fec0b,PwC,pwc,Amanda Miller,https://www.linkedin.com/in/amanda-miller-59ab249b,Managing Director - Deals,['l_500_exec'],['management']
+2c23e7ad-4441-5320-fdf9-5aa7007fec0b,PwC,pwc,Andrea Crace,https://www.linkedin.com/in/andrea-crace-9a559421,Central and Eastern Europe CISO,['l_500_exec'],
+2c23e7ad-4441-5320-fdf9-5aa7007fec0b,PwC,pwc,Avery Joshua,https://www.linkedin.com/in/averyjoshua,Sales and Support,"['l_200_manager', 'l_500_exec']","['management', 'operations']"
+2c23e7ad-4441-5320-fdf9-5aa7007fec0b,PwC,pwc,Avinash Rajeev,https://www.linkedin.com/in/avinashrajeev,Principal - Cybersecurity & Privacy Practice,['l_500_exec'],['management']
+2c23e7ad-4441-5320-fdf9-5aa7007fec0b,PwC,pwc,Barb Saxton,https://www.linkedin.com/in/barb-saxton-4b94463b,Managing Director,['l_500_exec'],['management']
+2c23e7ad-4441-5320-fdf9-5aa7007fec0b,PwC,pwc,Ben Gillikin,https://www.linkedin.com/in/ben-gillikin-87713b90,Deals Partner at PwC Specializing in Private Equity,['l_500_exec'],"['finance', 'management']"
+2c23e7ad-4441-5320-fdf9-5aa7007fec0b,PwC,pwc,Bob Grady,https://www.linkedin.com/in/bob-grady-0a26aa4,Managing Director - Finance in Deals,"['l_300_director', 'l_500_exec']",['finance']
+2c23e7ad-4441-5320-fdf9-5aa7007fec0b,PwC,pwc,Brian Boggs,https://www.linkedin.com/in/brian-boggs-678b5239,Partner - Capital Markets and Accounting Advisory Services,"['l_100_individual', 'l_500_exec']","['finance', 'management']"
+2c23e7ad-4441-5320-fdf9-5aa7007fec0b,PwC,pwc,Brian Steiner,https://www.linkedin.com/in/brian-steiner-95629a81,"Chief Financial Officer, US Consulting Solutions and Trifecta Consulting",['l_500_exec'],['finance']
+2c23e7ad-4441-5320-fdf9-5aa7007fec0b,PwC,pwc,Chris Kelkar,https://www.linkedin.com/in/chris-kelkar-2542348,Asia Pacific Vice Chairman - COO,['l_500_exec'],['management']
+a9617556-8812-78b6-274d-9a70d5eb7e4a,HR Consulting,hr-consulting,Dave Bray,https://www.linkedin.com/in/dave-bray-6a62bb1b,President,"['l_100_individual', 'l_500_exec']",['management']
+a9617556-8812-78b6-274d-9a70d5eb7e4a,HR Consulting,hr-consulting,Richard Saunders,https://www.linkedin.com/in/richard-saunders-3a6a9813,Business Management,"['l_100_individual', 'l_500_exec']",['management']
+a9617556-8812-78b6-274d-9a70d5eb7e4a,HR Consulting,hr-consulting,Donald Laurie,https://www.linkedin.com/in/donaldl1,Principal | HR Management,"['l_100_individual', 'l_300_director']","['human_resources', 'management']"
+a9617556-8812-78b6-274d-9a70d5eb7e4a,HR Consulting,hr-consulting,Doris Osei,https://www.linkedin.com/in/doris-osei-8537a238,Business Management,['l_300_director'],
+a9617556-8812-78b6-274d-9a70d5eb7e4a,HR Consulting,hr-consulting,Patricia DeVoy,https://www.linkedin.com/in/patdevoy,Principal,['l_300_director'],['management']
+a9617556-8812-78b6-274d-9a70d5eb7e4a,HR Consulting,hr-consulting,"Abby Lieberman, SPHR",https://www.linkedin.com/in/abbylieberman,Human Resources,['l_200_manager'],['human_resources']
+a9617556-8812-78b6-274d-9a70d5eb7e4a,HR Consulting,hr-consulting,Angeline Liu,https://www.linkedin.com/in/angeline-liu-16a794b6,Human Resources,['l_200_manager'],['human_resources']
+a9617556-8812-78b6-274d-9a70d5eb7e4a,HR Consulting,hr-consulting,Asfaw Dereje,https://www.linkedin.com/in/asfaw-dereje-53796a11a,Business Management,['l_200_manager'],
+a9617556-8812-78b6-274d-9a70d5eb7e4a,HR Consulting,hr-consulting,"Carol A. Goodwin, PHR",https://www.linkedin.com/in/carolagoodwin45,Senior Project Manager,"['l_100_individual', 'l_200_manager']",['management']
+a9617556-8812-78b6-274d-9a70d5eb7e4a,HR Consulting,hr-consulting,Mary BAILEY,https://www.linkedin.com/in/mary-bailey-298ba482,Human Resources Manager,['l_200_manager'],['human_resources']
+e6ab944a-0f07-4d14-9370-8b59f60ad2a8,Lendo,lendo,Afsaneh Hemati,https://www.linkedin.com/in/afsaneh-hemati-6a5b5183,Team Manager,['l_200_manager'],['management']
+e6ab944a-0f07-4d14-9370-8b59f60ad2a8,Lendo,lendo,Amir Omed,https://www.linkedin.com/in/amir-omed-ba48794a,Business Area Manager - B2B,['l_200_manager'],['management']
+e6ab944a-0f07-4d14-9370-8b59f60ad2a8,Lendo,lendo,Isabella Micalizzi,https://www.linkedin.com/in/isabella-micalizzi-19421799,Sales and Support,['l_200_manager'],['operations']
+e6ab944a-0f07-4d14-9370-8b59f60ad2a8,Lendo,lendo,Jesper Nordzell,https://www.linkedin.com/in/jesper-nordzell-29630b230,Team Manager,['l_200_manager'],
+e6ab944a-0f07-4d14-9370-8b59f60ad2a8,Lendo,lendo,Axel Wallgren,https://www.linkedin.com/in/axel-wallgren-b9aa64156,Lånehandläggare,['l_100_individual'],
+e6ab944a-0f07-4d14-9370-8b59f60ad2a8,Lendo,lendo,Conny Johansson,https://www.linkedin.com/in/conny-johansson-636aa939,System Engineer,['l_100_individual'],['engineering']
+e6ab944a-0f07-4d14-9370-8b59f60ad2a8,Lendo,lendo,Egzon Bardici,https://www.linkedin.com/in/egzon-bardici-4a8819a2,Bolånespecialist,['l_100_individual'],
+e6ab944a-0f07-4d14-9370-8b59f60ad2a8,Lendo,lendo,Feven Habtu,https://www.linkedin.com/in/feven-habtu-b58a1488,Performance Marketing Lead,['l_100_individual'],
+e6ab944a-0f07-4d14-9370-8b59f60ad2a8,Lendo,lendo,Jorge Baylon,https://www.linkedin.com/in/jorge-baylon-5a8886143,Information Technology,['l_100_individual'],['information_technology']
+e6ab944a-0f07-4d14-9370-8b59f60ad2a8,Lendo,lendo,Michelle Semeraro,https://www.linkedin.com/in/michelle-holmberg-semeraro-7b197911a,Product Owner,['l_100_individual'],['management']
+fea35023-34d9-43f6-885c-330346442bdf,WSP,wsp,Adam Whenman,https://www.linkedin.com/in/adam-whenman-779a04a,Business Management,['l_300_director'],['operations']
+fea35023-34d9-43f6-885c-330346442bdf,WSP,wsp,Adib Kadri,https://www.linkedin.com/in/adib-kadri-p-eng-pmp-2b08a526,Business Management,['l_300_director'],['operations']
+fea35023-34d9-43f6-885c-330346442bdf,WSP,wsp,Akram Ashour,https://www.linkedin.com/in/akram-ashour-51659232,Engineering,['l_300_director'],['engineering']
+fea35023-34d9-43f6-885c-330346442bdf,WSP,wsp,Alain Trudeau,https://www.linkedin.com/in/alain-trudeau-74990820,Program and Project Management,['l_300_director'],
+fea35023-34d9-43f6-885c-330346442bdf,WSP,wsp,Alan Roshan,https://www.linkedin.com/in/alan-roshan-4ab93341,Quality,['l_300_director'],['operations']
+fea35023-34d9-43f6-885c-330346442bdf,WSP,wsp,Alan Wsp,https://www.linkedin.com/in/alan-wsp-a43325164,Program and Project Management,['l_300_director'],['operations']
+fea35023-34d9-43f6-885c-330346442bdf,WSP,wsp,Alexei Murashev,https://www.linkedin.com/in/alexei-murashev-75353918,Engineering,['l_300_director'],['engineering']
+fea35023-34d9-43f6-885c-330346442bdf,WSP,wsp,Ali Mostafid,https://www.linkedin.com/in/ali-mostafid-85478718,Business Management,['l_300_director'],['operations']
+fea35023-34d9-43f6-885c-330346442bdf,WSP,wsp,Alice Lovegrove,https://www.linkedin.com/in/alice-lovegrove-8998347,Business Management,['l_300_director'],['operations']
+fea35023-34d9-43f6-885c-330346442bdf,WSP,wsp,Amedeo Brasolin,https://www.linkedin.com/in/abraso,Sales and Support,['l_300_director'],
+9912513a-1ba4-0078-b143-dc0e6dae96a7,ClearPeaks,clearpeaks,Jordi Ricart,https://www.linkedin.com/in/jordi-ricart,Business Management,['l_300_director'],
+9912513a-1ba4-0078-b143-dc0e6dae96a7,ClearPeaks,clearpeaks,Indhuja Beemaneni Yogendran,https://www.linkedin.com/in/indhujabeemaneni,Engineering,['l_100_individual'],['engineering']
+9912513a-1ba4-0078-b143-dc0e6dae96a7,ClearPeaks,clearpeaks,SaiKiran Ponnada,https://www.linkedin.com/in/saikiran-ponnada-56048b42,Engineering,['l_100_individual'],['engineering']
+8565617d-c370-1266-ee48-19f0901aa7b3,Mott MacDonald Ventures,mott-macdonald,Andrew Davis,https://www.linkedin.com/in/andrew-davis-9b433456,Associate General Counsel,['l_500_exec'],['management']
+8565617d-c370-1266-ee48-19f0901aa7b3,Mott MacDonald Ventures,mott-macdonald,Michael Isola,https://www.linkedin.com/in/michael-isola-9a17931a,Chief Executive Officer & President - Mott MacDonald North America,['l_500_exec'],['management']
+8565617d-c370-1266-ee48-19f0901aa7b3,Mott MacDonald Ventures,mott-macdonald,Michael Mulcare,https://www.linkedin.com/in/mulcare,Principal Project Manager – Smart Infrastructure,"['l_100_individual', 'l_500_exec']",['management']
+8565617d-c370-1266-ee48-19f0901aa7b3,Mott MacDonald Ventures,mott-macdonald,Nicholas Denichilo,https://www.linkedin.com/in/nicholas-denichilo-93151a46,President and CEO,['l_500_exec'],['management']
+8565617d-c370-1266-ee48-19f0901aa7b3,Mott MacDonald Ventures,mott-macdonald,Patel Arvind,https://www.linkedin.com/in/patel-arvind-a55933b0,Dy. Chief Engineer Civil/Structural,['l_500_exec'],['engineering']
+8565617d-c370-1266-ee48-19f0901aa7b3,Mott MacDonald Ventures,mott-macdonald,Wayne Lee,https://www.linkedin.com/in/wayne-lee-416130,T&D Principal Chief Engineer,['l_500_exec'],['management']
+8565617d-c370-1266-ee48-19f0901aa7b3,Mott MacDonald Ventures,mott-macdonald,Albert Ferrer,https://www.linkedin.com/in/albert-ferrer-b00a6b17,VICE PRESIDENT AND DIRECTOR CONSULTING - The Americas,['l_400_vp'],['management']
+8565617d-c370-1266-ee48-19f0901aa7b3,Mott MacDonald Ventures,mott-macdonald,Albert Ferrer,https://www.linkedin.com/in/albert-ferrer-03732515b,Vice President,['l_400_vp'],['management']
+8565617d-c370-1266-ee48-19f0901aa7b3,Mott MacDonald Ventures,mott-macdonald,Aled Griffiths,https://www.linkedin.com/in/aled-griffiths-a700558b,"Unit General Manager, Canada | Senior Vice President",['l_400_vp'],['management']
+8565617d-c370-1266-ee48-19f0901aa7b3,Mott MacDonald Ventures,mott-macdonald,Amir Zafar,https://www.linkedin.com/in/amir-zafar-4a254114,Vice President,['l_400_vp'],['management']
+02317ed4-4346-47b3-adeb-e7b2782d21b7,Saudia Airlines,saudia-airlines,Arved Von,https://www.linkedin.com/in/arved-von-zur-muehlen,Chief Commercial Officer,['l_500_exec'],['management']
+02317ed4-4346-47b3-adeb-e7b2782d21b7,Saudia Airlines,saudia-airlines,Essam Akhonbay,https://www.linkedin.com/in/essam-akhonbay-4650108,Marketing and Product,"['l_100_individual', 'l_400_vp']",['management']
+02317ed4-4346-47b3-adeb-e7b2782d21b7,Saudia Airlines,saudia-airlines,Ahmed Altoumah,https://www.linkedin.com/in/ahmed-altoumah-247276156,Engineering,['l_300_director'],['engineering']
+02317ed4-4346-47b3-adeb-e7b2782d21b7,Saudia Airlines,saudia-airlines,Ahmed Sabiq,https://www.linkedin.com/in/ahmed-sabiq-878531a4,Business Management,['l_300_director'],['operations']
+02317ed4-4346-47b3-adeb-e7b2782d21b7,Saudia Airlines,saudia-airlines,Ibrahim Al-Omar,https://www.linkedin.com/in/ibrahim-alomar,Business Management,['l_300_director'],
+02317ed4-4346-47b3-adeb-e7b2782d21b7,Saudia Airlines,saudia-airlines,Mohamed Abdalla,https://www.linkedin.com/in/mabdalla,Business Management,['l_300_director'],
+02317ed4-4346-47b3-adeb-e7b2782d21b7,Saudia Airlines,saudia-airlines,Mohammad Bahadur,https://www.linkedin.com/in/mohammad-bahadur-2b07431a,Business Management,['l_300_director'],
+02317ed4-4346-47b3-adeb-e7b2782d21b7,Saudia Airlines,saudia-airlines,Mohammed Azzouz,https://www.linkedin.com/in/mohammed-azzouz-a3332a18,Quality,['l_300_director'],['finance']
+02317ed4-4346-47b3-adeb-e7b2782d21b7,Saudia Airlines,saudia-airlines,Mohammed Jamjoom,https://www.linkedin.com/in/mohammed-ali-jamjoom-3543517,Operations,['l_300_director'],['operations']
+02317ed4-4346-47b3-adeb-e7b2782d21b7,Saudia Airlines,saudia-airlines,Nizar Alfatta,https://www.linkedin.com/in/nizar-alfatta-0aaa3875,Sales and Support,['l_300_director'],['operations']
+dbabc3a4-6050-ea2a-913a-94238fc16acd,Noon - The Social Learning Platform,noon-academy,Bilal Musharraf,https://www.linkedin.com/in/bilalm,VP Expansion,['l_400_vp'],['finance']
+dbabc3a4-6050-ea2a-913a-94238fc16acd,Noon - The Social Learning Platform,noon-academy,Ahmet Filiz,https://www.linkedin.com/in/vtahmetfiliz,Engineering,['l_100_individual'],['engineering']
+dbabc3a4-6050-ea2a-913a-94238fc16acd,Noon - The Social Learning Platform,noon-academy,Aziz Alsaeed,https://www.linkedin.com/in/azizalsaeed,Business Management,['l_100_individual'],['operations']
+dbabc3a4-6050-ea2a-913a-94238fc16acd,Noon - The Social Learning Platform,noon-academy,Menna Hassan,https://www.linkedin.com/in/menna-hassan-a725bb1b7,Education,['l_100_individual'],['operations']
+dbabc3a4-6050-ea2a-913a-94238fc16acd,Noon - The Social Learning Platform,noon-academy,Olga Gadaszewska,https://www.linkedin.com/in/olga-gadaszewska-49b961122,Human Resources,['l_100_individual'],['human_resources']
+dbabc3a4-6050-ea2a-913a-94238fc16acd,Noon - The Social Learning Platform,noon-academy,Prasanna Pegu,https://www.linkedin.com/in/prasannapegu,Engineering,['l_100_individual'],['engineering']
+dbabc3a4-6050-ea2a-913a-94238fc16acd,Noon - The Social Learning Platform,noon-academy,Venkatesan Muniappan,https://www.linkedin.com/in/venkatesan-muniappan,Information Technology,['l_100_individual'],['information_technology']
+dbabc3a4-6050-ea2a-913a-94238fc16acd,Noon - The Social Learning Platform,noon-academy,Vinita Raj,https://www.linkedin.com/in/vinita-raj-8002261ab,Program and Project Management,['l_100_individual'],
+f7023189-be35-ba0d-8c04-90a7d828c6aa,Commvault,commvault,Abhishek Praveen,https://www.linkedin.com/in/i-am-abhishek-praveen-,Marketing and Product,['l_300_director'],
+f7023189-be35-ba0d-8c04-90a7d828c6aa,Commvault,commvault,Ahmad Nassif,https://www.linkedin.com/in/ahmadnassif,Marketing and Product,['l_300_director'],
+f7023189-be35-ba0d-8c04-90a7d828c6aa,Commvault,commvault,Ajay K. Sood,https://www.linkedin.com/in/akssecure,Business Management,['l_300_director'],
+f7023189-be35-ba0d-8c04-90a7d828c6aa,Commvault,commvault,Alexander Tsapp,https://www.linkedin.com/in/tsapp,Marketing and Product,['l_300_director'],
+f7023189-be35-ba0d-8c04-90a7d828c6aa,Commvault,commvault,Amey Karandikar,https://www.linkedin.com/in/amey-karandikar-a4085b4,Engineering,['l_300_director'],['engineering']
+f7023189-be35-ba0d-8c04-90a7d828c6aa,Commvault,commvault,Andreas May,https://www.linkedin.com/in/andreas-may-b64563191,Sales and Support,['l_300_director'],
+f7023189-be35-ba0d-8c04-90a7d828c6aa,Commvault,commvault,Andrew Scamardella,https://www.linkedin.com/in/andrew-scamardella-6653a22,Sales and Support,['l_300_director'],
+f7023189-be35-ba0d-8c04-90a7d828c6aa,Commvault,commvault,Arun Prasad Amarendran,https://www.linkedin.com/in/arunprasada,Business Management,['l_300_director'],
+f7023189-be35-ba0d-8c04-90a7d828c6aa,Commvault,commvault,Arvinderjit Dadhwal,https://www.linkedin.com/in/arvinderjit-singh-dadhwal-6b96051a,Sales and Support,['l_300_director'],
+f7023189-be35-ba0d-8c04-90a7d828c6aa,Commvault,commvault,Arvinderjit Singh Dadhwal,https://www.linkedin.com/in/arvinderjit-singh-dadhwal,Sales and Support,['l_300_director'],
+1e05d3bb-1802-f28f-1117-6173ef23d7f9,GE Digital,ge-digital,Adrian Wolf,https://www.linkedin.com/in/adrianwolf,Engineering,['l_300_director'],['engineering']
+1e05d3bb-1802-f28f-1117-6173ef23d7f9,GE Digital,ge-digital,Amitava Bhattacharya,https://www.linkedin.com/in/bhattacharyaamitava,Business Management,['l_300_director'],
+1e05d3bb-1802-f28f-1117-6173ef23d7f9,GE Digital,ge-digital,Amy Aragones,https://www.linkedin.com/in/amy-aragones-5671152a,Sales and Support,['l_300_director'],
+1e05d3bb-1802-f28f-1117-6173ef23d7f9,GE Digital,ge-digital,Andrew Reinhart,https://www.linkedin.com/in/areinhart,Operations,['l_300_director'],['operations']
+1e05d3bb-1802-f28f-1117-6173ef23d7f9,GE Digital,ge-digital,Angela Byrne,https://www.linkedin.com/in/angela-byrne-a636777,Sales and Support,['l_300_director'],
+1e05d3bb-1802-f28f-1117-6173ef23d7f9,GE Digital,ge-digital,Anil Kumar,https://www.linkedin.com/in/karthikanilkumar,Program and Project Management,['l_300_director'],
+1e05d3bb-1802-f28f-1117-6173ef23d7f9,GE Digital,ge-digital,Anjum Rashid,https://www.linkedin.com/in/anjumrashid,Operations,['l_300_director'],['operations']
+1e05d3bb-1802-f28f-1117-6173ef23d7f9,GE Digital,ge-digital,Beth Jacobs,https://www.linkedin.com/in/beth-jacobs-20a9218,Finance and Administration,['l_300_director'],
+1e05d3bb-1802-f28f-1117-6173ef23d7f9,GE Digital,ge-digital,Bhaskar Gorantla,https://www.linkedin.com/in/bhaskargorantla,Engineering,['l_300_director'],['engineering']
+1e05d3bb-1802-f28f-1117-6173ef23d7f9,GE Digital,ge-digital,Blaine Barnard,https://www.linkedin.com/in/blainebarnard,Business Management,['l_300_director'],
+da43571b-483f-46e7-9a61-e7fb4f18cf77,Deqode,deqode,Akash Sharma,https://www.linkedin.com/in/akash-sharma-880923a8,Sales and Support,['l_200_manager'],
+da43571b-483f-46e7-9a61-e7fb4f18cf77,Deqode,deqode,Alberto Stokes,https://www.linkedin.com/in/alberto-stokes-220857189,Sales and Support,['l_200_manager'],
+da43571b-483f-46e7-9a61-e7fb4f18cf77,Deqode,deqode,Aman Yadav,https://www.linkedin.com/in/amanyadav640fd,UI Developer,['l_100_individual'],
+da43571b-483f-46e7-9a61-e7fb4f18cf77,Deqode,deqode,Dilip Bhaidiya,https://www.linkedin.com/in/dilip-bhaidiya-5a97a016a,Solution Engineer,['l_100_individual'],['engineering']
+da43571b-483f-46e7-9a61-e7fb4f18cf77,Deqode,deqode,Divya Puruswani,https://www.linkedin.com/in/divya-puruswani,Sales and Support,['l_100_individual'],
+da43571b-483f-46e7-9a61-e7fb4f18cf77,Deqode,deqode,Kapil Ganu,https://www.linkedin.com/in/kapil-ganu-38623745,Associate Team Lead,['l_100_individual'],['management']
+da43571b-483f-46e7-9a61-e7fb4f18cf77,Deqode,deqode,Latha Sharma,https://www.linkedin.com/in/lathasharma1482,Marketing and Product,['l_100_individual'],['marketing']
+da43571b-483f-46e7-9a61-e7fb4f18cf77,Deqode,deqode,Prateek Bhonsale,https://www.linkedin.com/in/prateek-bhonsale-4095b2b0,Senior Solutions Engineer,['l_100_individual'],['engineering']
+da43571b-483f-46e7-9a61-e7fb4f18cf77,Deqode,deqode,Puja Sahu,https://www.linkedin.com/in/pujasahu1618,Senior Solutions Engineer,['l_100_individual'],['engineering']
+da43571b-483f-46e7-9a61-e7fb4f18cf77,Deqode,deqode,Santosh Panchal,https://www.linkedin.com/in/santosh-panchal-15763617a,Engineering,['l_100_individual'],['engineering']
