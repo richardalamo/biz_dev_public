@@ -39,13 +39,13 @@ import asyncio
 import pandas as pd
 import jmespath
 import numpy as np
-from datetime import datetime
+from datetime import datetime, date
 from typing import Dict, List, TypedDict, Iterator, Literal, Tuple
 from loguru import logger as log
 from parsel import Selector
 from dotenv import dotenv_values
 from scrapfly import ScrapflyClient, ScrapeConfig, ScrapeApiResponse
-from loguru import logger
+
 
 
 dotenv_path = os.path.join(sys.path[0], os.path.pardir, "Saudi", ".env")
@@ -559,7 +559,7 @@ def read_csv_with_fallback(file_path, columns):
     try:
         return pd.read_csv(file_path)
     except FileNotFoundError:
-        logger.info(f"No previous database found at {file_path}")
+        log.info(f"No previous database found at {file_path}")
         return pd.DataFrame(columns=columns)
     
 def convert_lists_to_strings(df):
@@ -621,7 +621,7 @@ async def run():
     # Read the file that contains the URLs to scrape
     matched_companies_df = pd.read_csv(f'./companies_matching/{datetime.now().year}-{datetime.now().month}-matched_companies_url.csv')
     urls = list(matched_companies_df['Company_name_url'])
-    logger.info(f'Number of companies to scrape: {len(urls)}')
+    log.info(f'Number of companies to scrape: {len(urls)}')
 
     # Loop through the URLs defined above
     tasks = [scrape_company(url) for url in urls]
@@ -630,8 +630,10 @@ async def run():
 
     # Save People data to the database
     df = pd.DataFrame(rows)
+    with open('log.txt', 'a') as log:
+        log.write(f'Number of people fetched from Crunchbase: {df.shape[0]}\tDate: {str(date.today())}\n')
     new_people_db = update_and_save_db(df, './companies_information/people_data.csv', df.columns)
-    logger.info(f'Number of companies with contact information: {df["Company Name"].nunique()}')
+    log.info(f'Number of companies with contact information: {df["Company Name"].nunique()}')
 
     # Save Company data
     df2 = pd.DataFrame(rows2)

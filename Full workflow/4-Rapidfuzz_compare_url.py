@@ -12,8 +12,8 @@ finally:
 
 import pandas as pd
 import numpy as np
-from loguru import logger
-from datetime import datetime
+from loguru import logger as log
+from datetime import datetime, date
 
 def extract_company_name(url):
     """
@@ -29,7 +29,7 @@ def extract_company_name(url):
         return_string = str(url).split('organization/')[-1]
         return return_string if return_string[0] != '%' else np.nan
     except Exception as e:
-        logger.error(f"Error extracting company name from URL {url}: {e}")
+        log.error(f"Error extracting company name from URL {url}: {e}")
         return np.nan
 
 def remove_unnecessary_words(name):
@@ -51,7 +51,7 @@ def remove_unnecessary_words(name):
             name = name.replace(word, '')
         return ''.join(name.lower().split())
     except Exception as e:
-        logger.error(f"Error removing unnecessary words from name {name}: {e}")
+        log.error(f"Error removing unnecessary words from name {name}: {e}")
         return name
 
 def preprocess_columns(df, column_name):
@@ -84,17 +84,17 @@ def read_and_process_files(companies_file, indeed_file):
     """
     try:
         # Load companies file
-        logger.info(f"Reading companies file from: {companies_file}")
+        log.info(f"Reading companies file from: {companies_file}")
         companies_df = pd.read_csv(companies_file, names=['Company_name_url'])
-        logger.info(f"Companies file read successfully with shape: {companies_df.shape}")
+        log.info(f"Companies file read successfully with shape: {companies_df.shape}")
 
         companies_df = companies_df[companies_df['Company_name_url'].str.contains('organization')]
         companies_df['company_name'] = companies_df['Company_name_url'].apply(extract_company_name)
         
         # Load indeed file
-        logger.info(f"Reading indeed file from: {indeed_file}")
+        log.info(f"Reading indeed file from: {indeed_file}")
         indeed_df = pd.read_csv(indeed_file, usecols=['name'])
-        logger.info(f"Indeed file read successfully with shape: {indeed_df.shape}")
+        log.info(f"Indeed file read successfully with shape: {indeed_df.shape}")
 
         job_counts = indeed_df['name'].value_counts()
         indeed_df = pd.DataFrame(job_counts).reset_index().rename(columns={'count':'job_counts'})
@@ -103,10 +103,10 @@ def read_and_process_files(companies_file, indeed_file):
         indeed_df.drop_duplicates(subset=['name'], inplace=True)
         companies_df.drop_duplicates(subset=['company_name'], inplace=True)
 
-        logger.info(f"Number of companies from indeed: {indeed_df.shape[0]}")
+        log.info(f"Number of companies from indeed: {indeed_df.shape[0]}")
         return companies_df, indeed_df
     except Exception as e:
-        logger.error(f"Error reading and processing files: {e}")
+        log.error(f"Error reading and processing files: {e}")
         return None, None
 
 def perform_matching(processed_col1, processed_col2, threshold):
@@ -139,7 +139,11 @@ def merge_and_save_results(indeed_df, companies_df, matches, previous_scrape_pat
         indeed_df['matches'] = matches
         indeed_df_matched = indeed_df[indeed_df['matches'] != '']
         
-        logger.info(f"Number of matched companies: {indeed_df_matched.shape[0]}")
+        with open('log.txt','a') as log: # txt append mode
+            log.write(f'Matches: {indeed_df_matched.shape[0]}\tIndeed total: {indeed_df.shape[0]}\tmatching Rate: {indeed_df_matched.shape[0] / indeed_df.shape[0]}\tDate: {str(date.today())}\n')
+            # write in matching info, and date
+        
+        log.info(f"Number of matched companies: {indeed_df_matched.shape[0]}")
 
         companies_df['processed_company_name'] = preprocess_columns(companies_df, 'company_name')
         indeed_df_matched_merged = pd.merge(
@@ -156,9 +160,9 @@ def merge_and_save_results(indeed_df, companies_df, matches, previous_scrape_pat
         # Perform the check and update for the previous scrape database before saving the results
         update_and_save_database(company_match, previous_scrape_path, dated_csv_file_path)
         
-        logger.info(f"Newly Matched companies' URLs saved to {dated_csv_file_path}")
+        log.info(f"Newly Matched companies' URLs saved to {dated_csv_file_path}")
     except Exception as e:
-        logger.error(f"Error merging and saving results: {e}")
+        log.error(f"Error merging and saving results: {e}")
         
 def update_and_save_database(matched_companies_url, previous_scrape_path, dated_csv_file_path):
     """
@@ -173,8 +177,7 @@ def update_and_save_database(matched_companies_url, previous_scrape_path, dated_
     try:
         previous_scrape_db = pd.read_csv(previous_scrape_path, index_col=0)
     except FileNotFoundError:
-        print("No previous database of scraped urls found, scrape all urls matched")
-        # logger.info("No previous database of scraped urls found, scraping all urls matched")
+        log.info("No previous database of scraped urls found, scraping all urls matched")
         previous_scrape_db = pd.DataFrame(columns=['indeed_name', 'Crunchbase_name','Company_name_url'])
 
     # Check if the 'Company_name_url' column exists in both DataFrames before filtering
