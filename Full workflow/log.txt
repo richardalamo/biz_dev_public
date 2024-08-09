@@ -1,0 +1,4 @@
+Matches: 77	Indeed total: 125	matching Rate: 0.616	Date: 2024-08-06
+Number of people fetched from Crunchbase: 532	Date: 2024-08-06
+
+
