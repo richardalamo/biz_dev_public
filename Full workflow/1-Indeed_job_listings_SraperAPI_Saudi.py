@@ -4,7 +4,7 @@ import os
 
 def install(package):
     """
-    Install a package using pip.
+    Install a package using pip. abc
 
     Args:
         package (str): The name of the package to install.
