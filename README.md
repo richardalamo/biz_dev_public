@@ -48,24 +48,24 @@ The process is as follows:
 2. **Scrape Job Details**: Use the second script to scrape the details of each job using the job keys obtained in the previous step. The resulting files are dated and tagged with the corresponding job role. All files for different job roles are saved in the "job_details_Indeed" folder.
 
 3. **Concatenate and Process Files**: The third step involves concatenating the files and processing them to filter out irrelevant jobs, extract skills and tools, and prepare the data for the dashboard. This step produces four output files: 
-    **output.csv**: contains the consolidated data,
+-**output.csv**: contains the consolidated data,
 
-    **soft_skills_df.csv**: lists the mentionned soft skills for each job, 
+- **soft_skills_df.csv**: lists the mentionned soft skills for each job, 
 
-    **industry_skills_df.csv**: lists the mentionned industry skills for each job, 
-    
-    and **tools_df.csv**: lists the mentionned tools for each job. 
+- **industry_skills_df.csv**: lists the mentionned industry skills for each job, 
+
+- and **tools_df.csv**: lists the mentionned tools for each job. 
 
 4. **Company Name Matching**: Extract unique company names from output.csv and match them with company names from companies.csv, which lists all the companies on Crunchbase along with their URLs. The Rapidfuzz library is used for the matching process. The output is a list of matched companies with the corresponding URL.
 
 5. **Scrape Company Information**: Use the results from the previous step to scrape company information from Crunchbase. The corresponding script produces four output files:
-    **errors**: Contains entries where no company information is available.
+- **errors**: Contains entries where no company information is available.
 
-    **companies_data**: Lists detailed information about the matched companies.
+- **companies_data**: Lists detailed information about the matched companies.
 
-    **people_data**: Contains contact details of individuals associated with the matched companies.
+- **people_data**: Contains contact details of individuals associated with the matched companies.
 
-    **contact**: A processed version of people_data, ready for visualization.
+- **contact**: A processed version of people_data, ready for visualization.
 
 6. **Build Dashboard**: Finally, build a dashboard to derive insights from all the gathered data on Tableau.
 
