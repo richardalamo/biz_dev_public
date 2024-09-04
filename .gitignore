@@ -1,0 +1,8 @@
+*.__pycache__
+*.ipynb
+*.DS_Store
+*__pycache__
+*.pyc
+.env
+*.env
+*companies.csv
