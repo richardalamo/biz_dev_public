@@ -13,3 +13,4 @@
 - \q
 2. In airflow.cfg, edit the following:
 -  sql_alchemy_conn = postgresql+psycopg2://airflow_user:beamdatajobscrape25@localhost/airflow_db
+-  executor = LocalExecutor
