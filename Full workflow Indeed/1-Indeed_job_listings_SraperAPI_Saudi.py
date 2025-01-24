@@ -45,10 +45,26 @@ from scraperapi_sdk import ScraperAPIClient
 # Set-up parameters for ScraperAPI
 #dotenv_path = os.path.join(sys.path[0], os.path.pardir, "Saudi", ".env")
 load_dotenv()
-api_key = os.environ["scraperapi_key"]
-params = {'premium':'true', 'country_code': 'us','device_type': 'desktop'}
+# api_key = os.environ["scraperapi_key"]
+# params = {
+#     'premium': 'true',
+#     'country_code': 'us',
+#     'device_type': 'desktop'}
 
-client = ScraperAPIClient(api_key)
+# client = ScraperAPIClient(api_key)
+
+api_key = os.environ["scrapfly_key"]
+#dotenv_path = os.path.join(sys.path[0], os.path.pardir, "Saudi", ".env")
+#api_key = dotenv_values(dotenv_path)["scrapfly_key"]
+
+client = ScrapflyClient(key=api_key,  max_concurrency=5)
+
+BASE_CONFIG = {
+    "asp": True,
+    "proxy_pool":"public_residential_pool",
+    "render_js": True,
+    "country":"us"
+}
 
 
 def parse_search_page(result: str) -> dict:
@@ -174,7 +190,53 @@ async def run(job_title: str):
         log.warning(f"No dataframes to merge for {job_title}")
 
 if __name__ == "__main__":
-    job_titles = ["business intelligence", "data engineer"]
+    job_titles = [
+    # Original Job Titles
+    "data analyst",
+    "data engineer",
+    "data scientist",
+    "machine learning engineer",
+    "business intelligence",
+
+    # Cloud Engineering Titles
+    "Cloud Engineer",
+    "Cloud Solutions Architect",
+    "Cloud Infrastructure Engineer",
+    "Cloud DevOps Engineer",
+    "Cloud Systems Administrator",
+    "Cloud Security Engineer",
+    "AWS Engineer",
+    "Azure Engineer",
+    "Google Cloud Engineer",
+    "Cloud Network Engineer",
+
+    # Data Governance Titles
+    "Data Governance Specialist",
+    "Data Governance Analyst",
+    "Data Quality Analyst",
+    "Data Steward",
+    "Master Data Management (MDM) Specialist",
+    "Data Compliance Analyst",
+    "Data Privacy Officer",
+    "Data Management Specialist",
+    "Information Governance Manager",
+    "Data Governance Manager",
+
+    # AI-Related Titles
+    "AI Engineer",
+    "AI Specialist",
+    "Machine Learning Engineer",
+    "Deep Learning Engineer",
+    "AI Solutions Architect",
+    "NLP Engineer",
+    "Computer Vision Engineer",
+    "AI Research Scientist",
+    "AI Product Manager",
+    "AI Consultant",
+    "Prompt Engineer",
+    "ML Ops Engineer",
+    "Generative AI Engineer"
+]
     
     async def main():
         """

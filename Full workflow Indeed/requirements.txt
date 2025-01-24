@@ -1,0 +1,5 @@
+jmespath
+pandas
+loguru
+python-dotenv
+scraperapi-sdk
