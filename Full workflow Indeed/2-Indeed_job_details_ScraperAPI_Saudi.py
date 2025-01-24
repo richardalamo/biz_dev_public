@@ -12,7 +12,7 @@ from loguru import logger as log
 from scraperapi_sdk import ScraperAPIClient
 
 # Set-up parameters for ScraperAPI
-dotenv_path = os.path.join(sys.path[0], os.path.pardir, "Saudi", ".env")
+dotenv_path = os.path.join(sys.path[0], ".env") # Set the path to be able to retrieve env file
 
 api_key = dotenv_values(dotenv_path)["scraperapi_key"]
 params = {'premium': True, 'autoparse': 'true'}
@@ -182,9 +182,21 @@ async def scrape_job(url: str, semaphore: asyncio.Semaphore) -> Dict:
         Dict: A dictionary containing the parsed job data. If an error occurs, returns an empty dictionary.
     """
     async with semaphore:
+        trial = 1 # Set up retrials with different session numbers if an attempt fail
+        result = None
+        new_params = {'device_type': 'desktop', 'country_code': 'us', 'premium': 'true', 'session': trial}
+        while result == None and trial < 11:
+            try:
+                # Run blocking I/O-bound code in a separate thread
+                result = await asyncio.to_thread(client.get, url, params=new_params)
+            except:
+                if trial == 10: # Stop if it failed for the 10th time
+                    log.error(f"Error scraping job page {url}: {e}")
+                    return {}
+                else:
+                    trial += 1
+                    new_params = {'device_type': 'desktop', 'country_code': 'us', 'premium': 'true', 'session': trial}
         try:
-            # Run blocking I/O-bound code in a separate thread
-            result = await asyncio.to_thread(client.get, url, params=params)
             return parse_job_page(result)
         except Exception as e:
             log.error(f"Error scraping job page {url}: {e}")
@@ -227,7 +239,44 @@ async def run(jobtitle: str, semaphore: asyncio.Semaphore):
     log.info(f"Scraping complete for {jobtitle}")
 
 if __name__ == "__main__":
-    job_titles = ["data scientist", "machine learning engineer", "data analyst", "data engineer"]
+    job_titles = ["data scientist",
+                  "machine learning engineer",
+                  "data analyst",
+                  "data engineer",
+                  "business intelligence",
+                  "Cloud Engineer",
+                  "Cloud Solutions Architect",
+                  "Cloud Infrastructure Engineer",
+                  "Cloud DevOps Engineer",
+                  "Cloud Systems Administrator",
+                  "Cloud Security Engineer",
+                  "AWS Engineer",
+                  "Azure Engineer",
+                  "Google Cloud Engineer",
+                  "Cloud Network Engineer",
+                  "Data Governance Specialist",
+                  "Data Governance Analyst",
+                  "Data Quality Analyst",
+                  "Data Steward",
+                  "Master Data Management (MDM) Specialist",
+                  "Data Compliance Analyst",
+                  "Data Privacy Officer",
+                  "Data Management Specialist",
+                  "Information Governance Manager",
+                  "Data Governance Manager",
+                  "AI Engineer",
+                  "AI Specialist",
+                  "Machine Learning Engineer",
+                  "Deep Learning Engineer",
+                  "AI Solutions Architect",
+                  "NLP Engineer",
+                  "Computer Vision Engineer",
+                  "AI Research Scientist",
+                  "AI Product Manager",
+                  "AI Consultant",
+                  "Prompt Engineer",
+                  "ML Ops Engineer",
+                  "Generative AI Engineer"]
 
     semaphore = asyncio.Semaphore(5)  # Adjust the semaphore value based on desired concurrency limit
 

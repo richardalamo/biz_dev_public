@@ -43,13 +43,12 @@ from dotenv import dotenv_values
 from scraperapi_sdk import ScraperAPIClient
 
 # Set-up parameters for ScraperAPI
-dotenv_path = os.path.join(sys.path[0], os.path.pardir, "Saudi", ".env")
+dotenv_path = os.path.join(sys.path[0], ".env") # Set the path to be able to retrieve env file
 
 api_key = dotenv_values(dotenv_path)["scraperapi_key"]
-params = {'premium': True, 'autoparse': 'true'}
+params = {'device_type': 'desktop', 'country_code': 'us', 'ultra_premium': 'true'}
 
 client = ScraperAPIClient(api_key)
-
 
 def parse_search_page(result: str) -> dict:
     """
@@ -102,8 +101,16 @@ async def scrape_search(url: str, max_results: int = 1000) -> list:
         list: A list of job results.
     """
     log.info(f"Scraping search: {url}")
+    trial = 1 # Set up retrials with different session numbers if an attempt fail
+    result_first_page = None
+    new_params = {'device_type': 'desktop', 'country_code': 'us', 'ultra_premium': 'true', 'session': trial}
+    while result_first_page == None and trial < 11:
+        try:
+            result_first_page = client.get(url, params=new_params)
+        except:
+            trial += 1
+            new_params = {'device_type': 'desktop', 'country_code': 'us', 'ultra_premium': 'true', 'session': trial}
 
-    result_first_page = client.get(url, params=params)
     data_first_page = parse_search_page(result_first_page)
     results = data_first_page["results"]
 
@@ -120,9 +127,17 @@ async def scrape_search(url: str, max_results: int = 1000) -> list:
                    for offset in range(10, total_remaining_pages * 10, 10)]
     
     for url in other_pages:
-        page_result = client.get(url, params=params)
-        page_data = parse_search_page(page_result)
-        results.extend(page_data["results"])
+        trial = 1 # Set up retrials with different session numbers if an attempt fail
+        page_result = None
+        new_params = {'device_type': 'desktop', 'country_code': 'us', 'ultra_premium': 'true', 'session': trial}
+        while page_result == None and trial < 11: # Stop if request is successful or if it failed 10 times
+            try:
+                page_result = client.get(url, params=new_params)
+                page_data = parse_search_page(page_result)
+                results.extend(page_data["results"])
+            except:
+                trial += 1
+                new_params = {'device_type': 'desktop', 'country_code': 'us', 'ultra_premium': 'true', 'session': trial}
 
     return jmespath.search(
         """{
@@ -174,8 +189,45 @@ async def run(job_title: str):
         log.warning(f"No dataframes to merge for {job_title}")
 
 if __name__ == "__main__":
-    job_titles = ["data scientist", "machine learning engineer", "data analyst", "data engineer"]
-    
+    job_titles = ["data scientist",
+                  "machine learning engineer",
+                  "data analyst",
+                  "data engineer",
+                  "business intelligence",
+                  "Cloud Engineer",
+                  "Cloud Solutions Architect",
+                  "Cloud Infrastructure Engineer",
+                  "Cloud DevOps Engineer",
+                  "Cloud Systems Administrator",
+                  "Cloud Security Engineer",
+                  "AWS Engineer",
+                  "Azure Engineer",
+                  "Google Cloud Engineer",
+                  "Cloud Network Engineer",
+                  "Data Governance Specialist",
+                  "Data Governance Analyst",
+                  "Data Quality Analyst",
+                  "Data Steward",
+                  "Master Data Management (MDM) Specialist",
+                  "Data Compliance Analyst",
+                  "Data Privacy Officer",
+                  "Data Management Specialist",
+                  "Information Governance Manager",
+                  "Data Governance Manager",
+                  "AI Engineer",
+                  "AI Specialist",
+                  "Machine Learning Engineer",
+                  "Deep Learning Engineer",
+                  "AI Solutions Architect",
+                  "NLP Engineer",
+                  "Computer Vision Engineer",
+                  "AI Research Scientist",
+                  "AI Product Manager",
+                  "AI Consultant",
+                  "Prompt Engineer",
+                  "ML Ops Engineer",
+                  "Generative AI Engineer"]
+
     async def main():
         """
         Main function to orchestrate the scraping of multiple job titles.
@@ -186,5 +238,3 @@ if __name__ == "__main__":
         await asyncio.gather(*tasks)
     
     asyncio.run(main())
-    
-
