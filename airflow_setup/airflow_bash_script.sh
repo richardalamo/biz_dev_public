@@ -19,9 +19,11 @@ pip install apache-airflow[postgres]
 pip install python-dotenv
 # Set up Postgresql
 sudo apt install postgresql postgresql-contrib -y
+pip install psycopg2-binary
 sudo -u postgres psql
 # Refer to the readme file on getting the configurations for postgresql
 # Start airflow
+airflow db upgrade
 airflow db init
 airflow users create \
     --username admin \
