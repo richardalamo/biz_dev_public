@@ -18,6 +18,10 @@ pip install apache-airflow[celery]
 pip install apache-airflow[postgres]
 pip install python-dotenv
 pip install boto3
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+sudo apt-get install unzip
+unzip awscliv2.zip
+sudo ./aws/install
 # Set up Postgresql
 sudo apt install postgresql postgresql-contrib -y
 pip install psycopg2-binary
