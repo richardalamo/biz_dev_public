@@ -45,5 +45,6 @@ deactivate
 # Step 7: Stop EC2 instance
 aws lambda invoke \
     --function-name start_ec2_function \
+    --region ca-central-1 \
     --payload '{"action": "stop"}' \
     response.json
