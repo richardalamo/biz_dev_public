@@ -26,7 +26,7 @@
 -  Enter {aws secret access key}
 -  Enter "ca-central-1"
 -  Enter "json'
-5. Create a .env file inside /home/ubuntu/airflow/ and then enter the following:
+5. Inside /home/ubuntu/airflow/.env, enter the following:
 -  to_del_folder={file to delete}
 -  aws_access_key={aws access key}
 -  aws_secret_access_key={aws secret access key}
