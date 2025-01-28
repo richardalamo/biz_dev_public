@@ -35,3 +35,9 @@
 -  to_del_folder=/home/ubuntu/per_boot_log.txt
 -  aws_access_key={aws access key}
 -  aws_secret_access_key={aws secret access key}
+7. Set up Lambda Function
+- Make sure you are in ca-central-1
+- Under runtime, enter Python 3.11 or more recent
+- Under execution role, make sure it has ec2 access, with at least start and stop instance permissions
+- Set the timeout to 2 minutes. Enough time for the ec2 instance to start
+- Paste the lambda_function.py code into the lambda function in the console
