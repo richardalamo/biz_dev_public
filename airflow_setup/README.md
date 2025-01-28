@@ -22,3 +22,7 @@
 -  sql_alchemy_conn = postgresql+psycopg2://airflow_user:beamdatajobscrape25@localhost/airflow_db
 -  executor = LocalExecutor
 3. Run aws configure to enable access aws microservices in your ec2
+-  Enter aws access key
+-  Enter aws secret access key
+-  Enter "ca-central-1"
+-  Enter "json'
