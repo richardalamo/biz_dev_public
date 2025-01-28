@@ -5,7 +5,12 @@
 - Instance Type: t2.medium or larger
 - Key Pair Name: Create a new .pem file
 - Storage: At least 8 GiB
-2. Inside the postgresql terminal (run "sudo -u postgres psql" in command line), run the following:
+2. Copy the files in this folder into /home/ubuntu. Then, run the following:
+- chmod +x airflow_bash_script.sh
+- ./airflow_bash_script.sh
+- chmod +x per_boot_run.sh
+- ./per_boot_run.sh
+3. Inside the postgresql terminal (run "sudo -u postgres psql" in command line), run the following:
 - CREATE DATABASE airflow_db;
 - CREATE USER airflow_user WITH PASSWORD 'beamdatajobscrape25';
 - GRANT ALL PRIVILEGES ON DATABASE airflow_db TO airflow_user;
@@ -18,15 +23,15 @@
 - ALTER SCHEMA public OWNER TO airflow_user;
 - ALTER USER airflow_user WITH SUPERUSER;
 - \q
-3. In airflow.cfg, edit the following:
+4. In airflow.cfg, edit the following:
 -  sql_alchemy_conn = postgresql+psycopg2://airflow_user:beamdatajobscrape25@localhost/airflow_db
 -  executor = LocalExecutor
-4. Run aws configure to enable access aws microservices in your ec2
+5. Run aws configure to enable access aws microservices in your ec2
 -  Enter {aws access key}
 -  Enter {aws secret access key}
 -  Enter "ca-central-1"
 -  Enter "json'
-5. Inside /home/ubuntu/airflow/.env, enter the following:
--  to_del_folder={file to delete}
+6. Inside /home/ubuntu/airflow/.env, enter the following:
+-  to_del_folder=/home/ubuntu/per_boot_log.txt
 -  aws_access_key={aws access key}
 -  aws_secret_access_key={aws secret access key}
