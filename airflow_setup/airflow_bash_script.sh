@@ -17,6 +17,7 @@ pip install apache-airflow
 pip install apache-airflow[celery]
 pip install apache-airflow[postgres]
 pip install python-dotenv
+pip install boto3
 # Set up Postgresql
 sudo apt install postgresql postgresql-contrib -y
 pip install psycopg2-binary
