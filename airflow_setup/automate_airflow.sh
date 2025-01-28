@@ -46,5 +46,6 @@ deactivate
 aws lambda invoke \
     --function-name start_ec2_function \
     --region ca-central-1 \
+    --cli-binary-format raw-in-base64-out \
     --payload '{"action": "stop"}' \
     response.json
