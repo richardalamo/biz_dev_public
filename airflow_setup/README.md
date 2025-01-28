@@ -1,4 +1,11 @@
-1. Inside the postgresql terminal, run the following:
+1. To set up ec2, enable the following settings:
+- Inbound Rules: Port 22, Source as My IP Address
+- Inbound Rules: Port 8080, Source as My IP Address
+- OS Image: Ubuntu
+- Instance Type: t2.medium or larger
+- Key Pair Name: Create a new .pem file
+- Storage: At least 8 GiB
+2. Inside the postgresql terminal, run the following:
 - CREATE DATABASE airflow_db;
 - CREATE USER airflow_user WITH PASSWORD 'beamdatajobscrape25';
 - GRANT ALL PRIVILEGES ON DATABASE airflow_db TO airflow_user;
@@ -14,3 +21,4 @@
 2. In airflow.cfg, edit the following:
 -  sql_alchemy_conn = postgresql+psycopg2://airflow_user:beamdatajobscrape25@localhost/airflow_db
 -  executor = LocalExecutor
+3. Run aws configure to enable access aws microservices in your ec2
