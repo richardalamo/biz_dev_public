@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # install python
+touch per_boot_log.txt
 sudo apt-get update
 sudo apt-get install python3.12 -y
 sudo apt-get install pip -y
