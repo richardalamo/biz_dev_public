@@ -24,6 +24,7 @@ pip install apache-airflow[celery]
 pip install apache-airflow[postgres]
 pip install python-dotenv
 pip install boto3
+# install aws on ec2 linux command line
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 sudo apt-get install unzip
 unzip awscliv2.zip
