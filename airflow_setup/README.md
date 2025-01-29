@@ -9,6 +9,7 @@ Data Workflow Diagram
 - Instance Type: t2.medium or larger
 - Key Pair Name: Create a new .pem file
 - Storage: At least 8 GiB
+- Make sure the role has AmazonSSMManagedInstanceCore policy
 2. Copy the files in this folder into /home/ubuntu. Then, run the following:
 - chmod +x airflow_bash_script.sh
 - ./airflow_bash_script.sh
@@ -42,6 +43,7 @@ Data Workflow Diagram
 7. Set up Lambda Function
 - Make sure you are in ca-central-1
 - Under runtime, enter Python 3.11 or more recent
-- Under execution role, make sure it has ec2 access, with at least start and stop instance permissions
+- Under Lambda execution role, make sure it has EC2 access, with at least start and stop instance permissions. For now use AmazonEC2FullAccess
+- Under Lambda execution role, make sure it has SSM access. For now use AmazonSSMFullAccess
 - Set the timeout to 2 minutes. Enough time for the ec2 instance to start
 - Paste the lambda_function.py code into the lambda function in the console
