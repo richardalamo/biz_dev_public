@@ -3,6 +3,7 @@ import boto3
 import time
 
 ec2 = boto3.client('ec2')
+ssm = boto3.client('ssm')
 
 INSTANCE_ID = '{enter ec2 instance id}'
 
