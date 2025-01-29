@@ -9,7 +9,19 @@ Data Workflow Diagram
 - Instance Type: t2.medium or larger
 - Key Pair Name: Create a new .pem file
 - Storage: At least 8 GiB
-- Make sure the role has AmazonSSMManagedInstanceCore policy
+- Make sure the role has AmazonSSMManagedInstanceCore and AmazonEC2RoleforSSM policy, with trust relationships being the following:
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "ec2.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
 2. Copy the files in this folder into /home/ubuntu. Then, run the following:
 - chmod +x automate_airflow.sh
 - chmod +x airflow_bash_script.sh
