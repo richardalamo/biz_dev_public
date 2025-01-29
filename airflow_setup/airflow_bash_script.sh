@@ -5,6 +5,11 @@ touch per_boot_log.txt
 sudo apt-get update
 sudo apt-get install python3.12 -y
 sudo apt-get install pip -y
+# Get SSM agent
+sudo apt-get install -y snapd
+sudo snap install amazon-ssm-agent --classic
+sudo systemctl start snap.amazon-ssm-agent.amazon-ssm-agent.service
+sudo systemctl enable snap.amazon-ssm-agent.amazon-ssm-agent.service
 # get airflow files
 git clone https://github.com/apache/airflow.git
 # Set up airflow environment and virtual environment
