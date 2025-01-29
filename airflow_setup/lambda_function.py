@@ -15,6 +15,24 @@ def start_instance():
     waiter.wait(InstanceIds=[INSTANCE_ID])
     print(f"Instance {INSTANCE_ID} is now running.")
 
+    print('Waiting for 30 seconds before we run ssm')
+    time.sleep(30)
+
+    # Execute the command to run ./automate_airflow.sh via SSM
+    response = ssm.send_command(
+        InstanceIds=[INSTANCE_ID],
+        DocumentName="AWS-RunShellScript",  # Use AWS-RunShellScript to run a shell command
+        Parameters={
+            'commands': [
+                'cd /home/ubuntu',
+                'chmod +x automate_airflow.sh',
+                'export AIRFLOW_HOME=/home/ubuntu/airflow',
+                './automate_airflow.sh'
+            ]
+        }
+    )
+    print("Sent command to run automate_airflow.sh:", response)
+
 def stop_instance():
     response = ec2.stop_instances(InstanceIds=[INSTANCE_ID])
     print(f"Stopping instance {INSTANCE_ID}: {response}")
