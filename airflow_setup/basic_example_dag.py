@@ -9,7 +9,7 @@ import os
 import boto3
 import json
 
-load_dotenv(os.path.expanduser("~/airflow/.env"))
+load_dotenv("/home/ubuntu/airflow/.env")
 
 to_del_file = os.getenv("to_del_folder")
 access_key = os.getenv("aws_access_key")
