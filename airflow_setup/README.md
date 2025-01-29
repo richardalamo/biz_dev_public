@@ -11,6 +11,7 @@ Data Workflow Diagram
 - Storage: At least 8 GiB
 - Make sure the role has AmazonSSMManagedInstanceCore policy
 2. Copy the files in this folder into /home/ubuntu. Then, run the following:
+- chmod +x automate_airflow.sh
 - chmod +x airflow_bash_script.sh
 - ./airflow_bash_script.sh
 - chmod +x per_boot_run.sh
