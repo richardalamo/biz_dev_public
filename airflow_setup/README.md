@@ -83,7 +83,7 @@ Data Workflow Diagram
 - Choose the lambda function you created
 - Under Payload, paste {"action": "start"}
 - Under Permissions, choose Create new role for this schedule
-- Go to Lambda again. Under Resource-based policy statements, do the following:
+- Go to Lambda again. Under Resource-based policy statements, click Add permissions. Then do the following:
 - Under AWS Service, select EventBridge
 - Add a Statement ID. Anything will suffice
 - Under Source ARN, copy the EventBridge Schedule ARN
