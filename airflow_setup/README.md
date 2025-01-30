@@ -72,3 +72,19 @@ Data Workflow Diagram
 }
 - Set the timeout to 5 minutes. Enough time for the ec2 instance to start
 - Paste the lambda_function.py code into the lambda function in the console
+8. Set up EventBridge
+- Create rule
+- Under rule type, choose Schedule
+- Click Continue in EventBridge Scheduler
+- Choose Recurring schedule
+- Enter a timezone and a cron expression for your schedule
+- Select Off for Flexible time window
+- Choose AWS Lambda Invoke under target
+- Choose the lambda function you created
+- Under Payload, paste {"action": "start"}
+- Under Permissions, choose Create new role for this schedule
+- Go to Lambda again. Under Resource-based policy statements, do the following:
+- Under AWS Service, select EventBridge
+- Add a Statement ID. Anything will suffice
+- Under Source ARN, copy the EventBridge Schedule ARN
+- Under Action, select lambda:InvokeFunction
