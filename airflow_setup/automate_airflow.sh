@@ -40,12 +40,14 @@ pkill -f "airflow webserver"
 pkill -f "airflow scheduler"
 
 # Step 6: Deactivate the virtual environment
-deactivate
+# deactivate
 
 # Step 7: Stop EC2 instance
-aws lambda invoke \
-    --function-name start_ec2_function \
-    --region ca-central-1 \
-    --cli-binary-format raw-in-base64-out \
-    --payload '{"action": "stop"}' \
-    response.json
+echo "Stopping EC2 instance"
+python3 stop_ec2_instance.py
+# aws lambda invoke \
+#     --function-name start_ec2_function \
+#     --region ca-central-1 \
+#     --cli-binary-format raw-in-base64-out \
+#     --payload '{"action": "stop"}' \
+#     response.json
