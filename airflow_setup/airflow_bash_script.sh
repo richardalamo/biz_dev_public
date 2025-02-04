@@ -15,6 +15,7 @@ git clone https://github.com/apache/airflow.git
 # Set up airflow environment and virtual environment
 cd airflow && touch .env
 mkdir ~/airflow/dags
+mkdir ~/airflow/outputs
 sudo apt install python3.12-venv
 python3 -m venv airflow_env
 source airflow_env/bin/activate
