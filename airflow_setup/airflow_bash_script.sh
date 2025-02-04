@@ -10,6 +10,7 @@ sudo apt-get install -y snapd
 sudo snap install amazon-ssm-agent --classic
 sudo systemctl start snap.amazon-ssm-agent.amazon-ssm-agent.service
 sudo systemctl enable snap.amazon-ssm-agent.amazon-ssm-agent.service
+sudo apt-get install libpq-dev python3-dev
 # get airflow files
 git clone https://github.com/apache/airflow.git
 # Set up airflow environment and virtual environment
