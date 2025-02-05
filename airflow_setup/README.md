@@ -97,3 +97,12 @@ Data Workflow Diagram
 - CREATE DATABASE "<database_name>";
 - ALTER DATABASE "<database_name>" OWNER TO <rds_username>;
 - GRANT ALL PRIVILEGES ON DATABASE "<database_name>" TO <rds_username>;
+10. Set up Airflow RDS PostgreSQL Connection
+- In the Airflow UI, under Admin -> Connections, add a new record. Then enter the following:
+- Connection Id: Name of connection (anything you like)
+- Connection Type: Postgres
+- Host: <rds_endpoint>
+- Database: <database_name>
+- Login: <rds_username>
+- Password: <rds_password>
+- Port: 5432
