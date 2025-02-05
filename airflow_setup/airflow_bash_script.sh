@@ -16,6 +16,7 @@ git clone https://github.com/apache/airflow.git
 cd airflow && touch .env
 mkdir ~/airflow/dags
 mkdir ~/airflow/outputs
+mkdir ~/airflow/scrape_code
 sudo apt install python3.12-venv
 python3 -m venv airflow_env
 source airflow_env/bin/activate
