@@ -91,9 +91,9 @@ Data Workflow Diagram
 9. Set up RDS Table
 - In the RDS database, make sure that the security group inbound rules is set to Type: PostgreSQL, and source being your EC2 instance's security group. This will enable the connection needed for the EC2 instance to access RDS PostgreSQL when doing reads, writes, etc.
 - If on the ec2 instance for whatever reason there is an error claiming that there is no RDS database even if the database exists in the RDS Console, do the following:
-- Run "psql -h <rds_endpoint> -U <username> -p 5432 -d postgres"
+- Run "psql -h <rds_endpoint> -U <rds_username> -p 5432 -d postgres"
 - Run "\l"
 - If the database that the RDS console displays does not show up, then do the following, as it means the database was not actually created even though AWS created the instance:
 - CREATE DATABASE "<database_name>";
-- ALTER DATABASE "<database_name>" OWNER TO <username>;
-- GRANT ALL PRIVILEGES ON DATABASE "<database_name>" TO <username>;
+- ALTER DATABASE "<database_name>" OWNER TO <rds_username>;
+- GRANT ALL PRIVILEGES ON DATABASE "<database_name>" TO <rds_username>;
