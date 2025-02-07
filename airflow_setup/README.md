@@ -97,6 +97,7 @@ Data Workflow Diagram
 - CREATE DATABASE "<database_name>";
 - ALTER DATABASE "<database_name>" OWNER TO <rds_username>;
 - GRANT ALL PRIVILEGES ON DATABASE "<database_name>" TO <rds_username>;
+- After exiting the postgresql command line, run create_postgresql_table.py to create the tables
 10. Set up Airflow RDS PostgreSQL Connection
 - In the Airflow UI, under Admin -> Connections, add a new record. Then enter the following:
 - Connection Id: <anything_you_like>
