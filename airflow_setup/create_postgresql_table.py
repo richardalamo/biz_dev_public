@@ -45,14 +45,14 @@ try:
         tools TEXT[],
         soft_skills TEXT[],
         industry_skills TEXT[],
-        description TEXT
+        description TEXT,
         search_keyword VARCHAR(255),
         "date" DATE,
         "year" INTEGER,
         "month" INTEGER
     );
     """
-    # create_table_query = 'DROP TABLE IF EXISTS jobs_detail_test'
+
     cursor.execute(create_table_query)
     conn.commit()
 
