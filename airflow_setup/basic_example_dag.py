@@ -18,7 +18,7 @@ output_file = "outputs.csv"
 s3_bucket = "indeed-scrape"
 s3_folder = 'raw_scrapes/test'
 POSTGRES_CONN_ID = "airflow_rds"
-CSV_FILE_PATH = "/home/ubuntu/airflow/outputs/outputs.csv"
+CSV_FILE_PATH = "/home/ubuntu/airflow/outputs/concatenated_data.csv"
 scrape_script_listings_path = '/home/ubuntu/airflow/scrape_code/1-Indeed_job_listings_ScraperAPI_Saudi.py'
 scrape_script_details_path = '/home/ubuntu/airflow/scrape_code/2-Indeed_job_details_ScraperAPI_Saudi.py'
 csv_aggregator_path = '/home/ubuntu/airflow/scrape_code/3-csv_aggregator_processor.py'
@@ -47,8 +47,47 @@ def load_csv_to_postgres():
     conn = pg_hook.get_conn()
     cursor = conn.cursor()
 
+    create_temp_table_query = f"""
+    CREATE TEMPORARY TABLE IF NOT EXISTS raw_temp (
+        name TEXT,
+        key TEXT,
+        title TEXT,
+        location TEXT,
+        jobtype TEXT,
+        posted TEXT,
+        days_ago INTEGER,
+        rating DECIMAL(2,1),
+        experience TEXT,
+        salary TEXT,
+        education TEXT,
+        feed TEXT,
+        link TEXT,
+        tools TEXT,
+        soft_skills TEXT,
+        industry_skills TEXT,
+        description TEXT,
+        search_keyword TEXT,
+        "date" DATE,
+        "year" INTEGER,
+        "month" INTEGER
+    );
+    """
+    cursor.execute(create_temp_table_query)
+
     with open(CSV_FILE_PATH, "r") as f:
-        cursor.copy_expert("COPY jobs_detail_test FROM STDIN WITH CSV HEADER", f)
+        cursor.copy_expert("COPY raw_temp FROM STDIN WITH CSV HEADER", f)
+    
+    merge_sql = """
+    INSERT INTO raw
+    SELECT rt.name, rt.key, rt.title, rt.location, rt.jobtype, rt.posted, rt.days_ago, rt.rating, rt.experience, rt.salary, rt.education, rt.feed, rt.link, rt.tools, rt.soft_skills, rt.industry_skills, rt.description, rt.search_keyword, rt.date, rt.year, rt.month
+    FROM raw_temp rt
+    LEFT JOIN raw r ON rt.key = r.key
+    WHERE r.key IS NULL;
+    """
+    cursor.execute(merge_sql)
+
+    drop_sql = "DROP TABLE IF EXISTS raw_temp;"
+    cursor.execute(drop_sql)
     
     conn.commit()
     cursor.close()
@@ -75,36 +114,36 @@ with DAG(
         task_id='start',
     )
 
-    scrape_listings = BashOperator(
-        task_id='scrape_listings',
-        bash_command=f'nohup python3 {scrape_script_listings_path} &'
-    )
+    # scrape_listings = BashOperator(
+    #     task_id='scrape_listings',
+    #     bash_command=f'nohup python3 {scrape_script_listings_path} &'
+    # )
 
-    scrape_details = BashOperator(
-        task_id='scrape_details',
-        bash_command=f'nohup python3 {scrape_script_details_path} &'
-    )
+    # scrape_details = BashOperator(
+    #     task_id='scrape_details',
+    #     bash_command=f'nohup python3 {scrape_script_details_path} &'
+    # )
 
-    csv_aggregator = BashOperator(
-        task_id='csv_aggregator',
-        bash_command=f'nohup python3 {csv_aggregator_path} &'
-    )
+    # csv_aggregator = BashOperator(
+    #     task_id='csv_aggregator',
+    #     bash_command=f'nohup python3 {csv_aggregator_path} &'
+    # )
 
-    task_upload_to_s3 = PythonOperator(
-        task_id='Upload_to_S3',
-        python_callable=upload_to_s3,
-        op_kwargs={'sources': [airflow_project_path + '/' + output_path], 
-                'buckets': [s3_bucket], 
-                'source_files': [output_file], 
-                'destinations': [s3_folder],
-                'output_filenames': [output_file]
-                },
-        provide_context=True,
-        trigger_rule=TriggerRule.ALL_DONE
-    )
+    # task_upload_to_s3 = PythonOperator(
+    #     task_id='Upload_to_S3',
+    #     python_callable=upload_to_s3,
+    #     op_kwargs={'sources': [airflow_project_path + '/' + output_path], 
+    #             'buckets': [s3_bucket], 
+    #             'source_files': [output_file], 
+    #             'destinations': [s3_folder],
+    #             'output_filenames': [output_file]
+    #             },
+    #     provide_context=True,
+    #     trigger_rule=TriggerRule.ALL_DONE
+    # )
     
-    load_csv_task = PythonOperator(
-        task_id="load_csv_to_postgres",
+    load_raw_to_postgres = PythonOperator(
+        task_id="load_raw_to_postgres",
         python_callable=load_csv_to_postgres,
     )
 
@@ -113,5 +152,5 @@ with DAG(
     )
     
     # Set task dependencies
-    start_task >> scrape_listings >> scrape_details >> csv_aggregator >> task_upload_to_s3 >> load_csv_task >> end_task
-    # start_task >> load_csv_task >> end_task
+    start_task >> load_raw_to_postgres >> end_task
+    # start_task >> scrape_listings >> scrape_details >> csv_aggregator >> task_upload_to_s3 >> load_csv_task >> end_task
