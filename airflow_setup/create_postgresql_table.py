@@ -13,7 +13,6 @@ DATABASE_NAME = os.getenv("db_name")
 USERNAME = os.getenv("username")
 PASSWORD = os.getenv("password")
 PORT = "5432"  # Default PostgreSQL port
-table_name = 'jobs_detail_test'
 
 try:
     # Connect to PostgreSQL RDS
@@ -56,8 +55,6 @@ try:
     # create_table_query = 'DROP TABLE IF EXISTS jobs_detail_test'
     cursor.execute(create_table_query)
     conn.commit()
-    
-    print(f"Table {table_name} created successfully!")
 
 except Exception as e:
     print(f"Error: {e}")
