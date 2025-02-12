@@ -29,24 +29,28 @@ try:
 
     # Create table using raw SQL
     create_table_query = f"""
-    CREATE TABLE IF NOT EXISTS {table_name} (
-        name TEXT,
-        key TEXT,
-        title TEXT,
-        location TEXT,
-        jobtype TEXT,
-        posted TEXT,
-        days_ago TEXT,
-        rating TEXT,
-        experience TEXT,
-        salary TEXT,
-        education TEXT,
-        feed TEXT,
-        link TEXT,
-        tools TEXT,
-        soft_skills TEXT,
-        industry_skills TEXT,
+    CREATE TABLE IF NOT EXISTS raw (
+        name VARCHAR(255),
+        key VARCHAR(255) PRIMARY KEY,
+        title VARCHAR(255),
+        location VARCHAR(255),
+        jobtype VARCHAR(255),
+        posted VARCHAR(255),
+        days_ago INTEGER,
+        rating DECIMAL(2,1),
+        experience TEXT[],
+        salary TEXT[],
+        education TEXT[],
+        feed VARCHAR(255),
+        link VARCHAR(255),
+        tools TEXT[],
+        soft_skills TEXT[],
+        industry_skills TEXT[],
         description TEXT
+        search_keyword VARCHAR(255),
+        "date" DATE,
+        "year" INTEGER,
+        "month" INTEGER
     );
     """
     # create_table_query = 'DROP TABLE IF EXISTS jobs_detail_test'
