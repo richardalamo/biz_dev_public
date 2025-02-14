@@ -120,6 +120,7 @@ Data Workflow Diagram
 - cd /opt/metabase
 - sudo useradd -r -s /bin/false metabase
 - sudo chown -R metabase:metabase /opt/metabase
-- sudo java -jar /opt/metabase/metabase.jar
+- Run "sudo java -jar /opt/metabase/metabase.jar" to start Metabase
 - After port forwarding port 3000, click on the link
-- Now, in the UI, enter your RDS PostgreSQL database credentials in the setup prompt
+- In the UI, there will be instructions to create an account
+- Once you get to the database connection part, enter your RDS PostgreSQL database credentials in the setup prompt
