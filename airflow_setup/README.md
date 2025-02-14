@@ -4,10 +4,11 @@ Data Workflow Diagram
 1. To set up ec2, enable the following settings:
 - Inbound Rules: Port 22, Source as My IP Address
 - Inbound Rules: Port 8080, Source as My IP Address
+- Inbound Rules: Port 3000, Source as My IP Address
 - OS Image: Ubuntu
 - Instance Type: t2.medium or larger
 - Key Pair Name: Create a new .pem file
-- Storage: At least 8 GiB
+- Storage: At least 20 GiB
 - Make sure the role has AmazonSSMManagedInstanceCore and AmazonEC2RoleforSSM policy, with trust relationships being the following:
 {
     "Version": "2012-10-17",
@@ -107,3 +108,18 @@ Data Workflow Diagram
 - Login: <rds_username>
 - Password: <rds_password>
 - Port: 5432
+11. Set up Metabase
+- Run the following:
+- sudo apt update && sudo apt upgrade -y
+- sudo apt install openjdk-21-jdk -y
+- If there are errors, run "sudo apt --fix-broken install"
+- Run "java -version" to make sure Java got installed
+- wget https://downloads.metabase.com/v0.53.2.x/metabase.jar
+- sudo mkdir -p /opt/metabase
+- sudo mv metabase.jar /opt/metabase/
+- cd /opt/metabase
+- sudo useradd -r -s /bin/false metabase
+- sudo chown -R metabase:metabase /opt/metabase
+- sudo java -jar /opt/metabase/metabase.jar
+- After port forwarding port 3000, click on the link
+- Now, in the UI, enter your RDS PostgreSQL database credentials in the setup prompt
