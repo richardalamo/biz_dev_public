@@ -111,6 +111,9 @@ Data Workflow Diagram
 11. Set up Metabase
 - Run the following:
 - sudo apt update && sudo apt upgrade -y
+- sudo apt install software-properties-common
+- sudo add-apt-repository ppa:openjdk-r/ppa
+- sudo apt update
 - sudo apt install openjdk-21-jdk -y
 - If there are errors, run "sudo apt --fix-broken install"
 - Run "java -version" to make sure Java got installed
