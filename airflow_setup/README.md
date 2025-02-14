@@ -116,7 +116,9 @@ Data Workflow Diagram
 - sudo apt update
 - sudo apt install openjdk-21-jdk -y
 - If there are errors, run "sudo apt --fix-broken install"
-- Run "java -version" to make sure Java got installed
+- sudo update-alternatives --config java
+- In the CLI prompt, use the selection number for Java 21, then press Enter
+- Run "java -version" to make sure Java got installed and that it is Java 21
 - wget https://downloads.metabase.com/v0.53.2.x/metabase.jar
 - sudo mkdir -p /opt/metabase
 - sudo mv metabase.jar /opt/metabase/
