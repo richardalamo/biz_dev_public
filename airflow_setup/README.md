@@ -22,12 +22,13 @@ Data Workflow Diagram
         }
     ]
 }
-2. Copy the files in this folder into /home/ubuntu. Then, run the following:
+2. Moving files
+- Copy airflow_bash_script.sh, automate_airflow.sh, create_postgresql_table.py, stop_ec2_instance.py into /home/ubuntu.
+- Then, run the following:
 - chmod +x automate_airflow.sh
 - chmod +x airflow_bash_script.sh
 - ./airflow_bash_script.sh
-- chmod +x per_boot_run.sh
-- ./per_boot_run.sh
+- Copy indeed_etl.py and stored_variables.py into /home/ubuntu/airflow/dags
 3. Inside the postgresql terminal (run "sudo -u postgres psql" in command line), run the following:
 - CREATE DATABASE airflow_db;
 - CREATE USER airflow_user WITH PASSWORD 'beamdatajobscrape25';
