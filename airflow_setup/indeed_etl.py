@@ -13,6 +13,7 @@ import os
 import boto3
 import json
 
+dag_name = 'indeed_etl'
 load_dotenv("/home/ubuntu/airflow/.env")
 airflow_project_path = "/home/ubuntu/airflow"
 s3_bucket = "indeed-scrape"
@@ -68,7 +69,7 @@ def upload_to_s3(csv_file_path, bucket, destination, output_filename):
 
 # Create the DAG
 dag = DAG(
-    dag_id='indeed_etl',
+    dag_id=dag_name,
     default_args=default_args,
     schedule_interval=None,
     catchup=False,
@@ -140,11 +141,23 @@ with TaskGroup('load_data', dag=dag) as load_data:
 
         task_upload_to_s3 >> load_to_postgres
 
+delete_csv_files = BashOperator(
+    task_id='delete_csv_files',
+    bash_command='rm /home/ubuntu/airflow/raw/*.csv',
+    dag=dag,
+)
+
+delete_airflow_logs = BashOperator(
+    task_id='delete_airflow_logs',
+    bash_command=f'sudo find /home/ubuntu/airflow/logs/dag_id={dag_name} -type f -name "*.log" -mtime +30 -delete',
+    dag=dag,
+)
+
 end_task = DummyOperator(
     task_id='end',
     dag=dag,
 )
     
 # Set task dependencies
-start_task >> concatenate_data >> clean_and_process_data >> filter_data >> load_data >> end_task
-# start_task >> scrape_listings >> scrape_details >> concatenate_data >> clean_and_process_data >> filter_data >> load_data >> end_task
+start_task >> concatenate_data >> clean_and_process_data >> filter_data >> load_data >> delete_csv_files >> delete_airflow_logs >> end_task
+# start_task >> scrape_listings >> scrape_details >> concatenate_data >> clean_and_process_data >> filter_data >> load_data >> delete_csv_files >> delete_airflow_logs >> end_task
