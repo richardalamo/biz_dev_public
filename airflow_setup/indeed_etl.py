@@ -18,9 +18,12 @@ airflow_project_path = "/home/ubuntu/airflow"
 s3_bucket = "indeed-scrape"
 s3_folder = 'raw_scrapes/test'
 POSTGRES_CONN_ID = "airflow_rds"
-scrape_script_listings_path = '/home/ubuntu/airflow/scrape_code/1-Indeed_job_listings_ScraperAPI_Saudi.py'
-scrape_script_details_path = '/home/ubuntu/airflow/scrape_code/2-Indeed_job_details_ScraperAPI_Saudi.py'
-csv_aggregator_path = '/home/ubuntu/airflow/scrape_code/3-csv_aggregator_processor.py'
+scrape_code_path = '/home/ubuntu/airflow/scrape_code'
+scrape_script_listings_path = f'{scrape_code_path}/1-Indeed_job_listings_ScraperAPI_Saudi.py'
+scrape_script_details_path = f'{scrape_code_path}/2-Indeed_job_details_ScraperAPI_Saudi.py'
+concatenation_path = f'{scrape_code_path}/file_concatenation.py'
+clean_and_process_path = f'{scrape_code_path}/clean_and_process.py'
+filter_path = f'{scrape_code_path}/filter_data.py'
 
 to_del_file = os.getenv("to_del_folder")
 access_key = os.getenv("aws_access_key")
@@ -89,12 +92,24 @@ start_task = DummyOperator(
 #     dag=dag,
 # )
 
-# csv_aggregator = BashOperator(
-#     task_id='csv_aggregator',
-#     bash_command=f'nohup python3 {csv_aggregator_path} &',
-#     dag=dag,
-# )
-    
+concatenate_data = BashOperator(
+    task_id='concatenate_data',
+    bash_command=f'nohup python3 {concatenation_path} &',
+    dag=dag,
+)
+
+clean_and_process_data = BashOperator(
+    task_id='clean_and_process_data',
+    bash_command=f'nohup python3 {clean_and_process_path} &',
+    dag=dag,
+)
+
+filter_data = BashOperator(
+    task_id='filter_data',
+    bash_command=f'nohup python3 {filter_path} &',
+    dag=dag,
+)
+
 with TaskGroup('load_data', dag=dag) as load_data:
     for table_name, csv_file_path, create_temp_table, copy_to_temp, merge_sql, drop_sql in zip(table_names, csv_file_paths, sql_temp_table_queries, sql_copy_to_temp_queries, sql_merge_sql_queries, sql_drop_temp_table_queries):
 
@@ -104,7 +119,7 @@ with TaskGroup('load_data', dag=dag) as load_data:
             op_kwargs={'csv_file_path': csv_file_path, 
                     'bucket': s3_bucket, 
                     'destination': s3_folder,
-                    'output_filename': csv_file_path.split('/')[-1]
+                    'output_filename': csv_file_path.split('/')[-1].replace('.csv', '') + "_" + str(datetime.utcnow().date()) + '.csv'
                     },
             provide_context=True,
             trigger_rule=TriggerRule.ALL_DONE,
@@ -131,5 +146,5 @@ end_task = DummyOperator(
 )
     
 # Set task dependencies
-start_task >> load_data >> end_task
-# start_task >> scrape_listings >> scrape_details >> csv_aggregator >> load_data >> end_task
+start_task >> concatenate_data >> clean_and_process_data >> filter_data >> load_data >> end_task
+# start_task >> scrape_listings >> scrape_details >> concatenate_data >> clean_and_process_data >> filter_data >> load_data >> end_task
