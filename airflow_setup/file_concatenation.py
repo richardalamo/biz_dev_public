@@ -35,8 +35,8 @@ for file in glob.glob('/home/ubuntu/airflow/raw/jobs_detail*.csv'):
 # Concatenate all DataFrames in df_list to create an unified DataFrame with all data gathered so far
 data = pd.concat(dfs_list) 
 
-# Remove nulls
-data = data[(data['key'].notnull()) & (data['key']!='')]
+# Remove nulls and blanks
+data = data[(data['key'].notnull()) & (data['key'].str.strip()!='')]
 
 # Remove duplicates
 data = data.drop_duplicates(subset=['key'])
