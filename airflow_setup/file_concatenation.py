@@ -10,6 +10,8 @@ dfs_list = []
 # Read each file in the designated folder
 for file in glob.glob('/home/ubuntu/airflow/raw/jobs_detail*.csv'):
     df = pd.read_csv(file)
+    to_drop = ['Data Jobs Keywords', 'chunk']
+    df = df.drop([x for x in to_drop if x in df.columns], axis=1)
     df['days_ago'] = df['days_ago'].apply(lambda x: int(x) if pd.notna(x) else np.nan)
     df['days_ago'] = df['days_ago'].astype('Int64')
     # Add "search keword" column to the df that accounts for the job cited in each .csv file
