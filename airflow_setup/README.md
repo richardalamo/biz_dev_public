@@ -1,5 +1,5 @@
 Data Workflow Diagram
-![image](https://github.com/user-attachments/assets/e9a13a95-91eb-43e2-8f52-2a6955ed32b7)
+![image](https://github.com/user-attachments/assets/16e8b0e3-6634-4a95-bb60-a10f4b30f1a4)
 
 1. To set up ec2, enable the following settings:
 - Inbound Rules: Port 22, Source as My IP Address
