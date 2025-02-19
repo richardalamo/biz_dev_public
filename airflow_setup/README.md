@@ -130,3 +130,6 @@ Data Workflow Diagram
 - After port forwarding port 3000, click on the link
 - In the UI, there will be instructions to create an account
 - Once you get to the database connection part, enter your RDS PostgreSQL database credentials in the setup prompt
+12. Airflow Security
+- Go to "Security" -> "List Users" -> "Edit record" in the Admin Airflow Console to change your First Name, Last Name, User Name, and Email
+- Go to "Your Profile" -> "Reset my password" to change your password 
