@@ -728,6 +728,8 @@ sql_merge_sql_queries = [
     SELECT rt.name, rt.key, rt.title, rt.location, rt.jobtype, rt.posted, rt.days_ago, rt.rating, rt.experience, rt.salary, rt.education, rt.feed, rt.link, rt.tools, rt.soft_skills, rt.industry_skills, rt.description, rt.search_keyword, rt.date, rt.year, rt.month
     FROM raw_temp rt
     LEFT JOIN raw r ON rt.key = r.key
+    AND rt.date = r.date
+    AND rt.search_keyword = r.search_keyword
     WHERE r.key IS NULL;
     ''',
     '''
@@ -787,6 +789,8 @@ sql_merge_sql_queries = [
         pt."technical documentation", pt.transform, pt."understanding of machine learning algorithms"
     FROM preprocessed_temp pt
     LEFT JOIN preprocessed p on pt.key=p.key
+    AND pt.date = p.date
+    AND pt.search_keyword = p.search_keyword
     WHERE p.key IS NULL;
     ''',
     '''
@@ -847,6 +851,8 @@ sql_merge_sql_queries = [
         lft.n_filter_words
     FROM light_filtered_temp lft
     LEFT JOIN light_filtered lf on lft.key=lf.key
+    AND lft.date = lf.date
+    AND lft.search_keyword = lf.search_keyword
     WHERE lf.key IS NULL;
     ''',
     '''
@@ -907,6 +913,8 @@ sql_merge_sql_queries = [
         hft.n_filter_words
     FROM heavy_filtered_temp hft
     LEFT JOIN heavy_filtered hf on hft.key=hf.key
+    AND hft.date = hf.date
+    AND hft.search_keyword = hf.search_keyword
     WHERE hf.key IS NULL;
     ''',
 ]
