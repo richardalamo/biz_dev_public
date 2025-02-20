@@ -39,7 +39,7 @@ data = pd.concat(dfs_list)
 data = data[(data['key'].notnull()) & (data['key'].str.strip()!='')]
 
 # Remove duplicates
-data = data.drop_duplicates(subset=['key'])
+data = data.drop_duplicates(subset=['key', 'date', 'search keyword'])
 
 # Save concatenated data to csv file
 data.to_csv("/home/ubuntu/airflow/outputs/concatenated_data.csv", index=False)
