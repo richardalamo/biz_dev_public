@@ -77,8 +77,6 @@ soft_skills = [s.lower() for s in soft_skills]
 industry_skills = [s.lower() for s in industry_skills]
 education = [s.lower() for s in education]
 
-job_types = ['data_analyst', 'data_engineer']
-
 def extract_integer(s):
     """
     Extract integer from a string.
