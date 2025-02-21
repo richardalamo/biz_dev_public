@@ -37,6 +37,7 @@ import urllib
 import asyncio
 import jmespath
 import pandas as pd
+import random
 from datetime import datetime
 from loguru import logger as log
 from dotenv import dotenv_values
@@ -102,14 +103,22 @@ async def scrape_search(url: str, max_results: int = 1000) -> list:
     """
     log.info(f"Scraping search: {url}")
     trial = 1 # Set up retrials with different session numbers if an attempt fail
+    session = 1 # Set up the first session number to be used by the web scraper
+    session_type = "'premium': 'true'" # Used to identify session type of the current request
     result_first_page = None
-    new_params = {'device_type': 'desktop', 'country_code': 'us', 'ultra_premium': 'true', 'session': trial}
-    while result_first_page == None and trial < 11:
+    new_params = {'device_type': 'desktop', 'country_code': 'us', 'ultra_premium': 'true', 'session': session}
+    while result_first_page == None and trial < 21:
         try:
             result_first_page = client.get(url, params=new_params)
         except:
             trial += 1
-            new_params = {'device_type': 'desktop', 'country_code': 'us', 'ultra_premium': 'true', 'session': trial}
+            session = random.randint(1,50) # Set a new session number for the upcoming trial
+            if session_type == "premium": # If session type was premium change to ultra_premium in the next trial
+                session_type = "ultra_premium"
+                new_params = {'device_type': 'desktop', 'country_code': 'us', 'ultra_premium': 'true', 'session': session}
+            elif session_type == "ultra_premium": # If session type was ultra_premium change to premium in the next trial
+                session_type = "premium"
+                new_params = {'device_type': 'desktop', 'country_code': 'us', 'premium': 'true', 'session': session}
 
     data_first_page = parse_search_page(result_first_page)
     results = data_first_page["results"]
@@ -128,16 +137,24 @@ async def scrape_search(url: str, max_results: int = 1000) -> list:
     
     for url in other_pages:
         trial = 1 # Set up retrials with different session numbers if an attempt fail
+        session = 1
         page_result = None
-        new_params = {'device_type': 'desktop', 'country_code': 'us', 'ultra_premium': 'true', 'session': trial}
-        while page_result == None and trial < 11: # Stop if request is successful or if it failed 10 times
+        session_type = "premium"
+        new_params = {'device_type': 'desktop', 'country_code': 'us', 'premium': 'true', 'session': session}
+        while page_result == None and trial < 21: # Stop if request is successful or if it failed 20 times
             try:
                 page_result = client.get(url, params=new_params)
                 page_data = parse_search_page(page_result)
                 results.extend(page_data["results"])
             except:
                 trial += 1
-                new_params = {'device_type': 'desktop', 'country_code': 'us', 'ultra_premium': 'true', 'session': trial}
+                session = random.randint(1, 50)  # Set a new session number for the upcoming trial
+                if session_type == "premium":  # If session type was premium change to ultra_premium in the next trial
+                    session_type = "ultra_premium"
+                    new_params = {'device_type': 'desktop', 'country_code': 'us', 'ultra_premium': 'true', 'session': session}
+                elif session_type == "ultra_premium":  # If session type was ultra_premium change to premium in the next trial
+                    session_type = "premium"
+                    new_params = {'device_type': 'desktop', 'country_code': 'us', 'premium': 'true', 'session': session}
 
     return jmespath.search(
         """{
@@ -163,17 +180,21 @@ async def run(job_title: str):
 
     for i in range(2):  # Number of times to scrape
         url = f'https://sa.indeed.com/jobs?q={job_title_encoded}&l=Saudi+Arabia'
-        
-        try:
-            result_search = await scrape_search(url)
-            df = pd.DataFrame(result_search).sort_values(by='name', ascending=True)
-            
-            num_duplicates = df.duplicated(subset='key', keep='first').sum()
-            log.info(f"Dropping {num_duplicates} duplicates in 'key' column")
-            df = df.drop_duplicates(subset='key', keep='first')
-            dataframes.append(df)
-        except Exception as e:
-            log.error(f"Error scraping {job_title}: {e}")
+
+        result_search = None
+        attempt = 1
+        while result_search == None and attempt < 11:
+            try:
+                result_search = await scrape_search(url)
+                df = pd.DataFrame(result_search).sort_values(by='name', ascending=True)
+
+                num_duplicates = df.duplicated(subset='key', keep='first').sum()
+                log.info(f"Dropping {num_duplicates} duplicates in 'key' column")
+                df = df.drop_duplicates(subset='key', keep='first')
+                dataframes.append(df)
+            except Exception as e:
+                log.error(f"Error scraping {job_title}: {e} in attempt {attempt}.")
+                attempt += 1
 
     if dataframes:
         merged_df = pd.concat(dataframes, ignore_index=True)

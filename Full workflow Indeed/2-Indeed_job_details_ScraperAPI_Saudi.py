@@ -183,8 +183,10 @@ async def scrape_job(url: str, semaphore: asyncio.Semaphore) -> Dict:
     """
     async with semaphore:
         trial = 1 # Set up retrials with different session numbers if an attempt fail
+        session = 1
+        session_type = "premium"
         result = None
-        new_params = {'device_type': 'desktop', 'country_code': 'us', 'premium': 'true', 'session': trial}
+        new_params = {'device_type': 'desktop', 'country_code': 'us', 'premium': 'true', 'session': session}
         while result == None and trial < 11:
             try:
                 # Run blocking I/O-bound code in a separate thread
@@ -195,7 +197,15 @@ async def scrape_job(url: str, semaphore: asyncio.Semaphore) -> Dict:
                     return {}
                 else:
                     trial += 1
-                    new_params = {'device_type': 'desktop', 'country_code': 'us', 'premium': 'true', 'session': trial}
+                    session = random.randint(1, 50)  # Set a new session number for the upcoming trial
+                    if session_type == "premium":  # If session type was premium change to ultra_premium in the next trial
+                        session_type = "ultra_premium"
+                        new_params = {'device_type': 'desktop', 'country_code': 'us', 'ultra_premium': 'true',
+                                      'session': session}
+                    elif session_type == "ultra_premium":  # If session type was ultra_premium change to premium in the next trial
+                        session_type = "premium"
+                        new_params = {'device_type': 'desktop', 'country_code': 'us', 'premium': 'true',
+                                      'session': session}
         try:
             return parse_job_page(result)
         except Exception as e:
