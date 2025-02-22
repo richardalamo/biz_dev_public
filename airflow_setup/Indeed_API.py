@@ -249,9 +249,9 @@ def run(job_types):
         all_items = []
         
         # Run the Actor task and wait for it to finish
-        run = client.task(os.getenv(job_type)).call()
+        task_run = client.task(os.getenv(job_type)).call()
 
-        items = client.dataset(run["defaultDatasetId"]).iterate_items()
+        items = client.dataset(task_run["defaultDatasetId"]).iterate_items()
 
         for item in items:
             try:
@@ -261,7 +261,7 @@ def run(job_types):
         
         if all_items:
             df = pd.DataFrame(all_items)
-            df.to_csv(f'jobs_detail_{job_type}_{date_str}.csv', index=False)
+            df.to_csv(f'/home/ubuntu/airflow/raw/jobs_detail_{job_type}_{date_str}.csv', index=False)
 
 if __name__ == "__main__":
     job_types = ['data_analyst', 'data_engineer']
