@@ -19,9 +19,11 @@ airflow_project_path = "/home/ubuntu/airflow"
 s3_bucket = "indeed-scrape"
 s3_folder = 'raw_scrapes/test'
 POSTGRES_CONN_ID = "airflow_rds"
+raw_scrapes_path = '/home/ubuntu/airflow/raw'
 scrape_code_path = '/home/ubuntu/airflow/scrape_code'
-scrape_script_listings_path = f'{scrape_code_path}/1-Indeed_job_listings_ScraperAPI_Saudi.py'
-scrape_script_details_path = f'{scrape_code_path}/2-Indeed_job_details_ScraperAPI_Saudi.py'
+# scrape_script_listings_path = f'{scrape_code_path}/1-Indeed_job_listings_ScraperAPI_Saudi.py'
+# scrape_script_details_path = f'{scrape_code_path}/2-Indeed_job_details_ScraperAPI_Saudi.py'
+indeed_api_path = f'{scrape_code_path}/Indeed_API.py'
 concatenation_path = f'{scrape_code_path}/file_concatenation.py'
 clean_and_process_path = f'{scrape_code_path}/clean_and_process.py'
 filter_path = f'{scrape_code_path}/filter_data.py'
@@ -93,21 +95,26 @@ start_task = DummyOperator(
 #     dag=dag,
 # )
 
+collect_jobs = BashOperator(
+    task_id='collect_jobs',
+    bash_command=f'nohup python3 {indeed_api_path} --output_csv_path {raw_scrapes_path} &'
+)
+
 concatenate_data = BashOperator(
     task_id='concatenate_data',
-    bash_command=f'nohup python3 {concatenation_path} &',
+    bash_command=f'nohup python3 {concatenation_path} --input_csv_path {raw_scrapes_path} --output_csv_path {csv_file_paths[0]} &',
     dag=dag,
 )
 
 clean_and_process_data = BashOperator(
     task_id='clean_and_process_data',
-    bash_command=f'nohup python3 {clean_and_process_path} &',
+    bash_command=f'nohup python3 {clean_and_process_path} --input_csv_path {csv_file_paths[0]} --output_csv_path {csv_file_paths[1]} &',
     dag=dag,
 )
 
 filter_data = BashOperator(
     task_id='filter_data',
-    bash_command=f'nohup python3 {filter_path} &',
+    bash_command=f'nohup python3 {filter_path} --input_csv_path {csv_file_paths[1]} --light_filtered_path {csv_file_paths[2]} --heavy_filtered_path {csv_file_paths[3]} &',
     dag=dag,
 )
 
@@ -159,5 +166,6 @@ end_task = DummyOperator(
 )
     
 # Set task dependencies
-start_task >> concatenate_data >> clean_and_process_data >> filter_data >> load_data >> delete_csv_files >> delete_airflow_logs >> end_task
-# start_task >> scrape_listings >> scrape_details >> concatenate_data >> clean_and_process_data >> filter_data >> load_data >> delete_csv_files >> delete_airflow_logs >> end_task
+# start_task >> scrape_listings >> scrape_details >> end_task
+# start_task >> concatenate_data >> clean_and_process_data >> filter_data >> load_data >> delete_csv_files >> delete_airflow_logs >> end_task
+start_task >> collect_jobs >> concatenate_data >> clean_and_process_data >> filter_data >> load_data >> delete_csv_files >> delete_airflow_logs >> end_task
