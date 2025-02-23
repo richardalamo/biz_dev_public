@@ -1,7 +1,16 @@
 import pandas as pd
 import numpy as np
 import re
-data = pd.read_csv("/home/ubuntu/airflow/outputs/concatenated_data.csv")
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--input_csv_path')
+parser.add_argument('--output_csv_path')
+args = parser.parse_args()
+input_csv_path = args.input_csv_path
+output_csv_path = args.output_csv_path
+
+data = pd.read_csv(input_csv_path)
 data['days_ago'] = data['days_ago'].apply(lambda x: int(x) if pd.notna(x) else np.nan)
 data['days_ago'] = data['days_ago'].astype('Int64')
 data_cleaned = data.copy()
@@ -178,4 +187,4 @@ for industry_skill in [x.lower().strip() for x in industry_skills]:
     extract_feature_to_column(data_cleaned, "Industry Skills", industry_skill, industry_skill)
 
 data_preprocessed = data_cleaned.copy()
-data_preprocessed.to_csv("/home/ubuntu/airflow/outputs/data_Indeed_preprocessed.csv", index=False)
+data_preprocessed.to_csv(output_csv_path, index=False)
