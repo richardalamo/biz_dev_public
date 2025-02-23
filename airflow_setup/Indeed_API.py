@@ -36,8 +36,14 @@ from apify_client import ApifyClient #pip install apify_client
 import pandas as pd
 import re
 from datetime import datetime
+import argparse
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv('/home/ubuntu/airflow/.env')
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--output_csv_path')
+args = parser.parse_args()
+output_csv_path = args.output_csv_path
 
 # Initialize the ApifyClient with your API token
 client = ApifyClient(os.getenv('apify_token'))
@@ -261,7 +267,7 @@ def run(job_types):
         
         if all_items:
             df = pd.DataFrame(all_items)
-            df.to_csv(f'/home/ubuntu/airflow/raw/jobs_detail_{job_type}_{date_str}.csv', index=False)
+            df.to_csv(f'{output_csv_path}/jobs_detail_{job_type}_{date_str}.csv', index=False)
 
 if __name__ == "__main__":
     job_types = ['data_analyst', 'data_engineer']
