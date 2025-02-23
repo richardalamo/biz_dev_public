@@ -97,7 +97,8 @@ start_task = DummyOperator(
 
 collect_jobs = BashOperator(
     task_id='collect_jobs',
-    bash_command=f'nohup python3 {indeed_api_path} --output_csv_path {raw_scrapes_path} &'
+    bash_command=f'nohup python3 {indeed_api_path} --output_csv_path {raw_scrapes_path} &',
+    dag=dag,
 )
 
 concatenate_data = BashOperator(
