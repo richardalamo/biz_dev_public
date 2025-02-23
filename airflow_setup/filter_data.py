@@ -1,7 +1,17 @@
 import numpy as np
 import pandas as pd
+import argparse
 
-data = pd.read_csv("/home/ubuntu/airflow/outputs/data_Indeed_preprocessed.csv")
+parser = argparse.ArgumentParser()
+parser.add_argument('--input_csv_path')
+parser.add_argument('--light_filtered_path')
+parser.add_argument('--heavy_filtered_path')
+args = parser.parse_args()
+input_csv_path = args.input_csv_path
+light_filtered_path = args.light_filtered_path
+heavy_filtered_path = args.heavy_filtered_path
+
+data = pd.read_csv(input_csv_path)
 data['days_ago'] = data['days_ago'].apply(lambda x: int(x) if pd.notna(x) else np.nan)
 data['days_ago'] = data['days_ago'].astype('Int64')
 data_subset = data[data["search keyword"].isin(["data analyst", "data engineer", "data scientist", "machine learning engineer", "business intelligence"])]
@@ -72,5 +82,5 @@ for i in range(data_subset.shape[0]):
 # Use the stored values to create the new column "n_filter_words"
 data_subset['n_filter_words'] = filter_words_count 
 
-data_subset[data_subset["n_filter_words"] > 0].to_csv("/home/ubuntu/airflow/outputs/light_filtered_data.csv", index=False)
-data_subset[data_subset["n_filter_words"] > 2].to_csv("/home/ubuntu/airflow/outputs/heavy_filtered_data.csv", index=False)
+data_subset[data_subset["n_filter_words"] > 0].to_csv(light_filtered_path, index=False)
+data_subset[data_subset["n_filter_words"] > 2].to_csv(heavy_filtered_path, index=False)
