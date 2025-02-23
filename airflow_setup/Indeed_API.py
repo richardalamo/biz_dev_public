@@ -255,9 +255,11 @@ def run(job_types):
         all_items = []
         
         # Run the Actor task and wait for it to finish
-        task_run = client.task(os.getenv(job_type)).call()
-
-        items = client.dataset(task_run["defaultDatasetId"]).iterate_items()
+        try:
+            task_run = client.task(os.getenv(job_type)).call()
+            items = client.dataset(task_run["defaultDatasetId"]).iterate_items()
+        except:
+            items = []
 
         for item in items:
             try:
