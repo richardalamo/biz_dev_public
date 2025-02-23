@@ -151,7 +151,7 @@ with TaskGroup('load_data', dag=dag) as load_data:
 
 delete_csv_files = BashOperator(
     task_id='delete_csv_files',
-    bash_command='rm /home/ubuntu/airflow/raw/*.csv',
+    bash_command=f'rm {raw_scrapes_path}/*.csv',
     dag=dag,
 )
 
