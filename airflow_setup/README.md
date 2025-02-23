@@ -52,9 +52,16 @@ Data Workflow Diagram
 -  Enter "ca-central-1"
 -  Enter "json'
 6. Inside /home/ubuntu/airflow/.env, enter the following:
--  to_del_folder=/home/ubuntu/per_boot_log.txt
 -  aws_access_key={aws access key}
 -  aws_secret_access_key={aws secret access key}
+-  rds_endpoint={rds endpoint}
+-  db_name={whatever database name you created in the RDS endpoint}
+-  username={rds database username}
+-  password={rds database password}
+-  scraperapi_key={scraper api key}
+-  apify_token={apify token provided when you created your apify account}
+-  data_analyst={apify API client task id provided for data_analyst}
+-  data_engineer={apify API client task id provided for data_engineer}
 7. Set up Lambda Function
 - Make sure you are in ca-central-1
 - Under runtime, enter Python 3.11 or more recent
