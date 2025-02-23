@@ -3,12 +3,20 @@ import numpy as np
 import glob 
 import os 
 import re
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--input_csv_path')
+parser.add_argument('--output_csv_path')
+args = parser.parse_args()
+input_csv_path = args.input_csv_path
+output_csv_path = args.output_csv_path
 
 # Create empty list to store the DataFrames
 dfs_list = []
 
 # Read each file in the designated folder
-for file in glob.glob('/home/ubuntu/airflow/raw/jobs_detail*.csv'):
+for file in glob.glob(f'{input_csv_path}/jobs_detail*.csv'):
     df = pd.read_csv(file)
     to_drop = ['Data Jobs Keywords', 'chunk']
     df = df.drop([x for x in to_drop if x in df.columns], axis=1)
@@ -42,4 +50,4 @@ data = data[(data['key'].notnull()) & (data['key'].str.strip()!='')]
 data = data.drop_duplicates(subset=['key', 'date', 'search keyword'])
 
 # Save concatenated data to csv file
-data.to_csv("/home/ubuntu/airflow/outputs/concatenated_data.csv", index=False)
+data.to_csv(output_csv_path, index=False)
