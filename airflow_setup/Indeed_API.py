@@ -49,6 +49,8 @@ output_csv_path = args.output_csv_path
 client = ApifyClient(os.getenv('apify_token'))
 date_str = datetime.now().strftime('%Y-%m-%d')
 
+schema = ['name', 'key', 'title', 'location', 'jobType', 'posted', 'days_ago', 'rating', 'experience', 'salary', 'education', 'feed', 'link', 'Tools', 'Soft Skills', 'Industry Skills', 'description']
+
 tools = ["AWS", "MS Access", "Microsoft Access", "Azure", " C ", " C,", "C++", "Cassandra", "CircleCI", "Cloud", "Confluence", "Databricks", "Docker", "EMR", "ElasticSearch",
         " Excel ", "Flask", "MLFlow", "Kubeflow", "GCP", " Git ", "Github", "Hadoop", "Hive", "Hugging Face", "Informatica", "JIRA", "Java", "Javascript",
         "Jenkins", "Kafka", "Keras", "Kubernetes", "LLMs", "Matlab", "Mongodb", "MySQL", "New Relic", "NoSQL", "Numpy", "Oracle", "Outlook",
@@ -269,7 +271,10 @@ def run(job_types):
         
         if all_items:
             df = pd.DataFrame(all_items)
-            df.to_csv(f'{output_csv_path}/jobs_detail_{job_type}_{date_str}.csv', index=False)
+        else:
+            df = pd.DataFrame(all_items, columns=schema)
+        
+        df.to_csv(f'{output_csv_path}/jobs_detail_{job_type}_{date_str}.csv', index=False)
 
 if __name__ == "__main__":
     job_types = ['data_analyst', 'data_engineer']
