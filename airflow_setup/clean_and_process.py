@@ -144,11 +144,13 @@ def extract_feature_to_column(df, column_to_extract, feature, new_column):
     df[new_column] = values_for_column # Create new column based on the values that were stored
     print(f"'{new_column}' column added to existing data.")
 
+# Extract data from education column (turn each item in this list to a new column)
 degree_list = ["bachelor", "master", "phd"]
 
 for degree in degree_list:
     extract_feature_to_column(data_cleaned, "education", degree, degree)
 
+# Extract data from "Tools" column (turn each item in this list to a new column)
 tools_list_updated = ["AWS", "Microsoft Access", "Azure", "C", "C++", "Cassandra", "CircleCI", "Cloud", "Confluence", "Databricks", "Docker", "EMR", "ElasticSearch",
         " Excel ", "Flask", "MLFlow", "Kubeflow", "GCP", " Git ", "Github", "Hadoop", "Hive", "Hugging Face", "Informatica", "JIRA", "Java", "Javascript",
         "Jenkins", "Kafka", "Keras", "Kubernetes", "LLMs", "Matlab", "Mongodb", "MySQL", "New Relic", "NoSQL", "Numpy", "Oracle", "Outlook",
@@ -159,6 +161,7 @@ tools_list_updated = ["AWS", "Microsoft Access", "Azure", "C", "C++", "Cassandra
 for tool in [x.lower().strip() for x in tools_list_updated]:
     extract_feature_to_column(data_cleaned, "Tools", tool, tool)
 
+# Extract data from Soft Skills column (turn each item in this list to a new column)
 soft_skills = ["Accountability", "Accuracy", "Adaptability", "Agility", "Analysis", "Analytical Skills", "Attention to detail", "Coaching",
             "Collaboration", "Collaborative", "Commitment", "Communication", "Communication Skills", "Confidence", "Continuous learning",
             "Coordination", "Creativity", "Critical thinking", "Curiosity", "Decision making", "Decision-Making", "Dependability", "Design",
@@ -172,7 +175,8 @@ soft_skills = ["Accountability", "Accuracy", "Adaptability", "Agility", "Analysi
 
 for soft_skill in [x.lower().strip() for x in soft_skills]:
     extract_feature_to_column(data_cleaned, "Soft Skills", soft_skill, soft_skill)
-    
+
+# Extract data from Industry Skills column (turn each item in this list to a new column)
 industry_skills = ["API Design", "API Development", "Batch Processing", "Big data", "Bioinformatics", "Business Intelligence", "CI/CD",
                 "Classification", "Cloud", "Cloud Computing", "Containerization", "Critical Thinking", "Data Analysis",
                 "Data Architecture", "Data Cleaning", "Data Extraction", "Data Governance", "Data Ingestion", "Data Integration",
