@@ -18,11 +18,15 @@ dfs_list = []
 # Read each file in the designated folder
 for file in glob.glob(f'{input_csv_path}/jobs_detail*.csv'):
     df = pd.read_csv(file)
+    # Removing any columns that shouldn't be there to enforce a consistent schema
     to_drop = ['Data Jobs Keywords', 'chunk']
     df = df.drop([x for x in to_drop if x in df.columns], axis=1)
+
+    # Make sure days_ago column stays integer and does not get converted to float value
     df['days_ago'] = df['days_ago'].apply(lambda x: int(x) if pd.notna(x) else np.nan)
     df['days_ago'] = df['days_ago'].astype('Int64')
-    # Add "search keword" column to the df that accounts for the job cited in each .csv file
+    
+    # Add "search keyword" column to the df that accounts for the job cited in each .csv file
     text = file
     title_used_in_search = re.compile(r"jobs_detail_(\w+)_\d+-\d+-\d+").findall(text)[0].replace("_", " ")
     df["search keyword"] = title_used_in_search
