@@ -18,6 +18,7 @@ dfs_list = []
 # Read each file in the designated folder
 for file in glob.glob(f'{input_csv_path}/jobs_detail*.csv'):
     df = pd.read_csv(file)
+    
     # Removing any columns that shouldn't be there to enforce a consistent schema
     to_drop = ['Data Jobs Keywords', 'chunk']
     df = df.drop([x for x in to_drop if x in df.columns], axis=1)
