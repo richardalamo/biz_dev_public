@@ -12,8 +12,12 @@ light_filtered_path = args.light_filtered_path
 heavy_filtered_path = args.heavy_filtered_path
 
 data = pd.read_csv(input_csv_path)
+
+# Ensure integer data doesn't get converted to floats
 data['days_ago'] = data['days_ago'].apply(lambda x: int(x) if pd.notna(x) else np.nan)
 data['days_ago'] = data['days_ago'].astype('Int64')
+
+# Filter only the job titles we care about
 data_subset = data[data["search keyword"].isin(["data analyst", "data engineer", "data scientist", "machine learning engineer", "business intelligence"])]
 
 # Data analyst
