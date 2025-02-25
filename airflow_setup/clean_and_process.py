@@ -11,8 +11,10 @@ input_csv_path = args.input_csv_path
 output_csv_path = args.output_csv_path
 
 data = pd.read_csv(input_csv_path)
+# Prevent integer data from being converted into floats
 data['days_ago'] = data['days_ago'].apply(lambda x: int(x) if pd.notna(x) else np.nan)
 data['days_ago'] = data['days_ago'].astype('Int64')
+
 data_cleaned = data.copy()
 data_cleaned['date'] = pd.to_datetime(data_cleaned['date'])
 data_cleaned['search keyword'] = data_cleaned['search keyword'].str.lower()
