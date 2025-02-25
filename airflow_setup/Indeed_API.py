@@ -159,6 +159,16 @@ def clean_text(text):
     return text.lower()
 
 def parse_data(row):
+
+    """
+    Parses and cleans the output of the API call record to the desired schema and data format, for PostgreSQL storage in downstream steps
+
+    Args:
+        dict: Input dictionary contains keys and values from the API call
+
+    Returns:
+        dict: Output dictionary contains keys and values consistent with the desired schema and data format for the tables we defined in PostgreSQL
+    """
     
     data = {}
     
@@ -249,9 +259,11 @@ def parse_data(row):
         
     return data
 
-# Run the API for the different job title Indeed queries
-
 def run(job_types):
+    '''
+    Main function that generates an API call, parses and cleans the data, and saves it as a csv file
+    '''
+
     for job_type in job_types:
         
         all_items = []
@@ -263,6 +275,7 @@ def run(job_types):
         except:
             items = []
 
+        # Clean and parse each record
         for item in items:
             try:
                 all_items.append(parse_data(item))
@@ -278,4 +291,5 @@ def run(job_types):
 
 if __name__ == "__main__":
     job_types = ['data_analyst', 'data_engineer']
+    # Run the API for the different job title Indeed queries
     run(job_types)
