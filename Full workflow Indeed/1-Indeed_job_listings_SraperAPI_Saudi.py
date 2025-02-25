@@ -104,9 +104,9 @@ async def scrape_search(url: str, max_results: int = 1000) -> list:
     log.info(f"Scraping search: {url}")
     trial = 1 # Set up retrials with different session numbers if an attempt fail
     session = 1 # Set up the first session number to be used by the web scraper
-    session_type = "'premium': 'true'" # Used to identify session type of the current request
+    session_type = "premium" # Used to identify session type of the current request
     result_first_page = None
-    new_params = {'device_type': 'desktop', 'country_code': 'us', 'ultra_premium': 'true', 'session': session}
+    new_params = {'device_type': 'desktop', 'country_code': 'us', 'premium': 'true', 'session': session}
     while result_first_page == None and trial < 21:
         try:
             result_first_page = client.get(url, params=new_params)
@@ -183,7 +183,7 @@ async def run(job_title: str):
 
         result_search = None
         attempt = 1
-        while result_search == None and attempt < 11:
+        while result_search == None and attempt < 6:
             try:
                 result_search = await scrape_search(url)
                 df = pd.DataFrame(result_search).sort_values(by='name', ascending=True)
