@@ -143,5 +143,5 @@ Data Workflow Diagram
 - Go to "Your Profile" -> "Reset my password" to change your password
 13. Set up OpenAI LLM Environment
 - Go to /home/ubuntu/.bashrc
-- At the bottom of this file, enter the following: export OPENAI_API_KEY="<open_ai_key>"
+- At the bottom of this file, enter the following: export OPENAI_API_KEY="<openai_api_key>"
 - Run source ~/.bashrc
