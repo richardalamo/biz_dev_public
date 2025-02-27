@@ -28,6 +28,11 @@ pip install apache-airflow[postgres]
 pip install python-dotenv
 pip install boto3
 pip install sqlalchemy psycopg2
+pip install farm-haystack==1.26.4
+pip install --upgrade setuptools
+pip install torch==2.6.0
+pip install haystack-ai==2.10.3
+pip install haystack==0.42
 # install aws on ec2 linux command line
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 sudo apt-get install unzip
