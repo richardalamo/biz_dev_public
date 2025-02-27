@@ -140,4 +140,8 @@ Data Workflow Diagram
 - Once you get to the database connection part, enter your RDS PostgreSQL database credentials in the setup prompt
 12. Airflow Security
 - Go to "Security" -> "List Users" -> "Edit record" in the Admin Airflow Console to change your First Name, Last Name, User Name, and Email
-- Go to "Your Profile" -> "Reset my password" to change your password 
+- Go to "Your Profile" -> "Reset my password" to change your password
+13. Set up OpenAI LLM Environment
+- Go to /home/ubuntu/.bashrc
+- At the bottom of this file, enter the following: export OPENAI_API_KEY="<open ai key>"
+- Run source ~/.bashrc
