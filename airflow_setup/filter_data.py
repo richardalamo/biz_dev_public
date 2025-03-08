@@ -4,10 +4,12 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--input_csv_path')
+parser.add_argument('--processed_data_path')
 parser.add_argument('--light_filtered_path')
 parser.add_argument('--heavy_filtered_path')
 args = parser.parse_args()
 input_csv_path = args.input_csv_path
+processed_data_path = args.processed_data_path
 light_filtered_path = args.light_filtered_path
 heavy_filtered_path = args.heavy_filtered_path
 
@@ -166,5 +168,6 @@ for i in range(data.shape[0]):
 # Use the stored values to create the new column "n_filter_words"
 data['n_filter_words'] = filter_words_count
 
+data.to_csv(processed_data_path, index=False)
 data[data["n_filter_words"] > 0].to_csv(light_filtered_path, index=False)
 data[data["n_filter_words"] > 2].to_csv(heavy_filtered_path, index=False)
