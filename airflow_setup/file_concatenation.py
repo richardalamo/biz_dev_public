@@ -30,6 +30,8 @@ for file in glob.glob(f'{input_csv_path}/jobs_detail*.csv'):
     # Add "search keyword" column to the df that accounts for the job cited in each .csv file
     text = file
     title_used_in_search = re.compile(r"jobs_detail_(\w+)_\d+-\d+-\d+").findall(text)[0].replace("_", " ")
+    if " mdm " in title_used_in_search:
+        title_used_in_search = title_used_in_search.replace(' mdm ', ' (mdm) ') # "mdm" needs to be renamed to "(mdm)" consistent with the search query
     df["search keyword"] = title_used_in_search
 
     # Add "date" column to the df that accounts for the date cited in each .csv file
