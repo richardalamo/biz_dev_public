@@ -290,6 +290,44 @@ def run(job_types):
         df.to_csv(f'{output_csv_path}/jobs_detail_{job_type}_{date_str}.csv', index=False)
 
 if __name__ == "__main__":
-    job_types = ['data_analyst', 'data_engineer']
+    job_types = [
+                'data_analyst', 
+                'data_engineer',
+                'data_scientist',
+                'machine_learning_engineer',
+                'business_intelligence',
+                 'cloud_engineer',
+                 'cloud_solutions_architect',
+                 'cloud_infrastructure_engineer',
+                 'cloud_devops_engineer',
+                 'cloud_systems_administrator',
+                 'cloud_security_engineer',
+                 'aws_engineer',
+                 'azure_engineer',
+                 'google_cloud_engineer',
+                 'cloud_network_engineer',
+                 'data_governance_specialist',
+                 'data_governance_analyst',
+                 'data_quality_analyst',
+                 'data_steward',
+                 'master_data_management_mdm_specialist',
+                 'data_compliance_analyst',
+                 'data_privacy_officer',
+                 'data_management_specialist',
+                 'infomration_governance_manager',
+                 'data_governance_manager',
+                 'ai_engineer',
+                 'ai_specialist',
+                 'deep_learning_engineer',
+                 'ai_solutions_architect',
+                 'nlp_engineer',
+                 'computer_vision_engineer',
+                 'ai_research_scientist',
+                 'ai_product_manager',
+                 'ai_consultant',
+                 'prompt_engineer',
+                 'ml_ops_engineer',
+                 'generative_ai_engineer',
+                ]
     # Run the API for the different job title Indeed queries
     run(job_types)
