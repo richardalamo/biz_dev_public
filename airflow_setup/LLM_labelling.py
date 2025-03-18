@@ -115,7 +115,7 @@ def process_with_llm(gpt_categorizer, df, gpt_model_name):
     """
     Append LLM outputs to dataframe
 
-    Input: got_categorizer, df, gpt_model_name
+    Input: gpt_categorizer, df, gpt_model_name
     Output: labelled df
     """
     gpt_replies = []
