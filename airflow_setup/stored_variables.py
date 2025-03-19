@@ -1,17 +1,17 @@
-table_names = ['raw', 'preprocessed', 'light_filtered', 'heavy_filtered']
+table_names = ['raw_new', 'preprocessed_new', 'processed_new', 'LLM_labels_new']
 
 csv_file_paths = [
     "/home/ubuntu/airflow/outputs/concatenated_data.csv",
-    "/home/ubuntu/airflow/outputs/data_Indeed_preprocessed.csv",
-    "/home/ubuntu/airflow/outputs/light_filtered_data.csv",
-    "/home/ubuntu/airflow/outputs/heavy_filtered_data.csv",
+    "/home/ubuntu/airflow/outputs/preprocessed_data.csv",
+    "/home/ubuntu/airflow/outputs/processed_data.csv",
+    "/home/ubuntu/airflow/outputs/LLM_labels_data.csv",
 ]
 
 sql_copy_to_temp_queries = [
     "COPY raw_temp FROM STDIN WITH CSV HEADER",
     "COPY preprocessed_temp FROM STDIN WITH CSV HEADER",
-    "COPY light_filtered_temp FROM STDIN WITH CSV HEADER",
-    "COPY heavy_filtered_temp FROM STDIN WITH CSV HEADER"
+    "COPY processed_temp FROM STDIN WITH CSV HEADER",
+    "COPY LLM_labels_temp FROM STDIN WITH CSV HEADER"
 ]
 
 sql_temp_table_queries = [
@@ -267,7 +267,7 @@ sql_temp_table_queries = [
     );
     ''',
     '''
-    CREATE TEMPORARY TABLE IF NOT EXISTS light_filtered_temp (
+    CREATE TEMPORARY TABLE IF NOT EXISTS processed_temp (
         name TEXT,
         key TEXT,
         title TEXT,
@@ -494,7 +494,7 @@ sql_temp_table_queries = [
     );
     ''',
     '''
-    CREATE TEMPORARY TABLE IF NOT EXISTS heavy_filtered_temp (
+    CREATE TEMPORARY TABLE IF NOT EXISTS LLM_labels_temp (
         name TEXT,
         key TEXT,
         title TEXT,
@@ -513,6 +513,7 @@ sql_temp_table_queries = [
         industry_skills TEXT,
         description TEXT,
         search_keyword TEXT,
+        label TEXT,
         "date" DATE,
         "year" INTEGER,
         "month" INTEGER,
@@ -724,16 +725,16 @@ sql_temp_table_queries = [
 
 sql_merge_sql_queries = [
     '''
-    INSERT INTO raw
+    INSERT INTO raw_new
     SELECT rt.name, rt.key, rt.title, rt.location, rt.jobtype, rt.posted, rt.days_ago, rt.rating, rt.experience, rt.salary, rt.education, rt.feed, rt.link, rt.tools, rt.soft_skills, rt.industry_skills, rt.description, rt.search_keyword, rt.date, rt.year, rt.month
     FROM raw_temp rt
-    LEFT JOIN raw r ON rt.key = r.key
+    LEFT JOIN raw_new r ON rt.key = r.key
     AND rt.date = r.date
     AND rt.search_keyword = r.search_keyword
     WHERE r.key IS NULL;
     ''',
     '''
-    INSERT INTO preprocessed
+    INSERT INTO preprocessed_new
     SELECT 
         pt.name, pt.key, pt.title, pt.location, pt.jobtype, pt.posted, pt.days_ago, 
         pt.rating, pt.experience, pt.salary, pt.education, pt.feed, pt.link, 
@@ -788,13 +789,13 @@ sql_merge_sql_queries = [
         pt."research skills", pt.scripting, pt."statistical analysis", pt.statistics, 
         pt."technical documentation", pt.transform, pt."understanding of machine learning algorithms"
     FROM preprocessed_temp pt
-    LEFT JOIN preprocessed p on pt.key=p.key
+    LEFT JOIN preprocessed_new p on pt.key=p.key
     AND pt.date = p.date
     AND pt.search_keyword = p.search_keyword
     WHERE p.key IS NULL;
     ''',
     '''
-    INSERT INTO light_filtered
+    INSERT INTO processed_new
     SELECT 
         lft.name, lft.key, lft.title, lft.location, lft.jobtype, lft.posted, lft.days_ago, 
         lft.rating, lft.experience, lft.salary, lft.education, lft.feed, lft.link, 
@@ -849,19 +850,19 @@ sql_merge_sql_queries = [
         lft."research skills", lft.scripting, lft."statistical analysis", lft.statistics, 
         lft."technical documentation", lft.transform, lft."understanding of machine learning algorithms",
         lft.n_filter_words
-    FROM light_filtered_temp lft
-    LEFT JOIN light_filtered lf on lft.key=lf.key
+    FROM processed_temp lft
+    LEFT JOIN processed_new lf on lft.key=lf.key
     AND lft.date = lf.date
     AND lft.search_keyword = lf.search_keyword
     WHERE lf.key IS NULL;
     ''',
     '''
-    INSERT INTO heavy_filtered
+    INSERT INTO LLM_labels_new
     SELECT 
         hft.name, hft.key, hft.title, hft.location, hft.jobtype, hft.posted, hft.days_ago, 
         hft.rating, hft.experience, hft.salary, hft.education, hft.feed, hft.link, 
         hft.tools, hft.soft_skills, hft.industry_skills, hft.description, 
-        hft.search_keyword, hft."date", hft."year", hft."month", 
+        hft.search_keyword, hft.label, hft."date", hft."year", hft."month", 
         hft.experience_required, hft.bachelor, hft.master, hft.phd, 
         hft.aws, hft."microsoft access", hft.azure, hft.c, hft."c++", hft.cassandra, 
         hft.circleci, hft.cloud, hft.confluence, hft.databricks, hft.docker, hft.emr, 
@@ -911,10 +912,8 @@ sql_merge_sql_queries = [
         hft."research skills", hft.scripting, hft."statistical analysis", hft.statistics, 
         hft."technical documentation", hft.transform, hft."understanding of machine learning algorithms",
         hft.n_filter_words
-    FROM heavy_filtered_temp hft
-    LEFT JOIN heavy_filtered hf on hft.key=hf.key
-    AND hft.date = hf.date
-    AND hft.search_keyword = hf.search_keyword
+    FROM LLM_labels_temp hft
+    LEFT JOIN LLM_labels_new hf on hft.key=hf.key
     WHERE hf.key IS NULL;
     ''',
 ]
@@ -922,6 +921,6 @@ sql_merge_sql_queries = [
 sql_drop_temp_table_queries = [
     "DROP TABLE IF EXISTS raw_temp;",
     "DROP TABLE IF EXISTS preprocessed_temp;",
-    "DROP TABLE IF EXISTS light_filtered_temp;",
-    "DROP TABLE IF EXISTS heavy_filtered_temp;"
+    "DROP TABLE IF EXISTS processed_temp;",
+    "DROP TABLE IF EXISTS LLM_labels_temp;"
 ]
