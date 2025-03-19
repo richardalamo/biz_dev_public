@@ -28,7 +28,7 @@ try:
 
     # Create table using raw SQL
     create_raw_table_query = f"""
-    CREATE TABLE IF NOT EXISTS raw (
+    CREATE TABLE IF NOT EXISTS raw_new (
         name TEXT,
         key TEXT,
         title TEXT,
@@ -56,7 +56,7 @@ try:
     cursor.execute(create_raw_table_query)
 
     create_preprocessed_table_query = f"""
-    CREATE TABLE IF NOT EXISTS preprocessed (
+    CREATE TABLE IF NOT EXISTS preprocessed_new (
         name TEXT,
         key TEXT,
         title TEXT,
@@ -283,8 +283,8 @@ try:
     """
     cursor.execute(create_preprocessed_table_query)
 
-    create_light_filtered_table_query = f"""
-    CREATE TABLE IF NOT EXISTS light_filtered (
+    create_processed_table_query = f"""
+    CREATE TABLE IF NOT EXISTS processed_new (
         name TEXT,
         key TEXT,
         title TEXT,
@@ -510,10 +510,10 @@ try:
         n_filter_words INTEGER
     );
     """
-    cursor.execute(create_light_filtered_table_query)
+    cursor.execute(create_processed_table_query)
 
-    create_heavy_filtered_table_query = f"""
-    CREATE TABLE IF NOT EXISTS heavy_filtered (
+    create_LLM_labels_table_query = f"""
+    CREATE TABLE IF NOT EXISTS LLM_labels_new (
         name TEXT,
         key TEXT,
         title TEXT,
@@ -532,6 +532,7 @@ try:
         industry_skills TEXT,
         description TEXT,
         search_keyword TEXT,
+        label TEXT,
         "date" DATE,
         "year" INTEGER,
         "month" INTEGER,
@@ -739,7 +740,7 @@ try:
         n_filter_words INTEGER
     );
     """
-    cursor.execute(create_heavy_filtered_table_query)
+    cursor.execute(create_LLM_labels_table_query)
     conn.commit()
 
 except Exception as e:
