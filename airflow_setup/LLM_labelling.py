@@ -103,13 +103,18 @@ gpt_categorizer_1 = create_llm_model(gpt_1)
 gpt_categorizer_2 = create_llm_model(gpt_2)
 
 df = pd.read_csv(input_csv_path)
+df = df.drop_duplicates(subset=['key']) # NOTES FOR FUTURE: We should do a join with historical job listings to lower LLM cost
+
+# Ensure integer data doesn't get converted to floats
+df['days_ago'] = df['days_ago'].apply(lambda x: int(x) if pd.notna(x) else np.nan)
+df['days_ago'] = df['days_ago'].astype('Int64')
+
 # Split dataframe into two so that we run different models on different data
 gpt_4o_list = [
 "data analyst", "business intelligence", "cloud engineer"
 ]
 df_gpt_1 = df[~df['search keyword'].isin(gpt_4o_list)]
 df_gpt_2 = df[df['search keyword'].isin(gpt_4o_list)] # We run gpt-4o on the tricky job categories
-
 
 def process_with_llm(gpt_categorizer, df, gpt_model_name):
     """
@@ -121,9 +126,15 @@ def process_with_llm(gpt_categorizer, df, gpt_model_name):
     gpt_replies = []
     for i in range(df.shape[0]):
         # Append LLM output to a list
-        reply = gpt_categorizer.run({"fetcher": {"df": df, "row_number": i}})
-        gpt_replies.append(reply[gpt_model_name]["replies"][0])
+        try:
+            reply = gpt_categorizer.run({"fetcher": {"df": df, "row_number": i}})
+            gpt_replies.append(reply[gpt_model_name]["replies"][0])
+        except:
+            gpt_replies.append('API Error')
+        if (i+1)%100==0:
+            print(f'{i+1} labels generated')
     df['label'] = gpt_replies # Create label column storing LLM output
+    df['label'] = df['label'].str.lower().str.replace(r'[^a-z\s\-]', '', regex=True) # Clean and standardize LLM outputs
     columns = list(df.columns)
     # Label column is reshuffled to be right beside "search keyword" column
     columns.insert(list(df.columns).index('search keyword')+1, columns.pop(columns.index('label')))
@@ -140,5 +151,4 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
 
 # Combine datasets
 df_gpt = pd.concat([df_gpt_1, df_gpt_2])
-
 df_gpt.to_csv(output_csv_path, index=False)
