@@ -21,12 +21,11 @@ s3_folder = 'raw_scrapes/test'
 POSTGRES_CONN_ID = "airflow_rds"
 raw_scrapes_path = '/home/ubuntu/airflow/raw'
 scrape_code_path = '/home/ubuntu/airflow/scrape_code'
-# scrape_script_listings_path = f'{scrape_code_path}/1-Indeed_job_listings_ScraperAPI_Saudi.py'
-# scrape_script_details_path = f'{scrape_code_path}/2-Indeed_job_details_ScraperAPI_Saudi.py'
 indeed_api_path = f'{scrape_code_path}/Indeed_API.py'
 concatenation_path = f'{scrape_code_path}/file_concatenation.py'
-clean_and_process_path = f'{scrape_code_path}/clean_and_process.py'
-filter_path = f'{scrape_code_path}/filter_data.py'
+clean_and_preprocess_path = f'{scrape_code_path}/clean_and_preprocess.py'
+process_path = f'{scrape_code_path}/process_data.py'
+llm_path = f'{scrape_code_path}/LLM_labelling.py'
 
 to_del_file = os.getenv("to_del_folder")
 access_key = os.getenv("aws_access_key")
@@ -83,18 +82,6 @@ start_task = DummyOperator(
     dag=dag,
 )
 
-# scrape_listings = BashOperator(
-#     task_id='scrape_listings',
-#     bash_command=f'nohup python3 {scrape_script_listings_path} &',
-#     dag=dag,
-# )
-
-# scrape_details = BashOperator(
-#     task_id='scrape_details',
-#     bash_command=f'nohup python3 {scrape_script_details_path} &',
-#     dag=dag,
-# )
-
 collect_jobs = BashOperator(
     task_id='collect_jobs',
     bash_command=f'nohup python3 {indeed_api_path} --output_csv_path {raw_scrapes_path} &',
@@ -107,15 +94,21 @@ concatenate_data = BashOperator(
     dag=dag,
 )
 
-clean_and_process_data = BashOperator(
-    task_id='clean_and_process_data',
-    bash_command=f'nohup python3 {clean_and_process_path} --input_csv_path {csv_file_paths[0]} --output_csv_path {csv_file_paths[1]} &',
+clean_and_preprocess_data = BashOperator(
+    task_id='clean_and_preprocess_data',
+    bash_command=f'nohup python3 {clean_and_preprocess_path} --input_csv_path {csv_file_paths[0]} --output_csv_path {csv_file_paths[1]} &',
     dag=dag,
 )
 
-filter_data = BashOperator(
-    task_id='filter_data',
-    bash_command=f'nohup python3 {filter_path} --input_csv_path {csv_file_paths[1]} --light_filtered_path {csv_file_paths[2]} --heavy_filtered_path {csv_file_paths[3]} &',
+process_data = BashOperator(
+    task_id='process_data',
+    bash_command=f'nohup python3 {process_path} --input_csv_path {csv_file_paths[1]} --output_csv_path {csv_file_paths[2]} &',
+    dag=dag,
+)
+
+llm_labelling = BashOperator(
+    task_id='llm_labelling',
+    bash_command=f'nohup python3 {llm_path} --input_csv_path {csv_file_paths[2]} --output_csv_path {csv_file_paths[3]} &',
     dag=dag,
 )
 
@@ -167,6 +160,4 @@ end_task = DummyOperator(
 )
     
 # Set task dependencies
-# start_task >> scrape_listings >> scrape_details >> end_task
-# start_task >> concatenate_data >> clean_and_process_data >> filter_data >> load_data >> delete_csv_files >> delete_airflow_logs >> end_task
-start_task >> collect_jobs >> concatenate_data >> clean_and_process_data >> filter_data >> load_data >> delete_csv_files >> delete_airflow_logs >> end_task
+start_task >> collect_jobs >> concatenate_data >> clean_and_preprocess_data >> process_data >> llm_labelling >> load_data >> delete_csv_files >> delete_airflow_logs >> end_task
