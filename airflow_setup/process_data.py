@@ -4,14 +4,11 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--input_csv_path')
-parser.add_argument('--processed_data_path')
-parser.add_argument('--light_filtered_path')
-parser.add_argument('--heavy_filtered_path')
+parser.add_argument('--output_csv_path')
+
 args = parser.parse_args()
 input_csv_path = args.input_csv_path
-processed_data_path = args.processed_data_path
-light_filtered_path = args.light_filtered_path
-heavy_filtered_path = args.heavy_filtered_path
+output_csv_path = args.output_csv_path
 
 data = pd.read_csv(input_csv_path)
 
@@ -168,6 +165,7 @@ for i in range(data.shape[0]):
 # Use the stored values to create the new column "n_filter_words"
 data['n_filter_words'] = filter_words_count
 
-data.to_csv(processed_data_path, index=False)
-data[data["n_filter_words"] > 0].to_csv(light_filtered_path, index=False)
-data[data["n_filter_words"] > 2].to_csv(heavy_filtered_path, index=False)
+# Given we bucketed some few search keywords into a bigger category, we need to dedup it again
+data = data.drop_duplicates(subset=['key', 'date', 'search keyword'])
+
+data.to_csv(output_csv_path, index=False)
