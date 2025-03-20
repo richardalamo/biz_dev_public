@@ -62,6 +62,7 @@ Data Workflow Diagram
 -  apify_token={apify token provided when you created your apify account}
 -  data_analyst={apify API client task id provided for data_analyst}
 -  data_engineer={apify API client task id provided for data_engineer}
+-  Do the same for each API client task you've created, which corresponds to a search query (eg. "data analyst", "data scientist")
 7. Set up Lambda Function
 - Make sure you are in ca-central-1
 - Under runtime, enter Python 3.11 or more recent
