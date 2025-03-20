@@ -314,7 +314,7 @@ if __name__ == "__main__":
                  'data_compliance_analyst',
                  'data_privacy_officer',
                  'data_management_specialist',
-                 'infomration_governance_manager',
+                 'information_governance_manager',
                  'data_governance_manager',
                  'ai_engineer',
                  'ai_specialist',
