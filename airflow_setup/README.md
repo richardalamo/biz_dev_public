@@ -83,6 +83,8 @@ Data Workflow Diagram
 }
 - Set the timeout to 5 minutes. Enough time for the ec2 instance to start
 - Paste the lambda_function.py code into the lambda function in the console
+- Under INSTANCE_ID = '{insert_ec2_instance_id}', enter your ec2 instance id
+- Under 'export OPENAI_API_KEY="{insert_openai_api_key}"', enter your openai api key
 8. Set up EventBridge
 - Create rule
 - Under rule type, choose Schedule
