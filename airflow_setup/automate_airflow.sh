@@ -14,13 +14,13 @@ sleep 30
 
 # Step 3: Trigger the specific DAG (replace 'your_dag_id' with your actual DAG ID)
 echo "Triggering DAG..."
-airflow dags trigger "basic_example_dag"
+airflow dags trigger "indeed_etl"
 
 # Step 4: Wait for the DAG to finish running
 echo "Waiting for DAG to finish..."
 while true; do
     # Get the most recent DAG run's state (you may need to adjust for the exact DAG ID)
-    DAG_STATUS=$(airflow dags list-runs -d "basic_example_dag" --output json | jq -r '.[0].state')
+    DAG_STATUS=$(airflow dags list-runs -d "indeed_etl" --output json | jq -r '.[0].state')
 
     if [ "$DAG_STATUS" == "success" ]; then
         echo "DAG run completed successfully!"
