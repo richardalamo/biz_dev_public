@@ -3,6 +3,7 @@ import numpy as np
 from typing import List
 import time
 import concurrent.futures
+import sqlalchemy as db
 from haystack import Document, Pipeline, component # pip install farm-haystack==1.26.4 && pip install --upgrade setuptools && pip install torch==2.6.0 && pip install haystack-ai==2.10.3 && pip install haystack==0.42
 from haystack.components.builders import PromptBuilder
 from haystack.components.generators.openai import OpenAIGenerator
@@ -10,6 +11,15 @@ from haystack.components.generators.hugging_face_api import HuggingFaceAPIGenera
 from haystack.components.fetchers import LinkContentFetcher
 from haystack.components.converters import HTMLToDocument
 import argparse
+import os
+from dotenv import load_dotenv
+
+load_dotenv('/home/ubuntu/airflow/.env')
+username = os.getenv('username')
+password = os.getenv('password')
+rds_endpoint = os.getenv('rds_endpoint')
+db_port = '5432'
+db_name = os.getenv('db_name')
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--input_csv_path')
@@ -104,6 +114,20 @@ gpt_categorizer_2 = create_llm_model(gpt_2)
 
 df = pd.read_csv(input_csv_path)
 df = df.drop_duplicates(subset=['key']) # NOTES FOR FUTURE: We should do a join with historical job listings to lower LLM cost
+print(f'The number of rows and columns before the key filter is {df.shape}')
+
+# Get historical database keys from PostgreSQL table
+engine = db.create_engine(f'postgresql://{username}:{password}@{rds_endpoint}:{db_port}/{db_name}')
+connection = engine.connect()
+existing_keys = connection.execute('select distinct key from processed_new').fetchall()
+existing_keys = [x[0] for x in existing_keys]
+key_df = pd.DataFrame(existing_keys, columns=['key'])
+
+# Filter out the dataframe to only contain the keys that DO NOT exist in the PostgreSQL table
+df = df.merge(key_df, on='key', how='left', indicator=True)
+df = df[df['_merge'] == 'left_only']
+df = df.drop(columns=['_merge'])
+print(f'The number of rows and columns after the key filter is {df.shape}')
 
 # Ensure integer data doesn't get converted to floats
 df['days_ago'] = df['days_ago'].apply(lambda x: int(x) if pd.notna(x) else np.nan)
