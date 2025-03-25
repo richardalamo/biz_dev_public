@@ -158,7 +158,20 @@ def process_with_llm(gpt_categorizer, df, gpt_model_name):
         if (i+1)%100==0:
             print(f'{i+1} labels generated')
     df['label'] = gpt_replies # Create label column storing LLM output
-    df['label'] = df['label'].str.lower().str.replace(r'[^a-z\s\-]', '', regex=True) # Clean and standardize LLM outputs
+    df['label'] = df['label'].str.lower().str.replace(r'[^a-z\s\-]', '', regex=True).str.strip() # Clean and standardize LLM outputs
+    
+    # Anything the LLM outputs that is not in the accepted_list below would be converted to "none"
+    accepted_list = [
+        'data analyst',
+        'data scientist',
+        'data engineer',
+        'machine learning engineer',
+        'business intelligence',
+        'cloud engineer',
+        'data governance',
+        'ai-related',
+        ]
+    df['label'] = np.where(df['label'].isin(accepted_list), df['label'], 'none')
     columns = list(df.columns)
     # Label column is reshuffled to be right beside "search keyword" column
     columns.insert(list(df.columns).index('search keyword')+1, columns.pop(columns.index('label')))
