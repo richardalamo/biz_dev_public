@@ -8,7 +8,7 @@ Data Workflow Diagram
 - OS Image: Ubuntu
 - Instance Type: t2.medium or larger
 - Key Pair Name: Create a new .pem file
-- Storage: At least 20 GiB
+- Storage: At least 32 GiB
 - Make sure the role has AmazonSSMManagedInstanceCore and AmazonEC2RoleforSSM policy, with trust relationships being the following:
 {
     "Version": "2012-10-17",
