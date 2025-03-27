@@ -29,7 +29,7 @@ Data Workflow Diagram
 - chmod +x airflow_bash_script.sh
 - ./airflow_bash_script.sh
 - Copy indeed_etl.py and stored_variables.py into /home/ubuntu/airflow/dags
-- Copy clean_and_process.py, file_concatenation.py, filter_data.py, and Indeed_API.py into /home/ubuntu/airflow/scrape_code
+- Copy clean_and_process.py, file_concatenation.py, process_data.py, LLM_labelling.py, and Indeed_API.py into /home/ubuntu/airflow/scrape_code
 3. Inside the postgresql terminal (run "sudo -u postgres psql" in command line), run the following:
 - CREATE DATABASE airflow_db;
 - CREATE USER airflow_user WITH PASSWORD 'beamdatajobscrape25';
