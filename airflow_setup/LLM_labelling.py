@@ -13,8 +13,11 @@ from haystack.components.converters import HTMLToDocument
 import argparse
 import os
 from dotenv import load_dotenv
+import openai
 
 load_dotenv('/home/ubuntu/airflow/.env')
+openai_api_key = os.getenv('OPENAI_API_KEY')
+openai.api_key = openai_api_key
 username = os.getenv('username')
 password = os.getenv('password')
 rds_endpoint = os.getenv('rds_endpoint')
