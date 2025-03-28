@@ -33,6 +33,7 @@ pip install --upgrade setuptools
 pip install torch==2.6.0
 pip install haystack-ai==2.10.3
 pip install haystack==0.42
+pip install openai==1.65.0
 # install aws on ec2 linux command line
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 sudo apt-get install unzip
