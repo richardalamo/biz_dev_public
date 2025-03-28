@@ -148,3 +148,7 @@ Data Workflow Diagram
 - Go to /home/ubuntu/.bashrc
 - At the bottom of this file, enter the following: export OPENAI_API_KEY="<openai_api_key>"
 - Run source ~/.bashrc
+14. Airflow debug
+- One time, all the DAGs disappeared in the Airflow UI. After looking at the nohup.out, there were permission errors in the logs that the scheduler couldn't access. Running this:
+- sudo chown -R ubuntu:ubuntu /home/ubuntu/airflow/logs
+- Resolved the issue and the DAGs came back
