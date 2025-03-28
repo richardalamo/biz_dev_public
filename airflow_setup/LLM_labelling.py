@@ -147,31 +147,36 @@ def process_with_llm(gpt_categorizer, df, gpt_model_name):
     Input: gpt_categorizer, df, gpt_model_name
     Output: labelled df
     """
-    gpt_replies = []
-    for i in range(df.shape[0]):
-        # Append LLM output to a list
-        try:
-            reply = gpt_categorizer.run({"fetcher": {"df": df, "row_number": i}})
-            gpt_replies.append(reply[gpt_model_name]["replies"][0])
-        except:
-            gpt_replies.append('API Error')
-        if (i+1)%100==0:
-            print(f'{i+1} labels generated')
-    df['label'] = gpt_replies # Create label column storing LLM output
-    df['label'] = df['label'].str.lower().str.replace(r'[^a-z\s\-]', '', regex=True).str.strip() # Clean and standardize LLM outputs
-    
-    # Anything the LLM outputs that is not in the accepted_list below would be converted to "none"
-    accepted_list = [
-        'data analyst',
-        'data scientist',
-        'data engineer',
-        'machine learning engineer',
-        'business intelligence',
-        'cloud engineer',
-        'data governance',
-        'ai-related',
-        ]
-    df['label'] = np.where(df['label'].isin(accepted_list), df['label'], 'none')
+    # Only if the dataframe isn't empty, then we run the LLM and the data preprocessing
+    if not df.empty:
+        gpt_replies = []
+        for i in range(df.shape[0]):
+            # Append LLM output to a list
+            try:
+                reply = gpt_categorizer.run({"fetcher": {"df": df, "row_number": i}})
+                gpt_replies.append(reply[gpt_model_name]["replies"][0])
+            except:
+                gpt_replies.append('API Error')
+            if (i+1)%100==0:
+                print(f'{i+1} labels generated')
+        df['label'] = gpt_replies # Create label column storing LLM output
+        df['label'] = df['label'].str.lower().str.replace(r'[^a-z\s\-]', '', regex=True).str.strip() # Clean and standardize LLM outputs
+        
+        # Anything the LLM outputs that is not in the accepted_list below would be converted to "none"
+        accepted_list = [
+            'data analyst',
+            'data scientist',
+            'data engineer',
+            'machine learning engineer',
+            'business intelligence',
+            'cloud engineer',
+            'data governance',
+            'ai-related',
+            ]
+        df['label'] = np.where(df['label'].isin(accepted_list), df['label'], 'none')
+    else:
+        df['label'] = None
+
     columns = list(df.columns)
     # Label column is reshuffled to be right beside "search keyword" column
     columns.insert(list(df.columns).index('search keyword')+1, columns.pop(columns.index('label')))
