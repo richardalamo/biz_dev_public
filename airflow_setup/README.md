@@ -59,6 +59,7 @@ Data Workflow Diagram
 -  username={rds database username}
 -  password={rds database password}
 -  scraperapi_key={scraper api key}
+-  OPENAI_API_KEY={openai_api_key}
 -  apify_token={apify token provided when you created your apify account}
 -  data_analyst={apify API client task id provided for data_analyst}
 -  data_engineer={apify API client task id provided for data_engineer}
