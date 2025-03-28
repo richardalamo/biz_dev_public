@@ -6,7 +6,7 @@ import json
 ec2 = boto3.client('ec2')
 ssm = boto3.client('ssm')
 
-INSTANCE_ID = '{insert_ec2_instance_id}'
+INSTANCE_ID = 'i-0202050cbbcfaa5c9'
 
 def start_instance():
     response = ec2.start_instances(InstanceIds=[INSTANCE_ID])
@@ -29,8 +29,7 @@ def start_instance():
                 'cd /home/ubuntu',
                 'chmod +x automate_airflow.sh',
                 'export AIRFLOW_HOME=/home/ubuntu/airflow',
-                'export OPENAI_API_KEY="{insert_openai_api_key}"',
-                './automate_airflow.sh'
+                'sudo -u ubuntu ./automate_airflow.sh' # Starts Airflow, runs Airflow DAG, sends a Lambda call to stop ec2 instance
             ]
         }
     )
