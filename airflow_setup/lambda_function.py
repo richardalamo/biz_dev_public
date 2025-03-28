@@ -6,7 +6,7 @@ import json
 ec2 = boto3.client('ec2')
 ssm = boto3.client('ssm')
 
-INSTANCE_ID = 'i-0202050cbbcfaa5c9'
+INSTANCE_ID = {insert_ec2_instance_id}
 
 def start_instance():
     response = ec2.start_instances(InstanceIds=[INSTANCE_ID])
