@@ -69,6 +69,7 @@ Data Workflow Diagram
 - Under runtime, enter Python 3.11 or more recent
 - Under Lambda execution role, make sure it has EC2 access, with at least start and stop instance permissions. For now use AmazonEC2FullAccess
 - Under Lambda execution role, make sure it has SSM access. For now use AmazonSSMFullAccess
+- Under Lambda execution role, make sure it has AWSLambdaBasicExecutionRole
 - Make sure trust relationships is:
 {
     "Version": "2012-10-17",
