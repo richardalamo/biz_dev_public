@@ -8,9 +8,31 @@ nohup airflow webserver --port 8080 &
 nohup airflow scheduler &
 
 # Step 2: Poll until Airflow webserver and scheduler are running
-echo "Waiting 30 seconds for Airflow webserver and scheduler to start..."
-# Note to self: Find out how to dynamically check whether Airflow webserver and scheduler are done running
-sleep 30
+echo "Waiting for Airflow webserver and scheduler to start..."
+
+# Function to check if Airflow webserver and scheduler are running
+check_airflow_processes() {
+    webserver_running=$(ps aux | grep 'airflow webserver' | grep -v 'grep')
+    scheduler_running=$(ps aux | grep 'airflow scheduler' | grep -v 'grep')
+
+    if [[ -n "$webserver_running" && -n "$scheduler_running" ]]; then
+        return 0  # Both processes are running
+    else
+        return 1  # One or both processes are not running
+    fi
+}
+
+# Poll every 15 seconds until both webserver and scheduler are up
+while true; do
+    check_airflow_processes
+    if [[ $? -eq 0 ]]; then
+        echo "Airflow webserver and scheduler are both running."
+        break
+    else
+        echo "Waiting... (both processes not yet up)"
+        sleep 15
+    fi
+done
 
 # Step 3: Trigger the specific DAG (replace 'your_dag_id' with your actual DAG ID)
 echo "Triggering DAG..."
