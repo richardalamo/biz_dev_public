@@ -1,5 +1,21 @@
 table_names = ['raw_new', 'preprocessed_new', 'processed_new', 'LLM_labels_new']
 
+GITHUB_FILE_PATHS = [
+    'airflow_setup/Indeed_API.py',
+    'airflow_setup/file_concatenation.py',
+    'airflow_setup/clean_and_preprocess.py',
+    'airflow_setup/process_data.py',
+    'airflow_setup/LLM_labelling.py',
+]
+
+EC2_FILE_PATHS = [
+    '/home/ubuntu/airflow/scrape_code/Indeed_API.py',
+    '/home/ubuntu/airflow/scrape_code/file_concatenation.py',
+    '/home/ubuntu/airflow/scrape_code/clean_and_preprocess.py',
+    '/home/ubuntu/airflow/scrape_code/process_data.py',
+    '/home/ubuntu/airflow/scrape_code/LLM_labelling.py',
+]
+
 csv_file_paths = [
     "/home/ubuntu/airflow/outputs/concatenated_data.csv",
     "/home/ubuntu/airflow/outputs/preprocessed_data.csv",
