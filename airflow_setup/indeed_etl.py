@@ -8,10 +8,12 @@ from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.utils.task_group import TaskGroup
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
-from stored_variables import table_names, csv_file_paths, sql_copy_to_temp_queries, sql_temp_table_queries, sql_merge_sql_queries, sql_drop_temp_table_queries
+from stored_variables import table_names, csv_file_paths, sql_copy_to_temp_queries, sql_temp_table_queries, sql_merge_sql_queries, sql_drop_temp_table_queries, GITHUB_FILE_PATHS, EC2_FILE_PATHS
 import os
 import boto3
 import json
+import requests
+import base64
 
 dag_name = 'indeed_etl'
 load_dotenv("/home/ubuntu/airflow/.env")
@@ -31,6 +33,10 @@ to_del_file = os.getenv("to_del_folder")
 access_key = os.getenv("aws_access_key")
 secret_access_key = os.getenv("aws_secret_access_key")
 
+GITHUB_REPO = 'richardalamo/biz_dev_public'
+GITHUB_TOKEN = os.getenv("github_token") # Expire on July 7, 2025
+GITHUB_BRANCH = 'main' 
+
 s3_client = boto3.client("s3", 
                             aws_access_key_id=access_key, 
                             aws_secret_access_key=secret_access_key
@@ -44,6 +50,25 @@ default_args = {
     'retries': 1,
     'retry_delay': timedelta(minutes=5),  # Use timedelta here for retry delays
 }
+
+def download_file_from_github(GITHUB_TOKEN, GITHUB_REPO, GITHUB_BRANCH, GITHUB_FILE_PATH, EC2_FILE_PATH):
+    # GitHub API URL
+    url = f'https://api.github.com/repos/{GITHUB_REPO}/contents/{GITHUB_FILE_PATH}?ref={GITHUB_BRANCH}'
+
+    # Make the API request to GitHub to get the file content
+    headers = {'Authorization': f'token {GITHUB_TOKEN}'}
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        file_info = response.json()
+        file_content = base64.b64decode(file_info['content'])  # The content is base64 encoded
+
+        # Save the file content to the EC2 path
+        with open(EC2_FILE_PATH, 'wb') as f:
+            f.write(file_content)
+        print(f"File downloaded successfully and saved to {EC2_FILE_PATH}")
+    else:
+        print(f'Error: {response.status_code}, {response.text}')
 
 def load_csv_to_postgres(csv_file_path, create_temp_table, copy_to_temp, merge_sql, drop_sql):
     # Get PostgreSQL connection
@@ -81,6 +106,23 @@ start_task = DummyOperator(
     task_id='start',
     dag=dag,
 )
+
+with TaskGroup('upload_from_github', dag=dag) as upload_from_github:
+    for GITHUB_FILE_PATH, EC2_FILE_PATH in zip(GITHUB_FILE_PATHS, EC2_FILE_PATHS):
+        file_name = GITHUB_FILE_PATH.split('/')[-1].split('.')[0]
+        task_upload_file_from_github = PythonOperator(
+            task_id=f'upload_file_from_github_{file_name}',
+            python_callable=download_file_from_github,
+            op_kwargs={'GITHUB_TOKEN': GITHUB_TOKEN, 
+                    'GITHUB_REPO': GITHUB_REPO, 
+                    'GITHUB_BRANCH': GITHUB_BRANCH,
+                    'GITHUB_FILE_PATH': GITHUB_FILE_PATH,
+                    'EC2_FILE_PATH': EC2_FILE_PATH,
+                    },
+            provide_context=True,
+            trigger_rule=TriggerRule.ALL_DONE,
+            dag=dag,
+        )
 
 collect_jobs = BashOperator(
     task_id='collect_jobs',
@@ -160,4 +202,4 @@ end_task = DummyOperator(
 )
     
 # Set task dependencies
-start_task >> collect_jobs >> concatenate_data >> clean_and_preprocess_data >> process_data >> llm_labelling >> load_data >> delete_csv_files >> delete_airflow_logs >> end_task
+start_task >> upload_from_github >> collect_jobs >> concatenate_data >> clean_and_preprocess_data >> process_data >> llm_labelling >> load_data >> delete_csv_files >> delete_airflow_logs >> end_task
