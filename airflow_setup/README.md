@@ -30,7 +30,15 @@ Data Workflow Diagram
 - ./airflow_bash_script.sh
 - Copy indeed_etl.py and stored_variables.py into /home/ubuntu/airflow/dags
 - Copy clean_and_process.py, file_concatenation.py, process_data.py, LLM_labelling.py, and Indeed_API.py into /home/ubuntu/airflow/scrape_code
-3. Inside the postgresql terminal (run "sudo -u postgres psql" in command line), run the following:
+3. Github Token Generation
+- Make sure your account is a collaborator in the repo that you want to do CI/CD on
+- Go to Settings -> Developer Settings -> Tokens (classic) -> Generate new token (classic)
+- Once you get the prompt, then sign in again to your console
+- For Expiration, unless your github account is the company account, it's best to set the Expiration date
+- For Note, just explain what this token is for
+- For Select scopes, repo, workflow, write:packages, and delete:packages should be enough
+- Then once you click Generate token, copy it and then paste it in your .env file
+4. Inside the postgresql terminal (run "sudo -u postgres psql" in command line), run the following:
 - CREATE DATABASE airflow_db;
 - CREATE USER airflow_user WITH PASSWORD 'beamdatajobscrape25';
 - GRANT ALL PRIVILEGES ON DATABASE airflow_db TO airflow_user;
@@ -43,15 +51,15 @@ Data Workflow Diagram
 - ALTER SCHEMA public OWNER TO airflow_user;
 - ALTER USER airflow_user WITH SUPERUSER;
 - \q
-4. In airflow.cfg, edit the following:
+5. In airflow.cfg, edit the following:
 -  sql_alchemy_conn = postgresql+psycopg2://airflow_user:beamdatajobscrape25@localhost/airflow_db
 -  executor = LocalExecutor
-5. Run aws configure to enable access aws microservices in your ec2
+6. Run aws configure to enable access aws microservices in your ec2
 -  Enter {aws access key}
 -  Enter {aws secret access key}
 -  Enter "ca-central-1"
 -  Enter "json'
-6. Inside /home/ubuntu/airflow/.env, enter the following:
+7. Inside /home/ubuntu/airflow/.env, enter the following:
 -  aws_access_key={aws access key}
 -  aws_secret_access_key={aws secret access key}
 -  rds_endpoint={rds endpoint}
@@ -59,12 +67,13 @@ Data Workflow Diagram
 -  username={rds database username}
 -  password={rds database password}
 -  scraperapi_key={scraper api key}
+-  github_token={enter github token}
 -  OPENAI_API_KEY={openai_api_key}
 -  apify_token={apify token provided when you created your apify account}
 -  data_analyst={apify API client task id provided for data_analyst}
 -  data_engineer={apify API client task id provided for data_engineer}
 -  Do the same for each API client task you've created, which corresponds to a search query (eg. "data analyst", "data scientist")
-7. Set up Lambda Function
+8. Set up Lambda Function
 - Make sure you are in ca-central-1
 - Under runtime, enter Python 3.11 or more recent
 - Under Lambda execution role, make sure it has EC2 access, with at least start and stop instance permissions. For now use AmazonEC2FullAccess
@@ -87,7 +96,7 @@ Data Workflow Diagram
 - Paste the lambda_function.py code into the lambda function in the console
 - Under INSTANCE_ID = '{insert_ec2_instance_id}', enter your ec2 instance id
 - Under 'export OPENAI_API_KEY="{insert_openai_api_key}"', enter your openai api key
-8. Set up EventBridge
+9. Set up EventBridge
 - Create rule
 - Under rule type, choose Schedule
 - Click Continue in EventBridge Scheduler
@@ -103,7 +112,7 @@ Data Workflow Diagram
 - Add a Statement ID. Anything will suffice
 - Under Source ARN, copy the EventBridge Schedule ARN
 - Under Action, select lambda:InvokeFunction
-9. Set up RDS Table
+10. Set up RDS Table
 - In the RDS database, make sure that the security group inbound rules is set to Type: PostgreSQL, and source being your EC2 instance's security group. This will enable the connection needed for the EC2 instance to access RDS PostgreSQL when doing reads, writes, etc.
 - If on the ec2 instance for whatever reason there is an error claiming that there is no RDS database even if the database exists in the RDS Console, do the following:
 - Run "psql -h <rds_endpoint> -U <rds_username> -p 5432 -d postgres"
@@ -113,7 +122,7 @@ Data Workflow Diagram
 - ALTER DATABASE "<database_name>" OWNER TO <rds_username>;
 - GRANT ALL PRIVILEGES ON DATABASE "<database_name>" TO <rds_username>;
 - After exiting the postgresql command line, run create_postgresql_table.py to create the tables
-10. Set up Airflow RDS PostgreSQL Connection
+11. Set up Airflow RDS PostgreSQL Connection
 - In the Airflow UI, under Admin -> Connections, add a new record. Then enter the following:
 - Connection Id: <anything_you_like>
 - Connection Type: Postgres
@@ -122,7 +131,7 @@ Data Workflow Diagram
 - Login: <rds_username>
 - Password: <rds_password>
 - Port: 5432
-11. Set up Metabase
+12. Set up Metabase
 - Run the following:
 - sudo apt update && sudo apt upgrade -y
 - sudo apt install software-properties-common
@@ -146,11 +155,11 @@ Data Workflow Diagram
 12. Airflow Security
 - Go to "Security" -> "List Users" -> "Edit record" in the Admin Airflow Console to change your First Name, Last Name, User Name, and Email
 - Go to "Your Profile" -> "Reset my password" to change your password
-13. Set up OpenAI LLM Environment
+14. Set up OpenAI LLM Environment
 - Go to /home/ubuntu/.bashrc
 - At the bottom of this file, enter the following: export OPENAI_API_KEY="<openai_api_key>"
 - Run source ~/.bashrc
-14. Airflow debug
+15. Airflow debug
 - One time, all the DAGs disappeared in the Airflow UI. After looking at the nohup.out, there were permission errors in the logs that the scheduler couldn't access. Running this:
 - sudo chown -R ubuntu:ubuntu /home/ubuntu/airflow/logs
 - Resolved the issue and the DAGs came back
