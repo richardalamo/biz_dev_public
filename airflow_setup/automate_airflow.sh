@@ -61,10 +61,7 @@ echo "Stopping Airflow webserver and scheduler..."
 pkill -f "airflow webserver"
 pkill -f "airflow scheduler"
 
-# Step 6: Deactivate the virtual environment
-# deactivate
-
-# Step 7: Stop EC2 instance
+# Step 6: Stop EC2 instance
 echo "Stopping EC2 instance"
 python3 stop_ec2_instance.py
 # aws lambda invoke \
