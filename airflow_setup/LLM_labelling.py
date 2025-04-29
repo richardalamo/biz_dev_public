@@ -116,7 +116,7 @@ gpt_categorizer_1 = create_llm_model(gpt_1)
 gpt_categorizer_2 = create_llm_model(gpt_2)
 
 df = pd.read_csv(input_csv_path)
-df = df.drop_duplicates(subset=['key']) # NOTES FOR FUTURE: We should do a join with historical job listings to lower LLM cost
+df = df.drop_duplicates(subset=['key'])
 print(f'The number of rows and columns before the key filter is {df.shape}')
 
 # Get historical database keys from PostgreSQL table
