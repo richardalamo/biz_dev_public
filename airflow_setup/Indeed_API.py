@@ -265,14 +265,16 @@ def run(job_types):
     '''
 
     for job_type in job_types:
-        
+
+        print(f'Collecting data for job type: {job_type}')
         all_items = []
         
         # Run the Actor task and wait for it to finish
         try:
             task_run = client.task(os.getenv(job_type)).call()
             items = client.dataset(task_run["defaultDatasetId"]).iterate_items()
-        except:
+        except Exception as e:
+            print(e)
             items = []
 
         # Clean and parse each record
