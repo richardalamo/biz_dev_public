@@ -1,0 +1,40 @@
+Run like so:
+
+1. Turn entries into array like object with str
+
+2. Embbed each skill in the array
+
+# Import relevant packages
+from haystack.components.embedders import OpenAITextEmbedder
+
+text_to_embed = "I love pizza!"
+
+text_embedder = OpenAITextEmbedder(model="text-embedding-3-large")
+
+print(text_embedder.run(text_to_embed))
+
+It should run over each skill
+
+    embeddings_list = []
+    
+    try:
+        response = openai_client.embeddings.create(
+            input=text_list,
+            model=model
+        )
+
+        for result in response.data:
+            embeddings_list.append(result.embedding)
+
+    except Exception as e:
+        print(f"Error generating embeddings: {e}")
+    
+    return embeddings_list
+
+Final result should be a DataFrame with job key, skill, skill_type, embedding, pub_date:
+
+        embeddings_list = get_embedding(skills)
+        for skill, embedding in zip(skills, embeddings_list):
+            flat_data.append((job_key, skill, skill_type, embedding, pub_date))
+
+Skill types allowed: ["soft_skills", "technical_skills", "tools"]
