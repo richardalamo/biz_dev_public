@@ -29,8 +29,8 @@ while true; do
         echo "Airflow webserver and scheduler are both running."
 
         # Add grace period to ensure scheduler is fully initialized
-        echo "Waiting additional 60 seconds to ensure scheduler is ready..."
-        sleep 60
+        echo "Waiting additional 120 seconds to ensure scheduler is ready..."
+        sleep 120
         
         break
     else
