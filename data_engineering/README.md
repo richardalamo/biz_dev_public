@@ -138,9 +138,9 @@ Create 3 Eventbridge Schedules. One corresponding to each location prefix
 - Select Off for Flexible time window
 - Choose AWS Lambda Invoke under target
 - Choose the lambda function you created
-- Under Payload, paste, of which replace {location_prefix} with either "CA", "US", or "SA" 
+- Under Payload, paste the following json, of which under "location" field, enter either "CA", "US", or "SA" 
 ```json
-{"action": "start", "location": {location_prefix}}
+{"action": "start", "location": ""}
 ```
 - Under Permissions, choose Create new role for this schedule
 - Go to Lambda again. Under Resource-based policy statements, click Add permissions. Then do the following:
