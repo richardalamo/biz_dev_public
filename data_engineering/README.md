@@ -44,19 +44,29 @@ chmod +x airflow_bash_script.sh
 - For Note, just explain what this token is for
 - For Select scopes, repo, workflow, write:packages, and delete:packages should be enough
 - Then once you click Generate token, copy it and then paste it in your .env file
-4. Inside the postgresql terminal (run "sudo -u postgres psql" in command line), run the following:
-- CREATE DATABASE airflow_db;
-- CREATE USER airflow_user WITH PASSWORD 'beamdatajobscrape25';
-- GRANT ALL PRIVILEGES ON DATABASE airflow_db TO airflow_user;
-- GRANT USAGE ON SCHEMA public TO airflow_user;
-- GRANT CREATE ON SCHEMA public TO airflow_user;
-- GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO airflow_user;
-- GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO airflow_user;
-- ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO airflow_user;
-- ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO airflow_user;
-- ALTER SCHEMA public OWNER TO airflow_user;
-- ALTER USER airflow_user WITH SUPERUSER;
-- \q
+## Set up Airflow PostgreSQL
+
+Run 
+```bash
+sudo -u postgres psql
+```
+
+Then inside the PostgreSQL terminal, run the following
+
+```sql
+CREATE DATABASE airflow_db;
+CREATE USER airflow_user WITH PASSWORD 'beamdatajobscrape25';
+GRANT ALL PRIVILEGES ON DATABASE airflow_db TO airflow_user;
+GRANT USAGE ON SCHEMA public TO airflow_user;
+GRANT CREATE ON SCHEMA public TO airflow_user;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO airflow_user;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO airflow_user;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO airflow_user;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO airflow_user;
+ALTER SCHEMA public OWNER TO airflow_user;
+ALTER USER airflow_user WITH SUPERUSER;
+\q
+```
 5. In airflow.cfg, edit the following:
 -  sql_alchemy_conn = postgresql+psycopg2://airflow_user:beamdatajobscrape25@localhost/airflow_db
 -  executor = LocalExecutor
