@@ -157,6 +157,8 @@ Set up is identical to *EventBridge - Start EC2 instance* except paste
 Under the Payload instead
 
 ## Set up RDS Table
+*Enable the following settings*
+
 - Security group inbound rules is set to Type: PostgreSQL, and source being your EC2 instance's security group. This will enable the connection needed for the EC2 instance to access RDS PostgreSQL when doing reads, writes, etc.
 - If on the ec2 instance for whatever reason there is an error claiming that there is no RDS database even if the database exists in the RDS Console, do the following:
 - Run
