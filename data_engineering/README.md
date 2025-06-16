@@ -3,14 +3,14 @@ Data Workflow Diagram
 
 ## Set up EC2
 *Enable the following settings*
-- Inbound Rules: Port 22, Source as My IP Address
-- Inbound Rules: Port 8080, Source as My IP Address
-- Inbound Rules: Port 3000, Source as My IP Address
+- Inbound Rules: Port 22, Source: My IP Address
+- Inbound Rules: Port 8080, Source: My IP Address
+- Inbound Rules: Port 3000, Source: My IP Address
 - OS Image: Ubuntu
 - Instance Type: t2.medium or larger
-- Key Pair Name: Create a new .pem file
-- Storage: At least 32 GiB
-- Make sure the role/instance profile has AmazonSSMManagedInstanceCore and AmazonEC2RoleforSSM policy, with trust relationships being the following:
+- Key Pair Name: Create a new ```.pem``` file
+- Storage: 32 GiB
+- Make sure the role/instance profile has ```AmazonSSMManagedInstanceCore``` and ```AmazonEC2RoleforSSM``` policy, with trust relationships being the following:
 ```json
 {
     "Version": "2012-10-17",
@@ -38,12 +38,12 @@ chmod +x airflow_bash_script.sh
 
 ## Github Token Generation
 - Make sure your account is a collaborator in the repo that you want to do CI/CD on
-- Go to Settings -> Developer Settings -> Tokens (classic) -> Generate new token (classic)
+- Go to ```Settings -> Developer Settings -> Tokens (classic) -> Generate new token (classic)```
 - Once you get the prompt, then sign in again to your console
-- For Expiration, unless your github account is the company account, it's best to set the Expiration date
-- For Note, just explain what this token is for
-- For Select scopes, repo, workflow, write:packages, and delete:packages should be enough
-- Then once you click Generate token, copy it and then paste it in your .env file
+- For ```Expiration```, unless your github account is the company account, it's best to set the Expiration date
+- For ```Note```, just explain what this token is for
+- For ```Select scopes```, ```repo, workflow, write:packages, and delete:packages``` should be enough
+- Then once you click ```Generate token```, copy it and then paste it in your ```.env``` file
 ## Set up Airflow PostgreSQL
 
 Run 
