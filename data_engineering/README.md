@@ -17,7 +17,8 @@ Below diagram is a data architecture representation
 3. One Lambda function
 4. One S3 bucket including S3 bucket level policy JSON configurations
 6. Five Eventbridge Schedulers (Three to start EC2: "CA", "US", "SA", Two to stop EC2: "CA+SA", "US")
-7. IAM roles for the Lambda function, EC2 instance, and Eventbridge schedulers
+7. Metabase server
+8. IAM roles for the Lambda function, EC2 instance, and Eventbridge schedulers
 
 ## Set up EC2
 *Enable the following settings*
