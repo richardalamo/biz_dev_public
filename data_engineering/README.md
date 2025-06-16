@@ -11,6 +11,13 @@
 Below diagram is a data architecture representation
 ![image](https://github.com/user-attachments/assets/16e8b0e3-6634-4a95-bb60-a10f4b30f1a4)
 
+## Artifacts Needed
+1. One RDS PostgreSQL Database
+2. One EC2 instance
+3. One Lambda function
+4. One S3 bucket
+6. Five Eventbridge Schedulers (Three to start EC2: "CA", "US", "SA", Two to stop EC2 "CA+SA", "US")
+
 ## Set up EC2
 *Enable the following settings*
 - Inbound Rules: Port 22, Source: My IP Address
