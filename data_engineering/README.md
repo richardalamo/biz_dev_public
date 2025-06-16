@@ -1,4 +1,14 @@
-Data Workflow Diagram
+# Intro
+1. Collects jobs data from Indeed for Canada, US, and Saudi Arabia
+2. Cleans, preprocesses, and categorizes data
+3. Stores preprocessed data into S3 and RDS PostgreSQL
+4. Removes old logs
+5. Metabase is connected to PostgreSQL
+6. Steps 1-5 are orchestrated with Airflow
+7. Airflow is automated via Lambda and Eventbridge
+
+
+Below diagram is a data architecture representation
 ![image](https://github.com/user-attachments/assets/16e8b0e3-6634-4a95-bb60-a10f4b30f1a4)
 
 ## Set up EC2
@@ -7,7 +17,7 @@ Data Workflow Diagram
 - Inbound Rules: Port 8080, Source: My IP Address
 - Inbound Rules: Port 3000, Source: My IP Address
 - OS Image: Ubuntu
-- Instance Type: t2.medium or larger
+- Instance Type: t2.large or larger
 - Key Pair Name: Create a new ```.pem``` file
 - Storage: 32 GiB
 - Make sure the role/instance profile has ```AmazonSSMManagedInstanceCore``` and ```AmazonEC2RoleforSSM``` policy, with trust relationships being the following:
