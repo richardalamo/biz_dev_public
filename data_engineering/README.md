@@ -89,7 +89,7 @@ executor = LocalExecutor
 
 ## .env file setup
 
-In ```/home/ubuntu```, run
+In ```/home/ubuntu/airflow/```, run
 ```bash
 touch .env
 ```
