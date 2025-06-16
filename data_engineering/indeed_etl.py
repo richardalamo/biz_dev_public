@@ -23,7 +23,9 @@ load_dotenv(env_path)
 airflow_project_path = "/home/ubuntu/airflow"
 POSTGRES_CONN_ID = "airflow_rds"
 config_path = '/home/ubuntu/airflow/scrape_code/config.yaml'
-log_location = '/home/ubuntu/airflow/scrape_code/logs'
+log_location_base = '/home/ubuntu/airflow/logs'
+log_location = f'{log_location_base}/bright_data_logs'
+
 location = 'Saudi_Arabia'
 location_index = 0 # 0 for Saudi. 1 for Canada. 2 for USA
 scrape_code_path = '/home/ubuntu/airflow/scrape_code'
@@ -212,7 +214,7 @@ with TaskGroup('load_data', dag=dag) as load_data:
 
 delete_airflow_logs = BashOperator(
     task_id='delete_airflow_logs',
-    bash_command=f'sudo find /home/ubuntu/airflow/logs/dag_id={dag_name} -type f -name "*.log" -mtime +30 -delete',
+    bash_command=f'sudo find {log_location_base}/dag_id={dag_name} -type f -name "*.log" -mtime +30 -delete',
     dag=dag,
     # trigger_rule=TriggerRule.ALL_DONE,
 )
