@@ -125,7 +125,10 @@ SLACK_WEBHOOK_URL={slack webhook url}
 INSTANCE_ID = '{insert ec2 instance ID}'
 ```
 Replace with your ec2 instance id
-## Set up EventBridge
+## EventBridge - Start EC2 instance
+
+Create 3 Eventbridge Schedules. One corresponding to each location prefix
+
 *Enable the following settings*
 - Create rule
 - Under rule type, choose Schedule
@@ -135,9 +138,9 @@ Replace with your ec2 instance id
 - Select Off for Flexible time window
 - Choose AWS Lambda Invoke under target
 - Choose the lambda function you created
-- Under Payload, paste, of which enter either "CA", "US", or "SA" under {location prefix}
+- Under Payload, paste, of which replace {location_prefix} with either "CA", "US", or "SA" 
 ```json
-{"action": "start", "location": {location prefix}}
+{"action": "start", "location": {location_prefix}}
 ```
 - Under Permissions, choose Create new role for this schedule
 - Go to Lambda again. Under Resource-based policy statements, click Add permissions. Then do the following:
@@ -145,6 +148,14 @@ Replace with your ec2 instance id
 - Add a Statement ID. Anything will suffice
 - Under Source ARN, copy the EventBridge Schedule ARN
 - Under Action, select lambda:InvokeFunction
+
+## EventBridge - Stop EC2 instance
+Set up is identical to *EventBridge - Start EC2 instance* except paste 
+```json
+{"action": "stop"}
+```
+Under the Payload instead
+
 10. Set up RDS Table
 - In the RDS database, make sure that the security group inbound rules is set to Type: PostgreSQL, and source being your EC2 instance's security group. This will enable the connection needed for the EC2 instance to access RDS PostgreSQL when doing reads, writes, etc.
 - If on the ec2 instance for whatever reason there is an error claiming that there is no RDS database even if the database exists in the RDS Console, do the following:
