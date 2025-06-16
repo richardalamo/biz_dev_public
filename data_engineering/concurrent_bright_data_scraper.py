@@ -50,9 +50,6 @@ S3_DIRECTORY = None
 DATASET_ID = None
 HEADERS = {}
 
-os.makedirs("logs", exist_ok=True)
-
-
 def create_logger(location: str, log_location: str) -> logging.Logger:
     """Create timestamped logger for specific location with file handler."""
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -236,6 +233,8 @@ if __name__ == "__main__":
     parser.add_argument('--test-mode', action='store_true',
                        help='Run in test mode with limited scope')
     args = parser.parse_args()
+
+    os.makedirs(args.log_location, exist_ok=True)
 
     # Load configuration
     today_date = args.today_date
