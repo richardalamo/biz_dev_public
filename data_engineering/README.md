@@ -107,6 +107,9 @@ SLACK_WEBHOOK_URL={slack webhook url}
 - For ```Select scopes```, ```repo```, ```workflow```, ```write:packages```, and ```delete:packages``` should be enough
 - Then once you click ```Generate token```, copy it and then paste it in your ```.env``` file
 
+## Bright Data API Setup
+Please refer to https://github.com/beam-data/job-market-trend/blob/bright_data/README.md
+
 ## Set up Lambda Function
 *Enable the following settings*
 
