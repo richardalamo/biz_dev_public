@@ -67,28 +67,28 @@ ALTER SCHEMA public OWNER TO airflow_user;
 ALTER USER airflow_user WITH SUPERUSER;
 \q
 ```
-5. In airflow.cfg, edit the following:
--  sql_alchemy_conn = postgresql+psycopg2://airflow_user:beamdatajobscrape25@localhost/airflow_db
--  executor = LocalExecutor
-6. Run aws configure to enable access aws microservices in your ec2
--  Enter {aws access key}
--  Enter {aws secret access key}
--  Enter "ca-central-1"
--  Enter "json'
-7. Inside /home/ubuntu/airflow/.env, enter the following:
--  aws_access_key={aws access key}
--  aws_secret_access_key={aws secret access key}
--  rds_endpoint={rds endpoint}
--  db_name={whatever database name you created in the RDS endpoint}
--  username={rds database username}
--  password={rds database password}
--  scraperapi_key={scraper api key}
--  github_token={enter github token}
--  OPENAI_API_KEY={openai_api_key}
--  apify_token={apify token provided when you created your apify account}
--  data_analyst={apify API client task id provided for data_analyst}
--  data_engineer={apify API client task id provided for data_engineer}
--  Do the same for each API client task you've created, which corresponds to a search query (eg. "data analyst", "data scientist")
+## Configure Airflow
+Go to ```Airflow.cfg```
+
+Ensure that the file contains the following:
+```
+sql_alchemy_conn = postgresql+psycopg2://airflow_user:beamdatajobscrape25@localhost/airflow_db
+executor = LocalExecutor
+```
+
+## .env file setup
+
+```env
+aws_access_key={aws access key}
+aws_secret_access_key={aws secret access key}
+rds_endpoint={rds endpoint}
+db_name={whatever database name you created in the RDS endpoint}
+username={rds database username}
+password={rds database password}
+github_token={enter github token}
+OPENAI_API_KEY={openai_api_key}
+SLACK_WEBHOOK_URL={slack webhook url}
+```
 8. Set up Lambda Function
 - Make sure you are in ca-central-1
 - Under runtime, enter Python 3.11 or more recent
