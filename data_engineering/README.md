@@ -3,7 +3,7 @@
 2. Cleans, preprocesses, and categorizes data
 3. Stores preprocessed data into S3 and RDS PostgreSQL
 4. Removes old logs
-5. Metabase is connected to PostgreSQL
+5. Metabase is connected to PostgreSQL, enabling data analysis
 6. Steps 1-5 are orchestrated with Airflow
 7. Airflow is automated via Lambda and Eventbridge
 
