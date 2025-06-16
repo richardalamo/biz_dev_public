@@ -52,7 +52,7 @@ chmod +x airflow_bash_script.sh
 - Once you get the prompt, then sign in again to your console
 - For ```Expiration```, unless your github account is the company account, it's best to set the Expiration date
 - For ```Note```, just explain what this token is for
-- For ```Select scopes```, ```repo, workflow, write:packages, and delete:packages``` should be enough
+- For ```Select scopes```, ```repo```, ```workflow```, ```write:packages```, and ```delete:packages``` should be enough
 - Then once you click ```Generate token```, copy it and then paste it in your ```.env``` file
 ## Set up Airflow PostgreSQL
 
