@@ -36,12 +36,12 @@ Below diagram is a data architecture representation
 }
  ```
 ## Move files from Github into EC2
-- Copy ```airflow_bash_script.sh```, ```automate_airflow.sh```, ```create_postgresql_table.py```, ```stop_ec2_instance.py``` into ```/home/ubuntu```.
+- Copy ```setup.sh```, ```automate_airflow.sh```, ```create_postgresql_table.py```, ```stop_ec2_instance.py``` into ```/home/ubuntu```.
 - Then, run the following:
  ```bash
 chmod +x automate_airflow.sh
-chmod +x airflow_bash_script.sh
-./airflow_bash_script.sh
+chmod +x setup.sh
+./setup.sh
  ```
 - Copy ```indeed_etl.py```, ```indeed_etl_ca.py```, ```indeed_etl_us.py```, ```stored_variables.py```, and ```stored_variables.py``` into ```/home/ubuntu/airflow/dags```
 - Copy ```clean_and_preprocess.py```, ```file_concatenation.py```, ```process_data.py```, ```LLM_labelling.py```, and ```concurrent_bright_data_scraper.py``` into ```/home/ubuntu/airflow/scrape_code```
