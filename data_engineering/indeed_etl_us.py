@@ -19,8 +19,10 @@ scrape_code_path = '/home/ubuntu/airflow/scrape_code'
 indeed_api_path = f'{scrape_code_path}/concurrent_bright_data_scraper.py'
 concatenation_path = f'{scrape_code_path}/file_concatenation.py'
 config_path = '/home/ubuntu/airflow/scrape_code/config.yaml'
+log_location_base = '/home/ubuntu/airflow/logs'
+log_location = f'{log_location_base}/bright_data_logs'
+
 location = 'United_States'
-log_location = '/home/ubuntu/airflow/scrape_code/logs'
 location_index = 2 # 0 for Saudi. 1 for Canada. 2 for USA
 csv_file_path_ca_us = '/home/ubuntu/airflow/outputs/concatenated_data_us.csv'
 eastern = pytz.timezone('America/New_York')
