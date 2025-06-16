@@ -148,7 +148,7 @@ Create 3 Eventbridge Schedules. One corresponding to each location prefix
 - Select Off for Flexible time window
 - Choose AWS Lambda Invoke under target
 - Choose the lambda function you created
-- Under Payload, paste the following json, of which under "location" field, enter either ```"CA", "US", "SA"```
+- Under Payload, paste the following json, of which under "location" field, enter either ```"CA"```, ```"US"```, ```"SA"```
 ```json
 {"action": "start", "location": ""}
 ```
