@@ -95,13 +95,16 @@ github_token={enter github token}
 OPENAI_API_KEY={openai_api_key}
 SLACK_WEBHOOK_URL={slack webhook url}
 ```
-8. Set up Lambda Function
+## Set up Lambda Function
+*Enable the following settings*
+
 - Make sure you are in ca-central-1
 - Under runtime, enter Python 3.11 or more recent
 - Under Lambda execution role, make sure it has EC2 access, with at least start and stop instance permissions. For now use AmazonEC2FullAccess
 - Under Lambda execution role, make sure it has SSM access. For now use AmazonSSMFullAccess
 - Under Lambda execution role, make sure it has AWSLambdaBasicExecutionRole
 - Make sure trust relationships is:
+```json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -114,11 +117,15 @@ SLACK_WEBHOOK_URL={slack webhook url}
         }
     ]
 }
+```
 - Set the timeout to 5 minutes. Enough time for the ec2 instance to start
 - Paste the lambda_function.py code into the lambda function in the console
-- Under INSTANCE_ID = '{insert_ec2_instance_id}', enter your ec2 instance id
-- Under 'export OPENAI_API_KEY="{insert_openai_api_key}"', enter your openai api key
-9. Set up EventBridge
+- Under
+```python
+INSTANCE_ID = '{insert ec2 instance ID}'
+```
+Replace with your ec2 instance id
+## Set up EventBridge
 - Create rule
 - Under rule type, choose Schedule
 - Click Continue in EventBridge Scheduler
