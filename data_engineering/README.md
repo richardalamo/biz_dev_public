@@ -135,9 +135,9 @@ Replace with your ec2 instance id
 - Select Off for Flexible time window
 - Choose AWS Lambda Invoke under target
 - Choose the lambda function you created
-- Under Payload, paste
+- Under Payload, paste, of which enter either "CA", "US", or "SA" under {location prefix}
 ```json
-{"action": "start", "location": {either "CA", "US", "SA"}}
+{"action": "start", "location": {location prefix}}
 ```
 - Under Permissions, choose Create new role for this schedule
 - Go to Lambda again. Under Resource-based policy statements, click Add permissions. Then do the following:
