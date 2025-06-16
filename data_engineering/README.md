@@ -3,9 +3,10 @@
 2. Cleans, preprocesses, and categorizes data
 3. Stores preprocessed data into S3 and RDS PostgreSQL
 4. Removes old logs
-5. Metabase is connected to PostgreSQL, enabling data analysis
-6. Steps 1-5 are orchestrated with Airflow
-7. Airflow is automated via Lambda and Eventbridge
+5. Generate Airflow task Slack alerts
+6. Metabase is connected to PostgreSQL, enabling data analysis
+7. Steps 1-6 are orchestrated with Airflow
+8. Airflow is automated via Lambda and Eventbridge
 
 
 Below diagram is a data architecture representation
@@ -109,7 +110,15 @@ password={rds database password}
 github_token={enter github token}
 OPENAI_API_KEY={openai_api_key}
 SLACK_WEBHOOK_URL={slack webhook url}
+SLACK_ID = {slack id of person to notify}
 ```
+## Slack Webhook Generation
+- Go to https://api.slack.com/apps
+- Click on ```Create New App``` and then ```From scratch```
+- Enter your ```App Name``` (anything suffices) and your ```workspace```
+- After you create your app, under ```Incoming Webhooks```, turn on ```Activate Incoming Webhooks```
+- Click on ```Add New Webhook```
+- Select the Slack channel you want to post 
 
 ## Github Token Generation
 - Make sure your account is a collaborator in the repo that you want to do CI/CD on
