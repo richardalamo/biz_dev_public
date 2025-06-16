@@ -44,7 +44,7 @@ chmod +x setup.sh
 ./setup.sh
  ```
 - Copy ```indeed_etl.py```, ```indeed_etl_ca.py```, ```indeed_etl_us.py```, ```stored_variables.py```, and ```stored_variables.py``` into ```/home/ubuntu/airflow/dags```
-- Copy ```clean_and_preprocess.py```, ```file_concatenation.py```, ```process_data.py```, ```LLM_labelling.py```, and ```concurrent_bright_data_scraper.py``` into ```/home/ubuntu/airflow/scrape_code```
+- Copy ```clean_and_preprocess.py```, ```config.yaml```, ```file_concatenation.py```, ```process_data.py```, ```LLM_labelling.py```, and ```concurrent_bright_data_scraper.py``` into ```/home/ubuntu/airflow/scrape_code```
 
 ## Set up Airflow PostgreSQL
 
@@ -89,6 +89,10 @@ Then inside ```.env```, copy the following and change to your credentials
 ```env
 aws_access_key={aws access key}
 aws_secret_access_key={aws secret access key}
+BRIGHTDATA_API_KEY={brightdata API key}
+S3_BUCKET={bucket to store raw brightdata scrapes}
+S3_DIRECTORY={folder to store raw brightdata scrapes}
+DATASET_ID={dataset id}
 rds_endpoint={rds endpoint}
 db_name={whatever database name you created in the RDS endpoint}
 username={rds database username}
