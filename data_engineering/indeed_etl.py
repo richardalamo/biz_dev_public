@@ -18,17 +18,14 @@ import base64
 import pytz
 
 dag_name = 'indeed_etl'
-load_dotenv("/home/ubuntu/airflow/.env")
+env_path = '/home/ubuntu/airflow/.env'
+load_dotenv(env_path)
 airflow_project_path = "/home/ubuntu/airflow"
-s3_bucket = "indeed-scrape"
-s3_folder_source = 'bright_data/'
-s3_folder_dest = 'raw_scrapes/test'
 POSTGRES_CONN_ID = "airflow_rds"
-config_path = '/home/ubuntu/airflow/scrape_code/bright_data_config/config.yaml'
+config_path = '/home/ubuntu/airflow/scrape_code/config.yaml'
 log_location = '/home/ubuntu/airflow/scrape_code/logs'
 location = 'Saudi_Arabia'
 location_index = 0 # 0 for Saudi. 1 for Canada. 2 for USA
-env_path = '/home/ubuntu/airflow/scrape_code/bright_data_config/.env'
 scrape_code_path = '/home/ubuntu/airflow/scrape_code'
 indeed_api_path = f'{scrape_code_path}/concurrent_bright_data_scraper.py'
 concatenation_path = f'{scrape_code_path}/file_concatenation.py'
@@ -42,6 +39,9 @@ today_date = datetime.now(eastern).strftime('%Y-%m-%d')
 to_del_file = os.getenv("to_del_folder")
 access_key = os.getenv("aws_access_key")
 secret_access_key = os.getenv("aws_secret_access_key")
+s3_bucket = os.getenv("S3_BUCKET")
+s3_folder_source = os.getenv("S3_DIRECTORY")
+s3_folder_dest = 'raw_scrapes/test'
 
 GITHUB_REPO = 'richardalamo/biz_dev_public'
 GITHUB_TOKEN = os.getenv("github_token") # Expire on July 7, 2025
@@ -146,14 +146,14 @@ wait_for_s3 = BashOperator(
     task_id='wait_for_s3',
     bash_command=f'sleep 60',
     dag=dag,
-    trigger_rule=TriggerRule.ALL_DONE,
+    # trigger_rule=TriggerRule.ALL_DONE,
 )
 
 concatenate_data = BashOperator(
     task_id='concatenate_data',
     bash_command=f'python3 {concatenation_path} --bucket {s3_bucket} --prefix {s3_folder_source} --output_csv_path {csv_file_paths[0]} --output_csv_path_ca_us {csv_file_path_ca_us} --access_key {access_key} --secret_access_key {secret_access_key} --location {location} --today_date {today_date}',
     dag=dag,
-    trigger_rule=TriggerRule.ALL_DONE,
+    # trigger_rule=TriggerRule.ALL_DONE,
     do_xcom_push=False,
 )
 
@@ -161,21 +161,21 @@ clean_and_preprocess_data = BashOperator(
     task_id='clean_and_preprocess_data',
     bash_command=f'python3 {clean_and_preprocess_path} --input_csv_path {csv_file_paths[0]} --output_csv_path {csv_file_paths[1]}',
     dag=dag,
-    trigger_rule=TriggerRule.ALL_DONE,
+    # trigger_rule=TriggerRule.ALL_DONE,
 )
 
 process_data = BashOperator(
     task_id='process_data',
     bash_command=f'python3 {process_path} --input_csv_path {csv_file_paths[1]} --output_csv_path {csv_file_paths[2]}',
     dag=dag,
-    trigger_rule=TriggerRule.ALL_DONE,
+    # trigger_rule=TriggerRule.ALL_DONE,
 )
 
 llm_labelling = BashOperator(
     task_id='llm_labelling',
     bash_command=f'python3 {llm_path} --input_csv_path {csv_file_paths[2]} --output_csv_path {csv_file_paths[3]}',
     dag=dag,
-    trigger_rule=TriggerRule.ALL_DONE,
+    # trigger_rule=TriggerRule.ALL_DONE,
 )
 
 with TaskGroup('load_data', dag=dag) as load_data:
@@ -191,7 +191,7 @@ with TaskGroup('load_data', dag=dag) as load_data:
                     },
             provide_context=True,
             dag=dag,
-            trigger_rule=TriggerRule.ALL_DONE,
+            # trigger_rule=TriggerRule.ALL_DONE,
         )
 
         load_to_postgres = PythonOperator(
@@ -205,7 +205,7 @@ with TaskGroup('load_data', dag=dag) as load_data:
                 'drop_sql': drop_sql,
             },
             dag=dag,
-            trigger_rule=TriggerRule.ALL_DONE,
+            # trigger_rule=TriggerRule.ALL_DONE,
         )
 
         task_upload_to_s3 >> load_to_postgres
@@ -214,13 +214,13 @@ delete_airflow_logs = BashOperator(
     task_id='delete_airflow_logs',
     bash_command=f'sudo find /home/ubuntu/airflow/logs/dag_id={dag_name} -type f -name "*.log" -mtime +30 -delete',
     dag=dag,
-    trigger_rule=TriggerRule.ALL_DONE,
+    # trigger_rule=TriggerRule.ALL_DONE,
 )
 
 end_task = DummyOperator(
     task_id='end',
     dag=dag,
-    trigger_rule=TriggerRule.ALL_DONE,
+    # trigger_rule=TriggerRule.ALL_DONE,
 )
     
 # Set task dependencies
