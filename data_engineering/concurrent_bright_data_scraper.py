@@ -33,10 +33,10 @@ def get_env_variables() -> Dict[str, str]:
     """Retrieve all required environment variables for the scraper."""
     return {
         'BRIGHTDATA_API_KEY': os.getenv("BRIGHTDATA_API_KEY"),
-        'AWS_ACCESS_KEY': os.getenv("AWS_ACCESS_KEY"),
-        'AWS_SECRET_KEY': os.getenv("AWS_SECRET_KEY"),
+        'AWS_ACCESS_KEY': os.getenv("aws_access_key"),
+        'AWS_SECRET_KEY': os.getenv("aws_secret_access_key"),
         'S3_BUCKET': os.getenv("S3_BUCKET"),
-        'S3_DIRECTORY': os.getenv("S3_DIRECTORY", "bright_data/"),
+        'S3_DIRECTORY': os.getenv("S3_DIRECTORY"),
         'DATASET_ID': os.getenv("DATASET_ID")
     }
 
@@ -219,7 +219,7 @@ def process_location(location: str, location_config: Dict, job_titles: List[str]
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Job Market Data Scraper')
-    parser.add_argument('--config', '-c', default='/home/ubuntu/airflow/scrape_code/bright_data_config/config.yaml', 
+    parser.add_argument('--config', '-c', default='/home/ubuntu/airflow/scrape_code/config.yaml', 
                        help='Path to configuration file (default: config.yaml)')
     parser.add_argument('--location', '-l', default=0, type=int,
                        help='Location index from config (default: 0)')
@@ -227,7 +227,7 @@ if __name__ == "__main__":
                        help='Log folder location')
     parser.add_argument('--today_date', type=str,
                        help='Date of scrape')
-    parser.add_argument('--env_path', '-e', default='/home/ubuntu/airflow/scrape_code/bright_data_config/.env',
+    parser.add_argument('--env_path', '-e', default='/home/ubuntu/airflow/.env',
                         help='Path to .env file')
     parser.add_argument('--job-title', '-j', type=str,
                        help='Override job title (single job for testing)')
