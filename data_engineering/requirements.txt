@@ -1,0 +1,17 @@
+apache-airflow[celery,postgres]==2.10.4
+requests==2.32.3
+pandas==2.2.3
+deep-translator==1.11.4
+SQLAlchemy==1.4.54
+boto3==1.36.7
+PyYAML==6.0.1
+psycopg2==2.9.10
+psycopg2-binary==2.9.10
+python-dotenv==1.0.1
+pandas==2.2.3
+farm-haystack==1.26.4
+torch==2.6.0
+haystack-ai==2.10.3
+haystack==0.42
+openai==1.65.0
+tqdm==4.67.1
