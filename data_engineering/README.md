@@ -138,7 +138,7 @@ Create 3 Eventbridge Schedules. One corresponding to each location prefix
 - Select Off for Flexible time window
 - Choose AWS Lambda Invoke under target
 - Choose the lambda function you created
-- Under Payload, paste the following json, of which under "location" field, enter either "CA", "US", or "SA" 
+- Under Payload, paste the following json, of which under "location" field, enter either ```"CA", "US", "SA"```
 ```json
 {"action": "start", "location": ""}
 ```
@@ -159,7 +159,7 @@ Under the Payload instead
 ## Set up RDS Table
 *Enable the following settings*
 
-- Security group inbound rules is set to Type: PostgreSQL, and source being your EC2 instance's security group. This will enable the connection needed for the EC2 instance to access RDS PostgreSQL when doing reads, writes, etc.
+- Security group inbound rules is set to ```Type: PostgreSQL```, and source being your EC2 instance's security group. This will enable the connection needed for the EC2 instance to access RDS PostgreSQL when doing reads, writes, etc.
 - If on the ec2 instance for whatever reason there is an error claiming that there is no RDS database even if the database exists in the RDS Console, do the following:
 - Run
 ```bash
@@ -179,44 +179,65 @@ GRANT ALL PRIVILEGES ON DATABASE "<database_name>" TO <rds_username>;
 ```
 - After exiting the postgresql command line, run ```create_postgresql_table.py``` to create the tables
 
-11. Set up Airflow RDS PostgreSQL Connection
-- In the Airflow UI, under Admin -> Connections, add a new record. Then enter the following:
-- Connection Id: <anything_you_like>
-- Connection Type: Postgres
-- Host: <rds_endpoint>
-- Database: <database_name>
-- Login: <rds_username>
-- Password: <rds_password>
-- Port: 5432
+## Set up Airflow RDS PostgreSQL Connection
+- In the Airflow UI, under ```Admin -> Connections```, add a new record. Then enter the following:
+```
+Connection Id: <anything_you_like>
+Connection Type: Postgres
+Host: <rds_endpoint>
+Database: <database_name>
+Login: <rds_username>
+Password: <rds_password>
+Port: 5432
+```
 12. Set up Metabase
 - Run the following:
-- sudo apt update && sudo apt upgrade -y
-- sudo apt install software-properties-common
-- sudo add-apt-repository ppa:openjdk-r/ppa
-- sudo apt update
-- sudo apt install openjdk-21-jdk -y
-- If there are errors, run "sudo apt --fix-broken install"
-- sudo update-alternatives --config java
+```bash
+sudo apt update && sudo apt upgrade -y
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:openjdk-r/ppa
+sudo apt update
+sudo apt install openjdk-21-jdk -y
+```
+- If there are errors, run
+```bash
+sudo apt --fix-broken install
+```
+Then run
+```bash
+sudo update-alternatives --config java
+```
 - In the CLI prompt, use the selection number for Java 21, then press Enter
-- Run "java -version" to make sure Java got installed and that it is Java 21
-- wget https://downloads.metabase.com/v0.53.2.x/metabase.jar
-- sudo mkdir -p /opt/metabase
-- sudo mv metabase.jar /opt/metabase/
-- cd /opt/metabase
-- sudo useradd -r -s /bin/false metabase
-- sudo chown -R metabase:metabase /opt/metabase
-- Run "sudo java -jar /opt/metabase/metabase.jar" to start Metabase
+- Run ```bash
+"java -version"``` to make sure Java got installed and that it is Java 21
+
+Then run
+```bash
+wget https://downloads.metabase.com/v0.53.2.x/metabase.jar
+sudo mkdir -p /opt/metabase
+sudo mv metabase.jar /opt/metabase/
+cd /opt/metabase
+sudo useradd -r -s /bin/false metabase
+sudo chown -R metabase:metabase /opt/metabase
+sudo java -jar /opt/metabase/metabase.jar #start Metabase
+```
+
 - After port forwarding port 3000, click on the link
 - In the UI, there will be instructions to create an account
 - Once you get to the database connection part, enter your RDS PostgreSQL database credentials in the setup prompt
 13. Airflow Security
-- Go to "Security" -> "List Users" -> "Edit record" in the Admin Airflow Console to change your First Name, Last Name, User Name, and Email
-- Go to "Your Profile" -> "Reset my password" to change your password
+- Go to ```Security -> List Users -> Edit record``` in the Admin Airflow Console to change your First Name, Last Name, User Name, and Email
+- Go to ```Your Profile -> Reset my password``` to change your password
 14. Set up OpenAI LLM Environment
-- Go to /home/ubuntu/.bashrc
-- At the bottom of this file, enter the following: export OPENAI_API_KEY="<openai_api_key>"
-- Run source ~/.bashrc
+- Go to ```/home/ubuntu/.bashrc```
+- At the bottom of this file, enter the following: ```export OPENAI_API_KEY="<openai_api_key>"```
+- Run
+```bash
+source ~/.bashrc
+```
 15. Airflow debug
 - One time, all the DAGs disappeared in the Airflow UI. After looking at the nohup.out, there were permission errors in the logs that the scheduler couldn't access. Running this:
-- sudo chown -R ubuntu:ubuntu /home/ubuntu/airflow/logs
-- Resolved the issue and the DAGs came back
+```bash
+sudo chown -R ubuntu:ubuntu /home/ubuntu/airflow/logs
+```
+Resolved the issue and the DAGs came back
