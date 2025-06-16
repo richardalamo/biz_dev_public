@@ -78,6 +78,12 @@ executor = LocalExecutor
 
 ## .env file setup
 
+In ```/home/ubuntu```, run
+```bash
+touch .env
+```
+
+Then inside ```.env```, copy the following and change to your credentials
 ```env
 aws_access_key={aws access key}
 aws_secret_access_key={aws secret access key}
