@@ -126,6 +126,7 @@ INSTANCE_ID = '{insert ec2 instance ID}'
 ```
 Replace with your ec2 instance id
 ## Set up EventBridge
+*Enable the following settings*
 - Create rule
 - Under rule type, choose Schedule
 - Click Continue in EventBridge Scheduler
@@ -134,7 +135,10 @@ Replace with your ec2 instance id
 - Select Off for Flexible time window
 - Choose AWS Lambda Invoke under target
 - Choose the lambda function you created
-- Under Payload, paste {"action": "start"}
+- Under Payload, paste
+```json
+{"action": "start", "location": {either "CA", "US", "SA"}}
+```
 - Under Permissions, choose Create new role for this schedule
 - Go to Lambda again. Under Resource-based policy statements, click Add permissions. Then do the following:
 - Under AWS Service, select EventBridge
