@@ -190,7 +190,7 @@ Login: <rds_username>
 Password: <rds_password>
 Port: 5432
 ```
-12. Set up Metabase
+## Set up Metabase
 - Run the following:
 ```bash
 sudo apt update && sudo apt upgrade -y
@@ -225,17 +225,17 @@ sudo java -jar /opt/metabase/metabase.jar #start Metabase
 - After port forwarding port 3000, click on the link
 - In the UI, there will be instructions to create an account
 - Once you get to the database connection part, enter your RDS PostgreSQL database credentials in the setup prompt
-13. Airflow Security
+## Airflow Security Settings
 - Go to ```Security -> List Users -> Edit record``` in the Admin Airflow Console to change your First Name, Last Name, User Name, and Email
 - Go to ```Your Profile -> Reset my password``` to change your password
-14. Set up OpenAI LLM Environment
+## Set up OpenAI LLM Environment
 - Go to ```/home/ubuntu/.bashrc```
 - At the bottom of this file, enter the following: ```export OPENAI_API_KEY="<openai_api_key>"```
 - Run
 ```bash
 source ~/.bashrc
 ```
-15. Airflow debug
+## Airflow debug (optional)
 - One time, all the DAGs disappeared in the Airflow UI. After looking at the nohup.out, there were permission errors in the logs that the scheduler couldn't access. Running this:
 ```bash
 sudo chown -R ubuntu:ubuntu /home/ubuntu/airflow/logs
