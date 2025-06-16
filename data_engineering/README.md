@@ -36,7 +36,7 @@ Below diagram is a data architecture representation
 }
  ```
 ## Move files from Github into EC2
-- Copy ```setup.sh```, ```automate_airflow.sh```, ```create_postgresql_table.py```, ```stop_ec2_instance.py``` into ```/home/ubuntu```.
+- Copy ```setup.sh```, ```requirements.txt```, ```automate_airflow.sh```, ```create_postgresql_table.py```, ```stop_ec2_instance.py``` into ```/home/ubuntu```.
 - Then, run the following:
  ```bash
 chmod +x automate_airflow.sh
