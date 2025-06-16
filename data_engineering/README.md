@@ -207,7 +207,7 @@ Then run
 ```bash
 sudo update-alternatives --config java
 ```
-- In the CLI prompt, use the selection number for Java 21, then press Enter
+- There will be a list of available Java versions. In the CLI prompt, use the selection number for Java 21, then press Enter
 - Run
 ```bash
 java -version
