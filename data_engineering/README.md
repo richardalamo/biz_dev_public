@@ -11,6 +11,7 @@ Data Workflow Diagram
 - Key Pair Name: Create a new .pem file
 - Storage: At least 32 GiB
 - Make sure the role/instance profile has AmazonSSMManagedInstanceCore and AmazonEC2RoleforSSM policy, with trust relationships being the following:
+```json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -23,6 +24,7 @@ Data Workflow Diagram
         }
     ]
 }
+ ```
 ## Move files from Github into EC2
 - Copy airflow_bash_script.sh, automate_airflow.sh, create_postgresql_table.py, stop_ec2_instance.py into /home/ubuntu.
 - Then, run the following:
