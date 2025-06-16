@@ -1,7 +1,7 @@
 Data Workflow Diagram
 ![image](https://github.com/user-attachments/assets/16e8b0e3-6634-4a95-bb60-a10f4b30f1a4)
 
-## Set up ec2
+## Set up EC2
 *Enable the following settings*
 - Inbound Rules: Port 22, Source as My IP Address
 - Inbound Rules: Port 8080, Source as My IP Address
@@ -33,8 +33,8 @@ chmod +x automate_airflow.sh
 chmod +x airflow_bash_script.sh
 ./airflow_bash_script.sh
  ```
-- Copy indeed_etl.py and stored_variables.py into /home/ubuntu/airflow/dags
-- Copy clean_and_process.py, file_concatenation.py, process_data.py, LLM_labelling.py, and Indeed_API.py into /home/ubuntu/airflow/scrape_code
+- Copy ```indeed_etl.py```, indeed_etl_ca.py, indeed_etl_us.py, stored_variables.py, and stored_variables.py into /home/ubuntu/airflow/dags
+- Copy clean_and_preprocess.py, file_concatenation.py, process_data.py, LLM_labelling.py, and concurrent_bright_data_scraper.py into /home/ubuntu/airflow/scrape_code
 
 ## Github Token Generation
 - Make sure your account is a collaborator in the repo that you want to do CI/CD on
