@@ -154,7 +154,7 @@ Create 3 Eventbridge Schedules. One corresponding to each location prefix
 - Select Off for Flexible time window
 - Choose AWS Lambda Invoke under target
 - Choose the lambda function you created
-- Under Payload, paste the following json, of which under "location" field, enter either ```"CA"```, ```"US"```, ```"SA"```
+- Under Payload, paste the following json, of which under "location" field, enter either ```CA```, ```US```, ```SA``` inside the ```""```.
 ```json
 {"action": "start", "location": ""}
 ```
@@ -176,7 +176,7 @@ Under the Payload instead
 *Enable the following settings*
 
 - Security group inbound rules is set to ```Type: PostgreSQL```, and source being your EC2 instance's security group. This will enable the connection needed for the EC2 instance to access RDS PostgreSQL when doing reads, writes, etc.
-- If on the ec2 instance for whatever reason there is an error claiming that there is no RDS database even if the database exists in the RDS Console, do the following:
+- If on the ec2 instance for whatever reason there is an error claiming that there is no RDS database even if the database exists in the RDS Console, do the following, of which change to your credentials accordingly:
 - Run
 ```bash
 psql -h <rds_endpoint> -U <rds_username> -p 5432 -d postgres
@@ -186,7 +186,7 @@ Inside the PostgreSQL terminal, run
 ```sql
 \l
 ```
-- If the database that the RDS console displays does not show up, then do the following, as it means the database was not actually created even though AWS created the instance.
+- If the database that the RDS console displays does not show up, then do the following, of which change to your credentials accordingly. It means the database was not actually created even though AWS created the instance.
 
 ```sql
 CREATE DATABASE "<database_name>";
@@ -196,7 +196,7 @@ GRANT ALL PRIVILEGES ON DATABASE "<database_name>" TO <rds_username>;
 - After exiting the postgresql command line, run ```create_postgresql_table.py``` to create the tables
 
 ## Set up Airflow RDS PostgreSQL Connection
-- In the Airflow UI, under ```Admin -> Connections```, add a new record. Then enter the following:
+- In the Airflow UI, under ```Admin -> Connections```, add a new record. Then enter the following and change to your credentials accordingly:
 ```
 Connection Id: <anything_you_like>
 Connection Type: Postgres
@@ -252,7 +252,7 @@ sudo java -jar /opt/metabase/metabase.jar #start Metabase
 
 ## Set up OpenAI LLM Environment
 - Go to ```/home/ubuntu/.bashrc```
-- At the bottom of this file, enter the following: ```export OPENAI_API_KEY="<openai_api_key>"```
+- At the bottom of this file, enter the following: ```export OPENAI_API_KEY="<openai_api_key>"``` and change ```<openai_api_key>``` to your openai api key.
 - Run
 ```bash
 source ~/.bashrc
