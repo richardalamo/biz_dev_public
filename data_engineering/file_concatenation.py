@@ -35,7 +35,7 @@ secret_access_key = args.secret_access_key
 location = args.location
 today_date = args.today_date
 
-# Initializing key words
+# Initializing schema, filters, and key words
 raw_schema = ['jobid', 'company_name', 'date_posted_parsed', 'job_title',
        'description_text', 'benefits', 'qualifications', 'job_type',
        'location', 'salary_formatted', 'company_rating',
