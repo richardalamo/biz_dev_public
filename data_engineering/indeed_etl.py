@@ -39,7 +39,6 @@ csv_file_path_ca_us = ''
 eastern = pytz.timezone('America/New_York')
 today_date = datetime.now(eastern).strftime('%Y-%m-%d')
 
-to_del_file = os.getenv("to_del_folder")
 access_key = os.getenv("aws_access_key")
 secret_access_key = os.getenv("aws_secret_access_key")
 s3_bucket = os.getenv("S3_BUCKET")
@@ -103,8 +102,6 @@ def load_csv_to_postgres(csv_file_path, create_temp_table, copy_to_temp, merge_s
     conn.close()
 
 def upload_to_s3(csv_file_path, bucket, destination, output_filename):
-    from dotenv import load_dotenv
-    import boto3
     s3_client.upload_file(csv_file_path, bucket, destination + "/" + output_filename)
 
 
