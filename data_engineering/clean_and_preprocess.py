@@ -12,6 +12,8 @@ output_csv_path = args.output_csv_path
 
 data = pd.read_csv(input_csv_path)
 
+# Creating the list of columns for the table
+
 degree_list = ["bachelor", "master", "phd"]
 
 industry_skills = ["API Design", "API Development", "Batch Processing", "Big data", "Bioinformatics", "Business Intelligence", "CI/CD",
@@ -51,7 +53,7 @@ tools_list_updated = ["AWS", "Microsoft Access", "Azure", "C", "C++", "Cassandra
         "SAP", "SAS", "SOAP", "SPSS", "SQL", "SQL Server", "Scala", "Scikit-learn", "Snowflake", "Spacy", "Spark", "StreamLit", "Tableau",
         "Talend", "Tensorflow", "Terraform", "Torch", "VBA", " Word ", "XML", "transformer", "CI/CD"]
 
-
+# Only do data transformation if not empty
 if not data.empty:
     data['days_ago'] = data['days_ago'].apply(lambda x: int(x) if pd.notna(x) else np.nan)
     data['days_ago'] = data['days_ago'].astype('Int64')
@@ -139,6 +141,10 @@ if not data.empty:
     data_cleaned['experience_required'] = data_cleaned['experience_required'].apply(extract_experience_req)
 
     def extract_feature_to_column(df, column_to_extract, feature, new_column):
+        
+        ''' 
+        Creates a new column for the input string 
+        '''      
 
         values_for_column = [] # Empty list to store value
 
@@ -154,7 +160,7 @@ if not data.empty:
         df[new_column] = values_for_column # Create new column based on the values that were stored
         print(f"'{new_column}' column added to existing data.")
 
-
+    # Creating columns for degree, tool, soft_skill, and industry_skill
     for degree in degree_list:
         extract_feature_to_column(data_cleaned, "education", degree, degree)
 
@@ -170,7 +176,7 @@ if not data.empty:
     data_preprocessed = data_cleaned.copy()
     
 
-else:
+else: # If data is empty, then we create an empty dataframe with a pre-defined schema
     columns = ['name', 'key', 'title', 'location', 'jobType', 'posted', 'days_ago', 'rating', 'experience', 'salary', 'education', 'feed', 'link', 'Tools', 'Soft Skills', 'Industry Skills', 'description', 'search keyword', 'date', 'year', 'month', 'experience_required', 'bachelor', 'master', 'phd', 'aws', 'microsoft access', 'azure', 'c', 'c++', 'cassandra', 'circleci', 'cloud', 'confluence', 'databricks', 'docker', 'emr', 'elasticsearch', 'excel', 'flask', 'mlflow', 'kubeflow', 'gcp', 'git', 'github', 'hadoop', 'hive', 'hugging face', 'informatica', 'jira', 'java', 'javascript', 'jenkins', 'kafka', 'keras', 'kubernetes', 'llms', 'matlab', 'mongodb', 'mysql', 'new relic', 'nosql', 'numpy', 'oracle', 'outlook', 'pandas', 'postgresql', 'postman', 'power bi', 'powerpoint', 'pyspark', 'python', 'pytorch', 'quicksight', 'r', 'redshift', 's3', 'sap', 'sas', 'soap', 'spss', 'sql', 'sql server', 'scala', 'scikit-learn', 'snowflake', 'spacy', 'spark', 'streamlit', 'tableau', 'talend', 'tensorflow', 'terraform', 'torch', 'vba', 'word', 'xml', 'transformer', 'ci/cd', 'accountability', 'accuracy', 'adaptability', 'agility', 'analysis', 'analytical skills', 'attention to detail', 'coaching', 'collaboration', 'collaborative', 'commitment', 'communication', 'communication skills', 'confidence', 'continuous learning', 'coordination', 'creativity', 'critical thinking', 'curiosity', 'decision making', 'decision-making', 'dependability', 'design', 'discipline', 'domain knowledge', 'empathy', 'enthusiasm', 'experimentation', 'flexibility', 'focus', 'friendliness', 'imagination', 'initiative', 'innovation', 'insight', 'inspiring', 'integrity', 'interpersonal skills', 'leadership', 'mentorship', 'motivated', 'negotiation', 'organization', 'ownership', 'passion', 'persistence', 'planning', 'presentation skills', 'prioritization', 'prioritizing', 'problem-solving', 'professional', 'project management', 'reliable', 'research', 'resilient', 'responsibility', 'responsible', 'sense of urgency', 'storytelling', 'team player', 'teamwork', 'time management', 'verbal communication', 'work-life balance', 'written communication', 'written and oral communication', 'api design', 'api development', 'batch processing', 'big data', 'bioinformatics', 'business intelligence', 'classification', 'cloud computing', 'containerization', 'data analysis', 'data architecture', 'data cleaning', 'data extraction', 'data governance', 'data ingestion', 'data integration', 'data manipulation', 'data mining', 'data modeling', 'data pipelines', 'data security', 'data visualization', 'data warehousing', 'data wrangling', 'database design', 'deep learning', 'devops', 'distributed computing', 'etl', 'econometrics', 'extract', 'feature engineering', 'google cloud', 'load (etl) processes', 'logging', 'ml', 'machine learning', 'mathematics', 'metrics', 'microservices architecture', 'model deployment', 'model monitoring', 'monitoring', 'nlp', 'natural language processing', 'natural language understanding', 'operations research', 'problem-solving skills', 'report generation', 'research skills', 'scripting', 'statistical analysis', 'statistics', 'technical documentation', 'transform', 'understanding of machine learning algorithms']
     data_preprocessed = pd.DataFrame({}, columns=columns)
 
