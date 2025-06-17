@@ -297,7 +297,7 @@ SLACK_WEBHOOK_URL={slack webhook url}
 SLACK_ID = {slack id of person to notify}
 ```
 
-## Manually Run Airflow
+## Manually Run Airflow (optional)
 
 Once everything is set up, run the following in ```/home/ubuntu``` to start Airflow
 
