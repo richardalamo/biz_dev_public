@@ -14,7 +14,7 @@ import sys
 import csv
 import html
 
-# Initializing command line arguments
+# Initializing command line arguments (S3, local files, location, date)
 parser = argparse.ArgumentParser()
 parser.add_argument('--bucket')
 parser.add_argument('--prefix')
@@ -77,6 +77,7 @@ industry_skills = ["API Design", "API Development", "Batch Processing", "Big dat
                 "Understanding of Machine Learning Algorithms"]
 education = [' BS ', ' MS ', ' BS, ', ' MS, ', 'Ph.D', 'M.S.', 'PhD', 'graduate', 'Bachelor', 'Master']
 
+# Normalize data
 tools = [s.lower() for s in tools]
 soft_skills = [s.lower() for s in soft_skills]
 industry_skills = [s.lower() for s in industry_skills]
@@ -170,6 +171,15 @@ def clean_text(text):
     return text.lower()
 
 def translate_text(text):
+    """
+    Translates non-English text to English.
+
+    Args:
+        text: The text to translate.
+
+    Returns:
+        translated: Translated text in English.
+    """
     try:
         translated = GoogleTranslator(source='arabic', target='english').translate(text)
     except:
@@ -177,6 +187,16 @@ def translate_text(text):
     return translated
 
 def location_cleaning(s, locations):
+    """
+    Filters out locations. Only accepted locations will be kept. Otherwise, will be bucketed as "Others"
+
+    Args:
+        s: Location input data
+        locations: Accepted locations list
+
+    Returns:
+        location: An accepted location in the list or "Others"
+    """
     if not s:
         return None
     for location in locations:
@@ -187,8 +207,15 @@ def location_cleaning(s, locations):
 def preprocess_data(df, file_key, schema):
     
     '''
-    Input: Raw data collected from Bright Data S3 bucket
-    Output: Cleaned and transformed data for PostgreSQL database
+    Cleans and preprocesses data
+
+    Args:
+        df: Input dataframe
+        file_key: csv file name
+        schema: table schema
+    
+    Returns:
+        cleaned df: A cleaned and preprocessed dataframe
     '''
 
     df['name'] = df['company_name']
@@ -196,6 +223,7 @@ def preprocess_data(df, file_key, schema):
     df['title'] = df['job_title']
     df['jobType'] = df['job_type'].apply(lambda x: None if pd.isna(x) else x)
 
+    # Running translate text in parallel
     with ThreadPoolExecutor(max_workers=8) as executor:
         results_date_posted = list(executor.map(translate_text, df['date_posted']))
     df['posted'] = results_date_posted
@@ -207,6 +235,7 @@ def preprocess_data(df, file_key, schema):
         results_location = list(executor.map(translate_text, df['location']))
     df['location'] = results_location
 
+    # Running cleaning and preprocessing Pandas functions
     df['location'] = df['location'].apply(lambda x: location_cleaning(x, locations))
     df['days_ago'] = df['posted'].apply(extract_integer)
     df['days_ago'] = df['days_ago'].apply(lambda x: int(x) if pd.notna(x) else np.nan)
@@ -237,6 +266,7 @@ def preprocess_data(df, file_key, schema):
     return df
 
 
+# Set up S3 client
 s3_client = boto3.client("s3", 
                             aws_access_key_id=access_key, 
                             aws_secret_access_key=secret_access_key
@@ -246,6 +276,17 @@ response = s3_client.list_objects_v2(Bucket=bucket, Prefix=prefix + today_date.r
 
 def concat_data_saudi(location, schema):
 
+    '''
+    Reads Saudi csv data from S3. Cleans and preprocesses it. Concatenates it. Saves to csv file locally.
+
+    Args:
+        location: Saudi Arabia
+        schema: table schema
+    
+    Returns:
+        task status: Whether the task succeeded. If concatenated data exists, then succeeded. Otherwise fail.
+    '''
+       
     fetched_files = []
 
     if 'Contents' in response:
@@ -284,6 +325,17 @@ def concat_data_saudi(location, schema):
 
 
 def concat_data(location, schema):
+
+    '''
+    Reads Canada and USA csv data from S3. Concatenates it. Saves to csv file locally.
+
+    Args:
+        location: Canada, USA
+        schema: table schema
+    
+    Returns:
+        task status: Whether the task succeeded. If concatenated data exists, then succeeded. Otherwise fail.
+    '''
 
     fetched_files = []
 
@@ -326,11 +378,13 @@ def concat_data(location, schema):
 
     return task_status
 
+# If Saudi data, we clean and preprocess it before concatenating. If Canada or US data, we only concatenate it
 if location == 'Saudi_Arabia':
     task_status = concat_data_saudi(location, schema_saudi)
 else:
     task_status = concat_data(location, raw_schema)
 
+# If no data exists, we mark this task as failed
 if not task_status:
     sys.exit(1)
 
