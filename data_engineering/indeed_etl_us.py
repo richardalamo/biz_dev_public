@@ -21,6 +21,7 @@ concatenation_path = f'{scrape_code_path}/file_concatenation.py'
 config_path = '/home/ubuntu/airflow/scrape_code/config.yaml'
 log_location_base = '/home/ubuntu/airflow/logs'
 log_location = f'{log_location_base}/bright_data_logs'
+log_retention_period = 7
 
 location = 'United_States'
 location_index = 2 # 0 for Saudi. 1 for Canada. 2 for USA
@@ -88,6 +89,20 @@ start_task = DummyOperator(
     dag=dag,
 )
 
+delete_airflow_logs = BashOperator(
+    task_id='delete_airflow_logs',
+    bash_command=f'sudo find {log_location_base}/dag_id={dag_name} -type f -name "*.log" -mtime +{log_retention_period} -delete',
+    dag=dag,
+    # trigger_rule=TriggerRule.ALL_DONE,
+)
+
+delete_bright_data_logs = BashOperator(
+    task_id='delete_bright_data_logs',
+    bash_command=f'sudo find {log_location} -type f -name "*.log" -mtime +{log_retention_period} -delete',
+    dag=dag,
+    # trigger_rule=TriggerRule.ALL_DONE,
+)
+
 collect_jobs = BashOperator(
     task_id='collect_jobs',
     bash_command=f'python3 {indeed_api_path} --config {config_path} --location {location_index} --log_location {log_location} --env_path {env_path} --today_date {today_date}',
@@ -122,4 +137,4 @@ end_task = DummyOperator(
     # trigger_rule=TriggerRule.ALL_DONE,
 )
 
-start_task >> collect_jobs >> wait_for_s3 >> concatenate_data >> push_to_postgres >> end_task
+start_task >> delete_airflow_logs >> delete_bright_data_logs >> collect_jobs >> wait_for_s3 >> concatenate_data >> push_to_postgres >> end_task
