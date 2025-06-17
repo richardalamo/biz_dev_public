@@ -45,9 +45,10 @@ Below diagram is a data architecture representation
     ]
 }
  ```
+
 ## Move files from Github into EC2
 - Copy ```setup.sh```, ```requirements.txt```, ```automate_airflow.sh```, ```create_postgresql_table.py```, ```stop_ec2_instance.py``` into ```/home/ubuntu```.
-- Then, run the following:
+- Then, in ```/home/ubuntu```, run the following:
  ```bash
 chmod +x automate_airflow.sh
 chmod +x setup.sh
@@ -79,6 +80,7 @@ ALTER SCHEMA public OWNER TO airflow_user;
 ALTER USER airflow_user WITH SUPERUSER;
 \q
 ```
+
 ## Configure Airflow
 Go to ```Airflow.cfg```
 
@@ -88,30 +90,6 @@ sql_alchemy_conn = postgresql+psycopg2://airflow_user:beamdatajobscrape25@localh
 executor = LocalExecutor
 ```
 
-## .env file setup
-
-In ```/home/ubuntu/airflow/```, run
-```bash
-touch .env
-```
-
-Then inside ```.env```, copy the following and change to your credentials
-```env
-aws_access_key={aws access key}
-aws_secret_access_key={aws secret access key}
-BRIGHTDATA_API_KEY={brightdata API key}
-S3_BUCKET={bucket to store raw brightdata scrapes}
-S3_DIRECTORY={folder to store raw brightdata scrapes}
-DATASET_ID={dataset id}
-rds_endpoint={rds endpoint}
-db_name={whatever database name you created in the RDS endpoint}
-username={rds database username}
-password={rds database password}
-github_token={enter github token}
-OPENAI_API_KEY={openai_api_key}
-SLACK_WEBHOOK_URL={slack webhook url}
-SLACK_ID = {slack id of person to notify}
-```
 ## Slack Webhook Generation
 - Go to https://api.slack.com/apps
 - Click on ```Create New App``` and then ```From scratch```
@@ -162,6 +140,7 @@ Please refer to https://github.com/beam-data/job-market-trend/blob/bright_data/R
 INSTANCE_ID = '{insert ec2 instance ID}'
 ```
 Replace with your ec2 instance id
+
 ## EventBridge - Start EC2 instance
 
 Create 3 Eventbridge Schedules. One corresponding to each location prefix
@@ -227,6 +206,7 @@ Login: <rds_username>
 Password: <rds_password>
 Port: 5432
 ```
+
 ## Set up Metabase
 - Run the following:
 ```bash
@@ -265,9 +245,11 @@ sudo java -jar /opt/metabase/metabase.jar #start Metabase
 - After port forwarding port 3000, click on the link
 - In the UI, there will be instructions to create an account
 - Once you get to the database connection part, enter your RDS PostgreSQL database credentials in the setup prompt
+
 ## Airflow Security Settings
 - Go to ```Security -> List Users -> Edit record``` in the Admin Airflow Console to change your First Name, Last Name, User Name, and Email
 - Go to ```Your Profile -> Reset my password``` to change your password
+
 ## Set up OpenAI LLM Environment
 - Go to ```/home/ubuntu/.bashrc```
 - At the bottom of this file, enter the following: ```export OPENAI_API_KEY="<openai_api_key>"```
@@ -275,6 +257,32 @@ sudo java -jar /opt/metabase/metabase.jar #start Metabase
 ```bash
 source ~/.bashrc
 ```
+
+## .env file setup
+
+In ```/home/ubuntu/airflow/```, run
+```bash
+touch .env
+```
+
+Then inside ```.env```, copy the following and change to your credentials
+```env
+aws_access_key={aws access key}
+aws_secret_access_key={aws secret access key}
+BRIGHTDATA_API_KEY={brightdata API key}
+S3_BUCKET={bucket to store raw brightdata scrapes}
+S3_DIRECTORY={folder to store raw brightdata scrapes}
+DATASET_ID={dataset id}
+rds_endpoint={rds endpoint}
+db_name={whatever database name you created in the RDS endpoint}
+username={rds database username}
+password={rds database password}
+github_token={enter github token}
+OPENAI_API_KEY={openai_api_key}
+SLACK_WEBHOOK_URL={slack webhook url}
+SLACK_ID = {slack id of person to notify}
+```
+
 ## Airflow debug (optional)
 - One time, all the DAGs disappeared in the Airflow UI. After looking at ```nohup.out```, there were permission errors in the logs that the scheduler couldn't access. Running this:
 ```bash
