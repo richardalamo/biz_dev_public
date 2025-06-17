@@ -236,6 +236,7 @@ def preprocess_data(df, file_key, schema):
     df['location'] = results_location
 
     # Running cleaning and preprocessing Pandas functions
+    df['description_text'] = df['description_text'].apply(clean_text)
     df['location'] = df['location'].apply(lambda x: location_cleaning(x, locations))
     df['days_ago'] = df['posted'].apply(extract_integer)
     df['days_ago'] = df['days_ago'].apply(lambda x: int(x) if pd.notna(x) else np.nan)
@@ -249,7 +250,7 @@ def preprocess_data(df, file_key, schema):
     df['Tools'] = df['description_text'].apply(lambda x: extract_tools(x, tools))
     df['Soft Skills'] = df['description_text'].apply(lambda x: extract_tools(x, soft_skills))
     df['Industry Skills'] = df['description_text'].apply(lambda x: extract_tools(x, industry_skills))
-    df['description'] = df['description_text'].apply(clean_text)
+    df['description'] = df['description_text']
     date_of_search = re.compile(r"\w+_(\d+-\d+-\d+)").findall(file_key)[0]
     df["date"] = pd.to_datetime(date_of_search)
 
