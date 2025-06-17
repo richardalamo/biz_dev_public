@@ -18,11 +18,11 @@ mkdir ~/airflow/dags
 mkdir ~/airflow/raw
 mkdir ~/airflow/outputs
 mkdir ~/airflow/scrape_code
-# Setup Virtual environment
+# Setup Python virtual environment
 sudo apt install python3.12-venv
 python3 -m venv airflow_env
 source airflow_env/bin/activate
-# Setup Postgresql
+# Setup PostgreSQL
 sudo apt install postgresql postgresql-contrib -y
 # Install AWS on EC2 CLI
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
