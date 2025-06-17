@@ -66,6 +66,11 @@ echo "Stopping Airflow webserver and scheduler..."
 pkill -f "airflow webserver"
 pkill -f "airflow scheduler"
 
-# Step 6: Stop EC2 instance
+# Step 6: Remove the nohup.out file
+if [ -f "nohup.out" ]; then
+    rm "nohup.out"
+fi
+
+# Step 7: Stop EC2 instance
 echo "Stopping EC2 instance"
 python3 stop_ec2_instance.py
