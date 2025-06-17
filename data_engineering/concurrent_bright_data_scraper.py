@@ -181,6 +181,7 @@ def process_job_with_config(job_title: str, location_config: Dict, scraping_para
         logger.error(f"Error with '{job_title}' in {location_config['location_name']}: {e}", exc_info=True)
 
 def process_job_with_config_us(
+    """Execute complete scraping workflow for a single job title and city in the United States."""
     job_title: str,
     location_config: Dict,
     scraping_params: Dict,
@@ -211,6 +212,7 @@ def process_job_with_config_us(
         logger.error(f"Error with '{job_title}' in {location}: {e}", exc_info=True)
 
 def process_location(location: str, location_config: Dict, job_titles: List[str], scraping_params: Dict, env_vars: Dict, logger: logging.Logger, today_date: str, poll_interval: int = 15):
+    """For US scrapes, due to the high number of cities to pull, we run cities in parallel and job titles one by one. For CA and SA scrapes, we run job titles in parallel."""
     for job_title in job_titles:
         process_job_with_config_us(job_title, location_config, scraping_params, env_vars, logger, location, today_date, poll_interval)
 
@@ -234,6 +236,7 @@ if __name__ == "__main__":
                        help='Run in test mode with limited scope')
     args = parser.parse_args()
 
+    # Create logging folder
     os.makedirs(args.log_location, exist_ok=True)
 
     # Load configuration
@@ -271,10 +274,12 @@ if __name__ == "__main__":
     # Select location (for Airflow, you can pass different location indices)
     if args.location >= len(locations):
         raise ValueError(f"Location index {args.location} out of range. Available: 0-{len(locations)-1}")
-    
+
+    # Obtain the config for selected location and create logger item
     location_config = locations[args.location]
     logger = create_logger(location_config['log_prefix'], args.log_location)
 
+    # Obtain job titles for selected location
     job_titles = scraping_config['job_titles'][location_config['log_prefix']]
 
     logger.info(f"Starting scraping for {location_config['location_name']} with {len(job_titles)} job titles")
