@@ -276,7 +276,7 @@ sudo java -jar /opt/metabase/metabase.jar #start Metabase
 source ~/.bashrc
 ```
 ## Airflow debug (optional)
-- One time, all the DAGs disappeared in the Airflow UI. After looking at the nohup.out, there were permission errors in the logs that the scheduler couldn't access. Running this:
+- One time, all the DAGs disappeared in the Airflow UI. After looking at ```nohup.out```, there were permission errors in the logs that the scheduler couldn't access. Running this:
 ```bash
 sudo chown -R ubuntu:ubuntu /home/ubuntu/airflow/logs
 ```
