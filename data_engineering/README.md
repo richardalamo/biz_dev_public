@@ -139,7 +139,7 @@ Please refer to https://github.com/beam-data/job-market-trend/blob/bright_data/R
 ```python
 INSTANCE_ID = '{insert ec2 instance ID}'
 ```
-Replace with your ec2 instance id
+Replace ```'{insert ec2 instance ID}'``` with your ec2 instance id
 
 ## EventBridge - Start EC2 instance
 
