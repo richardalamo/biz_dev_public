@@ -35,12 +35,6 @@ secret_access_key = args.secret_access_key
 location = args.location
 today_date = args.today_date
 
-# Extracting the period we want to collect data
-# eastern = pytz.timezone('America/New_York')
-# timestamp_raw = datetime.now(eastern)
-# today_date = timestamp_raw.strftime('%Y-%m-%d')
-# today_date = (timestamp_raw - timedelta(days=2)).date().strftime('%Y-%m-%d')
-
 # Initializing variables
 raw_schema = ['jobid', 'company_name', 'date_posted_parsed', 'job_title',
        'description_text', 'benefits', 'qualifications', 'job_type',
@@ -248,7 +242,7 @@ s3_client = boto3.client("s3",
                             aws_secret_access_key=secret_access_key
 )
 
-response = s3_client.list_objects_v2(Bucket=bucket, Prefix=prefix) 
+response = s3_client.list_objects_v2(Bucket=bucket, Prefix=prefix + today_date.replace('-', '/')) 
 
 def concat_data_saudi(location, schema):
 
