@@ -15,6 +15,7 @@ import os
 from dotenv import load_dotenv
 import openai
 
+# Get RDS and OpenAI credentials
 load_dotenv('/home/ubuntu/airflow/.env')
 openai_api_key = os.getenv('OPENAI_API_KEY')
 openai.api_key = openai_api_key
@@ -24,6 +25,7 @@ rds_endpoint = os.getenv('rds_endpoint')
 db_port = '5432'
 db_name = os.getenv('db_name')
 
+# Set up input and output csv paths
 parser = argparse.ArgumentParser()
 parser.add_argument('--input_csv_path')
 parser.add_argument('--output_csv_path')
@@ -35,7 +37,6 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Build a haystack component that can be used to fetch data from the Dataframe
-
 @component
 class RowFetcher:
 
@@ -47,6 +48,7 @@ class RowFetcher:
     def run(self, df, row_number: int): # The component requires a DataFrame a row number (integer position based)
         return {"job_info": {df.iloc[row_number][["title", "description", "Tools", "Industry Skills"]].to_json()}}
 
+# Create the LLM prompt
 gpt_template3 = """Perform the following actions: 
 1 - Read a job post description, which is delimited by triple backticks.
 
@@ -100,6 +102,8 @@ def create_llm_model(gpt_model_name):
     Input: gpt_model_name
     Output: LLM Model object
     '''
+
+    # Create the components
     fetcher = RowFetcher()
     prompt = PromptBuilder(template=gpt_template3)
     gpt_model = OpenAIGenerator(model=gpt_model_name)
@@ -116,13 +120,15 @@ def create_llm_model(gpt_model_name):
 
     return gpt_categorizer
 
+# Use 2 different ChatGPT models depending on the data being fed
 gpt_1 = "gpt-4o-mini"
 gpt_2 = "gpt-4o"
 gpt_categorizer_1 = create_llm_model(gpt_1)
 gpt_categorizer_2 = create_llm_model(gpt_2)
 
+# Read the csv file and remove duplicated job keys
 df = pd.read_csv(input_csv_path)
-df = df.drop_duplicates(subset=['key']) # NOTES FOR FUTURE: We should do a join with historical job listings to lower LLM cost
+df = df.drop_duplicates(subset=['key'])
 print(f'The number of rows and columns before the key filter is {df.shape}')
 
 # Get historical database keys from PostgreSQL table
@@ -195,6 +201,7 @@ def process_with_llm(gpt_categorizer, df, gpt_model_name):
     df = df[columns]
     return df
 
+# Run the two different LLM models in parallel
 with concurrent.futures.ThreadPoolExecutor() as executor:
     future_1 = executor.submit(process_with_llm, gpt_categorizer_1, df_gpt_1, gpt_1)
     future_2 = executor.submit(process_with_llm, gpt_categorizer_2, df_gpt_2, gpt_2)
