@@ -15,7 +15,7 @@ PASSWORD = os.getenv("password")
 PORT = "5432"  # Default PostgreSQL port
 
 try:
-    # Connect to PostgreSQL RDS
+    # Connect to RDS PostgreSQL
     conn = psycopg2.connect(
         dbname=DATABASE_NAME,
         user=USERNAME,
@@ -26,7 +26,7 @@ try:
 
     cursor = conn.cursor()
 
-    # Create table using raw SQL
+    # Create various tables using raw SQL
     create_raw_table_us_ca_query = f"""
     CREATE TABLE IF NOT EXISTS job_postings_us_ca (
         jobid TEXT,
