@@ -1,4 +1,5 @@
 # Intro
+
 1. Collects jobs data from Indeed for Canada, US, and Saudi Arabia
 2. Cleans, preprocesses, and categorizes data
 3. Stores preprocessed data into S3 and RDS PostgreSQL
@@ -13,6 +14,7 @@ Below diagram is a data architecture representation
 ![image](https://github.com/user-attachments/assets/16e8b0e3-6634-4a95-bb60-a10f4b30f1a4)
 
 ## Artifacts Needed
+
 1. One RDS PostgreSQL Database
 2. One EC2 instance
 3. One Lambda function
@@ -22,6 +24,7 @@ Below diagram is a data architecture representation
 8. IAM roles for the Lambda function, EC2 instance, and Eventbridge schedulers
 
 ## Set up EC2
+
 *Enable the following settings*
 - Inbound Rules: Port 22, Source: My IP Address
 - Inbound Rules: Port 8080, Source: My IP Address
@@ -47,6 +50,7 @@ Below diagram is a data architecture representation
  ```
 
 ## Move files from Github into EC2
+
 - Copy ```setup.sh```, ```requirements.txt```, ```automate_airflow.sh```, ```create_postgresql_table.py```, ```stop_ec2_instance.py``` into ```/home/ubuntu```.
 - Then, in ```/home/ubuntu```, run the following:
  ```bash
@@ -82,6 +86,7 @@ ALTER USER airflow_user WITH SUPERUSER;
 ```
 
 ## Configure Airflow
+
 Go to ```Airflow.cfg```
 
 Ensure that the file contains the following:
@@ -91,6 +96,7 @@ executor = LocalExecutor
 ```
 
 ## Slack Webhook Generation
+
 - Go to https://api.slack.com/apps
 - Click on ```Create New App``` and then ```From scratch```
 - Enter your ```App Name``` (anything suffices) and your ```workspace```
@@ -99,6 +105,7 @@ executor = LocalExecutor
 - Select the Slack channel you want to post 
 
 ## Github Token Generation
+
 - Make sure your account is a collaborator in the repo that you want to do CI/CD on
 - Go to ```Settings -> Developer Settings -> Tokens (classic) -> Generate new token (classic)```
 - Once you get the prompt, then sign in again to your console
@@ -111,6 +118,7 @@ executor = LocalExecutor
 Please refer to https://github.com/beam-data/job-market-trend/blob/bright_data/README.md
 
 ## Set up Lambda Function
+
 *Enable the following settings*
 
 - Make sure you are in ca-central-1
@@ -166,6 +174,7 @@ Create 3 Eventbridge Schedules. One corresponding to each location prefix
 - Under Action, select lambda:InvokeFunction
 
 ## EventBridge - Stop EC2 instance
+
 Set up is identical to *EventBridge - Start EC2 instance* except paste 
 ```json
 {"action": "stop"}
@@ -173,6 +182,7 @@ Set up is identical to *EventBridge - Start EC2 instance* except paste
 Under the Payload instead
 
 ## Set up RDS Table
+
 *Enable the following settings*
 
 - Security group inbound rules is set to ```Type: PostgreSQL```, and source being your EC2 instance's security group. This will enable the connection needed for the EC2 instance to access RDS PostgreSQL when doing reads, writes, etc.
@@ -196,6 +206,7 @@ GRANT ALL PRIVILEGES ON DATABASE "<database_name>" TO <rds_username>;
 - After exiting the postgresql command line, in ```/home/ubuntu```, run ```python3 create_postgresql_table.py``` to create the tables
 
 ## Set up Airflow RDS PostgreSQL Connection
+
 - In the Airflow UI, under ```Admin -> Connections```, add a new record. Then enter the following and change to your credentials accordingly:
 ```
 Connection Id: <anything_you_like>
@@ -208,6 +219,7 @@ Port: 5432
 ```
 
 ## Set up Metabase
+
 - Run the following:
 ```bash
 sudo apt update && sudo apt upgrade -y
@@ -247,10 +259,12 @@ sudo java -jar /opt/metabase/metabase.jar #start Metabase
 - Once you get to the database connection part, enter your RDS PostgreSQL database credentials in the setup prompt
 
 ## Airflow Security Settings
+
 - Go to ```Security -> List Users -> Edit record``` in the Admin Airflow Console to change your First Name, Last Name, User Name, and Email
 - Go to ```Your Profile -> Reset my password``` to change your password
 
 ## Set up OpenAI LLM Environment
+
 - Go to ```/home/ubuntu/.bashrc```
 - At the bottom of this file, enter the following: ```export OPENAI_API_KEY="<openai_api_key>"``` and change ```<openai_api_key>``` to your openai api key.
 - Run
@@ -282,6 +296,10 @@ OPENAI_API_KEY={openai_api_key}
 SLACK_WEBHOOK_URL={slack webhook url}
 SLACK_ID = {slack id of person to notify}
 ```
+
+## Manually Run Airflow
+
+Once everything is set up, 
 
 ## Airflow debug (optional)
 - One time, all the DAGs disappeared in the Airflow UI. After looking at ```nohup.out```, there were permission errors in the logs that the scheduler couldn't access. Running this:
