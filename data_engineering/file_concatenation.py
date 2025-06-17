@@ -251,19 +251,20 @@ def preprocess_data(df, file_key, schema):
     df['Soft Skills'] = df['description_text'].apply(lambda x: extract_tools(x, soft_skills))
     df['Industry Skills'] = df['description_text'].apply(lambda x: extract_tools(x, industry_skills))
     df['description'] = df['description_text']
-    date_of_search = re.compile(r"\w+_(\d+-\d+-\d+)").findall(file_key)[0]
-    df["date"] = pd.to_datetime(date_of_search)
 
     if 'master_data_management_(mdm)_specialist' in file_key:
         title_used_in_search = re.sub('_', ' ', 'master_data_management_(mdm)_specialist')
     else:
         title_used_in_search = re.compile(r"(\w+)_Saudi_Arabia_\d+-\d+-\d+").findall(file_key)[0].replace("_", " ")
     df["search keyword"] = title_used_in_search
-    
+
+    date_of_search = re.compile(r"\w+_(\d+-\d+-\d+)").findall(file_key)[0]
+    df["date"] = pd.to_datetime(date_of_search)
     df['year'] = df['date'].dt.year
     df['month'] = df['date'].dt.month
+       
     df = df[schema]
-
+       
     return df
 
 
