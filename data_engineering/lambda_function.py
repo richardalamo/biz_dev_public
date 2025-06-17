@@ -8,6 +8,7 @@ ssm = boto3.client('ssm')
 
 INSTANCE_ID = '{insert ec2 instance ID}'
 
+# Each location corresponds to a specific Airflow DAG to run
 locations_dict = {
     'SA': 'indeed_etl',
     'CA': 'indeed_etl_ca',
@@ -15,6 +16,7 @@ locations_dict = {
 }
 
 def start_instance(dag_name):
+    """Starts EC2 instance. Executes a .sh script in EC2 command line."""
     response = ec2.start_instances(InstanceIds=[INSTANCE_ID])
     print(f"Starting instance {INSTANCE_ID}: {response}")
     
@@ -42,6 +44,7 @@ def start_instance(dag_name):
     print(f"Sent command to run {dag_name} DAG:", response)
 
 def stop_instance():
+    """Stops EC2 instance."""
     response = ec2.stop_instances(InstanceIds=[INSTANCE_ID])
     print(f"Stopping instance {INSTANCE_ID}: {response}")
     
@@ -51,8 +54,10 @@ def stop_instance():
     print(f"Instance {INSTANCE_ID} is now stopped.")
 
 def lambda_handler(event, context):
+    """Depending on the event, we either start or stop the EC2 instance."""
     action = event.get('action')
     if action == 'start':
+        # We start the EC2 instance and execute the corresponding Airflow DAG to the location input.
         try:
             location = event.get('location').upper()
             dag_name = locations_dict[location]
