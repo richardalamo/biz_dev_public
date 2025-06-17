@@ -193,7 +193,7 @@ CREATE DATABASE "<database_name>";
 ALTER DATABASE "<database_name>" OWNER TO <rds_username>;
 GRANT ALL PRIVILEGES ON DATABASE "<database_name>" TO <rds_username>;
 ```
-- After exiting the postgresql command line, run ```create_postgresql_table.py``` to create the tables
+- After exiting the postgresql command line, in ```/home/ubuntu```, run ```python3 create_postgresql_table.py``` to create the tables
 
 ## Set up Airflow RDS PostgreSQL Connection
 - In the Airflow UI, under ```Admin -> Connections```, add a new record. Then enter the following and change to your credentials accordingly:
