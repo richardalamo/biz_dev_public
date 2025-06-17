@@ -210,6 +210,6 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
     df_gpt_1 = future_1.result()
     df_gpt_2 = future_2.result()
 
-# Combine datasets
+# Combine datasets and save to csv file
 df_gpt = pd.concat([df_gpt_1, df_gpt_2])
 df_gpt.to_csv(output_csv_path, index=False, encoding='utf-8')
