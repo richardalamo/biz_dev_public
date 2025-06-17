@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import argparse
 
+# Define input and output csv paths
 parser = argparse.ArgumentParser()
 parser.add_argument('--input_csv_path')
 parser.add_argument('--output_csv_path')
@@ -10,8 +11,10 @@ args = parser.parse_args()
 input_csv_path = args.input_csv_path
 output_csv_path = args.output_csv_path
 
+# Read data from csv file
 data = pd.read_csv(input_csv_path)
 
+# If data exists
 if not data.empty:
     # Ensure integer data doesn't get converted to floats
     data['days_ago'] = data['days_ago'].apply(lambda x: int(x) if pd.notna(x) else np.nan)
@@ -250,8 +253,9 @@ if not data.empty:
     # Given we bucketed some few search keywords into a bigger category, we need to dedup it again
     data = data.drop_duplicates(subset=['key', 'date', 'search keyword'])
 
-else:
+else: # Otherwise, we create an empty dataframe with the predefined schema
     columns = list(data.columns) + ['n_filter_words']
     data = pd.DataFrame({}, columns=columns)
 
+# Save to csv file
 data.to_csv(output_csv_path, index=False, encoding='utf-8')
