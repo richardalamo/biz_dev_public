@@ -143,7 +143,7 @@ def deliver_snapshot_to_s3(query: Dict, snapshot_id: str, logger: logging.Logger
         "deliver": {
             "type": "s3",
             "bucket": S3_BUCKET,
-            "directory": S3_DIRECTORY,
+            "directory": S3_DIRECTORY + today_date.replace('-', '/'),
             "filename": {
                 "template": filename_template,
                 "extension": "csv"
