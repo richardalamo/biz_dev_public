@@ -13,6 +13,13 @@ import numpy as np
 import sys
 import csv
 import html
+import os
+from dotenv import load_dotenv
+
+# Get AWS credentials
+load_dotenv("/home/ubuntu/airflow/.env")
+access_key = os.getenv("aws_access_key")
+secret_access_key = os.getenv("aws_secret_access_key")
 
 # Initializing command line arguments (S3, local files, location, date)
 parser = argparse.ArgumentParser()
@@ -20,8 +27,6 @@ parser.add_argument('--bucket')
 parser.add_argument('--prefix')
 parser.add_argument('--output_csv_path')
 parser.add_argument('--output_csv_path_ca_us')
-parser.add_argument('--access_key')
-parser.add_argument('--secret_access_key')
 parser.add_argument('--location')
 parser.add_argument('--today_date', type=str)
 
@@ -30,8 +35,6 @@ bucket = args.bucket
 prefix = args.prefix
 output_csv_path = args.output_csv_path
 output_csv_path_ca_us = args.output_csv_path_ca_us
-access_key = args.access_key
-secret_access_key = args.secret_access_key
 location = args.location
 today_date = args.today_date
 
