@@ -9,8 +9,8 @@
 7. Steps 1-6 are orchestrated with Airflow
 8. Airflow is automated via Lambda and Eventbridge
 
-
 Below diagram is a data architecture representation
+
 ![image](https://github.com/user-attachments/assets/16e8b0e3-6634-4a95-bb60-a10f4b30f1a4)
 
 ## Artifacts Needed
@@ -299,7 +299,22 @@ SLACK_ID = {slack id of person to notify}
 
 ## Manually Run Airflow
 
-Once everything is set up, 
+Once everything is set up, run the following in ```/home/ubuntu``` to start Airflow
+
+```bash
+source airflow_env/bin/activate
+nohup airflow webserver --port 8080 &
+nohup airflow scheduler &
+```
+
+Airflow DAGs are stored in ```/home/ubuntu/airflow/dags```. If you want to create a new DAG, create it in this path.
+
+To stop Airflow, again, in ```/home/ubuntu```, run
+
+```bash
+pkill -f "airflow webserver"
+pkill -f "airflow scheduler"
+```
 
 ## Airflow debug (optional)
 - One time, all the DAGs disappeared in the Airflow UI. After looking at ```nohup.out```, there were permission errors in the logs that the scheduler couldn't access. Running this:
