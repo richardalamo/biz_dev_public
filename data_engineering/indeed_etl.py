@@ -35,7 +35,7 @@ concatenation_path = f'{scrape_code_path}/file_concatenation.py'
 clean_and_preprocess_path = f'{scrape_code_path}/clean_and_preprocess.py'
 process_path = f'{scrape_code_path}/process_data.py'
 llm_path = f'{scrape_code_path}/LLM_labelling.py'
-csv_file_path_ca_us = ''
+csv_file_path_ca_us = 'placeholder.csv' # We need something here so that the code doesn't break as it's a command line input argument for a bash script
 eastern = pytz.timezone('America/New_York')
 today_date = datetime.now(eastern).strftime('%Y-%m-%d')
 
