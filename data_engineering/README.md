@@ -124,9 +124,42 @@ Please refer to https://github.com/beam-data/job-market-trend/blob/bright_data/R
 
 - Make sure you are in ca-central-1
 - Under runtime, enter Python 3.11 or more recent
-- Under Lambda execution role, make sure it has EC2 access, with at least start and stop instance permissions. For now use AmazonEC2FullAccess
-- Under Lambda execution role, make sure it has SSM access. For now use AmazonSSMFullAccess
-- Under Lambda execution role, make sure it has AWSLambdaBasicExecutionRole
+- Under Lambda execution role, make sure it has SSM access. For now use ```AmazonSSMFullAccess```
+- Under Lambda execution role, attach the following json policy, changing to your credentials accordingly:
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:StartInstances",
+                "ec2:StopInstances"
+            ],
+            "Resource": "arn:aws:ec2:{your_region}:{your_aws_account_id}:instance/{your_ec2_instance_id}"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "ec2:DescribeInstances",
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "cloudwatch:PutMetricData",
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
 - Make sure trust relationships is:
 ```json
 {
