@@ -1,21 +1,25 @@
+# List of all tables to upload csv data to
 table_names = ['raw_new', 'preprocessed_new', 'processed_new', 'LLM_labels_new']
 
+# Github file paths to update EC2 folder with
 GITHUB_FILE_PATHS = [
-    'airflow_setup/Indeed_API.py',
-    'airflow_setup/file_concatenation.py',
-    'airflow_setup/clean_and_preprocess.py',
-    'airflow_setup/process_data.py',
-    'airflow_setup/LLM_labelling.py',
+    'data_engineering/concurrent_bright_data_scraper.py',
+    'data_engineering/file_concatenation.py',
+    'data_engineering/clean_and_preprocess.py',
+    'data_engineering/process_data.py',
+    'data_engineering/LLM_labelling.py',
 ]
 
+# EC2 file paths that will be updated with files from Github
 EC2_FILE_PATHS = [
-    '/home/ubuntu/airflow/scrape_code/Indeed_API.py',
+    '/home/ubuntu/airflow/scrape_code/concurrent_bright_data_scraper.py',
     '/home/ubuntu/airflow/scrape_code/file_concatenation.py',
     '/home/ubuntu/airflow/scrape_code/clean_and_preprocess.py',
     '/home/ubuntu/airflow/scrape_code/process_data.py',
     '/home/ubuntu/airflow/scrape_code/LLM_labelling.py',
 ]
 
+# CSV files to upload/update to S3 and RDS PostgreSQL
 csv_file_paths = [
     "/home/ubuntu/airflow/outputs/concatenated_data.csv",
     "/home/ubuntu/airflow/outputs/preprocessed_data.csv",
@@ -23,6 +27,7 @@ csv_file_paths = [
     "/home/ubuntu/airflow/outputs/LLM_labels_data.csv",
 ]
 
+# Copy data from csv files
 sql_copy_to_temp_queries = [
     "COPY raw_temp FROM STDIN WITH CSV HEADER",
     "COPY preprocessed_temp FROM STDIN WITH CSV HEADER",
@@ -30,6 +35,7 @@ sql_copy_to_temp_queries = [
     "COPY LLM_labels_temp FROM STDIN WITH CSV HEADER"
 ]
 
+# Create temp tables for the data load/merge
 sql_temp_table_queries = [
     '''
     CREATE TEMPORARY TABLE IF NOT EXISTS raw_temp (
@@ -739,6 +745,7 @@ sql_temp_table_queries = [
     ''',
 ]
 
+# Merge data from temp tables (csv file data) into PostgreSQL tables. Only new data (from Airflow tasks) will get uploaded into PostgreSQL to ensure idempotency.
 sql_merge_sql_queries = [
     '''
     INSERT INTO raw_new
@@ -934,6 +941,7 @@ sql_merge_sql_queries = [
     ''',
 ]
 
+# Remove temp tables
 sql_drop_temp_table_queries = [
     "DROP TABLE IF EXISTS raw_temp;",
     "DROP TABLE IF EXISTS preprocessed_temp;",
