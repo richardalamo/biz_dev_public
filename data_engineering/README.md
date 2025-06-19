@@ -24,6 +24,14 @@ Below diagram is a data architecture representation
 7. Metabase server
 8. IAM roles for the Lambda function, EC2 instance, and Eventbridge schedulers
 
+## AWS Access and Secret Access Key
+
+*Permissions Needed*
+
+1. Read csv files from S3 bucket
+2. Upload csv files to S3 bucket
+3. Invoke a Lambda function
+
 ## Set up EC2
 
 *Enable the following settings*
