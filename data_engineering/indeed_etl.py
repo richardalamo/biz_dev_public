@@ -22,7 +22,7 @@ Airflow DAG High Level Overview
 
 1. Removes Airflow and Bright Data logs older than log retention period (in days). To preserve disk storage space in EC2 instance.
 2. Update most up to date .py files from Github to EC2 that Airflow can use for CI/CD purposes.
-3. Collect Indeed jobs data from Bright Data and store it in S3.
+3. Collect Saudi Arabia Indeed jobs data from Bright Data and store it in S3.
 4. Wait for a bit for S3 to update.
 5. Retrieve collected Indeed jobs data from S3. Do basic data cleaning, consolidate, save to csv file.
 6. Clean and preprocess data. Save to csv file.
@@ -87,6 +87,7 @@ default_args = {
 }
 
 def download_file_from_github(GITHUB_TOKEN, GITHUB_REPO, GITHUB_BRANCH, GITHUB_FILE_PATH, EC2_FILE_PATH):
+    '''Updates file in EC2 folder with file content from Github'''
     # GitHub API URL
     url = f'https://api.github.com/repos/{GITHUB_REPO}/contents/{GITHUB_FILE_PATH}?ref={GITHUB_BRANCH}'
 
@@ -107,6 +108,7 @@ def download_file_from_github(GITHUB_TOKEN, GITHUB_REPO, GITHUB_BRANCH, GITHUB_F
         print(f'Error: {response.status_code}, {response.text}')
 
 def load_csv_to_postgres(csv_file_path, create_temp_table, copy_to_temp, merge_sql, drop_sql):
+    '''Loads csv data (from Airflow task output) to PostgreSQL'''
     # Get PostgreSQL connection
     pg_hook = PostgresHook(postgres_conn_id=POSTGRES_CONN_ID)
     conn = pg_hook.get_conn()
@@ -124,8 +126,8 @@ def load_csv_to_postgres(csv_file_path, create_temp_table, copy_to_temp, merge_s
     cursor.close()
     conn.close()
 
-# Upload csv files from EC2 file path to S3
 def upload_to_s3(csv_file_path, bucket, destination, output_filename):
+    '''Loads csv data (from Airflow task output) to S3'''
     s3_client.upload_file(csv_file_path, bucket, destination + "/" + output_filename)
 
 
