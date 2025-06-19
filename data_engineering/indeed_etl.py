@@ -146,22 +146,22 @@ start_task = DummyOperator(
 )
 
 # Updates .py files in EC2 with most updated .py files from Github
-# with TaskGroup('upload_from_github', dag=dag) as upload_from_github:
-#     for GITHUB_FILE_PATH, EC2_FILE_PATH in zip(GITHUB_FILE_PATHS, EC2_FILE_PATHS):
-#         file_name = GITHUB_FILE_PATH.split('/')[-1].split('.')[0]
-#         task_upload_file_from_github = PythonOperator(
-#             task_id=f'upload_file_from_github_{file_name}',
-#             python_callable=download_file_from_github,
-#             op_kwargs={'GITHUB_TOKEN': GITHUB_TOKEN, 
-#                     'GITHUB_REPO': GITHUB_REPO, 
-#                     'GITHUB_BRANCH': GITHUB_BRANCH,
-#                     'GITHUB_FILE_PATH': GITHUB_FILE_PATH,
-#                     'EC2_FILE_PATH': EC2_FILE_PATH,
-#                     },
-#             provide_context=True,
-#             trigger_rule=TriggerRule.ALL_DONE,
-#             dag=dag,
-#         )
+with TaskGroup('upload_from_github', dag=dag) as upload_from_github:
+    for GITHUB_FILE_PATH, EC2_FILE_PATH in zip(GITHUB_FILE_PATHS, EC2_FILE_PATHS):
+        file_name = GITHUB_FILE_PATH.split('/')[-1].split('.')[0]
+        task_upload_file_from_github = PythonOperator(
+            task_id=f'upload_file_from_github_{file_name}',
+            python_callable=download_file_from_github,
+            op_kwargs={'GITHUB_TOKEN': GITHUB_TOKEN, 
+                    'GITHUB_REPO': GITHUB_REPO, 
+                    'GITHUB_BRANCH': GITHUB_BRANCH,
+                    'GITHUB_FILE_PATH': GITHUB_FILE_PATH,
+                    'EC2_FILE_PATH': EC2_FILE_PATH,
+                    },
+            provide_context=True,
+            trigger_rule=TriggerRule.ALL_DONE,
+            dag=dag,
+        )
 
 # Removes Airflow logs older than log retention period. Purpose is to preserve disk space
 delete_airflow_logs = BashOperator(
@@ -268,4 +268,4 @@ end_task = DummyOperator(
 )
     
 '''Orchestrate tasks into a workflow. Please look at graph view on Airflow UI which would show these tasks in a visual workflow.'''
-start_task >> delete_airflow_logs >> delete_bright_data_logs >> collect_jobs >> wait_for_s3 >> concatenate_data >> clean_and_preprocess_data >> process_data >> llm_labelling >> load_data >> end_task
+start_task >> upload_from_github >> delete_airflow_logs >> delete_bright_data_logs >> collect_jobs >> wait_for_s3 >> concatenate_data >> clean_and_preprocess_data >> process_data >> llm_labelling >> load_data >> end_task
