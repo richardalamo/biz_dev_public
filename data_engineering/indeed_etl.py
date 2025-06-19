@@ -13,8 +13,6 @@ from stored_functions import task_success_callback, task_failure_callback
 import os
 import boto3
 import json
-import requests
-import base64
 import pytz
 
 '''
