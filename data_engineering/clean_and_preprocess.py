@@ -89,7 +89,7 @@ if not data.empty:
                             .str.replace(" ,", ",")
                             .str.strip())
 
-    # Standadize the names that refer to the same tools using different acronyms
+    # Standardize the names that refer to the same tools using different acronyms
     data_cleaned['Tools'] = data_cleaned['Tools'].str.replace("MS Access", "Microsoft Access")
 
     # Create list of items by spliting on commas.
