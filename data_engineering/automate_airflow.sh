@@ -1,13 +1,18 @@
 #!/bin/bash
 
-# Step 1: Start Airflow webserver and scheduler in the background
+# Step 1: Go to Airflow folder and start python venv
 cd /home/ubuntu
 source airflow_env/bin/activate
 
+# Step 2: Update Airflow project files from Github
+echo "Updating files from Github repository"
+python3 load_from_github.py
+
+# Step 3: Start Airflow webserver and scheduler in the background
 nohup airflow webserver --port 8080 &
 nohup airflow scheduler &
 
-# Step 2: Poll until Airflow webserver and scheduler are running
+# Step 4: Poll until Airflow webserver and scheduler are running
 echo "Waiting for Airflow webserver and scheduler to start..."
 
 # Function to check if Airflow webserver and scheduler are running
@@ -39,11 +44,11 @@ while true; do
     fi
 done
 
-# Step 3: Trigger the specific DAG
+# Step 5: Trigger the specific DAG
 echo "Triggering DAG..."
 airflow dags trigger "$1"
 
-# Step 4: Wait for the DAG to finish running
+# Step 6: Wait for the DAG to finish running
 echo "Waiting for DAG to finish..."
 while true; do
     # Get the most recent DAG run's state
@@ -61,16 +66,16 @@ while true; do
     fi
 done
 
-# Step 5: Stop Airflow webserver and scheduler after the DAG finishes
+# Step 7: Stop Airflow webserver and scheduler after the DAG finishes
 echo "Stopping Airflow webserver and scheduler..."
 pkill -f "airflow webserver"
 pkill -f "airflow scheduler"
 
-# Step 6: Remove the nohup.out file
+# Step 8: Remove the nohup.out file
 if [ -f "nohup.out" ]; then
     rm "nohup.out"
 fi
 
-# Step 7: Stop EC2 instance
+# Step 9: Stop EC2 instance
 echo "Stopping EC2 instance"
 python3 stop_ec2_instance.py
