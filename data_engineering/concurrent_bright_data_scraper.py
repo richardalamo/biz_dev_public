@@ -181,7 +181,7 @@ def process_job_with_config(job_title: str, location_config: Dict, scraping_para
         logger.error(f"Error with '{job_title}' in {location_config['location_name']}: {e}", exc_info=True)
 
 def process_job_with_config_us(
-    """Execute complete scraping workflow for a single job title and city in the United States."""
+    # Execute complete scraping workflow for a single job title and city in the United States.
     job_title: str,
     location_config: Dict,
     scraping_params: Dict,
