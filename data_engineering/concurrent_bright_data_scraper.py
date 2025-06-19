@@ -180,19 +180,8 @@ def process_job_with_config(job_title: str, location_config: Dict, scraping_para
     except Exception as e:
         logger.error(f"Error with '{job_title}' in {location_config['location_name']}: {e}", exc_info=True)
 
-def process_job_with_config_us(
-    # Execute complete scraping workflow for a single job title and city in the United States.
-    job_title: str,
-    location_config: Dict,
-    scraping_params: Dict,
-    env_vars: Dict,
-    logger: logging.Logger,
-    location: str,  # new parameter
-    today_date: str,
-    poll_interval: int = 15,
-    
-):
-    """Execute complete scraping workflow for a single job title and location."""
+def process_job_with_config_us(job_title: str, location_config: Dict, scraping_params: Dict, env_vars: Dict, logger: logging.Logger, location: str, today_date: str, poll_interval: int = 15):
+    """Execute complete scraping workflow for a single job title and city in the United States."""
     keyword_data = {
         "country": location_config["country"],
         "domain": location_config["domain"],
