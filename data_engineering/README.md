@@ -11,7 +11,7 @@
 
 Below diagram is a data architecture representation
 
-![image](https://github.com/user-attachments/assets/16e8b0e3-6634-4a95-bb60-a10f4b30f1a4)
+![image](https://github.com/user-attachments/assets/fa0e1b04-3bb8-4b67-b237-92a77adf752a)
 
 ## Artifacts Needed
 
