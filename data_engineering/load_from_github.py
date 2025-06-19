@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 import base64
 
+# File paths of files to load from Github
 GITHUB_FILE_PATHS = [
     'data_engineering/concurrent_bright_data_scraper.py',
     'data_engineering/file_concatenation.py',
@@ -19,6 +20,7 @@ GITHUB_FILE_PATHS = [
 
 ]
 
+# File paths of files to load to EC2 folder
 EC2_FILE_PATHS = [
     '/home/ubuntu/airflow/scrape_code/concurrent_bright_data_scraper.py',
     '/home/ubuntu/airflow/scrape_code/file_concatenation.py',
@@ -37,7 +39,7 @@ EC2_FILE_PATHS = [
 env_path = '/home/ubuntu/airflow/.env' # .env path
 load_dotenv(env_path) # Loading .env file
 
-GITHUB_REPO = 'richardalamo/biz_dev_public'
+GITHUB_REPO = 'richardalamo/biz_dev_public' # Github repo to load data from
 GITHUB_TOKEN = os.getenv("github_token") # Expire on July 7, 2025
 GITHUB_BRANCH = 'main' 
 
