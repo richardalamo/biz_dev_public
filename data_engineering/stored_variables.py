@@ -1,24 +1,6 @@
 # List of all tables to upload csv data to
 table_names = ['raw_new', 'preprocessed_new', 'processed_new', 'LLM_labels_new']
 
-# Github file paths to update EC2 folder with
-GITHUB_FILE_PATHS = [
-    'data_engineering/concurrent_bright_data_scraper.py',
-    'data_engineering/file_concatenation.py',
-    'data_engineering/clean_and_preprocess.py',
-    'data_engineering/process_data.py',
-    'data_engineering/LLM_labelling.py',
-]
-
-# EC2 file paths that will be updated with files from Github
-EC2_FILE_PATHS = [
-    '/home/ubuntu/airflow/scrape_code/concurrent_bright_data_scraper.py',
-    '/home/ubuntu/airflow/scrape_code/file_concatenation.py',
-    '/home/ubuntu/airflow/scrape_code/clean_and_preprocess.py',
-    '/home/ubuntu/airflow/scrape_code/process_data.py',
-    '/home/ubuntu/airflow/scrape_code/LLM_labelling.py',
-]
-
 # CSV files to upload/update to S3 and RDS PostgreSQL
 csv_file_paths = [
     "/home/ubuntu/airflow/outputs/concatenated_data.csv",
