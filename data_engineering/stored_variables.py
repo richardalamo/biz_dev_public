@@ -27,7 +27,7 @@ csv_file_paths = [
     "/home/ubuntu/airflow/outputs/LLM_labels_data.csv",
 ]
 
-# Copy data from csv files
+# Copy data from csv files to temp tables
 sql_copy_to_temp_queries = [
     "COPY raw_temp FROM STDIN WITH CSV HEADER",
     "COPY preprocessed_temp FROM STDIN WITH CSV HEADER",
