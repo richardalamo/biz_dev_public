@@ -8,7 +8,7 @@ from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.utils.task_group import TaskGroup
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
-from stored_variables import table_names, csv_file_paths, sql_copy_to_temp_queries, sql_temp_table_queries, sql_merge_sql_queries, sql_drop_temp_table_queries, GITHUB_FILE_PATHS, EC2_FILE_PATHS
+from stored_variables import table_names, csv_file_paths, sql_copy_to_temp_queries, sql_temp_table_queries, sql_merge_sql_queries, sql_drop_temp_table_queries
 from stored_functions import task_success_callback, task_failure_callback
 import os
 import boto3
