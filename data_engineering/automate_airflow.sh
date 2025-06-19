@@ -8,11 +8,15 @@ source airflow_env/bin/activate
 echo "Updating files from Github repository"
 python3 load_from_github.py
 
-# Step 3: Start Airflow webserver and scheduler in the background
+# Step 3: Implement a wait time so that updated files get reflected before Airflow begins running
+echo "Wait 60 seconds for updated files from Github to get reflected in EC2 folders"
+sleep 60
+
+# Step 4: Start Airflow webserver and scheduler in the background
 nohup airflow webserver --port 8080 &
 nohup airflow scheduler &
 
-# Step 4: Poll until Airflow webserver and scheduler are running
+# Step 5: Poll until Airflow webserver and scheduler are running
 echo "Waiting for Airflow webserver and scheduler to start..."
 
 # Function to check if Airflow webserver and scheduler are running
@@ -44,11 +48,11 @@ while true; do
     fi
 done
 
-# Step 5: Trigger the specific DAG
+# Step 6: Trigger the specific DAG
 echo "Triggering DAG..."
 airflow dags trigger "$1"
 
-# Step 6: Wait for the DAG to finish running
+# Step 7: Wait for the DAG to finish running
 echo "Waiting for DAG to finish..."
 while true; do
     # Get the most recent DAG run's state
@@ -66,16 +70,16 @@ while true; do
     fi
 done
 
-# Step 7: Stop Airflow webserver and scheduler after the DAG finishes
+# Step 8: Stop Airflow webserver and scheduler after the DAG finishes
 echo "Stopping Airflow webserver and scheduler..."
 pkill -f "airflow webserver"
 pkill -f "airflow scheduler"
 
-# Step 8: Remove the nohup.out file
+# Step 9: Remove the nohup.out file
 if [ -f "nohup.out" ]; then
     rm "nohup.out"
 fi
 
-# Step 9: Stop EC2 instance
+# Step 10: Stop EC2 instance
 echo "Stopping EC2 instance"
 python3 stop_ec2_instance.py
