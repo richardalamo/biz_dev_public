@@ -21,15 +21,14 @@ import pytz
 Airflow DAG High Level Overview
 
 1. Removes Airflow and Bright Data logs older than log retention period (in days). To preserve disk storage space in EC2 instance.
-2. Update most up to date .py files from Github to EC2 that Airflow can use for CI/CD purposes.
-3. Collect Saudi Arabia Indeed jobs data from Bright Data and store it in S3.
-4. Wait for a bit for S3 to update.
-5. Retrieve collected Indeed jobs data from S3. Do basic data cleaning, consolidate, save to csv file.
-6. Clean and preprocess data. Save to csv file.
-7. Process data. Save to csv file.
-8. Generate LLM labels for data. Save to csv file.
-9. Upload csv files to S3 data lake (as backup) and RDS PostgreSQL (for analytics purposes that Metabase dashboard relies on).
-10. All tasks statuses in Airflow are sent to a Slack channel for Airflow pipeline monitoring purposes.
+2. Collect Saudi Arabia Indeed jobs data from Bright Data and store it in S3.
+3. Wait for a bit for S3 to update.
+4. Retrieve collected Indeed jobs data from S3. Do basic data cleaning, consolidate, save to csv file.
+5. Clean and preprocess data. Save to csv file.
+6. Process data. Save to csv file.
+7. Generate LLM labels for data. Save to csv file.
+8. Upload csv files to S3 data lake (as backup) and RDS PostgreSQL (for analytics purposes that Metabase dashboard relies on).
+9. All tasks statuses in Airflow are sent to a Slack channel for Airflow pipeline monitoring purposes.
 
 '''
 
@@ -64,11 +63,6 @@ s3_bucket = os.getenv("S3_BUCKET")
 s3_folder_source = os.getenv("S3_DIRECTORY")
 s3_folder_dest = 'raw_scrapes/test'
 
-# Obtaining credentials for Github repository
-GITHUB_REPO = 'richardalamo/biz_dev_public'
-GITHUB_TOKEN = os.getenv("github_token") # Expire on July 7, 2025
-GITHUB_BRANCH = 'main' 
-
 # Instantiate S3 object (to interact with S3)
 s3_client = boto3.client("s3", 
                             aws_access_key_id=access_key, 
@@ -85,27 +79,6 @@ default_args = {
     'on_success_callback': task_success_callback, # Send Slack notification when each task succeeds
     'on_failure_callback': task_failure_callback, # Send Slack notification when each task fails
 }
-
-def download_file_from_github(GITHUB_TOKEN, GITHUB_REPO, GITHUB_BRANCH, GITHUB_FILE_PATH, EC2_FILE_PATH):
-    '''Updates file in EC2 folder with file content from Github'''
-    # GitHub API URL
-    url = f'https://api.github.com/repos/{GITHUB_REPO}/contents/{GITHUB_FILE_PATH}?ref={GITHUB_BRANCH}'
-
-    # Make the API request to GitHub to get the file content
-    headers = {'Authorization': f'token {GITHUB_TOKEN}'}
-    response = requests.get(url, headers=headers)
-  
-    # If API request succeeds
-    if response.status_code == 200:
-        file_info = response.json()
-        file_content = base64.b64decode(file_info['content'])  # The content is base64 encoded
-
-        # Save the file content to the EC2 path
-        with open(EC2_FILE_PATH, 'wb') as f:
-            f.write(file_content)
-        print(f"File downloaded successfully and saved to {EC2_FILE_PATH}")
-    else: # Otherwise if request fails, we do nothing
-        print(f'Error: {response.status_code}, {response.text}')
 
 def load_csv_to_postgres(csv_file_path, create_temp_table, copy_to_temp, merge_sql, drop_sql):
     '''Loads csv data (from Airflow task output) to PostgreSQL'''
@@ -270,4 +243,4 @@ end_task = DummyOperator(
 )
     
 '''Orchestrate tasks into a workflow. Please look at graph view on Airflow UI which would show these tasks in a visual workflow.'''
-start_task >> upload_from_github >> delete_airflow_logs >> delete_bright_data_logs >> collect_jobs >> wait_for_s3 >> concatenate_data >> clean_and_preprocess_data >> process_data >> llm_labelling >> load_data >> end_task
+start_task >> delete_airflow_logs >> delete_bright_data_logs >> collect_jobs >> wait_for_s3 >> concatenate_data >> clean_and_preprocess_data >> process_data >> llm_labelling >> load_data >> end_task
