@@ -115,13 +115,15 @@ executor = LocalExecutor
 
 ## Github Token Generation
 
-- Make sure your account is a collaborator in the repo that you want to do CI/CD on
-- Go to ```Settings -> Developer Settings -> Tokens (classic) -> Generate new token (classic)```
-- Once you get the prompt, then sign in again to your console
+- Make sure you are the owner of the repo that you want to do CI/CD on
+- Go to ```Settings -> Developer Settings -> Fine-grained tokens -> Generate new token```
+- Enter a ```Token name``` of your choice
+- Enter a ```Description```
 - For ```Expiration```, unless your github account is the company account, it's best to set the Expiration date
-- For ```Note```, just explain what this token is for
-- For ```Select scopes```, ```repo```, ```workflow```, ```write:packages```, and ```delete:packages``` should be enough
-- Then once you click ```Generate token```, copy it and then paste it in your ```.env``` file
+- Under ```Repostory access```, select ```Only select repositories```. 
+- Under ```Select repositories```, select the repository to do the CI/CD in
+- Under ```Repository permissions```, go to ```Contents```. Then select ```Read-only``` access
+- Then once you click ```Generate token```, copy the token and then paste it in your ```.env``` file
 
 ## Bright Data API Setup
 Please refer to https://github.com/beam-data/job-market-trend/blob/bright_data/README.md
