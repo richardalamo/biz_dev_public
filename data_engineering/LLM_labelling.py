@@ -48,7 +48,7 @@ class RowFetcher:
     def run(self, df, row_number: int): # The component requires a DataFrame a row number (integer position based)
         return {"job_info": {df.iloc[row_number][["title", "description", "Tools", "Industry Skills"]].to_json()}}
 
-# Create the LLM prompt
+# Create the LLM prompt (which categorizes job types based on the description)
 gpt_template3 = """Perform the following actions: 
 1 - Read a job post description, which is delimited by triple backticks.
 
