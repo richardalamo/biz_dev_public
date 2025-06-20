@@ -21,7 +21,7 @@ def task_success_callback(context):
     dag = context.get("dag").dag_id
     send_slack_message(f"✅ Task *{task}* in DAG *{dag}* succeeded.")
 
-# If Airflow task succeeds, another message format will be sent to a specified Slack channel
+# If Airflow task fails, another message format will be sent to a specified Slack channel
 def task_failure_callback(context):
     task = context.get("task_instance").task_id
     dag = context.get("dag").dag_id
