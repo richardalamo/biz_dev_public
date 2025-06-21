@@ -21,7 +21,7 @@ Below diagram is a data architecture representation
 - ```indeed_etl_us.py```: Airflow DAG to collect, clean, and store US Indeed jobs in S3 and PostgreSQL
 - ```stored_variables.py```: Centralized file that stores Python variables that the Airflow DAGs call
 - ```stored_functions.py```: Centralized file that stores Python functions that the Airflow DAGs call
-- ```create_postgresql_table.py``` Script that runs the DDL for this project
+- ```create_postgresql_table.py```: Script that runs the DDL for this project
 - ```load_from_github.py```: Automate the update of files from Github to the EC2 instance
 - ```stop_ec2_instance.py```: Stops the EC2 instance via sending json payload to lambda function
 - ```automate_airflow.sh```: Updates EC2 with Github file, starts Airflow, runs DAG(s), stops Airflow, and stops EC2 instance
