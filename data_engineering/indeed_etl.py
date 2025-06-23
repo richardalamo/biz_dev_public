@@ -192,7 +192,7 @@ with TaskGroup('load_data', dag=dag) as load_data:
             op_kwargs={'csv_file_path': csv_file_path, 
                     'bucket': s3_bucket, 
                     'destination': s3_folder_dest,
-                    'output_filename': csv_file_path.split('/')[-1].replace('.csv', '') + "_" + str(datetime.utcnow().date()) + '.csv'
+                    'output_filename': csv_file_path.split('/')[-1].replace('.csv', '') + "_" + today_date + '.csv'
                     },
             provide_context=True,
             dag=dag,
