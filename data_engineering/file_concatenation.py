@@ -307,11 +307,13 @@ def concat_data_saudi(location, schema):
                         fetched_files.append(preprocess_data(df, file_key, schema))
                 except Exception as e:
                     print(f'Error in reading {file_key}: {e}')
+    else:
+        print(f'There is no data for {location} as of {today_date}')
 
-        if fetched_files:
-            combined_df = pd.concat(fetched_files, ignore_index=True)
-        else:
-            combined_df = pd.DataFrame({}, columns=schema)
+    if fetched_files:
+        combined_df = pd.concat(fetched_files, ignore_index=True)
+    else:
+        combined_df = pd.DataFrame({}, columns=schema)
 
     if combined_df.shape[0]>0:
         # Remove nulls and blanks
@@ -359,19 +361,21 @@ def concat_data(location, schema):
                         fetched_files.append(df)
                 except Exception as e:
                     print(f'Error in reading {file_key}: {e}')
+    else:
+        print(f'There is no data for {location} as of {today_date}')
 
-        if fetched_files:
-            combined_df = pd.concat(fetched_files, ignore_index=True)
-            combined_df['company_reviews_count'] = (
-            combined_df['company_reviews_count']
-            .apply(lambda x: int(x) if pd.notna(x) else pd.NA)
-            .astype('Int64')  # capital-I Int64 = nullable integer dtype in pandas
-            )
-            combined_df['is_expired'] = combined_df['is_expired'].apply(
-                lambda x: bool(int(float(x))) if pd.notna(x) else None
-            )
-        else:
-            combined_df = pd.DataFrame({}, columns=schema)
+    if fetched_files:
+        combined_df = pd.concat(fetched_files, ignore_index=True)
+        combined_df['company_reviews_count'] = (
+        combined_df['company_reviews_count']
+        .apply(lambda x: int(x) if pd.notna(x) else pd.NA)
+        .astype('Int64')  # capital-I Int64 = nullable integer dtype in pandas
+        )
+        combined_df['is_expired'] = combined_df['is_expired'].apply(
+            lambda x: bool(int(float(x))) if pd.notna(x) else None
+        )
+    else:
+        combined_df = pd.DataFrame({}, columns=schema)
 
     if combined_df.shape[0]>0:
         task_status = True
