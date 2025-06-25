@@ -370,7 +370,6 @@ def concat_data(location, schema):
         combined_df = pd.DataFrame({}, columns=schema)
 
     if combined_df.shape[0]>0:
-        task_status = True
         combined_df['company_reviews_count'] = (
         combined_df['company_reviews_count']
         .apply(lambda x: int(x) if pd.notna(x) else pd.NA)
@@ -379,6 +378,7 @@ def concat_data(location, schema):
         combined_df['is_expired'] = combined_df['is_expired'].apply(
             lambda x: bool(int(float(x))) if pd.notna(x) else None
         )
+        task_status = True
     else:
         print(f'There is no data for today\'s scrape for {location} on {today_date}.')
         task_status = False
