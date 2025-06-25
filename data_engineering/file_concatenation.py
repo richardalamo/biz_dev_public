@@ -323,7 +323,7 @@ def concat_data_saudi(location, schema):
         combined_df = combined_df.drop_duplicates(subset=['key', 'date', 'search keyword'])
         task_status = True
     else:
-        print(f'There is no data for today\'s scrape for {location} on {datetime.now()}.')
+        print(f'There is no data for today\'s scrape for {location} on {today_date}.')
         task_status = False
 
     combined_df.to_csv(output_csv_path, index=False, encoding='utf-8')
@@ -366,6 +366,11 @@ def concat_data(location, schema):
 
     if fetched_files:
         combined_df = pd.concat(fetched_files, ignore_index=True)
+    else:
+        combined_df = pd.DataFrame({}, columns=schema)
+
+    if combined_df.shape[0]>0:
+        task_status = True
         combined_df['company_reviews_count'] = (
         combined_df['company_reviews_count']
         .apply(lambda x: int(x) if pd.notna(x) else pd.NA)
@@ -375,12 +380,7 @@ def concat_data(location, schema):
             lambda x: bool(int(float(x))) if pd.notna(x) else None
         )
     else:
-        combined_df = pd.DataFrame({}, columns=schema)
-
-    if combined_df.shape[0]>0:
-        task_status = True
-    else:
-        print(f'There is no data for today\'s scrape for {location} on {datetime.now()}.')
+        print(f'There is no data for today\'s scrape for {location} on {today_date}.')
         task_status = False
 
     combined_df.to_csv(output_csv_path_ca_us, index=False, encoding='utf-8')
