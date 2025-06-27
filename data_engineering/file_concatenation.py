@@ -277,7 +277,17 @@ s3_client = boto3.client("s3",
                             aws_secret_access_key=secret_access_key
 )
 
-response = s3_client.list_objects_v2(Bucket=bucket, Prefix=prefix + today_date.replace('-', '/')) 
+try:
+    response = s3_client.list_objects_v2(Bucket=bucket, Prefix=prefix + today_date.replace('-', '/')) 
+except Exception as e:
+    print(f'Error with getting data from s3: {e}')
+    if location == 'Saudi_Arabia':
+        combined_df = pd.DataFrame({}, columns=schema_saudi)
+        combined_df.to_csv(output_csv_path, index=False, encoding='utf-8')
+    else:
+        combined_df = pd.DataFrame({}, columns=raw_schema)
+        combined_df.to_csv(output_csv_path_ca_us, index=False, encoding='utf-8')
+    sys.exit(1)
 
 def concat_data_saudi(location, schema):
 
