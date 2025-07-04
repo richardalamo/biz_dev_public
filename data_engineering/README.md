@@ -62,7 +62,7 @@ Below diagram is a data architecture representation
 - Instance Type: t2.large or larger
 - Key Pair Name: Create a new ```.pem``` file
 - Storage: 32 GiB
-- Make sure the role/instance profile has ```AmazonSSMManagedInstanceCore``` and ```AmazonEC2RoleforSSM``` policy, with trust relationships being the following:
+- Make sure the role/instance profile has ```AmazonSSMManagedInstanceCore``` policy, with trust relationships being the following:
 ```json
 {
     "Version": "2012-10-17",
