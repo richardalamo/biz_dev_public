@@ -1,7 +1,6 @@
 import json
 import boto3
 import time
-import json
 
 ec2 = boto3.client('ec2')
 ssm = boto3.client('ssm')
