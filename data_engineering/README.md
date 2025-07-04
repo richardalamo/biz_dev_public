@@ -154,7 +154,7 @@ Please refer to https://github.com/beam-data/job-market-trend/blob/bright_data/R
 
 - Make sure you are in ca-central-1
 - Under runtime, enter Python 3.11 or more recent
-- Under Lambda execution role, make sure it has SSM access. For now use ```AmazonSSMManagedInstanceCore```
+- Under Lambda execution role, make sure it has SSM access. For now use ```AmazonSSMFullAccess```
 - Under Lambda execution role, attach the following json policy, changing to your credentials accordingly:
 ```json
 {
