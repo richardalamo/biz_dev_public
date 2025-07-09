@@ -282,7 +282,7 @@ if __name__ == "__main__":
         job_titles = job_titles[:1]  # Only first job title
         max_workers = 1
 
-    if location_config['log_prefix'] in ['CA', 'SA']:
+    if location_config['log_prefix'] not in ['US']:
         # Run CA and SA jobs concurrently
         with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
             futures = [
@@ -291,7 +291,7 @@ if __name__ == "__main__":
             ]
             concurrent.futures.wait(futures)
 
-    elif location_config['log_prefix'] in ['US']:
+    else:
         # Run US jobs concurrently
         with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
             futures = [
