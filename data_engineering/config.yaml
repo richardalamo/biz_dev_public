@@ -72,7 +72,18 @@ scraping:
       - "data scientist"
       - "machine learning engineer"
       - "business intelligence"
-
+    AE:
+      - "data engineer"
+      - "data analyst" 
+      - "data scientist"
+      - "machine learning engineer"
+      - "business intelligence"
+    EG:
+      - "data engineer"
+      - "data analyst" 
+      - "data scientist"
+      - "machine learning engineer"
+      - "business intelligence"
   
   locations:
     - country: "SA"
@@ -107,6 +118,14 @@ scraping:
         - "Denver, CO"
         - "Oklahoma City, OK"
       log_prefix: "US"
+    - country: "AE"
+      domain: "ae.indeed.com"
+      location_name: "United Arab Emirates"
+      log_prefix: "AE"
+    - country: "EG"
+      domain: "indeed.com"
+      location_name: "Egypt"
+      log_prefix: "EG"
   
   parameters:
     - date_posted: "Last 14 days"
@@ -118,6 +137,14 @@ scraping:
       max_workers: 8
       poll_interval: 15
     - date_posted: "Last 24 hours"
+      posted_by: ""
+      max_workers: 16
+      poll_interval: 15
+    - date_posted: "Last 7 days"
+      posted_by: ""
+      max_workers: 16
+      poll_interval: 15
+    - date_posted: "Last 7 days"
       posted_by: ""
       max_workers: 16
       poll_interval: 15
