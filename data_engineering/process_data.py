@@ -110,7 +110,14 @@ if not data.empty:
                                             "ai consultant",
                                             "prompt engineer",
                                             "ml ops engineer",
-                                            "generative ai engineer"]),
+                                            "generative ai engineer",
+                                             "ai consultant",
+                                             "ai learning advisor",
+                                             "ai teacher",
+                                             "ai trainer",
+                                             "ai skills coach",
+                                             "llm"
+                                             ]),
                 "ai-related",
                 data["search keyword"])
         )
