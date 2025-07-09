@@ -140,13 +140,13 @@ scraping:
       posted_by: ""
       max_workers: 16
       poll_interval: 15
-    - date_posted: "Last 7 days"
+    - date_posted: "Last 14 days"
       posted_by: ""
-      max_workers: 16
+      max_workers: 8
       poll_interval: 15
-    - date_posted: "Last 7 days"
+    - date_posted: "Last 14 days"
       posted_by: ""
-      max_workers: 16
+      max_workers: 8
       poll_interval: 15
         
 # Environment overrides (optional, will use .env if not specified)
