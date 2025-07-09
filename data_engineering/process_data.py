@@ -107,7 +107,6 @@ if not data.empty:
                                             "computer vision engineer",
                                             "ai research scientist",
                                             "ai product manager",
-                                            "ai consultant",
                                             "prompt engineer",
                                             "ml ops engineer",
                                             "generative ai engineer",
