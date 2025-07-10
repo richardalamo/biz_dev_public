@@ -60,7 +60,7 @@ def stop_instance():
             DocumentName="AWS-RunShellScript",  # Use AWS-RunShellScript to run a shell command
             Parameters={
                 'commands': [
-                    'cd /home/ubuntu/',
+                    'cd /home/ubuntu',
                     'sudo -u ubuntu pkill -f "airflow webserver" && pkill -f "airflow scheduler"' # Stops airflow
                 ]
             }
