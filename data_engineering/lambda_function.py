@@ -12,6 +12,7 @@ locations_dict = {
     'SA': 'indeed_etl',
     'CA': 'indeed_etl_ca',
     'US': 'indeed_etl_us',
+    'AE': 'indeed_etl_ae',
 }
 
 def start_instance(dag_name):
@@ -52,6 +53,23 @@ def start_instance(dag_name):
 
 def stop_instance():
     """Stops EC2 instance."""
+    try:
+        # Safely shut down Airflow via SSM
+        response = ssm.send_command(
+            InstanceIds=[INSTANCE_ID],
+            DocumentName="AWS-RunShellScript",  # Use AWS-RunShellScript to run a shell command
+            Parameters={
+                'commands': [
+                    'cd /home/ubuntu/',
+                    'sudo -u ubuntu pkill -f "airflow webserver" && pkill -f "airflow scheduler"' # Stops airflow
+                ]
+            }
+        )
+        print('Waiting for 30 seconds before we stop EC2')
+        time.sleep(30)
+    except Exception as e:
+        print(f'Issues with stopping Airflow: {e}')
+        
     try:
         response = ec2.stop_instances(InstanceIds=[INSTANCE_ID])
         print(f"Stopping instance {INSTANCE_ID}: {response}")
