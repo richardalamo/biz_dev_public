@@ -49,6 +49,7 @@ S3_BUCKET = None
 S3_DIRECTORY = None
 DATASET_ID = None
 HEADERS = {}
+task_status = True
 
 def create_logger(location: str, log_location: str) -> logging.Logger:
     """Create timestamped logger for specific location with file handler."""
@@ -115,6 +116,7 @@ def trigger_brightdata_job(keyword: Dict, logger: logging.Logger) -> Tuple[Dict,
 
 def wait_for_snapshot_ready(snapshot_id: str, logger: logging.Logger, poll_interval: int = 15) -> None:
     """Poll BrightData API until snapshot is ready for download."""
+    global task_status
     logger.info(f"Waiting for snapshot {snapshot_id} to be ready...")
     url = f"https://api.brightdata.com/datasets/v3/progress/{snapshot_id}"
 
@@ -125,6 +127,10 @@ def wait_for_snapshot_ready(snapshot_id: str, logger: logging.Logger, poll_inter
         if status == "ready":
             logger.info(f"Snapshot {snapshot_id} is ready.")
             break
+        if status == "failed":
+            task_status = False
+            logger.info(f"Snapshot {snapshot_id} {status}.")
+            break            
         logger.info(f"Snapshot {snapshot_id} not ready with status currently as {status}. Waiting {poll_interval}s...")
         time.sleep(poll_interval)
 
@@ -301,3 +307,5 @@ if __name__ == "__main__":
             concurrent.futures.wait(futures)
 
     logger.info("All jobs completed.")
+    if not task_status:
+        sys.exit(1)
