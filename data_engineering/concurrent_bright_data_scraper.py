@@ -125,7 +125,7 @@ def wait_for_snapshot_ready(snapshot_id: str, logger: logging.Logger, poll_inter
         if status == "ready":
             logger.info(f"Snapshot {snapshot_id} is ready.")
             break
-        logger.info(f"Snapshot {snapshot_id} not ready. Waiting {poll_interval}s...")
+        logger.info(f"Snapshot {snapshot_id} not ready with status currently as {status}. Waiting {poll_interval}s...")
         time.sleep(poll_interval)
 
 
