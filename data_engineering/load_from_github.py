@@ -17,7 +17,7 @@ GITHUB_FILE_PATHS = [
     'data_engineering/stop_ec2_instance.py',
     'data_engineering/stored_functions.py',
     'data_engineering/stored_variables.py',
-
+    'data_engineering/indeed_etl_ae.py',
 ]
 
 # File paths of files to load to EC2 folder
@@ -34,6 +34,7 @@ EC2_FILE_PATHS = [
     '/home/ubuntu/stop_ec2_instance.py',
     '/home/ubuntu/airflow/dags/stored_functions.py',
     '/home/ubuntu/airflow/dags/stored_variables.py',
+    '/home/ubuntu/airflow/dags/indeed_etl_ae.py',
 ]
 
 env_path = '/home/ubuntu/airflow/.env' # .env path
