@@ -41,7 +41,7 @@ Below diagram is a data architecture representation
 3. Airflow instance
 4. One Lambda function
 5. One S3 bucket including S3 bucket level policy JSON configurations
-6. Five Eventbridge Schedulers (Four to start EC2: "CA", "US", "SA", "AE", Two to stop EC2: "CA+SA+AE", "US")
+6. Six Eventbridge Schedulers (Four to start EC2: "CA", "US", "SA", "AE", Two to stop EC2: "CA+SA+AE", "US")
 7. Metabase server
 8. IAM roles for the Lambda function, EC2 instance, and Eventbridge schedulers
 
