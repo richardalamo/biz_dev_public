@@ -1,6 +1,6 @@
 # Intro
 
-1. Collects jobs data from Indeed for Canada, US, and Saudi Arabia
+1. Collects jobs data from Indeed for Canada, US, UAE, and Saudi Arabia
 2. Cleans, preprocesses, and categorizes data
 3. Stores preprocessed data into S3 and RDS PostgreSQL
 4. Removes old logs
@@ -19,6 +19,7 @@ Below diagram is a data architecture representation
 - ```indeed_etl.py```: Airflow DAG to collect, clean, and store Saudi Arabia Indeed jobs in S3 and PostgreSQL
 - ```indeed_etl_ca.py```: Airflow DAG to collect, clean, and store Canada Indeed jobs in S3 and PostgreSQL
 - ```indeed_etl_us.py```: Airflow DAG to collect, clean, and store US Indeed jobs in S3 and PostgreSQL
+- ```indeed_etl_ae.py```: Airflow DAG to collect, clean, and store UAE Indeed jobs in S3 and PostgreSQL
 - ```stored_variables.py```: Centralized file that stores Python variables that the Airflow DAGs call
 - ```stored_functions.py```: Centralized file that stores Python functions that the Airflow DAGs call
 - ```create_postgresql_table.py```: Script that runs the DDL for this project
@@ -40,7 +41,7 @@ Below diagram is a data architecture representation
 3. Airflow instance
 4. One Lambda function
 5. One S3 bucket including S3 bucket level policy JSON configurations
-6. Five Eventbridge Schedulers (Three to start EC2: "CA", "US", "SA", Two to stop EC2: "CA+SA", "US")
+6. Five Eventbridge Schedulers (Four to start EC2: "CA", "US", "SA", "AE", Two to stop EC2: "CA+SA+AE", "US")
 7. Metabase server
 8. IAM roles for the Lambda function, EC2 instance, and Eventbridge schedulers
 
@@ -87,7 +88,7 @@ chmod +x automate_airflow.sh
 chmod +x setup.sh
 ./setup.sh
  ```
-- Copy ```indeed_etl.py```, ```indeed_etl_ca.py```, ```indeed_etl_us.py```, ```stored_variables.py```, and ```stored_variables.py``` into ```/home/ubuntu/airflow/dags```
+- Copy ```indeed_etl.py```, ```indeed_etl_ca.py```, ```indeed_etl_us.py```, ```indeed_etl_ae.py```, ```stored_variables.py```, and ```stored_variables.py``` into ```/home/ubuntu/airflow/dags```
 - Copy ```clean_and_preprocess.py```, ```config.yaml```, ```file_concatenation.py```, ```process_data.py```, ```LLM_labelling.py```, and ```concurrent_bright_data_scraper.py``` into ```/home/ubuntu/airflow/scrape_code```
 
 ## Set up Airflow PostgreSQL
@@ -226,7 +227,7 @@ Create 3 Eventbridge Schedules. One corresponding to each location prefix
 - Select Off for Flexible time window
 - Choose AWS Lambda Invoke under target
 - Choose the lambda function you created
-- Under Payload, paste the following json, of which under "location" field, enter either ```CA```, ```US```, ```SA``` inside the ```""```.
+- Under Payload, paste the following json, of which under "location" field, enter either ```CA```, ```US```, ```AE```, ```SA``` inside the ```""```.
 ```json
 {"action": "start", "location": ""}
 ```
