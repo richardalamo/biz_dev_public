@@ -4,6 +4,8 @@
 sudo apt-get update
 sudo apt-get install python3.12 -y
 sudo apt-get install pip -y
+# Install jq for Airflow
+sudo apt-get install jq
 # Get SSM agent
 sudo apt-get install -y snapd
 sudo snap install amazon-ssm-agent --classic
