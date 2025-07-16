@@ -36,11 +36,6 @@ while true; do
     check_airflow_processes
     if [[ $? -eq 0 ]]; then
         echo "Airflow webserver and scheduler are both running."
-
-        # Add grace period to ensure scheduler is fully initialized
-        echo "Waiting additional 120 seconds to ensure scheduler is ready..."
-        sleep 120
-        
         break
     else
         echo "Waiting... (both processes not yet up)"
@@ -48,11 +43,31 @@ while true; do
     fi
 done
 
-# Step 6: Trigger the specific DAG
+# Step 6: Ensure scheduler is actually healthy and processing DAGs
+check_scheduler_heartbeat() {
+    scheduler_heartbeat=$(airflow jobs check --job-type SchedulerJob)
+    if [[ "$scheduler_heartbeat" == *"is alive"* ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+echo "Checking Airflow scheduler heartbeat..."
+while ! check_scheduler_heartbeat; do
+    echo "Waiting for scheduler to become alive..."
+    sleep 10
+done
+
+# Step 7: Ensure DAG file is parsed and registered
+echo "Reserializing DAG: $1"
+airflow dags reserialize --dag-id "$1"
+
+# Step 8: Trigger the specific DAG
 echo "Triggering DAG..."
 airflow dags trigger "$1"
 
-# Step 7: Wait for the DAG to finish running
+# Step 9: Wait for the DAG to finish running
 echo "Waiting for DAG to finish..."
 while true; do
     # Get the most recent DAG run's state
@@ -70,7 +85,7 @@ while true; do
     fi
 done
 
-# Step 8: Stop Airflow webserver and scheduler after the DAG finishes
+# Step 10: Stop Airflow webserver and scheduler after the DAG finishes
 echo "Stopping Airflow webserver and scheduler..."
 pkill -f "airflow webserver"
 pkill -f "airflow scheduler"
@@ -80,6 +95,6 @@ if [ -f "nohup.out" ]; then
     rm "nohup.out"
 fi
 
-# Step 10: Stop EC2 instance
+# Step 11: Stop EC2 instance
 echo "Stopping EC2 instance"
 python3 stop_ec2_instance.py
