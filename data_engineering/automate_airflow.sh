@@ -46,7 +46,7 @@ done
 # Step 6: Ensure scheduler is actually healthy and processing DAGs
 check_scheduler_heartbeat() {
     scheduler_heartbeat=$(airflow jobs check --job-type SchedulerJob)
-    if [[ "$scheduler_heartbeat" == *"alive"* ]]; then
+    if [[ "$scheduler_heartbeat" == *"one alive job"* ]]; then
         return 0
     else
         return 1
