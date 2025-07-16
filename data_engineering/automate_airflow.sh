@@ -60,8 +60,8 @@ while ! check_scheduler_heartbeat; do
 done
 
 # Step 7: Ensure DAG file is parsed and registered
-echo "Reserializing DAG: $1"
-airflow dags reserialize --dag-id "$1"
+# echo "Reserializing DAG: $1"
+# airflow dags reserialize --dag-id "$1"
 
 # Step 8: Trigger the specific DAG
 echo "Triggering DAG..."
