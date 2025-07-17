@@ -92,7 +92,7 @@ while true; do
         execution_date=$(airflow dags list-runs -d "$dag_id" --output json | jq -r '.[0].execution_date')
 
         pending_tasks=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
-            jq -r '.[] | select(.state == "none" or .state == "queued" or .state == "scheduled") | .task_id')
+            jq -r '.[] | select(.state == "none" or .state == null or .state == "queued" or .state == "scheduled") | .task_id')
 
         running_count=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
             jq '[.[] | select(.state == "running")] | length')
@@ -108,6 +108,7 @@ while true; do
             echo "Potential stuck state: pending tasks exist, none running, some succeeded."
             stuck_wait=$((stuck_wait + stuck_check_interval))
         else
+            echo "DAG is not stuck."
             stuck_wait=0  # Reset if progress is seen
         fi
 
