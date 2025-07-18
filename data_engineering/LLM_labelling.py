@@ -12,6 +12,7 @@ from haystack.components.fetchers import LinkContentFetcher
 from haystack.components.converters import HTMLToDocument
 import argparse
 import os
+import sys
 from dotenv import load_dotenv
 import openai
 
@@ -24,6 +25,8 @@ password = os.getenv('password')
 rds_endpoint = os.getenv('rds_endpoint')
 db_port = '5432'
 db_name = os.getenv('db_name')
+
+task_status = True
 
 # Set up input and output csv paths
 parser = argparse.ArgumentParser()
@@ -170,8 +173,12 @@ def process_with_llm(gpt_categorizer, df, gpt_model_name):
             try:
                 reply = gpt_categorizer.run({"fetcher": {"df": df, "row_number": i}})
                 gpt_replies.append(reply[gpt_model_name]["replies"][0])
-            except:
-                gpt_replies.append('API Error')
+            except Exception as e:
+                err_msg = str(e)
+                if 'quota' in err_msg or '500' in err_msg or '503' in err_msg:
+                    global task_status
+                    task_status = False
+                gpt_replies.append(err_msg)
             if (i+1)%100==0:
                 print(f'{i+1} labels generated')
         df['label'] = gpt_replies # Create label column storing LLM output
@@ -213,3 +220,6 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
 # Combine datasets and save to csv file
 df_gpt = pd.concat([df_gpt_1, df_gpt_2])
 df_gpt.to_csv(output_csv_path, index=False, encoding='utf-8')
+
+if not task_status:
+    sys.exit(1)
