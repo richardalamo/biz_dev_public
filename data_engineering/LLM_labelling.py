@@ -174,8 +174,8 @@ def process_with_llm(gpt_categorizer, df, gpt_model_name):
                 reply = gpt_categorizer.run({"fetcher": {"df": df, "row_number": i}})
                 gpt_replies.append(reply[gpt_model_name]["replies"][0])
             except Exception as e:
-                err_msg = str(e)
-                if 'quota' in err_msg or '500' in err_msg or '503' in err_msg:
+                err_msg = str(e).lower()
+                if 'quota' in err_msg:
                     global task_status
                     task_status = False
                 gpt_replies.append(err_msg)
