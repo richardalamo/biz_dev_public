@@ -141,7 +141,7 @@ wait_for_s3 = BashOperator(
 # Basic data cleaning and consolidating raw data into 1 csv file. Please refer to file_concatenation.py for more information.
 concatenate_data = BashOperator(
     task_id='concatenate_data',
-    bash_command=f'python3 {concatenation_path} --bucket {s3_bucket} --prefix {s3_folder_source} --output_csv_path {csv_file_paths[0]} --output_csv_path_ca_us {csv_file_path_ca_us} --location {location} --today_date {today_date}',
+    bash_command=f'python3 {concatenation_path} --config {config_path} --bucket {s3_bucket} --prefix {s3_folder_source} --output_csv_path {csv_file_paths[0]} --output_csv_path_ca_us {csv_file_path_ca_us} --location {location} --today_date {today_date}',
     dag=dag,
     # trigger_rule=TriggerRule.ALL_DONE,
     do_xcom_push=False,
