@@ -15,6 +15,7 @@ import csv
 import html
 import os
 from dotenv import load_dotenv
+import yaml
 
 # Get AWS credentials
 load_dotenv("/home/ubuntu/airflow/.env")
@@ -23,6 +24,8 @@ secret_access_key = os.getenv("aws_secret_access_key")
 
 # Initializing command line arguments (S3, local files, location, date)
 parser = argparse.ArgumentParser()
+parser.add_argument('--config', '-c', default='/home/ubuntu/airflow/scrape_code/config.yaml', 
+                help='Path to configuration file (default: config.yaml)')
 parser.add_argument('--bucket')
 parser.add_argument('--prefix')
 parser.add_argument('--output_csv_path')
@@ -37,6 +40,7 @@ output_csv_path = args.output_csv_path
 output_csv_path_ca_us = args.output_csv_path_ca_us
 location = args.location
 today_date = args.today_date
+config_path = args.config
 
 # Initializing schema, filters, and key words
 raw_schema = ['jobid', 'company_name', 'date_posted_parsed', 'job_title',
@@ -85,6 +89,20 @@ tools = [s.lower() for s in tools]
 soft_skills = [s.lower() for s in soft_skills]
 industry_skills = [s.lower() for s in industry_skills]
 education = [s.lower() for s in education]
+
+def get_accepted_jobs(config_path, location):
+    """Load YAML configuration file and return jobs to retrieve based on location."""
+    accepted_jobs = []
+    with open(config_path, 'r', encoding='utf-8') as file:
+        config = yaml.safe_load(file)
+    for cf in config['scraping']['locations']:
+        if type(cf['location_name']) is list:
+            cf['location_name'] = 'United States'
+        if cf['location_name'].replace(' ', '_')==location:
+            accepted_jobs = config['scraping']['job_titles'][cf['country']]
+            break
+    return accepted_jobs
+accepted_jobs = get_accepted_jobs(config_path, location)
 
 # Defining functions
 def extract_integer(s):
@@ -307,7 +325,7 @@ def concat_data_saudi(location, schema):
     if 'Contents' in response:
         for obj in response['Contents']:
             file_key = obj['Key']
-            if location + '_' + today_date in file_key:
+            if location in file_key and today_date in file_key and any(ac in file_key.replace('_', ' ') for ac in accepted_jobs):
                 obj = s3_client.get_object(Bucket=bucket, Key=file_key)
                 csv_data = obj['Body'].read().decode('utf-8')
                 try:
@@ -359,7 +377,7 @@ def concat_data(location, schema):
     if 'Contents' in response:
         for obj in response['Contents']:
             file_key = obj['Key']
-            if location + '_' + today_date in file_key:
+            if location in file_key and today_date in file_key and any(ac in file_key.replace('_', ' ') for ac in accepted_jobs):
                 obj = s3_client.get_object(Bucket=bucket, Key=file_key)
                 csv_data = obj['Body'].read().decode('utf-8')
                 try:
