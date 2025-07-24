@@ -142,7 +142,7 @@ def deliver_snapshot_to_s3(query: Dict, snapshot_id: str, logger: logging.Logger
     keyword = query["keyword_search"].replace(" ", "_")
     location = query["location"].replace(" ", "_")
     date_posted = query["date_posted"].replace(" ", "_")
-    filename_template = f"{keyword}_{location}_{today_date}_{date_posted}_{snapshot_id}"
+    filename_template = f"{keyword}_{location}_{today_date}_{date_posted}"
 
     url = f"https://api.brightdata.com/datasets/v3/deliver/{snapshot_id}"
     payload = {
