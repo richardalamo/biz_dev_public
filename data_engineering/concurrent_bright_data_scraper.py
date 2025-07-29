@@ -117,6 +117,7 @@ def trigger_brightdata_job(keyword: Dict, logger: logging.Logger) -> Tuple[Dict,
 def wait_for_snapshot_ready(snapshot_id: str, logger: logging.Logger, poll_interval: int = 15) -> None:
     """Poll BrightData API until snapshot is ready for download."""
     global task_status
+    api_error = 0 # Keep track of whether this Brightdata run has an API error
     logger.info(f"Waiting for snapshot {snapshot_id} to be ready...")
     url = f"https://api.brightdata.com/datasets/v3/progress/{snapshot_id}"
 
@@ -129,10 +130,21 @@ def wait_for_snapshot_ready(snapshot_id: str, logger: logging.Logger, poll_inter
             break
         if status == "failed":
             task_status = False
+            api_error = 1 # If the status of the Brightdata run failed, we log it as api error
             logger.info(f"Snapshot {snapshot_id} {status}.")
             break            
         logger.info(f"Snapshot {snapshot_id} not ready with status currently as {status}. Waiting {poll_interval}s...")
         time.sleep(poll_interval)
+
+    # If there is a discovery error, we log it as api error
+    try:
+        discovery_error_code = res.json()['discovery_error_codes']
+        if discovery_error_code:
+            api_error = 1
+    except:
+        pass
+    
+    return api_error
 
 
 def deliver_snapshot_to_s3(query: Dict, snapshot_id: str, logger: logging.Logger, today_date: str) -> None:
@@ -180,11 +192,16 @@ def process_job_with_config(job_title: str, location_config: Dict, scraping_para
 
     try:
         query, snapshot_id = trigger_brightdata_job(keyword_data, logger)
-        wait_for_snapshot_ready(snapshot_id, logger, poll_interval)
-        deliver_snapshot_to_s3(query, snapshot_id, logger, today_date)
-        logger.info(f"Job for '{job_title}' in {location_config['location_name']} completed.")
+        api_error = wait_for_snapshot_ready(snapshot_id, logger, poll_interval)
+        if not api_error:
+            deliver_snapshot_to_s3(query, snapshot_id, logger, today_date)
+            logger.info(f"Job for '{job_title}' in {location_config['location_name']} completed.")
+        else:
+            logger.info(f"Job for '{job_title}' in {location_config['location_name']} not uploaded to s3.")
     except Exception as e:
         logger.error(f"Error with '{job_title}' in {location_config['location_name']}: {e}", exc_info=True)
+    
+    return api_error
 
 def process_job_with_config_us(job_title: str, location_config: Dict, scraping_params: Dict, env_vars: Dict, logger: logging.Logger, location: str, today_date: str, poll_interval: int = 15):
     """Execute complete scraping workflow for a single job title and city in the United States."""
@@ -200,16 +217,23 @@ def process_job_with_config_us(job_title: str, location_config: Dict, scraping_p
     try:
         query, snapshot_id = trigger_brightdata_job(keyword_data, logger)
         query["location"] = query["location"] + ' United States'
-        wait_for_snapshot_ready(snapshot_id, logger, poll_interval)
-        deliver_snapshot_to_s3(query, snapshot_id, logger, today_date)
-        logger.info(f"Job for '{job_title}' in {location} completed.")
+        api_error = wait_for_snapshot_ready(snapshot_id, logger, poll_interval)
+        if not api_error:
+            deliver_snapshot_to_s3(query, snapshot_id, logger, today_date)
+            logger.info(f"Job for '{job_title}' in {location} completed.")
+        else:
+            logger.info(f"Job for '{job_title}' in {location} not uploaded to S3.")
     except Exception as e:
         logger.error(f"Error with '{job_title}' in {location}: {e}", exc_info=True)
+    
+    return api_error
 
 def process_location(location: str, location_config: Dict, job_titles: List[str], scraping_params: Dict, env_vars: Dict, logger: logging.Logger, today_date: str, poll_interval: int = 15):
     """For US scrapes, due to the high number of cities to pull, we run cities in parallel and job titles one by one. For CA and SA scrapes, we run job titles in parallel."""
+    api_error_total = 0 # Keep track of the number of API errors
     for job_title in job_titles:
-        process_job_with_config_us(job_title, location_config, scraping_params, env_vars, logger, location, today_date, poll_interval)
+        api_error_total += process_job_with_config_us(job_title, location_config, scraping_params, env_vars, logger, location, today_date, poll_interval)
+    return api_error_total
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Job Market Data Scraper')
@@ -277,6 +301,18 @@ if __name__ == "__main__":
     # Obtain job titles for selected location
     job_titles = scraping_config['job_titles'][location_config['log_prefix']]
 
+    # Calculating the number of job titles there are per location
+    num_job_titles = len(job_titles)
+
+    # Calculate the number of location
+    if isinstance(location_config['location_name'], list):
+        num_locations = len(location_config['location_name'])
+    else:
+        num_locations = 1
+
+    # Total number of jobs for that Airflow run
+    num_jobs_total = num_job_titles * num_locations
+
     logger.info(f"Starting scraping for {location_config['location_name']} with {len(job_titles)} job titles")
     
     # Override for testing
@@ -297,6 +333,8 @@ if __name__ == "__main__":
             ]
             concurrent.futures.wait(futures)
 
+            results = [future.result() for future in futures]
+
     else:
         # Run US jobs concurrently
         with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -306,6 +344,14 @@ if __name__ == "__main__":
             ]
             concurrent.futures.wait(futures)
 
+            results = [future.result() for future in futures]
+
     logger.info("All jobs completed.")
+    logger.info(f"Status of jobs are {results}")
+
+    # If over half the jobs have API errors, we declare task has failed
+    if sum(results)/num_jobs_total>0.5:
+        task_status = False
+
     if not task_status:
         sys.exit(1)
