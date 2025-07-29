@@ -70,6 +70,7 @@ def create_logger(location: str, log_location: str) -> logging.Logger:
 
 def trigger_brightdata_job(keyword: Dict, logger: logging.Logger) -> Tuple[Dict, str]:
     """Trigger BrightData job for given keyword and return query data with snapshot ID."""
+    api_error = 0 # We assume no api error initially
     logger.info(f"Triggering job for: {keyword['keyword_search']}")
     logger.info(f"Full keyword data being sent: {keyword}")
     
@@ -98,6 +99,7 @@ def trigger_brightdata_job(keyword: Dict, logger: logging.Logger) -> Tuple[Dict,
     
     logger.info(f"Response status: {response.status_code}")
     if response.status_code != 200:
+        api_error - 1 # This means something went wrong with the API, hence we update this variable as True
         logger.error(f"Response text: {response.text}")
         logger.error(f"Response headers: {dict(response.headers)}")
     
@@ -111,7 +113,7 @@ def trigger_brightdata_job(keyword: Dict, logger: logging.Logger) -> Tuple[Dict,
 
     snapshot_id = result["snapshot_id"]
     logger.info(f"Snapshot triggered: {snapshot_id}")
-    return keyword, snapshot_id
+    return keyword, snapshot_id, api_error
 
 
 def wait_for_snapshot_ready(snapshot_id: str, logger: logging.Logger, poll_interval: int = 15) -> None:
@@ -191,8 +193,12 @@ def process_job_with_config(job_title: str, location_config: Dict, scraping_para
     }
 
     try:
-        query, snapshot_id = trigger_brightdata_job(keyword_data, logger)
-        api_error = wait_for_snapshot_ready(snapshot_id, logger, poll_interval)
+        query, snapshot_id, api_error = trigger_brightdata_job(keyword_data, logger)
+        
+        if not api_error: # If there is no api error, we proceed with polling from Brightdata
+            api_error = wait_for_snapshot_ready(snapshot_id, logger, poll_interval)
+        else:
+            logger.info(f"Job for '{job_title}' in {location_config['location_name']} had an API request failure.")
         if not api_error: # Only if there is no api error for that brightdata job do we upload to S3 bucket
             deliver_snapshot_to_s3(query, snapshot_id, logger, today_date)
             logger.info(f"Job for '{job_title}' in {location_config['location_name']} completed.")
@@ -215,9 +221,12 @@ def process_job_with_config_us(job_title: str, location_config: Dict, scraping_p
     }
 
     try:
-        query, snapshot_id = trigger_brightdata_job(keyword_data, logger)
-        query["location"] = query["location"] + ' United States'
-        api_error = wait_for_snapshot_ready(snapshot_id, logger, poll_interval)
+        query, snapshot_id, api_error = trigger_brightdata_job(keyword_data, logger)
+        if not api_error: # If there is no api error, we proceed with polling from Brightdata
+            query["location"] = query["location"] + ' United States'
+            api_error = wait_for_snapshot_ready(snapshot_id, logger, poll_interval)
+        else:
+            logger.info(f"Job for '{job_title}' in {location} had an API request failure.")
         if not api_error: # Only if there is no api error for that brightdata job do we upload to S3 bucket
             deliver_snapshot_to_s3(query, snapshot_id, logger, today_date)
             logger.info(f"Job for '{job_title}' in {location} completed.")
