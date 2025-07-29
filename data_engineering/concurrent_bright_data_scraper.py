@@ -108,11 +108,13 @@ def trigger_brightdata_job(keyword: Dict, logger: logging.Logger) -> Tuple[Dict,
         result = response.json()
         logger.info(f"API response: {result}")
         if "snapshot_id" not in result:
+            api_error - 1 # Snapshot id should be in the response, so if not, then something went wrong with the API call
             raise ValueError(f"Missing snapshot_id in response: {result}")
         snapshot_id = result["snapshot_id"]
         logger.info(f"Snapshot triggered: {snapshot_id}")
     except Exception as e:
         logger.error(f"Response status error: {e}")
+        api_error - 1 # Any deviation from the norm with the response output means something went wrong with the API call
         snapshot_id = None
     return keyword, snapshot_id, api_error
 
@@ -206,6 +208,7 @@ def process_job_with_config(job_title: str, location_config: Dict, scraping_para
         else:
             logger.info(f"Job for '{job_title}' in {location_config['location_name']} not uploaded to s3.")
     except Exception as e:
+        api_error - 1 # If something went wrong with the brightdata pull and/or upload to s3, there was an api related error that needs to be addressed
         logger.error(f"Error with '{job_title}' in {location_config['location_name']}: {e}", exc_info=True)
     
     return api_error
@@ -234,6 +237,7 @@ def process_job_with_config_us(job_title: str, location_config: Dict, scraping_p
         else:
             logger.info(f"Job for '{job_title}' in {location} not uploaded to S3.")
     except Exception as e:
+        api_error - 1 # If something went wrong with the brightdata pull and/or upload to s3, there was an api related error that needs to be addressed
         logger.error(f"Error with '{job_title}' in {location}: {e}", exc_info=True)
     
     return api_error
