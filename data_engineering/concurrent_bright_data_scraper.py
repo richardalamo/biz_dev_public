@@ -349,7 +349,7 @@ if __name__ == "__main__":
     logger.info("All jobs completed.")
     logger.info(f"Status of jobs are {results}")
 
-    # If over half the jobs have API errors, we declare task has failed
+    # If over half the brightdata runs have API errors, we declare task has failed
     if sum(results)/num_jobs_total>0.5:
         task_status = False
 
