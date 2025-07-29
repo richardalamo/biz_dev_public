@@ -102,17 +102,18 @@ def trigger_brightdata_job(keyword: Dict, logger: logging.Logger) -> Tuple[Dict,
         api_error - 1 # This means something went wrong with the API, hence we update this variable as True
         logger.error(f"Response text: {response.text}")
         logger.error(f"Response headers: {dict(response.headers)}")
-    
-    response.raise_for_status()
 
-    result = response.json()
-    logger.info(f"API response: {result}")
-    
-    if "snapshot_id" not in result:
-        raise ValueError(f"Missing snapshot_id in response: {result}")
-
-    snapshot_id = result["snapshot_id"]
-    logger.info(f"Snapshot triggered: {snapshot_id}")
+    try:
+        response.raise_for_status()
+        result = response.json()
+        logger.info(f"API response: {result}")
+        if "snapshot_id" not in result:
+            raise ValueError(f"Missing snapshot_id in response: {result}")
+        snapshot_id = result["snapshot_id"]
+        logger.info(f"Snapshot triggered: {snapshot_id}")
+    except Exception as e:
+        logger.error(f"Response status error: {e}")
+        snapshot_id = None
     return keyword, snapshot_id, api_error
 
 
