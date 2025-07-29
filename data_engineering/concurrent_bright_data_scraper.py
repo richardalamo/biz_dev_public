@@ -193,7 +193,7 @@ def process_job_with_config(job_title: str, location_config: Dict, scraping_para
     try:
         query, snapshot_id = trigger_brightdata_job(keyword_data, logger)
         api_error = wait_for_snapshot_ready(snapshot_id, logger, poll_interval)
-        if not api_error:
+        if not api_error: # Only if there is no api error for that brightdata job do we upload to S3 bucket
             deliver_snapshot_to_s3(query, snapshot_id, logger, today_date)
             logger.info(f"Job for '{job_title}' in {location_config['location_name']} completed.")
         else:
@@ -218,7 +218,7 @@ def process_job_with_config_us(job_title: str, location_config: Dict, scraping_p
         query, snapshot_id = trigger_brightdata_job(keyword_data, logger)
         query["location"] = query["location"] + ' United States'
         api_error = wait_for_snapshot_ready(snapshot_id, logger, poll_interval)
-        if not api_error:
+        if not api_error: # Only if there is no api error for that brightdata job do we upload to S3 bucket
             deliver_snapshot_to_s3(query, snapshot_id, logger, today_date)
             logger.info(f"Job for '{job_title}' in {location} completed.")
         else:
@@ -353,5 +353,6 @@ if __name__ == "__main__":
     if sum(results)/num_jobs_total>0.5:
         task_status = False
 
+    # If task_status is False, we declare this .py run as failed
     if not task_status:
         sys.exit(1)
