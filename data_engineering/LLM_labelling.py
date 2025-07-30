@@ -174,7 +174,7 @@ def process_with_llm(gpt_categorizer, df, gpt_model_name):
                 reply = gpt_categorizer.run({"fetcher": {"df": df, "row_number": i}})
                 gpt_replies.append(reply[gpt_model_name]["replies"][0])
             except Exception as e:
-                err_msg = str(e).lower()
+                err_msg = 'Error: ' + str(e).lower()
                 if 'quota' in err_msg:
                     global task_status
                     task_status = False
@@ -184,7 +184,7 @@ def process_with_llm(gpt_categorizer, df, gpt_model_name):
         df['label'] = gpt_replies # Create label column storing LLM output
         df['label'] = df['label'].str.lower().str.replace(r'[^a-z\s\-]', '', regex=True).str.strip() # Clean and standardize LLM outputs
 
-        # Anything the LLM outputs that is not in the accepted_list below would be converted to "none"
+        # Anything the LLM outputs that is not in the accepted_list below or an error message would be converted to "none"
         accepted_list = [
             'data analyst',
             'data scientist',
@@ -197,8 +197,22 @@ def process_with_llm(gpt_categorizer, df, gpt_model_name):
             "game development", 
             "software engineering",
             "cybersecurity"
-            ]
-        df['label'] = np.where(df['label'].isin(accepted_list), df['label'], 'none')
+        ]
+        
+        # Keep the error messages for future debugging purposes
+        prefix_patterns = ["Error: "]
+        
+        # Function to check if label is accepted or starts with allowed prefix
+        def is_accepted(label):
+            if label in accepted_list:
+                return True
+            for prefix in prefix_patterns:
+                if label.startswith(prefix):
+                    return True
+            return False
+        
+        # Apply function to the DataFrame
+        df['label'] = df['label'].apply(lambda x: x if is_accepted(x) else 'none')
     else:
         df['label'] = None
 
