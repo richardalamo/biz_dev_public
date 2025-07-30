@@ -174,7 +174,7 @@ def process_with_llm(gpt_categorizer, df, gpt_model_name):
                 reply = gpt_categorizer.run({"fetcher": {"df": df, "row_number": i}})
                 gpt_replies.append(reply[gpt_model_name]["replies"][0])
             except Exception as e:
-                err_msg = 'Error: ' + str(e).lower()
+                err_msg = 'error: ' + str(e).lower()
                 if 'quota' in err_msg:
                     global task_status
                     task_status = False
@@ -200,7 +200,7 @@ def process_with_llm(gpt_categorizer, df, gpt_model_name):
         ]
         
         # Keep the error messages for future debugging purposes
-        prefix_patterns = ["Error: "]
+        prefix_patterns = ["error: "]
         
         # Function to check if label is accepted or starts with allowed prefix
         def is_accepted(label):
