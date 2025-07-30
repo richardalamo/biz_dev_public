@@ -182,7 +182,7 @@ def process_with_llm(gpt_categorizer, df, gpt_model_name):
             if (i+1)%100==0:
                 print(f'{i+1} labels generated')
         df['label'] = gpt_replies # Create label column storing LLM output
-        df['label'] = df['label'].str.lower().str.replace(r'[^a-z\s\-]', '', regex=True).str.strip() # Clean and standardize LLM outputs
+        df['label'] = df['label'].str.lower().str.replace(r'[^a-z\s\-\:]', '', regex=True).str.strip() # Clean and standardize LLM outputs
 
         # Anything the LLM outputs that is not in the accepted_list below or an error message would be converted to "none"
         accepted_list = [
