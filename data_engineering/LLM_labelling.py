@@ -231,6 +231,20 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
     df_gpt_1 = future_1.result()
     df_gpt_2 = future_2.result()
 
+# If the models have more than 50% of LLM label outputs with error messages, then something is wrong
+
+if df_gpt_1.shape[0]>0: # Avoid divide by 0 error
+    df_gpt_1_num_errors = df_gpt_1[df_gpt_1['label'].str.startswith('error:')].shape[0]
+    df_gpt_1_num = df_gpt_1.shape[0]
+    if df_gpt_1_num_errors/df_gpt_1_num>0.5:
+        task_status = False
+
+if df_gpt_2.shape[0]>0:
+    df_gpt_2_num_errors = df_gpt_2[df_gpt_2['label'].str.startswith('error:')].shape[0]
+    df_gpt_2_num = df_gpt_2.shape[0]
+    if df_gpt_2_num_errors/df_gpt_2_num>0.5:
+        task_status = False
+
 # Combine datasets and save to csv file
 df_gpt = pd.concat([df_gpt_1, df_gpt_2])
 df_gpt.to_csv(output_csv_path, index=False, encoding='utf-8')
