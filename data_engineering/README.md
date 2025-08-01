@@ -391,6 +391,6 @@ Resolved the issue and the DAGs came back
 
 - Another time, Airflow Webserver UI just failed to load. Here is what could be done to resolve it:
 ```bash
-airflow db upgrade
 find ~/airflow -name "*.pyc" -delete
+airflow db upgrade
 ```
