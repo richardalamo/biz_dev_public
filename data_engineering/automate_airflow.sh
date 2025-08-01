@@ -8,7 +8,7 @@ source airflow_env/bin/activate
 filenametime=$(date +"%m%d%Y%H%M%S")
 cd ..
 log_dir="bright_data_logs"
-SHELL_SCRIPT_NAME='start_airflow'
+SHELL_SCRIPT_NAME='automate_airflow'
 
 if [ ! -d $log_dir ]; then
     mkdir $log_dir
