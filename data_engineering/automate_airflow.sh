@@ -4,19 +4,32 @@
 cd /home/ubuntu
 source airflow_env/bin/activate
 
-# Step 2: Update Airflow project files from Github
+# Step 2: Creates the log directory and logfiles within 
+filenametime=$(date +"%m%d%Y%H%M%S")
+cd ..
+log_dir="bright_data_logs"
+SHELL_SCRIPT_NAME='start_airflow'
+
+if [ ! -d $log_dir ]; then
+    mkdir $log_dir
+fi
+
+LOG_FILE="${log_dir}/${SHELL_SCRIPT_NAME}_${filenametime}.log"
+exec > "$LOG_FILE" 2>&1
+
+# Step 3: Update Airflow project files from Github
 echo "Updating files from Github repository"
 python3 load_from_github.py
 
-# Step 3: Implement a wait time so that updated files get reflected before Airflow begins running
+# Step 4: Implement a wait time so that updated files get reflected before Airflow begins running
 echo "Wait 60 seconds for updated files from Github to get reflected in EC2 folders"
 sleep 60
 
-# Step 4: Start Airflow webserver and scheduler in the background
+# Step 5: Start Airflow webserver and scheduler in the background
 nohup airflow webserver --port 8080 &
 nohup airflow scheduler &
 
-# Step 5: Poll until Airflow webserver and scheduler are running
+# Step 6: Poll until Airflow webserver and scheduler are running
 echo "Waiting for Airflow webserver and scheduler to start..."
 
 # Function to check if Airflow webserver and scheduler are running
@@ -43,7 +56,7 @@ while true; do
     fi
 done
 
-# Step 6: Ensure scheduler is actually healthy and processing DAGs
+# Step 7: Ensure scheduler is actually healthy and processing DAGs
 check_scheduler_heartbeat() {
     scheduler_heartbeat=$(airflow jobs check --job-type SchedulerJob 2>&1)
     if [[ "$scheduler_heartbeat" != *"No alive"* ]]; then
@@ -59,15 +72,15 @@ while ! check_scheduler_heartbeat; do
     sleep 10
 done
 
-# Step 7: Ensure DAG file is parsed and registered
+# Step 8: Ensure DAG file is parsed and registered
 # echo "Reserializing DAG: $1"
 # airflow dags reserialize --dag-id "$1"
 
-# Step 8: Trigger the specific DAG
+# Step 9: Trigger the specific DAG
 echo "Triggering DAG..."
 airflow dags trigger "$1"
 
-# Step 9: Wait for the DAG to finish running
+# Step 10: Wait for the DAG to finish running
 
 dag_id="$1"
 stuck_check_interval=30
@@ -126,16 +139,16 @@ while true; do
     fi
 done
 
-# Step 10: Stop Airflow webserver and scheduler after the DAG finishes
+# Step 11: Stop Airflow webserver and scheduler after the DAG finishes
 echo "Stopping Airflow webserver and scheduler..."
 pkill -f "airflow webserver"
 pkill -f "airflow scheduler"
 
-# Step 11: Remove the nohup.out file
+# Step 12: Remove the nohup.out file
 if [ -f "nohup.out" ]; then
     rm "nohup.out"
 fi
 
-# Step 12: Stop EC2 instance
+# Step 13: Stop EC2 instance
 echo "Stopping EC2 instance"
 python3 stop_ec2_instance.py
