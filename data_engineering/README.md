@@ -123,6 +123,7 @@ Ensure that the file contains the following:
 ```
 sql_alchemy_conn = postgresql+psycopg2://airflow_user:beamdatajobscrape25@localhost/airflow_db
 executor = LocalExecutor
+logging_config_class = airflow.config_templates.airflow_local_settings.DEFAULT_LOGGING_CONFIG
 ```
 
 ## Slack Webhook Generation
@@ -382,8 +383,14 @@ pkill -f "airflow scheduler"
 ```
 
 ## Airflow debug (optional)
-- One time, all the DAGs disappeared in the Airflow UI. After looking at ```nohup.out```, there were permission errors in the logs that the scheduler couldn't access. Running this:
+- One time, all the DAGs disappeared in the Airflow Webserver UI. After looking at ```nohup.out```, there were permission errors in the logs that the scheduler couldn't access. Running this:
 ```bash
 sudo chown -R ubuntu:ubuntu /home/ubuntu/airflow/logs
 ```
 Resolved the issue and the DAGs came back
+
+- Another time, Airflow Webserver UI just failed to load. Here is what could be done to resolve it:
+```bash
+airflow db upgrade
+find ~/airflow -name "*.pyc" -delete
+```
