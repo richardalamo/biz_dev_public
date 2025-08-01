@@ -390,7 +390,11 @@ sudo chown -R ubuntu:ubuntu /home/ubuntu/airflow/logs
 Resolved the issue and the DAGs came back
 
 - Another time, Airflow Webserver UI just failed to load. Here is what could be done to resolve it:
+1. Stop Airflow Scheduler and Webserver
+2. Run
 ```bash
+export AIRFLOW__LOGGING__LOGGING_CONFIG_CLASS=airflow.config_templates.airflow_local_settings.DEFAULT_LOGGING_CONFIG
 find ~/airflow -name "*.pyc" -delete
 airflow db upgrade
 ```
+3. Start Airflow Scheduler and attempt to start Webserver
