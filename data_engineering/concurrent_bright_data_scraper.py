@@ -159,6 +159,7 @@ def wait_for_snapshot_ready(snapshot_id: str, logger: logging.Logger, poll_inter
 
 def deliver_snapshot_to_s3(query: Dict, snapshot_id: str, logger: logging.Logger, today_date: str) -> None:
     """Deliver completed snapshot to S3 bucket with structured filename."""
+    api_error = 0
     logger.info(f"Delivering snapshot {snapshot_id} to S3...")
     # today = date.today().isoformat()
     keyword = query["keyword_search"].replace(" ", "_")
@@ -184,9 +185,15 @@ def deliver_snapshot_to_s3(query: Dict, snapshot_id: str, logger: logging.Logger
         "compress": False
     }
 
-    res = requests.post(url, headers=HEADERS, json=payload)
-    res.raise_for_status()
-    logger.info(f"Snapshot {snapshot_id} delivered as {filename_template}.csv")
+    try:
+        res = requests.post(url, headers=HEADERS, json=payload)
+        res.raise_for_status()
+        logger.info(f"Snapshot {snapshot_id} delivered as {filename_template}.csv")
+    except Exception as e:
+        api_error = 1
+        logger.info(f"Snapshot {snapshot_id} failed to upload with error: {e}")
+
+    return api_error
 
 
 def process_job_with_config(job_title: str, location_config: Dict, scraping_params: Dict, env_vars: Dict, logger: logging.Logger, today_date: str, poll_interval: int = 15):
@@ -208,8 +215,11 @@ def process_job_with_config(job_title: str, location_config: Dict, scraping_para
         else:
             logger.info(f"Job for '{job_title}' in {location_config['location_name']} had an API request failure.")
         if not api_error: # Only if there is no api error for that brightdata job do we upload to S3 bucket
-            deliver_snapshot_to_s3(query, snapshot_id, logger, today_date)
-            logger.info(f"Job for '{job_title}' in {location_config['location_name']} completed.")
+            api_error = deliver_snapshot_to_s3(query, snapshot_id, logger, today_date)
+            if not api_error:
+                logger.info(f"Job for '{job_title}' in {location_config['location_name']} completed.")
+            else:
+                logger.info(f"Job for '{job_title}' in {location_config['location_name']} not uploaded to s3.")
         else:
             logger.info(f"Job for '{job_title}' in {location_config['location_name']} not uploaded to s3.")
     except Exception as e:
@@ -237,8 +247,11 @@ def process_job_with_config_us(job_title: str, location_config: Dict, scraping_p
         else:
             logger.info(f"Job for '{job_title}' in {location} had an API request failure.")
         if not api_error: # Only if there is no api error for that brightdata job do we upload to S3 bucket
-            deliver_snapshot_to_s3(query, snapshot_id, logger, today_date)
-            logger.info(f"Job for '{job_title}' in {location} completed.")
+            api_error = deliver_snapshot_to_s3(query, snapshot_id, logger, today_date)
+            if not api_error:
+                logger.info(f"Job for '{job_title}' in {location} completed.")
+            else:
+                logger.info(f"Job for '{job_title}' in {location} not uploaded to S3.")
         else:
             logger.info(f"Job for '{job_title}' in {location} not uploaded to S3.")
     except Exception as e:
