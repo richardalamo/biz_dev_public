@@ -127,19 +127,24 @@ def wait_for_snapshot_ready(snapshot_id: str, logger: logging.Logger, poll_inter
     url = f"https://api.brightdata.com/datasets/v3/progress/{snapshot_id}"
 
     while True:
-        res = requests.get(url, headers=HEADERS)
-        res.raise_for_status()
-        status = res.json().get("status")
-        if status == "ready":
-            logger.info(f"Snapshot {snapshot_id} is ready.")
+        try:
+            res = requests.get(url, headers=HEADERS)
+            res.raise_for_status()
+            status = res.json().get("status")
+            if status == "ready":
+                logger.info(f"Snapshot {snapshot_id} is ready.")
+                break
+            if status == "failed":
+                task_status = False
+                api_error = 1 # If the status of the Brightdata run failed, we log it as api error
+                logger.info(f"Snapshot {snapshot_id} {status}.")
+                break            
+            logger.info(f"Snapshot {snapshot_id} not ready with status currently as {status}. Waiting {poll_interval}s...")
+            time.sleep(poll_interval)
+        except Exception as e:
+            api_error = 1
+            logger.info(f"Url {url} has the following error: {e}"
             break
-        if status == "failed":
-            task_status = False
-            api_error = 1 # If the status of the Brightdata run failed, we log it as api error
-            logger.info(f"Snapshot {snapshot_id} {status}.")
-            break            
-        logger.info(f"Snapshot {snapshot_id} not ready with status currently as {status}. Waiting {poll_interval}s...")
-        time.sleep(poll_interval)
 
     # If there is a discovery error, we log it as api error
     try:
