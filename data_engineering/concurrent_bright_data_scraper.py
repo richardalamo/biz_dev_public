@@ -143,7 +143,7 @@ def wait_for_snapshot_ready(snapshot_id: str, logger: logging.Logger, poll_inter
             time.sleep(poll_interval)
         except Exception as e:
             api_error = 1
-            logger.info(f"Url {url} has the following error: {e}"
+            logger.info(f"Url {url} has the following error: {e}")
             break
 
     # If there is a discovery error, we log it as api error
