@@ -151,4 +151,5 @@ fi
 
 # Step 13: Stop EC2 instance
 echo "Stopping EC2 instance"
+cd /home/ubuntu
 python3 stop_ec2_instance.py
