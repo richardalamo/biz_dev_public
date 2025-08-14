@@ -6,7 +6,7 @@ source airflow_env/bin/activate
 
 # Step 2: Creates the log directory and logfiles within 
 filenametime=$(date +"%m%d%Y%H%M%S")
-cd ..
+cd airflow/logs
 log_dir="bright_data_logs"
 SHELL_SCRIPT_NAME='automate_airflow'
 
