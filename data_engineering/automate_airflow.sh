@@ -19,7 +19,7 @@ exec > "$LOG_FILE" 2>&1
 
 # Step 3: Update Airflow project files from Github
 echo "Updating files from Github repository"
-python3 load_from_github.py
+python3 /home/ubuntu/load_from_github.py
 
 # Step 4: Implement a wait time so that updated files get reflected before Airflow begins running
 echo "Wait 60 seconds for updated files from Github to get reflected in EC2 folders"
@@ -145,11 +145,10 @@ pkill -f "airflow webserver"
 pkill -f "airflow scheduler"
 
 # Step 12: Remove the nohup.out file
-cd /home/ubuntu
-if [ -f "nohup.out" ]; then
-    rm "nohup.out"
+if [ -f "/home/ubuntu/nohup.out" ]; then
+    rm "/home/ubuntu/nohup.out"
 fi
 
 # Step 13: Stop EC2 instance
 echo "Stopping EC2 instance"
-python3 stop_ec2_instance.py
+python3 /home/ubuntu/stop_ec2_instance.py
