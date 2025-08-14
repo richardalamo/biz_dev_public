@@ -145,11 +145,11 @@ pkill -f "airflow webserver"
 pkill -f "airflow scheduler"
 
 # Step 12: Remove the nohup.out file
+cd /home/ubuntu
 if [ -f "nohup.out" ]; then
     rm "nohup.out"
 fi
 
 # Step 13: Stop EC2 instance
 echo "Stopping EC2 instance"
-cd /home/ubuntu
 python3 stop_ec2_instance.py
