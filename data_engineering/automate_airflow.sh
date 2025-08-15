@@ -109,7 +109,7 @@ while true; do
 
         queued_tasks=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
             jq -r '.[] | select(.state == "queued") | .task_id')
-            
+
         scheduled_tasks=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
             jq -r '.[] | select(.state == "scheduled") | .task_id')
 
