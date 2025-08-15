@@ -107,6 +107,12 @@ while true; do
         pending_tasks=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
             jq -r '.[] | select(.state == "none" or .state == null or .state == "queued" or .state == "scheduled") | .task_id')
 
+        queued_tasks=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
+            jq -r '.[] | select(.state == "queued") | .task_id')
+            
+        scheduled_tasks=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
+            jq -r '.[] | select(.state == "scheduled") | .task_id')
+
         running_count=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
             jq '[.[] | select(.state == "running")] | length')
 
@@ -114,6 +120,8 @@ while true; do
             jq '[.[] | select(.state == "success")] | length')
 
         echo "Pending tasks: $pending_tasks"
+        echo "Queued tasks: $queued_tasks"
+        echo "Scheduled tasks: $scheduled_tasks"
         echo "Running count: $running_count"
         echo "Success count: $success_count"
 
