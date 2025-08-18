@@ -89,6 +89,18 @@ stuck_wait=0
 
 echo "Waiting for DAG to finish..."
 while true; do
+
+    # --- DB connectivity check ---
+    if ! airflow db check > /dev/null 2>&1; then
+        echo "Airflow DB connection lost! Restarting Airflow..."
+        pkill -f "airflow webserver"
+        pkill -f "airflow scheduler"
+        sleep 10
+        nohup airflow webserver --port 8080 &
+        nohup airflow scheduler &
+        continue   # Skip rest of loop until services come back
+    fi
+    
     # Get the most recent DAG run's state
     DAG_STATUS=$(airflow dags list-runs -d "$1" --output json | jq -r '.[0].state')
 
@@ -100,50 +112,51 @@ while true; do
         break
     else
         echo "DAG is still running..."
+        sleep 30
+        
+        # # Begin stuck task check
+        # execution_date=$(airflow dags list-runs -d "$dag_id" --output json | jq -r '.[0].execution_date')
 
-        # Begin stuck task check
-        execution_date=$(airflow dags list-runs -d "$dag_id" --output json | jq -r '.[0].execution_date')
+        # pending_tasks=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
+        #     jq -r '.[] | select(.state == "none" or .state == null or .state == "queued" or .state == "scheduled") | .task_id')
 
-        pending_tasks=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
-            jq -r '.[] | select(.state == "none" or .state == null or .state == "queued" or .state == "scheduled") | .task_id')
+        # queued_tasks=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
+        #     jq -r '.[] | select(.state == "queued") | .task_id')
 
-        queued_tasks=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
-            jq -r '.[] | select(.state == "queued") | .task_id')
+        # scheduled_tasks=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
+        #     jq -r '.[] | select(.state == "scheduled") | .task_id')
 
-        scheduled_tasks=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
-            jq -r '.[] | select(.state == "scheduled") | .task_id')
+        # running_count=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
+        #     jq '[.[] | select(.state == "running")] | length')
 
-        running_count=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
-            jq '[.[] | select(.state == "running")] | length')
+        # success_count=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
+        #     jq '[.[] | select(.state == "success")] | length')
 
-        success_count=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
-            jq '[.[] | select(.state == "success")] | length')
+        # echo "Pending tasks: $pending_tasks"
+        # echo "Queued tasks: $queued_tasks"
+        # echo "Scheduled tasks: $scheduled_tasks"
+        # echo "Running count: $running_count"
+        # echo "Success count: $success_count"
 
-        echo "Pending tasks: $pending_tasks"
-        echo "Queued tasks: $queued_tasks"
-        echo "Scheduled tasks: $scheduled_tasks"
-        echo "Running count: $running_count"
-        echo "Success count: $success_count"
+        # if [[ -n "$pending_tasks" && $running_count -eq 0 && $success_count -gt 0 ]]; then
+        #     echo "Potential stuck state: pending tasks exist, none running, some succeeded."
+        #     stuck_wait=$((stuck_wait + stuck_check_interval))
+        # else
+        #     echo "DAG is not stuck."
+        #     stuck_wait=0  # Reset if progress is seen
+        # fi
 
-        if [[ -n "$pending_tasks" && $running_count -eq 0 && $success_count -gt 0 ]]; then
-            echo "Potential stuck state: pending tasks exist, none running, some succeeded."
-            stuck_wait=$((stuck_wait + stuck_check_interval))
-        else
-            echo "DAG is not stuck."
-            stuck_wait=0  # Reset if progress is seen
-        fi
+        # # If stuck for more than threshold, restart scheduler
+        # if [ $stuck_wait -ge $stuck_max_wait ]; then
+        #     echo "Detected no progress for 5 minutes. Restarting Airflow scheduler..."
+        #     pkill -f "airflow scheduler"
+        #     sleep 5
+        #     nohup airflow scheduler &
+        #     echo "Scheduler restarted."
+        #     stuck_wait=0  # Reset counter after restart
+        # fi
 
-        # If stuck for more than threshold, restart scheduler
-        if [ $stuck_wait -ge $stuck_max_wait ]; then
-            echo "Detected no progress for 5 minutes. Restarting Airflow scheduler..."
-            pkill -f "airflow scheduler"
-            sleep 5
-            nohup airflow scheduler &
-            echo "Scheduler restarted."
-            stuck_wait=0  # Reset counter after restart
-        fi
-
-        sleep $stuck_check_interval
+        # sleep $stuck_check_interval
     fi
 done
 
