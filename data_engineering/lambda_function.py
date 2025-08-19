@@ -42,7 +42,7 @@ def start_instance(dag_name):
                     'cd /home/ubuntu',
                     'chmod +x automate_airflow.sh',
                     'export AIRFLOW_HOME=/home/ubuntu/airflow',
-                    f'sudo -u ubuntu ./automate_airflow.sh {dag_name}' # Starts Airflow, runs Airflow DAG, sends a Lambda call to stop ec2 instance
+                    f'nohup sudo -u ubuntu ./automate_airflow.sh {dag_name} &' # Starts Airflow, runs Airflow DAG, sends a Lambda call to stop ec2 instance
                 ]
             }
         )
