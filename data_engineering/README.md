@@ -15,8 +15,10 @@ Below diagram is a data architecture representation
 
 ## Files Explained
 
-| First Header  | Second Header | Second Header |
+| File Name  | Needed in Migration | Explanation |
 | ------------- | ------------- | ------------- |
+| ```setup.sh```  | No  | Automated way to install Airflow, set up Airflow folders, and the Python packages necessary  |
+| ```requirements.txt```  | Yes  | Python packages required for project  |
 | Content Cell  | Content Cell  | Content Cell  |
 | Content Cell  | Content Cell  | Content Cell  |
 | Content Cell  | Content Cell  | Content Cell  |
@@ -27,10 +29,7 @@ Below diagram is a data architecture representation
 | Content Cell  | Content Cell  | Content Cell  |
 | Content Cell  | Content Cell  | Content Cell  |
 | Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  |
-- ```setup.sh```: Automated way to install Airflow, set up Airflow folders, and the Python packages necessary
-- ```requirements.txt```: Python packages required for project
+
 - ```indeed_etl.py```: Airflow DAG to collect, clean, and store Saudi Arabia Indeed jobs in S3 and PostgreSQL
 - ```indeed_etl_ca.py```: Airflow DAG to collect, clean, and store Canada Indeed jobs in S3 and PostgreSQL
 - ```indeed_etl_us.py```: Airflow DAG to collect, clean, and store US Indeed jobs in S3 and PostgreSQL
