@@ -106,7 +106,6 @@ while true; do
         break
     else
         echo "DAG is still running..."
-        sleep 30
         
         if ! check_db; then
             echo "Airflow DB is down!"
@@ -124,7 +123,7 @@ while true; do
         fi
     
         sleep 30  # wait before checking again
-        fi
+    fi
 done
 
 # Step 11: Stop Airflow webserver and scheduler after the DAG finishes
