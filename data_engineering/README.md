@@ -19,34 +19,23 @@ Below diagram is a data architecture representation
 | ------------- | ------------- | ------------- |
 | ```setup.sh```  | No  | Automated way to install Airflow, set up Airflow folders, and the Python packages necessary  |
 | ```requirements.txt```  | Yes  | Python packages required for project  |
-| Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  |
-
-- ```indeed_etl.py```: Airflow DAG to collect, clean, and store Saudi Arabia Indeed jobs in S3 and PostgreSQL
-- ```indeed_etl_ca.py```: Airflow DAG to collect, clean, and store Canada Indeed jobs in S3 and PostgreSQL
-- ```indeed_etl_us.py```: Airflow DAG to collect, clean, and store US Indeed jobs in S3 and PostgreSQL
-- ```indeed_etl_ae.py```: Airflow DAG to collect, clean, and store UAE Indeed jobs in S3 and PostgreSQL
-- ```stored_variables.py```: Centralized file that stores Python variables that the Airflow DAGs call
-- ```stored_functions.py```: Centralized file that stores Python functions that the Airflow DAGs call
-- ```create_postgresql_table.py```: Script that runs the DDL for this project
-- ```load_from_github.py```: Automate the update of files from Github to the EC2 instance
-- ```stop_ec2_instance.py```: Stops the EC2 instance via sending json payload to lambda function
-- ```automate_airflow.sh```: Updates EC2 with Github file, starts Airflow, runs DAG(s), stops Airflow, and stops EC2 instance
-- ```lambda_function.py```: Function that starts EC2 and runs automate_airflow.sh, and stops EC2 instance
-- ```concurrent_bright_data_scraper.py```: Collects jobs data from Indeed and saves to S3 landing zone
-- ```config.yaml```: Config file for ```concurrent_bright_data_scraper.py```
-- ```file_concatenation.py```: Pulls Indeed raw jobs data from S3, consolidates files, and outputs as concatenated csv file
-- ```clean_and_preprocess.py```: Cleans and preprocesses Indeed data
-- ```process_data.py```: Further cleans and processes Indeed data 
-- ```LLM_labelling.py```: Generates labels using LLM that classified job types (eg. Data Engineering, Data Analyst) based on the job description
+| ```indeed_etl.py```  | Yes  | Airflow DAG to collect, clean, and store Saudi Arabia Indeed jobs in S3 and PostgreSQL  |
+| ```indeed_etl_ca.py```  | Yes  | Airflow DAG to collect, clean, and store Canada Indeed jobs in S3 and PostgreSQL  |
+| ```indeed_etl_us.py```  | Yes  | Airflow DAG to collect, clean, and store US Indeed jobs in S3 and PostgreSQL  |
+| ```indeed_etl_ae.py```  | Yes  | Airflow DAG to collect, clean, and store UAE Indeed jobs in S3 and PostgreSQL  |
+| ```stored_variables.py```  | Yes  | Centralized file that stores Python variables that the Airflow DAGs call  |
+| ```stored_functions.py```  | Yes  | Centralized file that stores Python functions that the Airflow DAGs call  |
+| ```create_postgresql_table.py```  | Yes  | Script that runs the DDL for this project  |
+| ```load_from_github.py```  | No  | Automate the update of files from Github to the EC2 instance  |
+| ```stop_ec2_instance.py```  | No  | Stops the EC2 instance via sending json payload to lambda function  |
+| ```automate_airflow.sh```  | No  | Updates EC2 with Github file, starts Airflow, runs DAG(s), stops Airflow, and stops EC2 instance  |
+| ```lambda_function.py```  | No  | Function that starts EC2 and runs ```automate_airflow.sh```, and stops EC2 instance  |
+| ```concurrent_bright_data_scraper.py```  | Yes  | Collects jobs data from Indeed and saves to S3 landing zone  |
+| ```config.yaml```  | Yes  | Config file for ```concurrent_bright_data_scraper.py```  |
+| ```file_concatenation.py```  | Yes  | Pulls Indeed raw jobs data from S3, consolidates files, and outputs as concatenated csv file  |
+| ```clean_and_preprocess.py```  | Yes  | Cleans and preprocesses Indeed data  |
+| ```process_data.py```  | Yes  | Further cleans and processes Indeed data   |
+| ```LLM_labelling.py```  | Yes  | Generates labels using LLM that classified job types (eg. Data Engineering, Data Analyst) based on the job description  |
 
 ## Artifacts Needed
 
