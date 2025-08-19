@@ -94,17 +94,6 @@ airflow dags trigger "$1"
 
 echo "Waiting for DAG to finish..."
 while true; do
-
-    # --- DB connectivity check ---
-    if ! airflow db check > /dev/null 2>&1; then
-        echo "Airflow DB connection lost! Restarting Airflow..."
-        pkill -f "airflow webserver"
-        pkill -f "airflow scheduler"
-        sleep 10
-        nohup airflow webserver --port 8080 &
-        nohup airflow scheduler &
-        continue   # Skip rest of loop until services come back
-    fi
     
     # Get the most recent DAG run's state
     DAG_STATUS=$(airflow dags list-runs -d "$1" --output json | jq -r '.[0].state')
@@ -124,8 +113,10 @@ while true; do
     
             if ! check_running_tasks; then
                 echo "No tasks running. Restarting Airflow..."
+                pkill -f "airflow webserver"
                 pkill -f "airflow scheduler"
-                sleep 5
+                sleep 10
+                nohup airflow webserver --port 8080 &
                 nohup airflow scheduler &
             else
                 echo "Tasks are still running. Will not restart."
