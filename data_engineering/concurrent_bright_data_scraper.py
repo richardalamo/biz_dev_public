@@ -151,6 +151,7 @@ def wait_for_snapshot_ready(snapshot_id: str, logger: logging.Logger, poll_inter
         discovery_error_code = res.json()['discovery_error_codes']
         if discovery_error_code:
             api_error = 1
+            logger.info(f"Snapshot {snapshot_id} has discovery error.")
     except:
         pass
     
