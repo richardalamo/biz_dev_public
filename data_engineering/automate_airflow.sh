@@ -4,11 +4,12 @@
 cd /home/ubuntu
 source airflow_env/bin/activate
 
-# Step 2: Creates the log directory and logfiles within 
+# Step 2: Creates the log directory, logfiles within, and getting DAG id
 filenametime=$(date +"%m%d%Y%H%M%S")
 cd airflow/logs
 log_dir="bright_data_logs"
 SHELL_SCRIPT_NAME='automate_airflow'
+dag_id="$1"
 
 if [ ! -d $log_dir ]; then
     mkdir $log_dir
@@ -72,20 +73,24 @@ while ! check_scheduler_heartbeat; do
     sleep 10
 done
 
-# Step 8: Ensure DAG file is parsed and registered
-# echo "Reserializing DAG: $1"
-# airflow dags reserialize --dag-id "$1"
+# Step 8: Creating the functions to check whether the Airflow metadata DB is up and whether any tasks are running
+check_db() {
+    pg_isready -h localhost -p 5432 -U airflow_user > /dev/null 2>&1
+    return $?  # 0 if ready, non-zero if not
+}
+
+check_running_tasks() {
+    execution_date=$(airflow dags list-runs -d "$dag_id" --output json | jq -r '.[0].execution_date')
+    running_count=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
+        jq '[.[] | select(.state == "running")] | length')
+    [[ $running_count -gt 0 ]] && return 0 || return 1
+}
 
 # Step 9: Trigger the specific DAG
 echo "Triggering DAG..."
 airflow dags trigger "$1"
 
 # Step 10: Wait for the DAG to finish running
-
-dag_id="$1"
-stuck_check_interval=30
-stuck_max_wait=300  # 5 minutes
-stuck_wait=0
 
 echo "Waiting for DAG to finish..."
 while true; do
@@ -114,50 +119,21 @@ while true; do
         echo "DAG is still running..."
         sleep 30
         
-        # # Begin stuck task check
-        # execution_date=$(airflow dags list-runs -d "$dag_id" --output json | jq -r '.[0].execution_date')
-
-        # pending_tasks=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
-        #     jq -r '.[] | select(.state == "none" or .state == null or .state == "queued" or .state == "scheduled") | .task_id')
-
-        # queued_tasks=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
-        #     jq -r '.[] | select(.state == "queued") | .task_id')
-
-        # scheduled_tasks=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
-        #     jq -r '.[] | select(.state == "scheduled") | .task_id')
-
-        # running_count=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
-        #     jq '[.[] | select(.state == "running")] | length')
-
-        # success_count=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
-        #     jq '[.[] | select(.state == "success")] | length')
-
-        # echo "Pending tasks: $pending_tasks"
-        # echo "Queued tasks: $queued_tasks"
-        # echo "Scheduled tasks: $scheduled_tasks"
-        # echo "Running count: $running_count"
-        # echo "Success count: $success_count"
-
-        # if [[ -n "$pending_tasks" && $running_count -eq 0 && $success_count -gt 0 ]]; then
-        #     echo "Potential stuck state: pending tasks exist, none running, some succeeded."
-        #     stuck_wait=$((stuck_wait + stuck_check_interval))
-        # else
-        #     echo "DAG is not stuck."
-        #     stuck_wait=0  # Reset if progress is seen
-        # fi
-
-        # # If stuck for more than threshold, restart scheduler
-        # if [ $stuck_wait -ge $stuck_max_wait ]; then
-        #     echo "Detected no progress for 5 minutes. Restarting Airflow scheduler..."
-        #     pkill -f "airflow scheduler"
-        #     sleep 5
-        #     nohup airflow scheduler &
-        #     echo "Scheduler restarted."
-        #     stuck_wait=0  # Reset counter after restart
-        # fi
-
-        # sleep $stuck_check_interval
-    fi
+        if ! check_db; then
+            echo "Airflow DB is down!"
+    
+            if ! check_running_tasks; then
+                echo "No tasks running. Restarting Airflow..."
+                pkill -f "airflow scheduler"
+                sleep 5
+                nohup airflow scheduler &
+            else
+                echo "Tasks are still running. Will not restart."
+            fi
+        fi
+    
+        sleep 30  # wait before checking again
+        fi
 done
 
 # Step 11: Stop Airflow webserver and scheduler after the DAG finishes
