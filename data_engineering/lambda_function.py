@@ -1,13 +1,25 @@
 import json
 import boto3
 import time
+import os
+import logging
 
+# --- Setup ---
+# Configure the logger to integrate with AWS CloudWatch Logs.
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+# Initialize AWS clients for EC2 and Systems Manager (SSM).
 ec2 = boto3.client('ec2')
 ssm = boto3.client('ssm')
 
-INSTANCE_ID = '{insert ec2 instance ID}'
 
-# Each location corresponds to a specific Airflow DAG to run
+# --- Configuration ---
+# Get the target EC2 instance ID from the Lambda's environment variables.
+# This is a best practice for security and flexibility.
+INSTANCE_ID = os.environ.get('INSTANCE_ID')
+
+# Dictionary mapping a location parameter to a specific Airflow DAG ID.
 locations_dict = {
     'SA': 'indeed_etl',
     'CA': 'indeed_etl_ca',
@@ -15,85 +27,157 @@ locations_dict = {
     'AE': 'indeed_etl_ae',
 }
 
+
+# --- Core Functions ---
 def start_instance(dag_name):
-    """Starts EC2 instance. Executes a .sh script in EC2 command line."""
+    """
+    Starts the EC2 instance, waits for it to be running, and then uses SSM
+    to execute a script that triggers an Airflow DAG in the background.
+
+    Args:
+        dag_name (str): The name of the Airflow DAG to trigger.
+
+    Returns:
+        bool: True if all commands were sent successfully, False otherwise.
+    """
     try:
-        response = ec2.start_instances(InstanceIds=[INSTANCE_ID])
-        print(f"Starting instance {INSTANCE_ID}: {response}")
-        
-        # Wait for the instance to start
+        logger.info(f"Attempting to start instance: {INSTANCE_ID}")
+        # Use a waiter to block execution until the instance is fully running.
         waiter = ec2.get_waiter('instance_running')
+        ec2.start_instances(InstanceIds=[INSTANCE_ID])
         waiter.wait(InstanceIds=[INSTANCE_ID])
-        print(f"Instance {INSTANCE_ID} is now running.")
+        logger.info(f"Instance {INSTANCE_ID} is now running. ✅")
 
-        print('Waiting for 30 seconds before we run ssm')
-        time.sleep(30)
+        # A brief pause is crucial to ensure the SSM agent on the instance
+        # is fully initialized and ready to accept commands after boot-up.
+        logger.info("Waiting 45 seconds for SSM agent to initialize...")
+        time.sleep(45)
+
     except Exception as e:
-        print(f"Error with starting EC2 instance: {e}")
+        logger.error(f"Error starting EC2 instance: {e}")
+        return False
 
-
-    # Execute the command to run ./automate_airflow.sh via SSM
     try:
+        logger.info(f"Sending SSM command to trigger DAG: {dag_name}")
+        # This command runs the script in the background on the EC2 instance.
+        # The Lambda function can then exit without waiting for the script to finish.
+        ssm_command = f'nohup sudo -u ubuntu ./automate_airflow.sh {dag_name} &' # Runs the script in the background (logic from v2).
+
         response = ssm.send_command(
             InstanceIds=[INSTANCE_ID],
-            DocumentName="AWS-RunShellScript",  # Use AWS-RunShellScript to run a shell command
+            DocumentName="AWS-RunShellScript",
             Parameters={
                 'commands': [
                     'cd /home/ubuntu',
                     'chmod +x automate_airflow.sh',
                     'export AIRFLOW_HOME=/home/ubuntu/airflow',
-                    f'nohup sudo -u ubuntu ./automate_airflow.sh {dag_name} &' # Starts Airflow, runs Airflow DAG, sends a Lambda call to stop ec2 instance
+                    ssm_command
                 ]
             }
         )
-        print(f"Sent command to run {dag_name} DAG:", response)
+        command_id = response['Command']['CommandId']
+        logger.info(f"Successfully sent SSM command {command_id} to trigger {dag_name}.")
+        return True
+
     except Exception as e:
-        print(f"Error with executing SSM command: {e}")
+        logger.error(f"Error executing SSM command: {e}")
+        return False
 
 
 def stop_instance():
-    """Stops EC2 instance."""
+    """
+    Stops the Airflow services on the EC2 instance via SSM and then stops
+    the instance itself.
+
+    Returns:
+        bool: True if the instance was stopped successfully, False otherwise.
+    """
     try:
-        # Safely shut down Airflow via SSM
+        logger.info("Attempting to stop Airflow services via SSM...")
+        # Gracefully stop the Airflow scheduler and webserver processes.
         response = ssm.send_command(
             InstanceIds=[INSTANCE_ID],
-            DocumentName="AWS-RunShellScript",  # Use AWS-RunShellScript to run a shell command
+            DocumentName="AWS-RunShellScript",
             Parameters={
                 'commands': [
-                    'cd /home/ubuntu',
-                    'sudo -u ubuntu pkill -f "airflow webserver" && pkill -f "airflow scheduler"' # Stops airflow
+                    'sudo -u ubuntu pkill -f "airflow webserver"',
+                    'sudo -u ubuntu pkill -f "airflow scheduler"'
                 ]
             }
         )
-        print('Waiting for 30 seconds before we stop EC2')
+        logger.info("Sent command to stop Airflow. Waiting 30 seconds before stopping EC2...")
         time.sleep(30)
+
     except Exception as e:
-        print(f'Issues with stopping Airflow: {e}')
-        
+        # Log the error but continue to attempt stopping the instance.
+        logger.error(f"Could not stop Airflow services cleanly, but will proceed to stop instance: {e}")
+
     try:
-        response = ec2.stop_instances(InstanceIds=[INSTANCE_ID])
-        print(f"Stopping instance {INSTANCE_ID}: {response}")
-        
-        # Wait for the instance to stop
+        logger.info(f"Attempting to stop instance: {INSTANCE_ID}")
         waiter = ec2.get_waiter('instance_stopped')
+        ec2.stop_instances(InstanceIds=[INSTANCE_ID])
         waiter.wait(InstanceIds=[INSTANCE_ID])
-        print(f"Instance {INSTANCE_ID} is now stopped.")
+        logger.info(f"Instance {INSTANCE_ID} is now stopped. ✅")
+        return True
+
     except Exception as e:
-        print(f"Error with stopping EC2 instance: {e}")
+        logger.error(f"Error stopping EC2 instance: {e}")
+        return False
 
 
+# --- Lambda Handler ---
 def lambda_handler(event, context):
-    """Depending on the event, we either start or stop the EC2 instance."""
-    action = event.get('action')
+    """
+    Main entry point for the Lambda function.
+
+    Parses the 'action' and 'location' from the incoming event to either
+    start or stop the EC2 instance that runs Airflow.
+
+    Args:
+        event (dict): The event payload from the trigger (e.g., API Gateway).
+                      Expected keys: 'action' ('start' or 'stop') and 'location' (if action is 'start').
+        context (object): The Lambda runtime information.
+
+    Returns:
+        dict: An API Gateway compatible response object with a statusCode and JSON body.
+    """
+    # 1. Validate environment configuration
+    if not INSTANCE_ID:
+        msg = "FATAL: INSTANCE_ID environment variable is not set."
+        logger.error(msg)
+        return {'statusCode': 500, 'body': json.dumps(msg)}
+
+    # 2. Parse and validate the action from the event
+    action = event.get('action', '').lower()
+    if not action:
+        msg = "Invalid request: 'action' key is missing. Use 'start' or 'stop'."
+        logger.error(msg)
+        return {'statusCode': 400, 'body': json.dumps(msg)}
+
+    # 3. Route to the appropriate function based on the action
     if action == 'start':
-        # We start the EC2 instance and execute the corresponding Airflow DAG to the location input.
-        try:
-            location = event.get('location').upper()
-            dag_name = locations_dict[location]
-            start_instance(dag_name)
-        except:
-            print(f'Location {location} does not exist in our workflow. Please choose another location.')
+        location = event.get('location', '').upper()
+        dag_name = locations_dict.get(location)
+
+        if not dag_name:
+            msg = f"Invalid location: '{location}'. Valid options are: {list(locations_dict.keys())}"
+            logger.error(msg)
+            return {'statusCode': 400, 'body': json.dumps(msg)}
+
+        success = start_instance(dag_name)
+        if success:
+            return {'statusCode': 200, 'body': json.dumps(f"Successfully triggered start process for DAG: {dag_name}")}
+        else:
+            return {'statusCode': 500, 'body': json.dumps("An error occurred during the start process.")}
+
     elif action == 'stop':
-        stop_instance()
+        success = stop_instance()
+        if success:
+            return {'statusCode': 200, 'body': json.dumps("Successfully triggered stop process for the instance.")}
+        else:
+            return {'statusCode': 500, 'body': json.dumps("An error occurred during the stop process.")}
+
     else:
-        raise ValueError("Invalid action. Use 'start' or 'stop'.")
+        msg = f"Invalid action: '{action}'. Please use 'start' or 'stop'."
+        logger.error(msg)
+        return {'statusCode': 400, 'body': json.dumps(msg)}
