@@ -368,6 +368,7 @@ if __name__ == "__main__":
         job_titles = job_titles[:1]  # Only first job title
         max_workers = 1
 
+    logger.info(f'Running {max_workers} threads in parallel')
     if location_config['log_prefix'] not in ['US']:
         # Run non US jobs concurrently
         with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
