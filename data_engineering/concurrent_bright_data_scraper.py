@@ -40,6 +40,16 @@ def get_env_variables() -> Dict[str, str]:
         'DATASET_ID': os.getenv("DATASET_ID")
     }
 
+def get_safe_max_workers(pool_size=5, max_overflow=10, safety_margin=0.3):
+    "Get the max concurrency while considering Airflow and EC2 instance limitations"
+    cpu_count = os.cpu_count() or 2
+    db_limit = pool_size + max_overflow
+    
+    # Apply margin so Airflow itself (scheduler, logging, heartbeat) has breathing room
+    safe_db_limit = max(1, int(db_limit * (1 - safety_margin)))
+    
+    # Pick the lower of CPU-based and DB-based limits
+    return min(cpu_count * 2, safe_db_limit)
 
 # Initialize global variables (will be set in main)
 BRIGHTDATA_API_KEY = None
@@ -320,7 +330,7 @@ if __name__ == "__main__":
     scraping_config = config['scraping']
     locations = scraping_config['locations']
     parameters = scraping_config['parameters'][args.location]
-    max_workers = parameters['max_workers']
+    # max_workers = parameters['max_workers']
     poll_interval = parameters['poll_interval']
     
     # Select location (for Airflow, you can pass different location indices)
@@ -351,14 +361,15 @@ if __name__ == "__main__":
     # Override for testing
     if args.job_title:
         job_titles = [args.job_title]
-    if args.max_workers:
-        max_workers = args.max_workers
+    # if args.max_workers:
+    #     max_workers = args.max_workers
+    max_workers = get_safe_max_workers(pool_size=5, max_overflow=10)
     if args.test_mode:
         job_titles = job_titles[:1]  # Only first job title
         max_workers = 1
 
     if location_config['log_prefix'] not in ['US']:
-        # Run CA and SA jobs concurrently
+        # Run non US jobs concurrently
         with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
             futures = [
                 executor.submit(process_job_with_config, job_title, location_config, parameters, env_vars, logger, today_date, poll_interval)
