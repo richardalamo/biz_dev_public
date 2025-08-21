@@ -98,6 +98,7 @@ dag = DAG(
     dag_id=dag_name,
     default_args=default_args,
     schedule_interval=None,
+    max_active_runs=1,
     catchup=False,
 )
 
