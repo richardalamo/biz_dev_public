@@ -128,6 +128,7 @@ delete_bright_data_logs = BashOperator(
 collect_jobs = BashOperator(
     task_id='collect_jobs',
     bash_command=f'python3 {indeed_api_path} --config {config_path} --location {location_index} --log_location {log_location} --env_path {env_path} --today_date {today_date}',
+    execution_timeout=timedelta(minutes=180),
     dag=dag,
 )
 
