@@ -27,8 +27,8 @@ echo "Wait 60 seconds for updated files from Github to get reflected in EC2 fold
 sleep 60
 
 # Step 5: Start Airflow webserver and scheduler in the background
-nohup airflow webserver --port 8080 &
 nohup airflow scheduler &
+nohup airflow webserver --port 8080 &
 
 # Step 6: Poll until Airflow webserver and scheduler are running
 echo "Waiting for Airflow webserver and scheduler to start..."
@@ -107,20 +107,20 @@ while true; do
     else
         echo "DAG is still running..."
         
-        # if ! check_db; then
-        #     echo "Airflow DB is down!"
+        if ! check_db; then
+            echo "Airflow DB is down!"
     
-        #     if ! check_running_tasks; then
-        #         echo "No tasks running. Restarting Airflow..."
-        #         pkill -f "airflow webserver"
-        #         pkill -f "airflow scheduler"
-        #         sleep 10
-        #         nohup airflow webserver --port 8080 &
-        #         nohup airflow scheduler &
-        #     else
-        #         echo "Tasks are still running. Will not restart."
-        #     fi
-        # fi
+            if ! check_running_tasks; then
+                echo "No tasks running. Restarting Airflow..."
+                pkill -f "airflow webserver"
+                pkill -f "airflow scheduler"
+                sleep 10
+                nohup airflow webserver --port 8080 &
+                nohup airflow scheduler &
+            else
+                echo "Tasks are still running. Will not restart."
+            fi
+        fi
     
         sleep 30  # wait before checking again
     fi
