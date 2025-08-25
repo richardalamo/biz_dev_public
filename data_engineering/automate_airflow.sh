@@ -74,17 +74,17 @@ while ! check_scheduler_heartbeat; do
 done
 
 # Step 8: Creating the functions to check whether the Airflow metadata DB is up and whether any tasks are running
-# check_db() {
-#     pg_isready -h localhost -p 5432 -U airflow_user > /dev/null 2>&1
-#     return $?  # 0 if ready, non-zero if not
-# }
+check_db() {
+    pg_isready -h localhost -p 5432 -U airflow_user > /dev/null 2>&1
+    return $?  # 0 if ready, non-zero if not
+}
 
-# check_running_tasks() {
-#     execution_date=$(airflow dags list-runs -d "$dag_id" --output json | jq -r '.[0].execution_date')
-#     running_count=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
-#         jq '[.[] | select(.state == "running")] | length')
-#     [[ $running_count -gt 0 ]] && return 0 || return 1
-# }
+check_running_tasks() {
+    execution_date=$(airflow dags list-runs -d "$dag_id" --output json | jq -r '.[0].execution_date')
+    running_count=$(airflow tasks states-for-dag-run "$dag_id" "$execution_date" --output json | \
+        jq '[.[] | select(.state == "running")] | length')
+    [[ $running_count -gt 0 ]] && return 0 || return 1
+}
 
 # Step 9: Trigger the specific DAG
 echo "Triggering DAG..."
