@@ -58,7 +58,7 @@ For ```/home/ubuntu/```
 |       │── clean_and_preprocess.py
 |       │── process_data.py
 |       └── LLM_labelling.py
-|   └── outputs/
+|   │── outputs/
 |       └── *.csv
 |   │── logs/
         └── *.log
@@ -71,11 +71,22 @@ For ```/home/ubuntu/```
 └── create_postgresql_table.py
 ```
 
+### Airflow
+Inside ```~/airflow/```. Everything Airflow related is in this folder and the subfolers within.
+
+### DAGs
+Inside ```~/airflow/dags/```. Stores the Airflow DAGs.
+
+### Scrape Code
+Inside ```~/airflow/scrape_code/```. Stores the code for the ETL process.
+
 ### Logs
 Inside ```~/airflow/logs/```
 1. ```bright_data_logs/```: Contains 2 types of logs. First type is anything with format ```{country_code}_indeed_{date}.log```. This type logs anything in ```concurrent_bright_data_scraper.py```, such as the status of the Brightdata API call, errors encountered in the data collection, etc. Second type is anything in ```automate_airflow.sh```, with format ```{automate_airflow}_{date}.log```. This type logs anything regarding the Airflow status, such as whether Airflow was able to start, DAG run status, etc.
 2. ```dag_id={dag_name}/```: Task run status
 
+### Outputs
+Inside ```~/airflow/outputs/```. This is for any csv files generated in the intermediate and final ETL steps, including the raw data pulls, intermediate csv files, and the final cleaned csv files with LLM outputs.
 
 ## Artifacts Needed
 
