@@ -40,6 +40,7 @@ Below diagram is a data architecture representation
 ## Folders Explained
 
 ### EC2 Folder structure
+For ```/home/ubuntu/```
 ```bash
 .
 ├── airflow/
