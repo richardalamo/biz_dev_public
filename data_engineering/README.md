@@ -15,6 +15,17 @@ Below diagram is a data architecture representation
 
 ## Files Explained
 
+```bash
+.
+├── src/
+│   ├── main.js
+│   └── components/
+│       └── Button.js
+├── public/
+│   └── index.html
+└── README.md
+```
+
 | File Name  | Needed in Migration | Explanation |
 | ------------- | ------------- | ------------- |
 | ```setup.sh```  | No  | Automated way to install Airflow, set up Airflow folders, and the Python packages necessary  |
