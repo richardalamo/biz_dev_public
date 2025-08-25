@@ -57,6 +57,10 @@ EC2 Folder structure
 |       └── LLM_labelling.py
 |   └── outputs/
 |       └── *.csv
+|   │── logs/
+        └── *.log
+|   │── .env
+|   └── airflow.cfg
 │── requirements.txt
 │── load_from_github.py
 │── stop_ec2_instance.py
