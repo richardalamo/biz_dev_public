@@ -47,7 +47,7 @@ EC2 Folder structure
 │       │── indeed_etl_us.py
 │       │── indeed_etl_ae.py
 │       │── stored_variables.py
-│       │── stored_functions.py
+│       └── stored_functions.py
 │   │── scrape_code/
 │       │── concurrent_bright_data_scraper.py
 |       │── config.yaml
