@@ -15,15 +15,31 @@ Below diagram is a data architecture representation
 
 ## Files Explained
 
+Folder structure
 ```bash
 .
-├── src/
-│   ├── main.js
-│   └── components/
-│       └── Button.js
-├── public/
-│   └── index.html
-└── README.md
+├── airflow/
+│   │── dags/
+│       │── indeed_etl.py
+│       │── indeed_etl_ca.py
+│       │── indeed_etl_us.py
+│       │── indeed_etl_ae.py
+│       │── stored_variables.py
+│       │── stored_functions.py
+│   │── scrape_code/
+│       │── concurrent_bright_data_scraper.py
+|       │── config.yaml
+|       │── file_concatenation.py
+|       │── clean_and_preprocess.py
+|       │── process_data.py
+|       └── LLM_labelling.py
+|   └── outputs/
+|       └── *.csv
+│── requirements.txt
+│── load_from_github.py
+│── stop_ec2_instance.py
+│── automate_airflow.sh
+└── create_postgresql_table.py
 ```
 
 | File Name  | Needed in Migration | Explanation |
