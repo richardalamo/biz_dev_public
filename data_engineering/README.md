@@ -39,7 +39,7 @@ Below diagram is a data architecture representation
 
 ## Folders Explained
 
-EC2 Folder structure
+### EC2 Folder structure
 ```bash
 .
 ├── airflow/
@@ -70,10 +70,10 @@ EC2 Folder structure
 └── create_postgresql_table.py
 ```
 
-Logs
-Inside ```~/airflow/logs/```
+### Logs
+1. Inside ```~/airflow/logs/```
 ```bright_data_logs/```: Contains 2 types of logs. First type is anything with format ```{country_code}_indeed_{date}.log```. This type logs anything in the data collection process, such as the status of the Brightdata API call, errors encountered in the data collection, etc. Second type is anything in ```automate_airflow.sh```, with format ```{automate_airflow}_{date}.log```. This type logs anything regarding the Airflow status, such as whether Airflow was able to start, DAG run status, etc.
-Inside ```~/dag_id={dag_name}```: Task run status
+2. Inside ```~/dag_id={dag_name}```: Task run status
 
 
 ## Artifacts Needed
