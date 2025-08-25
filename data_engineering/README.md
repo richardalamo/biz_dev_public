@@ -72,7 +72,7 @@ For ```/home/ubuntu/```
 ```
 
 ### Airflow
-Inside ```~/airflow/```. Everything Airflow related is in this folder and the subfolers within.
+Inside ```~/airflow/```. Everything Airflow related is in this folder and the subfolders within.
 
 ### DAGs
 Inside ```~/airflow/dags/```. Stores the Airflow DAGs.
