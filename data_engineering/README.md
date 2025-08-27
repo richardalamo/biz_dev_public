@@ -13,6 +13,9 @@ Below diagram is a data architecture representation
 
 ![image](https://github.com/user-attachments/assets/becae52e-2914-4334-bdd7-e2e3241aac0e)
 
+## GAP
+We have the entire ETL process for Saudi Arabia, already implemented and automated in Airflow. <br> However, we need to implement the cleaning scripts into Airflow for Canada and US
+
 ## Files Explained
 
 | File Name  | Needed in Migration | Explanation |
