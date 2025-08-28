@@ -71,7 +71,7 @@ for GITHUB_FILE_PATH, EC2_FILE_PATH in zip(GITHUB_FILE_PATHS, EC2_FILE_PATHS):
     download_file_from_github(GITHUB_TOKEN, GITHUB_REPO, GITHUB_BRANCH, GITHUB_FILE_PATH, EC2_FILE_PATH)
 
 
-# For the beam-data/job-market-trend where the CA and US cleaning scripts are
+# For the beam-data/job-market-trend repository where the CA and US cleaning scripts are
 
 # TO DO
 # File paths of files to load from Github
