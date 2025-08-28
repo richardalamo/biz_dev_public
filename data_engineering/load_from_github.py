@@ -3,6 +3,8 @@ import os
 from dotenv import load_dotenv
 import base64
 
+# For the richardalamo/biz_dev_public repository, where the majority of the data pipeline scripts are
+
 # File paths of files to load from Github
 GITHUB_FILE_PATHS = [
     'data_engineering/concurrent_bright_data_scraper.py',
@@ -41,8 +43,8 @@ env_path = '/home/ubuntu/airflow/.env' # .env path
 load_dotenv(env_path) # Loading .env file
 
 GITHUB_REPO = 'richardalamo/biz_dev_public' # Github repo to load data from
-GITHUB_TOKEN = os.getenv("github_token") # Expire on July 7, 2025
-GITHUB_BRANCH = 'main' 
+GITHUB_TOKEN = os.getenv("github_token")
+GITHUB_BRANCH = 'main'
 
 def download_file_from_github(GITHUB_TOKEN, GITHUB_REPO, GITHUB_BRANCH, GITHUB_FILE_PATH, EC2_FILE_PATH):
     '''Updates file in EC2 folder with file content from Github'''
@@ -64,6 +66,34 @@ def download_file_from_github(GITHUB_TOKEN, GITHUB_REPO, GITHUB_BRANCH, GITHUB_F
         print(f"File downloaded successfully and saved to {EC2_FILE_PATH}")
     else: # Otherwise if request fails, we do nothing
         print(f'Error: {response.status_code}, {response.text}')
+
+for GITHUB_FILE_PATH, EC2_FILE_PATH in zip(GITHUB_FILE_PATHS, EC2_FILE_PATHS):
+    download_file_from_github(GITHUB_TOKEN, GITHUB_REPO, GITHUB_BRANCH, GITHUB_FILE_PATH, EC2_FILE_PATH)
+
+
+# For the beam-data/job-market-trend where the CA and US cleaning scripts are
+
+# TO DO
+# File paths of files to load from Github
+GITHUB_FILE_PATHS = [
+    '',
+]
+
+# TO DO
+# File paths of files to load to EC2 folder
+EC2_FILE_PATHS = [
+    '',
+]
+
+# TO DO
+env_path = '' # .env path.
+load_dotenv(env_path) # Loading .env file
+
+GITHUB_REPO = 'beam-data/job-market-trend' # Github repo to load data from
+# TO DO
+GITHUB_TOKEN = os.getenv("")
+
+GITHUB_BRANCH = 'job_pipeline'
 
 for GITHUB_FILE_PATH, EC2_FILE_PATH in zip(GITHUB_FILE_PATHS, EC2_FILE_PATHS):
     download_file_from_github(GITHUB_TOKEN, GITHUB_REPO, GITHUB_BRANCH, GITHUB_FILE_PATH, EC2_FILE_PATH)
