@@ -18,9 +18,9 @@ We have the entire ETL process for Saudi Arabia, already implemented and automat
 
 ## Files Explained
 
-| File Name  | Needed in Migration | Explanation |
+| File Name  | Needed in Migration | File Explained |
 | ------------- | ------------- | ------------- |
-| ```setup.sh```  | Yes  | Automated way to install Airflow, set up Airflow folders, and the Python packages necessary.  |
+| ```setup.sh```  | Only the ```sudo apt-get install {package}``` code  | Automated way to install Airflow, set up Airflow folders, and the Python packages necessary.  |
 | ```requirements.txt```  | Yes  | Python packages required for project  |
 | ```indeed_etl.py```  | Yes  | Airflow DAG to collect, clean, and store Saudi Arabia Indeed jobs in S3 and PostgreSQL  |
 | ```indeed_etl_ca.py```  | Yes  | Airflow DAG to collect, clean, and store Canada Indeed jobs in S3 and PostgreSQL  |
