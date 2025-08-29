@@ -7,6 +7,7 @@ load_dotenv("/home/ubuntu/airflow/.env")
 
 SLACK_WEBHOOK_URL = os.getenv("SLACK_WEBHOOK_URL")  # Get the webhook url. Which will connect Airflow to the Slack channel to notify users
 user_id = os.getenv("SLACK_ID")
+user_id_2 = os.getenv("SLACK_ID_2")
 
 # Send message to specified Slack channel
 def send_slack_message(message):
@@ -25,4 +26,4 @@ def task_success_callback(context):
 def task_failure_callback(context):
     task = context.get("task_instance").task_id
     dag = context.get("dag").dag_id
-    send_slack_message(f"❌ Hi <@{user_id}>. Task *{task}* in DAG *{dag}* failed.")
+    send_slack_message(f"❌ Hi <@{user_id}> and <@{user_id_2}>. Task *{task}* in DAG *{dag}* failed.")
